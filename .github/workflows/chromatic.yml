@@ -21,8 +21,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
-          
-      - name: Install dependencies
+
+      - name: Install pnpm
+        run: |
+          npm install -g pnpm
+
+      - name: Install Packages
         run: pnpm install
 
       - name: Publish to Chromatic
