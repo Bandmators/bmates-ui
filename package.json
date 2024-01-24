@@ -34,8 +34,7 @@
     "build-storybook": "storybook build",
     "prepare": "husky install",
     "test": "vitest",
-    "testOnce": "vitest run --run --coverage",
-    "chromatic": "npx chromatic --project-token=chpt_2a9aa9d668c2647"
+    "testOnce": "vitest run --run --coverage"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
