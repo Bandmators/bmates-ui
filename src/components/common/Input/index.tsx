@@ -2,8 +2,8 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import * as React from 'react';
 
-export { default as InputGroup } from '@/components/common/Input/InputGroup';
-export { default as InputDesc } from '@/components/common/Input/InputDesc';
+export { default as InputGroup } from './InputGroup';
+export { default as InputDesc } from './InputDesc';
 
 export interface InputProps extends React.ComponentPropsWithoutRef<'input'> {}
 

@@ -30,6 +30,8 @@ export default defineConfig({
   assetsInclude: ['/sb-preview/runtime.js'],
   // Build
   build: {
+    ssr: true,
+    
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'index',
