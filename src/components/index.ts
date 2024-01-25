@@ -1,2 +1,2 @@
-export * from './common'
-export { default as StyledProvider} from './provider/StyledProvider'
+export * from './common';
+export { default as BMatesProvider } from './provider/StyledProvider';

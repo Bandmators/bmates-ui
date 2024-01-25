@@ -13,11 +13,13 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: './src/setupTests.js',
+    setupFiles: 'src/setupTests.js',
+    include: ['src/__tests__/*.{test,spec}.?(c|m)[jt]s?(x)'],
     coverage: {
       reporter: ['text', 'json-summary', 'json'],
       reportOnFailure: true,
       provider: 'v8',
+      include: ['src/**'],
       exclude: [...coverageConfigDefaults.exclude, 'src/stories/*', '**.config.**'],
     },
   },
@@ -31,7 +33,7 @@ export default defineConfig({
   // Build
   build: {
     ssr: true,
-    
+
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'index',
