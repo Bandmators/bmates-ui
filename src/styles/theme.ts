@@ -5,6 +5,7 @@ export const BMateColors = {
   white: '#FAFAFA',
   black: '#212121',
   primary: '#212121',
+  secondary: '#EEEEEE',
   gray: {
     50: '#FAFAFA',
     100: '#F5F5F5',
