@@ -8,3 +8,4 @@ export * from './Label';
 export * from './Textarea';
 export * from './Tooltip';
 export * from './Checkbox';
+export * from './Switch';

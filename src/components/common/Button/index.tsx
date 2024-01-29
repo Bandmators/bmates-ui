@@ -3,10 +3,9 @@ import styled from '@emotion/styled';
 import React, { ComponentPropsWithoutRef } from 'react';
 
 import { SizeType } from '@/types/size';
+import { SpecialVariantType } from '@/types/variant';
 
-type ButtonVariantType = 'primary' | 'secondary' | 'warning' | 'danger' | 'outline' | 'ghost';
-
-const ButtonVariantStyles = ({ theme, variant }: { theme: Theme; variant: ButtonVariantType }) => {
+const ButtonVariantStyles = ({ theme, variant }: { theme: Theme; variant: SpecialVariantType }) => {
   switch (variant) {
     case 'secondary':
       return css`
@@ -104,7 +103,7 @@ export interface ButtonVariantProps {
   /*
     Button variant
   */
-  variant?: ButtonVariantType;
+  variant?: SpecialVariantType;
   /*
     Button size
   */
