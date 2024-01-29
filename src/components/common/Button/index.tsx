@@ -10,7 +10,7 @@ const ButtonVariantStyles = ({ theme, variant }: { theme: Theme; variant: Button
   switch (variant) {
     case 'secondary':
       return css`
-        background-color: ${theme.colors.gray['200']};
+        background-color: ${theme.colors.secondary};
       `;
     case 'danger':
       return css`
