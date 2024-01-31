@@ -1,7 +1,7 @@
 import { Theme } from '@emotion/react';
 
 export const BMateColors = {
-  bg: '#FFF',
+  background: '#FFF',
   white: '#FAFAFA',
   black: '#212121',
   primary: '#212121',

@@ -5,21 +5,32 @@ import React, { ComponentPropsWithoutRef } from 'react';
 import { SizeType } from '@/types/size';
 import { SpecialVariantType } from '@/types/variant';
 
-const ButtonVariantStyles = ({ theme, variant }: { theme: Theme; variant: SpecialVariantType }) => {
+type ButtonVariantType = SpecialVariantType | 'default';
+
+const ButtonVariantStyles = ({ theme, variant }: { theme: Theme; variant: ButtonVariantType }) => {
   switch (variant) {
     case 'secondary':
       return css`
         background-color: ${theme.colors.secondary};
+        &:hover {
+          opacity: 0.8;
+        }
       `;
     case 'danger':
       return css`
         color: ${theme.colors.white};
         background-color: ${theme.colors.danger};
+        &:hover {
+          opacity: 0.8;
+        }
       `;
     case 'warning':
       return css`
         color: ${theme.colors.white};
         background-color: ${theme.colors.warning};
+        &:hover {
+          opacity: 0.8;
+        }
       `;
     case 'outline':
       return css`
@@ -34,10 +45,21 @@ const ButtonVariantStyles = ({ theme, variant }: { theme: Theme; variant: Specia
         background-color: transparent;
       `;
     case 'primary':
-    default:
       return css`
         color: white;
         background-color: ${theme.colors.primary};
+        &:hover {
+          opacity: 0.8;
+        }
+      `;
+    default:
+      return css`
+        color: ${theme.colors.black};
+        background-color: ${theme.colors.background};
+        border: 1px solid ${theme.colors.gray['300']};
+        &:hover {
+          opacity: 0.8;
+        }
       `;
   }
 };
@@ -103,7 +125,7 @@ export interface ButtonVariantProps {
   /*
     Button variant
   */
-  variant?: SpecialVariantType;
+  variant?: ButtonVariantType;
   /*
     Button size
   */
@@ -116,7 +138,7 @@ export interface ButtonVariantProps {
 export interface ButtonProps extends ComponentPropsWithoutRef<'button'>, ButtonVariantProps {}
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = 'primary', size = 'md', children, full = false, ...props }, ref) => {
+  ({ className, variant = 'default', size = 'md', children, full = false, ...props }, ref) => {
     return (
       <StyledButton ref={ref} className={className} variant={variant} full={full} size={size} {...props}>
         {children}

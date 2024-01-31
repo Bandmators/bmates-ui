@@ -14,6 +14,13 @@ import {
   DialogHeader,
   DialogTitle,
   DialogToggle,
+  Dropdown,
+  DropdownContent,
+  DropdownDivider,
+  DropdownItem,
+  DropdownLabel,
+  DropdownShortcut,
+  DropdownToggle,
   Form,
   Input,
   InputDesc,
@@ -171,5 +178,39 @@ describe('UI test', () => {
     fireEvent.click(dialogBGs[0]);
 
     expect(closeBtn).not.toBeInTheDocument();
+  });
+
+  it('Should appear DropdownContent when click DropdownToggle', () => {
+    render(
+      <Dropdown>
+        <DropdownToggle>DropdownToggle</DropdownToggle>
+        <DropdownContent width={'15rem'}>
+          <DropdownLabel>Share Social</DropdownLabel>
+          <DropdownDivider />
+          <DropdownItem>
+            GitHub
+            <DropdownShortcut>⌘+T</DropdownShortcut>
+          </DropdownItem>
+
+          <DropdownItem disabled>Facebook</DropdownItem>
+          <DropdownItem>Twitter</DropdownItem>
+        </DropdownContent>
+      </Dropdown>,
+    );
+
+    const toggleBtn = screen.getByText('DropdownToggle');
+    expect(toggleBtn).toBeInTheDocument();
+
+    fireEvent.click(toggleBtn);
+
+    const dropdownLabel = screen.getByText('Share Social');
+    expect(dropdownLabel).toBeInTheDocument();
+
+    const dropdownItem = screen.getByText('Twitter');
+    expect(dropdownItem).toBeInTheDocument();
+
+    fireEvent.click(dropdownItem);
+
+    expect(dropdownLabel).not.toBeInTheDocument();
   });
 });

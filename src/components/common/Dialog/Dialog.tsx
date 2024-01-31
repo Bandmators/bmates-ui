@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import useModal from '@/hooks/useModal';
+
 import DialogContext from './DialogContext';
 
 interface DialogProps extends React.ComponentPropsWithoutRef<'div'> {}
@@ -9,7 +11,7 @@ interface DialogProps extends React.ComponentPropsWithoutRef<'div'> {}
  * @returns
  */
 export const Dialog = ({ children, ...props }: DialogProps) => {
-  const [showModal, setShowModal] = React.useState<boolean>(false);
+  const [showModal, setShowModal] = useModal();
 
   return (
     <DialogContext.Provider value={{ showModal, setShowModal }} {...props}>
@@ -17,5 +19,3 @@ export const Dialog = ({ children, ...props }: DialogProps) => {
     </DialogContext.Provider>
   );
 };
-
-// const DialogProvider = styled.div``;
