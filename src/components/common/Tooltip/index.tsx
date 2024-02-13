@@ -18,6 +18,7 @@ const TooltipTrigger = styled.div<{ direction?: Direction }>`
   background-color: ${({ theme }) => theme.colors.black};
   animation: ${tooltip} 0.5s ease;
   z-index: 200;
+  white-space: nowrap;
 
   ${props => {
     if (props.direction === 'top' || props.direction === 'bottom') {
