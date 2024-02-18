@@ -31,26 +31,26 @@ export const DropdownContent = React.forwardRef<HTMLDivElement, ModalProps>(({ w
   };
 
   React.useEffect(() => {
-    if (modalRef.current && toggleRect) {
-      const rect = modalRef.current.getBoundingClientRect();
+    if (modalRef.current && toggleRect && showModal) {
+      const rect = modalRef.current;
 
-      const isOverflowing = rect.bottom > window.innerHeight;
+      const isOverflowing = rect.offsetHeight + toggleRect.bottom >= window.innerHeight;
       const reorgPos = { x: 0, y: 0 };
 
       switch (align) {
         case 'center':
-          reorgPos.x = toggleRect.x + toggleRect.width / 2 - rect.width / 2;
+          reorgPos.x = toggleRect.x + toggleRect.width / 2 - rect.clientWidth / 2;
           break;
         case 'start':
           reorgPos.x = toggleRect.x;
           break;
         case 'end':
-          reorgPos.x = toggleRect.x + toggleRect.width - rect.width;
+          reorgPos.x = toggleRect.x + toggleRect.width - rect.clientWidth;
           break;
       }
 
       if (isOverflowing) {
-        reorgPos.y = toggleRect.y - rect.height;
+        reorgPos.y = toggleRect.y - rect.offsetHeight;
       } else {
         reorgPos.y = toggleRect.y + toggleRect.height;
       }
