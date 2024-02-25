@@ -9,12 +9,12 @@ const listeners: Array<(state: State) => void> = [];
 
 let memoryState: State = { toasts: [] };
 
-function dispatch(action: Action) {
+const dispatch = (action: Action) => {
   memoryState = reducer(memoryState, action);
   listeners.forEach(listener => {
     listener(memoryState);
   });
-}
+};
 
 let cnt = 1;
 const toast = ({ ...props }: ToastProps) => {

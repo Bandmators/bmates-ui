@@ -30,7 +30,7 @@ const meta = {
       return (
         <>
           <Story />
-          <Toaster />
+          <Toaster position="bottom-right" />
         </>
       );
     },
@@ -47,7 +47,7 @@ type Story = StoryObj<typeof ToastForStory>;
 export const Default: Story = {
   args: {
     title: 'Toast Title',
-    description: `When you click Toast,  containing 'data' 'action' is executed.`,
+    description: `When you click Toast, containing 'data' 'action' is executed.`,
     variant: 'primary',
     time: 5000,
     data: 'Hi',

@@ -5,10 +5,11 @@ import React from 'react';
 import { DefaultVariantType } from '@/types/variant';
 
 import { useToast } from '.';
-import { ToastData } from './type';
+import { ToastData, ToastPosition } from './type';
 
 interface ToastProps extends React.ComponentPropsWithoutRef<'li'> {
   toast: ToastData;
+  position: ToastPosition;
 }
 
 export const Toast = React.forwardRef<HTMLLIElement, ToastProps>(({ toast, ...props }, ref) => {
@@ -85,7 +86,37 @@ const ToastVariantStyles = ({ theme, variant }: { theme: Theme; variant: Default
   }
 };
 
-const ToastStyled = styled.li<{ variant?: DefaultVariantType }>`
+const ToastPositionStyles = ({ position }: { position: ToastPosition }) => {
+  switch (position) {
+    case 'top-left':
+      return css`
+        transform: translateX(calc(-100% - 2rem));
+      `;
+    case 'top-center':
+      return css`
+        transform: translateY(-100vh);
+      `;
+    case 'top-right':
+      return css`
+        transform: translateX(calc(100% + 2rem));
+      `;
+    case 'bottom-left':
+      return css`
+        transform: translateX(calc(-100% - 2rem));
+      `;
+    case 'bottom-center':
+      return css`
+        transform: translateY(100vh);
+      `;
+    case 'bottom-right':
+    default:
+      return css`
+        transform: translateX(calc(100% + 2rem));
+      `;
+  }
+};
+
+const ToastStyled = styled.li<{ variant?: DefaultVariantType; position?: ToastPosition }>`
   padding: 1rem;
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 0.5rem;
@@ -96,14 +127,14 @@ const ToastStyled = styled.li<{ variant?: DefaultVariantType }>`
 
   justify-content: space-between;
   box-shadow: 0 0px 3px ${({ theme }) => theme.colors.gray['400']};
+  transition: transform 0.25s cubic-bezier(0.75, -0.5, 0.25, 1.25);
 
-  transform: translateX(calc(100% + 2rem));
-  transition: all 0.25s cubic-bezier(0.75, -0.5, 0.25, 1.25);
   cursor: pointer;
   &.active {
-    transform: translateX(0);
+    transform: translateX(0) translateY(0);
   }
   ${({ theme, variant }) => variant && ToastVariantStyles({ theme, variant })}
+  ${({ position }) => position && ToastPositionStyles({ position })}
 `;
 
 export const ToastTitle = styled.div`
