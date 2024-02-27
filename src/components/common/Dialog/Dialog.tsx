@@ -7,7 +7,7 @@ import DialogContext from './DialogContext';
 interface DialogProps extends React.ComponentPropsWithoutRef<'div'> {}
 
 /**
- * Dialog Context Provider
+ * Block other actions and open new windows.
  * @returns
  */
 export const Dialog = ({ children, ...props }: DialogProps) => {
