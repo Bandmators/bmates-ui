@@ -14,7 +14,7 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: 'src/setupTests.js',
-    include: ['src/__tests__/*.{test,spec}.?(c|m)[jt]s?(x)'],
+    include: ['src/**/*.{test,spec}.?(c|m)[jt]s?(x)'],
     coverage: {
       reporter: ['text', 'json-summary', 'json'],
       reportOnFailure: true,

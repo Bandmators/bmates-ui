@@ -23,9 +23,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }, 
+    }
   },
-  "include": ["src"],
+  "include": ["src", "index.ts"],
   "exclude": ["**/*.test.*", "**/*.stories.*", "**/*.mdx", "src/libs/test.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

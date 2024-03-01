@@ -5,7 +5,7 @@ import useContext from '@/hooks/useContext';
 import { composeEventHandlers } from '@/libs/event';
 import { composeRefs } from '@/libs/ref';
 
-import { Button } from '..';
+import { Button } from '../../';
 import DropdownContext from './DropdownContext';
 
 type ComponentPropsWithoutRef<E extends React.ElementType> = React.ComponentPropsWithoutRef<E> & {

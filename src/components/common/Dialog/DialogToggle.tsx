@@ -4,7 +4,7 @@ import Slot from '@/components/Slot';
 import useContext from '@/hooks/useContext';
 import { composeEventHandlers } from '@/libs/event';
 
-import { Button } from '..';
+import { Button } from '.';
 import DialogContext from './DialogContext';
 
 type ComponentPropsWithoutRef<E extends React.ElementType> = React.ComponentPropsWithoutRef<E> & {

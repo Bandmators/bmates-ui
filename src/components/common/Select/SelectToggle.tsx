@@ -6,7 +6,7 @@ import useContext from '@/hooks/useContext';
 import { composeEventHandlers } from '@/libs/event';
 import { composeRefs } from '@/libs/ref';
 
-import { Button } from '..';
+import { Button } from '../../';
 import SelectContext from './SelectContext';
 
 type ComponentPropsWithoutRef<E extends React.ElementType> = React.ComponentPropsWithoutRef<E> & {
