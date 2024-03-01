@@ -47,7 +47,7 @@ export const Toast = React.forwardRef<HTMLLIElement, ToastProps>(({ toast, ...pr
         if (action) action(data);
         close();
       }}
-      data-toastData={data}
+      data-toastdata={data}
       {...props}
     >
       {title && <ToastTitle>{title}</ToastTitle>}

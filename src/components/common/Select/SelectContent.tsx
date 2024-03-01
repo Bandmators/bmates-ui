@@ -65,7 +65,13 @@ export const SelectContent = React.forwardRef<HTMLUListElement, ModalProps>(({ w
         createPortal(
           <>
             <ModalBG onClick={close} className="bmates-modal-bg" />
-            <Modal ref={composeRefs(modalRef, ref)} width={width} position={reorgPos} role="listbox" {...props}>
+            <Modal
+              ref={composeRefs(modalRef, ref)}
+              width={width || toggleRect?.width}
+              position={reorgPos}
+              role="listbox"
+              {...props}
+            >
               {props.children}
             </Modal>
           </>,
@@ -91,11 +97,11 @@ const ModalBG = styled.div`
 
 const Modal = styled.ul<{ width?: React.CSSProperties['width']; position: PositionType }>`
   display: grid;
-  margin: 0.25rem 0px 0px;
+  margin: 0px;
   min-width: max-content;
   ${({ width }) => width && `width: ${typeof width === 'string' ? width : `${width}px`};`}
   padding: 0.25rem;
-  border-radius: 0.5rem;
+  border-radius: 0.375rem;
   position: fixed;
   top: 0px;
   left: 0px;

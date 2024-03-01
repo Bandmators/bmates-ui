@@ -105,7 +105,7 @@ const StyledCheckbox = styled.div<{ checked: boolean; disabled: boolean }>`
 const Icon = styled.svg`
   fill: none;
   stroke: white;
-  stroke-width: 2px;
+  strokewidth: 2px;
 `;
 
 const HiddenCheckbox = styled.input`

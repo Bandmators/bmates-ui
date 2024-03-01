@@ -94,7 +94,7 @@ const Modal = styled.div<{ maxWidth: number | string }>`
     return `${maxWidth}px`;
   }};
   padding: 1.5rem;
-  border-radius: 0.5rem;
+  border-radius: 0.375rem;
   position: fixed;
   top: 50%;
   left: 50%;

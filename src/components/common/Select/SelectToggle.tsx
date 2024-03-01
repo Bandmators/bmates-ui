@@ -50,9 +50,9 @@ export const SelectToggle = React.forwardRef<HTMLButtonElement, ComponentPropsWi
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
@@ -66,6 +66,8 @@ SelectToggle.displayName = 'SelectToggle';
 const SelectDownIconWrapper = styled.div`
   margin-left: auto;
   padding-left: 1rem;
+  display: flex;
+  align-items: center;
 `;
 const SelectToggleContent = styled.div`
   overflow: hidden;
