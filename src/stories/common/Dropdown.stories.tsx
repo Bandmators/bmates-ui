@@ -130,24 +130,3 @@ export const AlignEnd: Story = {
     ),
   },
 };
-
-export const It13123em: Story = {
-  args: {
-    children: (
-      <>
-        <DropdownToggle>Dropdown</DropdownToggle>
-        <DropdownContent width={'15rem'}>
-          <DropdownLabel>Share Social</DropdownLabel>
-          <DropdownDivider />
-          <DropdownItem>
-            GitHub
-            <DropdownShortcut>⌘+T</DropdownShortcut>
-          </DropdownItem>
-
-          <DropdownItem disabled>Facebook</DropdownItem>
-          <DropdownItem>Twitter</DropdownItem>
-        </DropdownContent>
-      </>
-    ),
-  },
-};

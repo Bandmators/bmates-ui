@@ -9,7 +9,7 @@ interface DropdownProps extends React.ComponentPropsWithoutRef<'div'> {
 }
 
 /**
- * Dropdown Context Provider
+ * Displays a list of menus.
  * @returns
  */
 export const Dropdown = ({ children, align = 'center', ...props }: DropdownProps) => {

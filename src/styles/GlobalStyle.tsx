@@ -43,6 +43,9 @@ const GlobalCustomStyle = (theme: Theme) => css`
     background: ${theme.colors.primary};
     color: white;
   }
+  &:focus-visible {
+    box-shadow: 0 0 10px ${theme.colors.gray['200']};
+  }
 `;
 
 export default function GlobalStyle() {
