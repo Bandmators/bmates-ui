@@ -42,12 +42,13 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     };
 
     return (
-      <CheckboxContainer align={align} disabled={disabled} className={className}>
+      <CheckboxContainer align={align} disabled={disabled} className={className} data-checked={chk}>
         <HiddenCheckbox
           ref={ref}
           id={id}
           type="checkbox"
           checked={chk}
+          data-checked={chk}
           onChange={composeEventHandlers(onChange, onChangeHandler)}
           disabled={disabled}
           {...props}
@@ -105,7 +106,7 @@ const StyledCheckbox = styled.div<{ checked: boolean; disabled: boolean }>`
 const Icon = styled.svg`
   fill: none;
   stroke: white;
-  strokewidth: 2px;
+  stroke-width: 2px;
 `;
 
 const HiddenCheckbox = styled.input`

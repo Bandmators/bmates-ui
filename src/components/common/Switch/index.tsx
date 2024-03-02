@@ -57,14 +57,15 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
     };
 
     return (
-      <SwitchContainer align={align} disabled={disabled} className={className}>
+      <SwitchContainer align={align} disabled={disabled} className={className} data-checked={chk}>
         <HiddenSwitch
           ref={ref}
           id={id}
           type="checkbox"
-          checked={chk}
           onChange={composeEventHandlers(onChange, onChangeHandler)}
           disabled={disabled}
+          defaultChecked={chk}
+          data-checked={chk}
           {...props}
         />
         <StyledSwitch variant={variant} checked={chk} size={size} disabled={disabled} />
