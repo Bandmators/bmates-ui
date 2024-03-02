@@ -66,7 +66,7 @@ describe('Toast', () => {
 
     fireEvent.click(description);
 
-    waitFor(() => {
+    await waitFor(() => {
       // when click toast, it should be removed.
       expect(title).not.toBeInTheDocument();
 
