@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import * as React from 'react';
 
+import { PortalContext } from '@/components/portal/PortalContext';
 import useContext from '@/hooks/useContext';
 import { composeEventHandlers } from '@/libs/event';
 
@@ -14,7 +15,8 @@ interface SelectItemProps extends React.ComponentPropsWithoutRef<'li'> {
 }
 export const SelectItem = React.forwardRef<HTMLLIElement, SelectItemProps>(
   ({ disabled = false, children, value, ...props }, ref) => {
-    const { setShowModal, selectedValue, setSelectedValue, multi } = useContext(SelectContext);
+    const { setShowModal } = useContext(PortalContext);
+    const { selectedValue, setSelectedValue, multi } = useContext(SelectContext);
     const selected = selectedValue?.some(v => v.value === value) || false;
 
     const onClickHandler = () => {

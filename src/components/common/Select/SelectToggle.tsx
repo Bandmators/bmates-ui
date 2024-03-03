@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import * as React from 'react';
 
 import Slot from '@/components/Slot';
+import { PortalContext } from '@/components/portal/PortalContext';
 import useContext from '@/hooks/useContext';
 import { composeEventHandlers } from '@/libs/event';
 import { composeRefs } from '@/libs/ref';
@@ -19,7 +20,8 @@ type ComponentPropsWithoutRef<E extends React.ElementType> = React.ComponentProp
  */
 export const SelectToggle = React.forwardRef<HTMLButtonElement, ComponentPropsWithoutRef<'button'>>(
   ({ asChild, onClick, children, ...props }, ref) => {
-    const { setShowModal, setToggleRect, selectedValue } = useContext(SelectContext);
+    const { setShowModal, setToggleRect } = useContext(PortalContext);
+    const { selectedValue } = useContext(SelectContext);
     const compRef = React.useRef<HTMLButtonElement | null>(null);
 
     const Comp = asChild ? Slot : Button;

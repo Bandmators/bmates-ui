@@ -1,13 +1,14 @@
 import * as React from 'react';
 
-import useModal from '@/hooks/useModal';
+import { PortalProvider } from '@/components/portal/PortalProvider';
+import { AlignType } from '@/types/align';
 
 import SelectContext from './SelectContext';
-import { SelectAlignType, SelectType } from './type';
+import { SelectType } from './type';
 
-interface SelectProps extends React.ComponentPropsWithoutRef<'div'> {
+interface SelectProps extends React.PropsWithChildren {
   multi?: boolean;
-  align?: SelectAlignType;
+  align?: AlignType;
 }
 
 /**
@@ -15,16 +16,13 @@ interface SelectProps extends React.ComponentPropsWithoutRef<'div'> {
  * @returns
  */
 export const Select = ({ children, align = 'center', multi = false, ...props }: SelectProps) => {
-  const [showModal, setShowModal] = useModal();
-  const [toggleRect, setToggleRect] = React.useState<DOMRect>();
   const [selectedValue, setSelectedValue] = React.useState<SelectType[]>([]);
 
   return (
-    <SelectContext.Provider
-      value={{ showModal, setShowModal, toggleRect, setToggleRect, align, multi, selectedValue, setSelectedValue }}
-      {...props}
-    >
-      {children}
-    </SelectContext.Provider>
+    <PortalProvider align={align}>
+      <SelectContext.Provider value={{ multi, selectedValue, setSelectedValue }} {...props}>
+        {children}
+      </SelectContext.Provider>
+    </PortalProvider>
   );
 };

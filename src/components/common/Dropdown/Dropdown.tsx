@@ -1,11 +1,10 @@
 import * as React from 'react';
 
-import useModal from '@/hooks/useModal';
-
-import DropdownContext, { DropdownAlignType } from './DropdownContext';
+import { PortalProvider } from '@/components/portal/PortalProvider';
+import { AlignType } from '@/types/align';
 
 interface DropdownProps extends React.ComponentPropsWithoutRef<'div'> {
-  align?: DropdownAlignType;
+  align?: AlignType;
 }
 
 /**
@@ -13,12 +12,9 @@ interface DropdownProps extends React.ComponentPropsWithoutRef<'div'> {
  * @returns
  */
 export const Dropdown = ({ children, align = 'center', ...props }: DropdownProps) => {
-  const [showModal, setShowModal] = useModal();
-  const [toggleRect, setToggleRect] = React.useState<DOMRect>();
-
   return (
-    <DropdownContext.Provider value={{ showModal, setShowModal, toggleRect, setToggleRect, align }} {...props}>
+    <PortalProvider align={align} {...props}>
       {children}
-    </DropdownContext.Provider>
+    </PortalProvider>
   );
 };

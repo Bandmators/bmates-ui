@@ -2,17 +2,16 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import * as React from 'react';
 
+import { PortalContext } from '@/components/portal/PortalContext';
 import useContext from '@/hooks/useContext';
 import { composeEventHandlers } from '@/libs/event';
-
-import DropdownContext from './DropdownContext';
 
 interface DropdownItemProps extends React.ComponentPropsWithoutRef<'div'> {
   disabled?: boolean;
 }
 export const DropdownItem = React.forwardRef<HTMLDivElement, DropdownItemProps>(
   ({ disabled = false, ...props }, ref) => {
-    const { setShowModal } = useContext(DropdownContext);
+    const { setShowModal } = useContext(PortalContext);
 
     const onClickHandler = () => {
       if (!disabled) setShowModal(false);
