@@ -13,8 +13,8 @@ interface PortalContextType {
    * Toggle Rect
    * - to calcurate element size
    */
-  toggleRect: DOMRect | undefined;
-  setToggleRect: (value: DOMRect) => void;
+  toggleElement: HTMLElement | undefined;
+  setToggleElment: (value: HTMLElement) => void;
 
   /*
    * Align

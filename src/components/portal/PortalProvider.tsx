@@ -11,15 +11,15 @@ interface PortalProviderProps extends React.PropsWithChildren {
 
 export const PortalProvider = ({ align, children }: PortalProviderProps) => {
   const [showModal, setShowModal] = useModal();
-  const [toggleRect, setToggleRect] = React.useState<DOMRect>();
+  const [toggleElement, setToggleElment] = React.useState<HTMLElement>();
 
   return (
     <PortalContext.Provider
       value={{
         showModal,
         setShowModal,
-        toggleRect,
-        setToggleRect,
+        toggleElement,
+        setToggleElment,
         align,
       }}
     >

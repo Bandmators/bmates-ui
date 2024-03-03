@@ -17,7 +17,7 @@ interface ModalContentProps {
 }
 
 export const PortalContent = ({ children, ref, width }: ModalContentProps) => {
-  const { showModal, setShowModal, toggleRect } = useContext(PortalContext)!;
+  const { showModal, setShowModal, toggleElement } = useContext(PortalContext)!;
   const modalRef = React.useRef<HTMLDivElement>(null);
 
   const close = () => {
@@ -32,7 +32,11 @@ export const PortalContent = ({ children, ref, width }: ModalContentProps) => {
         createPortal(
           <>
             <ModalBG onClick={close} className="bmates-modal-bg" />
-            <Modal ref={composeRefs(modalRef, ref)} width={width || toggleRect?.width} position={reorgPos}>
+            <Modal
+              ref={composeRefs(modalRef, ref)}
+              width={width || toggleElement?.getBoundingClientRect().width}
+              position={reorgPos}
+            >
               {children}
             </Modal>
           </>,

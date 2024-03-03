@@ -18,7 +18,7 @@ type ComponentPropsWithoutRef<E extends React.ElementType> = React.ComponentProp
  */
 export const DropdownToggle = React.forwardRef<HTMLButtonElement, ComponentPropsWithoutRef<'button'>>(
   ({ asChild, onClick, ...props }, ref) => {
-    const { setShowModal, setToggleRect } = useContext(PortalContext);
+    const { setShowModal, setToggleElment } = useContext(PortalContext);
     const compRef = React.useRef<HTMLButtonElement | null>(null);
 
     const Comp = asChild ? Slot : Button;
@@ -28,8 +28,8 @@ export const DropdownToggle = React.forwardRef<HTMLButtonElement, ComponentProps
         ref={composeRefs(compRef, ref)}
         onClick={composeEventHandlers(onClick, () => {
           if (compRef.current) {
-            const rect = compRef.current.getBoundingClientRect();
-            setToggleRect(rect);
+            const rect = compRef.current;
+            setToggleElment(rect);
           }
 
           setShowModal(true);
