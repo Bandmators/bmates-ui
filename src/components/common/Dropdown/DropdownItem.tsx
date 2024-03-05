@@ -6,10 +6,10 @@ import { PortalContext } from '@/components/portal/PortalContext';
 import useContext from '@/hooks/useContext';
 import { composeEventHandlers } from '@/libs/event';
 
-interface DropdownItemProps extends React.ComponentPropsWithoutRef<'div'> {
+interface DropdownItemProps extends React.ComponentPropsWithoutRef<'li'> {
   disabled?: boolean;
 }
-export const DropdownItem = React.forwardRef<HTMLDivElement, DropdownItemProps>(
+export const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
   ({ disabled = false, ...props }, ref) => {
     const { setShowModal } = useContext(PortalContext);
 
@@ -30,7 +30,7 @@ export const DropdownItem = React.forwardRef<HTMLDivElement, DropdownItemProps>(
 );
 DropdownItem.displayName = 'DropdownItem';
 
-const DropdownItemStyled = styled.div<{ disabled: boolean }>`
+const DropdownItemStyled = styled.li<{ disabled: boolean }>`
   display: flex;
   position: relative;
   align-items: center;

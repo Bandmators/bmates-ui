@@ -12,7 +12,7 @@ export interface AvatarVariantProps {
   */
   size?: SizeType;
 }
-export interface AvatarProps extends ComponentPropsWithoutRef<'div'>, AvatarVariantProps {
+export interface AvatarProps extends ComponentPropsWithoutRef<'img'>, AvatarVariantProps {
   src: string;
   alt: string;
 }
@@ -42,11 +42,9 @@ const AvatarImage = styled.img<AvatarVariantProps>`
   border-radius: 50%;
   ${({ size }) => size && AvatarSizeStyles({ size })}
 `;
-export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
+export const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>(
   ({ className, src, alt, size = 'md', ...props }, ref) => (
-    <div ref={ref} className={className} {...props}>
-      <AvatarImage src={src || bandmate_60} alt={alt} size={size} />
-    </div>
+    <AvatarImage src={src || bandmate_60} alt={alt} size={size} ref={ref} className={className} {...props} />
   ),
 );
 Avatar.displayName = 'Avatar';

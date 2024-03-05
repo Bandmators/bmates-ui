@@ -10,13 +10,12 @@ import { PositionType } from '@/types/position';
 
 import { PortalContext } from './PortalContext';
 
-interface ModalContentProps {
-  children: React.ReactNode;
+interface ModalContentProps extends React.ComponentProps<'div'> {
   ref: React.ForwardedRef<HTMLDivElement>;
   width?: React.CSSProperties['width'];
 }
 
-export const PortalContent = ({ children, ref, width }: ModalContentProps) => {
+export const PortalContent = ({ children, ref, width, ...props }: ModalContentProps) => {
   const { showModal, setShowModal, toggleElement } = useContext(PortalContext)!;
   const modalRef = React.useRef<HTMLDivElement>(null);
 
@@ -36,6 +35,7 @@ export const PortalContent = ({ children, ref, width }: ModalContentProps) => {
               ref={composeRefs(modalRef, ref)}
               width={width || toggleElement?.getBoundingClientRect().width}
               position={reorgPos}
+              {...props}
             >
               {children}
             </Modal>

@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { PortalContent } from '@/components/portal/PortalContent';
 
-interface ModalProps extends React.ComponentPropsWithoutRef<'ul'> {
+interface ModalProps extends React.ComponentPropsWithoutRef<'div'> {
   width?: React.CSSProperties['width'];
 }
 
