@@ -9,20 +9,19 @@ import { SelectType } from './type';
 interface SelectProps extends React.PropsWithChildren {
   multi?: boolean;
   align?: AlignType;
+  space?: number;
 }
 
 /**
  * Displays a list of options.
  * @returns
  */
-export const Select = ({ children, align = 'center', multi = false, ...props }: SelectProps) => {
+export const Select = ({ align = 'center', space = 0, multi = false, children }: SelectProps) => {
   const [selectedValue, setSelectedValue] = React.useState<SelectType[]>([]);
 
   return (
-    <PortalProvider align={align}>
-      <SelectContext.Provider value={{ multi, selectedValue, setSelectedValue }} {...props}>
-        {children}
-      </SelectContext.Provider>
+    <PortalProvider align={align} space={space}>
+      <SelectContext.Provider value={{ multi, selectedValue, setSelectedValue }}>{children}</SelectContext.Provider>
     </PortalProvider>
   );
 };

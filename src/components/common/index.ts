@@ -5,6 +5,7 @@ export * from './Card';
 export * from './Dialog';
 export * from './Dropdown';
 export * from './Form';
+export * from './HoverCard';
 export * from './Input';
 export * from './Label';
 export * from './Select';

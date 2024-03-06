@@ -2,7 +2,7 @@ import React from 'react';
 
 import { AlignType } from '@/types/align';
 
-interface PortalContextType {
+export interface PortalContextType {
   /*
    * Modal
    */
@@ -20,5 +20,10 @@ interface PortalContextType {
    * Align
    */
   align: AlignType;
+
+  /*
+   * Space Size
+   */
+  space?: number;
 }
 export const PortalContext = React.createContext<PortalContextType | null>(null);

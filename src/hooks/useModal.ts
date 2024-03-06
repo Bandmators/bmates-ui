@@ -1,9 +1,11 @@
 import * as React from 'react';
 
-const useModal = (): [boolean, React.Dispatch<React.SetStateAction<boolean>>] => {
+const useModal = (enableScroll: boolean = true): [boolean, React.Dispatch<React.SetStateAction<boolean>>] => {
   const [showModal, setShowModal] = React.useState<boolean>(false);
 
   React.useEffect(() => {
+    if (!enableScroll) return;
+
     if (showModal) {
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
 
@@ -13,7 +15,7 @@ const useModal = (): [boolean, React.Dispatch<React.SetStateAction<boolean>>] =>
       document.body.style.overflow = 'auto';
       document.body.style.marginRight = `${0}px`;
     }
-  }, [showModal]);
+  }, [enableScroll, showModal]);
 
   return [showModal, setShowModal];
 };
