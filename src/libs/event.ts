@@ -10,3 +10,15 @@ export const composeEventHandlers = <E>(
     }
   };
 };
+
+/*
+  Exclude Touch Event (Mobile, Tablet env)
+*/
+type ExcludeTouchFunction<E> = (event: React.PointerEvent<E>) => void;
+export const excludeTouchEventHandler: <E>(eventHandler: () => void) => ExcludeTouchFunction<E> = eventHandler => {
+  return event => {
+    if (event.pointerType !== 'touch') {
+      eventHandler();
+    }
+  };
+};

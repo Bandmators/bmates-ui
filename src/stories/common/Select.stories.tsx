@@ -68,3 +68,29 @@ export const MultiSelect: Story = {
     ),
   },
 };
+
+export const Space: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: '`<Select space={16} />`',
+      },
+    },
+  },
+  args: {
+    align: 'start',
+    space: 16,
+    multi: true,
+    children: (
+      <>
+        <SelectToggle style={{ width: '12rem' }}>Assignees</SelectToggle>
+        <SelectContent width={'12rem'}>
+          <SelectItem value="adam">Adam</SelectItem>
+          <SelectItem value="Jamij">Jamie</SelectItem>
+          <SelectItem value="john">John</SelectItem>
+          <SelectItem value="messi">Messi</SelectItem>
+        </SelectContent>
+      </>
+    ),
+  },
+};

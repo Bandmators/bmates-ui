@@ -1,16 +1,16 @@
 import React from 'react';
 
 import useModal from '@/hooks/useModal';
-import { AlignType } from '@/types/align';
 
 import { PortalContext } from './PortalContext';
+import { PortalType } from './type';
 
-interface PortalProviderProps extends React.PropsWithChildren {
-  align: AlignType;
+export interface PortalProviderProps extends React.PropsWithChildren, PortalType {
+  enableScroll?: boolean;
 }
 
-export const PortalProvider = ({ align, children }: PortalProviderProps) => {
-  const [showModal, setShowModal] = useModal();
+export const PortalProvider = ({ align, space, enableScroll, children }: PortalProviderProps) => {
+  const [showModal, setShowModal] = useModal(enableScroll);
   const [toggleElement, setToggleElment] = React.useState<HTMLElement>();
 
   return (
@@ -21,6 +21,7 @@ export const PortalProvider = ({ align, children }: PortalProviderProps) => {
         toggleElement,
         setToggleElment,
         align,
+        space,
       }}
     >
       {children}

@@ -45,6 +45,36 @@ export const Default: Story = {
   ],
 };
 
+export const Space: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'space is `number` type. `<Dropdown space="16" />`',
+      },
+    },
+  },
+  args: {
+    align: 'start',
+    space: 16,
+    children: (
+      <>
+        <DropdownToggle>Dropdown</DropdownToggle>
+        <DropdownContent width={'15rem'}>
+          <DropdownLabel>Share Social</DropdownLabel>
+          <DropdownDivider />
+          <DropdownItem>
+            GitHub
+            <DropdownShortcut>⌘+T</DropdownShortcut>
+          </DropdownItem>
+
+          <DropdownItem disabled>Facebook</DropdownItem>
+          <DropdownItem>Twitter</DropdownItem>
+        </DropdownContent>
+      </>
+    ),
+  },
+};
+
 export const AlignStart: Story = {
   parameters: {
     docs: {

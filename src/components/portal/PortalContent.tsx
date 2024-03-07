@@ -13,24 +13,24 @@ import { PortalContext } from './PortalContext';
 interface ModalContentProps extends React.ComponentProps<'div'> {
   ref: React.ForwardedRef<HTMLDivElement>;
   width?: React.CSSProperties['width'];
+  disabledBG?: boolean;
 }
 
-export const PortalContent = ({ children, ref, width, ...props }: ModalContentProps) => {
+export const PortalContent = ({ children, ref, width, disabledBG = false, ...props }: ModalContentProps) => {
   const { showModal, setShowModal, toggleElement } = useContext(PortalContext)!;
   const modalRef = React.useRef<HTMLDivElement>(null);
+  const { reorgPos } = usePortal({ modalRef });
 
   const close = () => {
     setShowModal(false);
   };
-
-  const { reorgPos } = usePortal({ modalRef });
 
   return (
     <>
       {showModal &&
         createPortal(
           <>
-            <ModalBG onClick={close} className="bmates-modal-bg" />
+            {!disabledBG && <ModalBG onClick={close} className="bmates-modal-bg" />}
             <Modal
               ref={composeRefs(modalRef, ref)}
               width={width || toggleElement?.getBoundingClientRect().width}

@@ -4,7 +4,14 @@ import { PortalContext } from '@/components/portal/PortalContext';
 import { PositionType } from '@/types/position';
 
 export const usePortal = ({ modalRef }: { modalRef: React.RefObject<HTMLDivElement> }) => {
-  const { showModal, align, toggleElement, setShowModal, setToggleElment } = React.useContext(PortalContext)!;
+  const {
+    showModal,
+    align,
+    space = 0,
+    toggleElement,
+    setShowModal,
+    setToggleElment,
+  } = React.useContext(PortalContext)!;
   const [reorgPos, setReorgPos] = React.useState<PositionType>({ x: 0, y: 0 });
 
   React.useEffect(() => {
@@ -13,7 +20,7 @@ export const usePortal = ({ modalRef }: { modalRef: React.RefObject<HTMLDivEleme
         const rect = modalRef.current;
         const toggleRect = toggleElement.getBoundingClientRect();
 
-        const isOverflowing = rect.offsetHeight + toggleRect.bottom >= window.innerHeight;
+        const isOverflowing = rect.offsetHeight + toggleRect.bottom + space >= window.innerHeight;
         const reorgPos = { x: 0, y: 0 };
 
         switch (align) {
@@ -29,9 +36,9 @@ export const usePortal = ({ modalRef }: { modalRef: React.RefObject<HTMLDivEleme
         }
 
         if (isOverflowing) {
-          reorgPos.y = toggleRect.y - rect.offsetHeight;
+          reorgPos.y = toggleRect.y - rect.offsetHeight - space;
         } else {
-          reorgPos.y = toggleRect.y + toggleRect.height;
+          reorgPos.y = toggleRect.y + toggleRect.height + space;
         }
 
         setReorgPos(reorgPos);
@@ -43,7 +50,7 @@ export const usePortal = ({ modalRef }: { modalRef: React.RefObject<HTMLDivEleme
     return () => {
       window.removeEventListener('resize', adjustmentPos);
     };
-  }, [align, showModal, toggleElement, modalRef]);
+  }, [align, showModal, toggleElement, modalRef, space]);
 
   return { showModal, align, toggleElement, setShowModal, setToggleElment, reorgPos };
 };
