@@ -30,7 +30,7 @@ export const PortalContent = ({ children, ref, width, disabledBG = false, ...pro
       {showModal &&
         createPortal(
           <>
-            {!disabledBG && <ModalBG onClick={close} className="bmates-modal-bg" />}
+            {!disabledBG && <ModalBG onClick={close} id="bmates-portal-bg" className="bmates-portal-bg" />}
             <Modal
               ref={composeRefs(modalRef, ref)}
               width={width || toggleElement?.getBoundingClientRect().width}

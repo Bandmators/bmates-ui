@@ -17,11 +17,18 @@ export const HoverCardToggle = React.forwardRef<HTMLDivElement, React.ComponentP
     const compRef = React.useRef<HTMLDivElement | null>(null);
     const { onOpen: onOpenWaiting, onClose } = useHoverWaiting();
 
-    const onOpen = () => {
+    React.useEffect(() => {
       if (compRef.current) {
         const rect = compRef.current;
         setToggleElment(rect);
       }
+    }, [setToggleElment]);
+
+    const onOpen = () => {
+      // if (compRef.current) {
+      //   const rect = compRef.current;
+      //   setToggleElment(rect);
+      // }
 
       onOpenWaiting();
     };
