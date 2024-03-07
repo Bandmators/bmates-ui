@@ -11,6 +11,7 @@ const ButtonVariantStyles = ({ theme, variant }: { theme: Theme; variant: Button
   switch (variant) {
     case 'secondary':
       return css`
+        border: 1px solid ${theme.colors.secondary};
         background-color: ${theme.colors.secondary};
         &:hover {
           opacity: 0.8;
@@ -19,6 +20,7 @@ const ButtonVariantStyles = ({ theme, variant }: { theme: Theme; variant: Button
     case 'danger':
       return css`
         color: ${theme.colors.white};
+        border: 1px solid ${theme.colors.danger};
         background-color: ${theme.colors.danger};
         &:hover {
           opacity: 0.8;
@@ -27,6 +29,7 @@ const ButtonVariantStyles = ({ theme, variant }: { theme: Theme; variant: Button
     case 'warning':
       return css`
         color: ${theme.colors.white};
+        border: 1px solid ${theme.colors.warning};
         background-color: ${theme.colors.warning};
         &:hover {
           opacity: 0.8;
@@ -34,8 +37,8 @@ const ButtonVariantStyles = ({ theme, variant }: { theme: Theme; variant: Button
       `;
     case 'outline':
       return css`
-        background-color: transparent;
         border: 1px solid ${theme.colors.gray['300']};
+        background-color: transparent;
         &:hover {
           background-color: ${theme.colors.gray['100']};
         }
@@ -47,6 +50,7 @@ const ButtonVariantStyles = ({ theme, variant }: { theme: Theme; variant: Button
     case 'primary':
       return css`
         color: white;
+        border: 1px solid ${theme.colors.primary};
         background-color: ${theme.colors.primary};
         &:hover {
           opacity: 0.8;
