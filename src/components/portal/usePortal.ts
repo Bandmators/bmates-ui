@@ -41,6 +41,10 @@ export const usePortal = ({ modalRef }: { modalRef: React.RefObject<HTMLDivEleme
           reorgPos.y = toggleRect.y + toggleRect.height + space;
         }
 
+        if (reorgPos.x <= 0) reorgPos.x = space;
+        else if (reorgPos.x + rect.offsetWidth >= window.innerWidth)
+          reorgPos.x = window.innerWidth - rect.offsetWidth - space;
+
         setReorgPos(reorgPos);
       }
     };
