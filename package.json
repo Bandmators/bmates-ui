@@ -12,11 +12,11 @@
   "types": "dist/index.d.ts",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kyechan99/bmates-ui/issues"
+    "url": "https://github.com/Bandmators/bmates-ui/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kyechan99/bmates-ui.git"
+    "url": "git+https://github.com/Bandmators/bmates-ui.git"
   },
   "keywords": [
     "react",
