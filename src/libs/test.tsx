@@ -2,7 +2,7 @@ import { RenderOptions, render } from '@testing-library/react';
 import React from 'react';
 import { MemoryRouter, Routes } from 'react-router-dom';
 
-import StyledProvider from '../components/provider/StyledProvider';
+import StyledProvider from '../components/Provider/StyledProvider';
 
 export const customRender = (ui: React.ReactElement, options?: Omit<RenderOptions, 'wrapper'>) => {
   const Wrapper = ({ children }: { children: React.ReactNode }) => {
