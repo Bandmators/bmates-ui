@@ -13,7 +13,7 @@ const CardStyled = styled.div<CardProps>`
   border-radius: 0.5rem;
   background-color: ${({ theme }) => theme.colors.bg};
   box-shadow: 0 0 4px ${({ theme }) => theme.colors.gray['300']};
-  ${({ width }) => width && `width: ${width}`}px;
+  ${({ width }) => width && `width: ${width}px`};
 `;
 
 export const CardHead = styled.div`

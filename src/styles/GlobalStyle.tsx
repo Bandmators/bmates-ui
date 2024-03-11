@@ -1,5 +1,8 @@
 import { Global, Theme, css } from '@emotion/react';
 
+import { cssCustomProperties } from '@/utils/css';
+
+// import resolveConfigPath, { resolveDefaultConfigPath } from '@/utils/resolve';
 import theme from './theme';
 
 const GlobalCustomStyle = (theme: Theme) => css`
@@ -10,6 +13,7 @@ const GlobalCustomStyle = (theme: Theme) => css`
   }
 
   :root {
+    ${cssCustomProperties(theme.colors)}
   }
 
   body {
