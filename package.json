@@ -106,6 +106,9 @@
   "files": [
     "/dist"
   ],
+  "publishConfig": {
+    "@kyechan99:registry": "https://npm.pkg.github.com"
+  },
   "readme": "ERROR: No README data found!",
   "homepage": "https://github.com/kyechan99/bmates-ui#readme",
   "_id": "bmates-ui@0.0.1"
