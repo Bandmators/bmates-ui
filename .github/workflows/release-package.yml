@@ -8,35 +8,27 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-      - name: Install pnpm
-        run: |
-          npm install -g pnpm
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Install Packages
-        run: pnpm install
-      - run: pnpm testOnce
-
-  publish-gpr:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
         with:
-          node-version: '20.x'
-          registry-url: https://npm.pkg.github.com/
-      - name: Install pnpm
-        run: |
-          npm install -g pnpm
-      - name: Install Packages
+          version: 8
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+
+      - name: Install dependencies
         run: pnpm install
-      - run: pnpm publish
+
+      - name: Publish 🚀
+        shell: bash
+        run: pnpm publish packages/components --access public --no-git-checks
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
