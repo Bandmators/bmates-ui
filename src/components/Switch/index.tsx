@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import * as React from 'react';
 
+import useControllableState from '@/hooks/useControllableState';
 import { composeEventHandlers } from '@/libs/event';
 import { SpecialSizeType } from '@/types/size';
 import { VariantType } from '@/types/variant';
@@ -27,11 +28,16 @@ interface SwitchProps extends Omit<React.ComponentPropsWithoutRef<'input'>, 'siz
     Switch align style (css 'algin-items')
   */
   align?: React.CSSProperties['alignItems'];
+  /*
+    [BMates] on change checked event 
+  */
+  onCheckedChange?(checked: boolean): void;
 }
 
 export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
   (
     {
+      id,
       className,
       label,
       checked = false,
@@ -40,20 +46,27 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
       align = 'center',
       disabled = false,
       onChange,
-      id,
+      onCheckedChange = () => {},
       children,
       ...props
     },
     ref,
   ) => {
-    const [chk, setChk] = React.useState<boolean>(checked);
-
-    React.useEffect(() => {
-      setChk(checked);
-    }, [checked]);
+    const [chk, setChk] = useControllableState<boolean>({
+      initValue: checked,
+      onChange: onCheckedChange,
+    });
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
       setChk(e.target.checked);
+    };
+
+    const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (disabled) return;
+      if (e.key === 'Enter' || e.which === 13 || e.key === ' ' || e.which === 32) {
+        e.preventDefault();
+        setChk(!chk);
+      }
     };
 
     return (
@@ -62,13 +75,22 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           ref={ref}
           id={id}
           type="checkbox"
-          onChange={composeEventHandlers(onChange, onChangeHandler)}
           disabled={disabled}
           defaultChecked={chk}
           data-checked={chk}
+          aria-checked={chk}
+          onChange={composeEventHandlers(onChange, onChangeHandler)}
+          tabIndex={-1}
           {...props}
         />
-        <StyledSwitch variant={variant} checked={chk} size={size} disabled={disabled} />
+        <StyledSwitch
+          variant={variant}
+          checked={chk}
+          size={size}
+          disabled={disabled}
+          tabIndex={disabled ? -1 : 0}
+          onKeyDown={onKeyDownHandler}
+        />
         {label && <SwitchLabel>{label}</SwitchLabel>}
         {children}
       </SwitchContainer>
@@ -207,6 +229,12 @@ const StyledSwitch = styled.div<SwitchProps>`
         transform: translateX(-100%);
       }
     `}
+
+  &:focus-visible {
+    outline: none;
+    border-color: var(--focus-border);
+    box-shadow: var(--focus-shadow);
+  }
 
   ${({ variant, checked = false }) => variant && SwitchVariantStyles({ variant, checked })}
   ${({ size, checked = false }) => size && SwitchSizeStyles({ size, checked })}

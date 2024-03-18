@@ -23,7 +23,7 @@ export const BMateColors = {
 
   focus: {
     border: '#BDBDBD',
-    shadow: '0 0 10px var(--gray-200)',
+    shadow: '0 0 4px #21212170',
   },
 };
 export type ColorTypes = typeof BMateColors;

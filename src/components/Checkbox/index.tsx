@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import * as React from 'react';
 
+import useControllableState from '@/hooks/useControllableState';
 import { composeEventHandlers } from '@/libs/event';
 
 interface CheckboxProps extends React.ComponentPropsWithoutRef<'input'> {
@@ -24,21 +25,44 @@ interface CheckboxProps extends React.ComponentPropsWithoutRef<'input'> {
     Checkbox align style (css 'algin-items')
   */
   align?: React.CSSProperties['alignItems'];
+  /*
+    [BMates] on change checked event 
+  */
+  onCheckedChange?(checked: boolean): void;
 }
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (
-    { className, checked = false, label, onChange, id, children, iconEl, align = 'center', disabled = false, ...props },
+    {
+      className,
+      checked = false,
+      label,
+      id,
+      children,
+      iconEl,
+      align = 'center',
+      disabled = false,
+      onChange,
+      onCheckedChange,
+      ...props
+    },
     ref,
   ) => {
-    const [chk, setChk] = React.useState<boolean>(checked);
-
-    React.useEffect(() => {
-      setChk(checked);
-    }, [checked]);
+    const [chk, setChk] = useControllableState<boolean>({
+      initValue: checked,
+      onChange: onCheckedChange,
+    });
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
       setChk(e.target.checked);
+    };
+
+    const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (disabled) return;
+      if (e.key === 'Enter' || e.which === 13 || e.key === ' ' || e.which === 32) {
+        e.preventDefault();
+        setChk(!chk);
+      }
     };
 
     return (
@@ -50,11 +74,12 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           checked={chk}
           data-checked={chk}
           aria-checked={chk}
-          onChange={composeEventHandlers(onChange, onChangeHandler)}
           disabled={disabled}
+          onChange={composeEventHandlers(onChange, onChangeHandler)}
+          tabIndex={-1}
           {...props}
         />
-        <StyledCheckbox checked={chk} disabled={disabled}>
+        <StyledCheckbox checked={chk} disabled={disabled} tabIndex={disabled ? -1 : 0} onKeyDown={onKeyDownHandler}>
           {iconEl ? (
             iconEl
           ) : (
@@ -99,6 +124,10 @@ const StyledCheckbox = styled.div<{ checked: boolean; disabled: boolean }>`
   border: 1px solid var(--primary);
   cursor: pointer;
   ${props => props.disabled && 'cursor: not-allowed;'}
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-shadow);
+  }
   svg {
     visibility: ${props => (props.checked ? 'visible' : 'hidden')};
   }
