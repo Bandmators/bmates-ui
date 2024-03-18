@@ -20,6 +20,11 @@ export const BMateColors = {
   },
   danger: '#ef4444',
   warning: '#ffb029',
+
+  focus: {
+    border: '#BDBDBD',
+    shadow: '0 0 10px var(--gray-200)',
+  },
 };
 export type ColorTypes = typeof BMateColors;
 

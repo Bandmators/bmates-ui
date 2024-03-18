@@ -1,4 +1,4 @@
-import { Theme, css } from '@emotion/react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import React, { ComponentPropsWithoutRef } from 'react';
 
@@ -7,40 +7,40 @@ import { SpecialVariantType } from '@/types/variant';
 
 type ButtonVariantType = SpecialVariantType | 'default';
 
-const ButtonVariantStyles = ({ theme, variant }: { theme: Theme; variant: ButtonVariantType }) => {
+const ButtonVariantStyles = ({ variant }: { variant: ButtonVariantType }) => {
   switch (variant) {
     case 'secondary':
       return css`
-        border: 1px solid ${theme.colors.secondary};
-        background-color: ${theme.colors.secondary};
+        border: 1px solid var(--secondary);
+        background-color: var(--secondary);
         &:hover {
           opacity: 0.8;
         }
       `;
     case 'danger':
       return css`
-        color: ${theme.colors.white};
-        border: 1px solid ${theme.colors.danger};
-        background-color: ${theme.colors.danger};
+        color: var(--white);
+        border: 1px solid var(--danger);
+        background-color: var(--danger);
         &:hover {
           opacity: 0.8;
         }
       `;
     case 'warning':
       return css`
-        color: ${theme.colors.white};
-        border: 1px solid ${theme.colors.warning};
-        background-color: ${theme.colors.warning};
+        color: var(--white);
+        border: 1px solid var(--warning);
+        background-color: var(--warning);
         &:hover {
           opacity: 0.8;
         }
       `;
     case 'outline':
       return css`
-        border: 1px solid ${theme.colors.gray['300']};
+        border: 1px solid var(--gray-300);
         background-color: transparent;
         &:hover {
-          background-color: ${theme.colors.gray['100']};
+          background-color: var(--gray-100);
         }
       `;
     case 'ghost':
@@ -50,17 +50,17 @@ const ButtonVariantStyles = ({ theme, variant }: { theme: Theme; variant: Button
     case 'primary':
       return css`
         color: white;
-        border: 1px solid ${theme.colors.primary};
-        background-color: ${theme.colors.primary};
+        border: 1px solid var(--primary);
+        background-color: var(--primary);
         &:hover {
           opacity: 0.8;
         }
       `;
     default:
       return css`
-        color: ${theme.colors.black};
-        background-color: ${theme.colors.background};
-        border: 1px solid ${theme.colors.gray['300']};
+        color: var(--black);
+        background-color: var(--background);
+        border: 1px solid var(--gray-300);
         &:hover {
           opacity: 0.8;
         }
@@ -106,7 +106,12 @@ const StyledButton = styled.button<ButtonVariantProps>`
   white-space: nowrap;
   cursor: pointer;
 
-  ${({ theme, variant }) => variant && ButtonVariantStyles({ theme, variant })}
+  &:focus-visible {
+    border-color: var(--focus-border);
+    box-shadow: var(--focus-shadow);
+  }
+
+  ${({ variant }) => variant && ButtonVariantStyles({ variant })}
 
   ${({ size }) => size && ButtonSizeStyles({ size })}
 

@@ -40,15 +40,12 @@ const GlobalCustomStyle = (theme: Theme) => css`
   }
 
   ::selection {
-    background: ${theme.colors.primary};
+    background: var(--primary);
     color: white;
   }
   ::-moz-selection {
-    background: ${theme.colors.primary};
+    background: var(--primary);
     color: white;
-  }
-  &:focus-visible {
-    box-shadow: 0 0 10px ${theme.colors.gray['200']};
   }
 `;
 

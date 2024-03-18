@@ -1,4 +1,4 @@
-import { Theme, css } from '@emotion/react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import * as React from 'react';
 
@@ -6,28 +6,28 @@ import { SizeType } from '@/types/size';
 
 type BadgeVariantType = 'primary' | 'secondary' | 'warning' | 'danger' | 'outline' | 'ghost';
 
-const BadgeVariantStyles = ({ theme, variant }: { theme: Theme; variant: BadgeVariantType }) => {
+const BadgeVariantStyles = ({ variant }: { variant: BadgeVariantType }) => {
   switch (variant) {
     case 'secondary':
       return css`
-        background-color: ${theme.colors.secondary};
+        background-color: var(--secondary);
       `;
     case 'danger':
       return css`
-        color: ${theme.colors.white};
-        background-color: ${theme.colors.danger};
+        color: var(--white);
+        background-color: var(--danger);
       `;
     case 'warning':
       return css`
-        color: ${theme.colors.white};
-        background-color: ${theme.colors.warning};
+        color: var(--white);
+        background-color: var(--warning);
       `;
     case 'outline':
       return css`
         background-color: transparent;
-        border: 1px solid ${theme.colors.gray['300']};
+        border: 1px solid var(--gray-300);
         &:hover {
-          background-color: ${theme.colors.gray['100']};
+          background-color: var(--gray-100);
         }
       `;
     case 'ghost':
@@ -38,7 +38,7 @@ const BadgeVariantStyles = ({ theme, variant }: { theme: Theme; variant: BadgeVa
     default:
       return css`
         color: white;
-        background-color: ${theme.colors.primary};
+        background-color: var(--primary);
       `;
   }
 };
@@ -70,7 +70,7 @@ const StyledBadge = styled.div<BadgeVariantProps>`
   display: inline-flex;
   align-items: center;
 
-  ${({ theme, variant }) => variant && BadgeVariantStyles({ theme, variant })}
+  ${({ variant }) => variant && BadgeVariantStyles({ variant })}
 
   ${({ size }) => size && BadgeSizeStyles({ size })}
 `;

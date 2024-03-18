@@ -39,10 +39,13 @@ describe('Checkbox', () => {
     expect(styledEl).toBeInTheDocument();
 
     if (styledEl) {
-      const beforeBgStyle = styledEl.style.background;
+      const beforeClassName = styledEl.className;
+      const beforeChecked = checkbox.ariaChecked;
+
       fireEvent.click(checkbox);
 
-      expect(styledEl).not.toHaveStyle(`background: ${beforeBgStyle}`);
+      expect(styledEl.className).not.toBe(beforeClassName);
+      expect(styledEl.ariaChecked).not.toBe(beforeChecked);
     } else {
       console.error('styledEl is null.');
     }

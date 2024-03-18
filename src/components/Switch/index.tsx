@@ -1,4 +1,4 @@
-import { Theme, css } from '@emotion/react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import * as React from 'react';
 
@@ -102,29 +102,29 @@ const SwitchLabel = styled.span`
   margin-left: 1rem;
 `;
 
-const SwitchVariantStyles = ({ theme, variant, checked }: { theme: Theme; variant: VariantType; checked: boolean }) => {
+const SwitchVariantStyles = ({ variant, checked }: { variant: VariantType; checked: boolean }) => {
   if (!checked) return;
 
   switch (variant) {
     case 'secondary':
       return css`
-        background-color: ${theme.colors.secondary};
+        background-color: var(--secondary);
       `;
     case 'danger':
       return css`
-        color: ${theme.colors.white};
-        background-color: ${theme.colors.danger};
+        color: var(--white);
+        background-color: var(--danger);
       `;
     case 'warning':
       return css`
-        color: ${theme.colors.white};
-        background-color: ${theme.colors.warning};
+        color: var(--white);
+        background-color: var(--warning);
       `;
     case 'primary':
     default:
       return css`
         color: white;
-        background-color: ${theme.colors.primary};
+        background-color: var(--primary);
       `;
   }
 };
@@ -187,7 +187,7 @@ const StyledSwitch = styled.div<SwitchProps>`
   position: relative;
   display: inline-block;
   border-radius: 50rem;
-  background-color: ${({ theme }) => theme.colors.gray['200']};
+  background-color: var(--gray-200);
   transition: background-color ease 0.2s;
   cursor: pointer;
   text-indent: -9999px;
@@ -208,7 +208,7 @@ const StyledSwitch = styled.div<SwitchProps>`
       }
     `}
 
-  ${({ theme, variant, checked = false }) => variant && SwitchVariantStyles({ theme, variant, checked })}
+  ${({ variant, checked = false }) => variant && SwitchVariantStyles({ variant, checked })}
   ${({ size, checked = false }) => size && SwitchSizeStyles({ size, checked })}
   ${props => props.disabled && 'cursor: not-allowed;'}
 `;

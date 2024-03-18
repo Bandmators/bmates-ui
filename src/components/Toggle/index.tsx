@@ -42,27 +42,27 @@ const StyledToggle = styled.button<ToggleProps>`
   border: 1px solid transparent;
 
   &:focus {
-    box-shadow: 0 0 5px ${({ theme }) => theme.colors.gray['200']};
+    box-shadow: 0 0 5px var(--gray-200);
   }
 
-  ${({ disabled, theme }) =>
+  ${({ disabled }) =>
     disabled &&
     css`
       opacity: 0.7;
-      background-color: ${theme.colors.gray['100']};
+      background-color: var(--gray-100);
       cursor: not-allowed;
     `}
 
-  ${({ selected, theme }) =>
+  ${({ selected }) =>
     selected
       ? css`
-          border: 1px solid ${theme.colors.gray['300']};
-          background-color: ${theme.colors.gray['200']};
+          border: 1px solid var(--gray-300);
+          background-color: var(--gray-200);
         `
       : css`
           &:hover {
             opacity: 0.5;
-            background-color: ${theme.colors.gray['200']};
+            background-color: var(--gray-200);
           }
         `}
 

@@ -41,14 +41,14 @@ const DropdownItemStyled = styled.li<{ disabled: boolean }>`
   outline: 2px solid transparent;
   outline-offset: 2px;
   cursor: default;
-  ${({ disabled, theme }) =>
+  ${({ disabled }) =>
     disabled
       ? css`
           opacity: 0.5;
         `
       : css`
           &:hover {
-            background-color: ${theme.colors.gray['100']};
+            background-color: var(--gray-100);
           }
         `}
 `;

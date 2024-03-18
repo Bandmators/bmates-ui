@@ -74,6 +74,6 @@ const Modal = styled.div<{ width?: React.CSSProperties['width']; position: Posit
   z-index: 50;
   animation-name: ${enter};
   animation-duration: 0.15s;
-  border: 1px solid ${({ theme }) => theme.colors.gray['300']};
-  box-shadow: 0px 2px 2px 0px ${({ theme }) => theme.colors.gray['300']};
+  border: 1px solid var(--gray-300);
+  box-shadow: 0px 2px 2px 0px var(--gray-300);
 `;

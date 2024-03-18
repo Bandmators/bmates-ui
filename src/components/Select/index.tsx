@@ -17,7 +17,7 @@ export const SelectLabel = styled.h2`
 export const SelectDivider = styled.div`
   height: 1px;
   margin: 0.25rem -0.25rem;
-  background: ${({ theme }) => theme.colors.gray['300']};
+  background: var(--gray-300);
 `;
 export const SelectDescription = styled.p`
   margin: 0.375rem 0px;

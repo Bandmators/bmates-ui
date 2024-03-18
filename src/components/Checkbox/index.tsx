@@ -42,13 +42,14 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     };
 
     return (
-      <CheckboxContainer align={align} disabled={disabled} className={className} data-checked={chk}>
+      <CheckboxContainer align={align} disabled={disabled} className={className} data-checked={chk} aria-checked={chk}>
         <HiddenCheckbox
           ref={ref}
           id={id}
           type="checkbox"
           checked={chk}
           data-checked={chk}
+          aria-checked={chk}
           onChange={composeEventHandlers(onChange, onChangeHandler)}
           disabled={disabled}
           {...props}
@@ -92,10 +93,10 @@ const StyledCheckbox = styled.div<{ checked: boolean; disabled: boolean }>`
   display: inline-flex;
   width: 1rem;
   height: 1rem;
-  background: ${props => (props.checked ? props.theme.colors.primary : 'transparent')};
+  background: ${props => (props.checked ? 'var(--primary)' : 'transparent')};
   border-radius: 4px;
   transition: all 150ms;
-  border: 1px solid ${({ theme }) => theme.colors.grey};
+  border: 1px solid var(--primary);
   cursor: pointer;
   ${props => props.disabled && 'cursor: not-allowed;'}
   svg {

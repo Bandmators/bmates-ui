@@ -1,4 +1,4 @@
-import { Theme, css } from '@emotion/react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import React from 'react';
 
@@ -57,31 +57,31 @@ export const Toast = React.forwardRef<HTMLLIElement, ToastProps>(({ toast, ...pr
 });
 Toast.displayName = 'Toast';
 
-const ToastVariantStyles = ({ theme, variant }: { theme: Theme; variant: DefaultVariantType }) => {
+const ToastVariantStyles = ({ variant }: { variant: DefaultVariantType }) => {
   switch (variant) {
     case 'secondary':
       return css`
-        background-color: ${theme.colors.secondary};
+        background-color: var(--secondary);
       `;
     case 'danger':
       return css`
-        color: ${theme.colors.white};
-        background-color: ${theme.colors.danger};
+        color: var(--white);
+        background-color: var(--danger);
       `;
     case 'warning':
       return css`
-        color: ${theme.colors.white};
-        background-color: ${theme.colors.warning};
+        color: var(--white);
+        background-color: var(--warning);
       `;
     case 'primary':
       return css`
         color: white;
-        background-color: ${theme.colors.primary};
+        background-color: var(--primary);
       `;
     default:
       return css`
-        color: ${theme.colors.black};
-        background-color: ${theme.colors.background};
+        color: var(--black);
+        background-color: var(--background);
       `;
   }
 };
@@ -118,22 +118,22 @@ const ToastPositionStyles = ({ position }: { position: ToastPosition }) => {
 
 const ToastStyled = styled.li<{ variant?: DefaultVariantType; position?: ToastPosition }>`
   padding: 1rem;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: var(--white);
   border-radius: 0.5rem;
-  border: 1px solid ${({ theme }) => theme.colors.gray['200']};
+  border: 1px solid var(--gray-200);
 
   display: flex;
   flex-direction: column;
 
   justify-content: space-between;
-  box-shadow: 0 0px 3px ${({ theme }) => theme.colors.gray['400']};
+  box-shadow: 0 0px 3px var(--gray-400);
   transition: transform 0.25s cubic-bezier(0.75, -0.5, 0.25, 1.25);
 
   cursor: pointer;
   &.active {
     transform: translateX(0) translateY(0);
   }
-  ${({ theme, variant }) => variant && ToastVariantStyles({ theme, variant })}
+  ${({ variant }) => variant && ToastVariantStyles({ variant })}
   ${({ position }) => position && ToastPositionStyles({ position })}
 `;
 

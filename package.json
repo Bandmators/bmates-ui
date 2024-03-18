@@ -1,6 +1,6 @@
 {
   "name": "bmates-ui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "bmates-ui",
   "author": "kyechan99 <kyechan99@gmail.com>",
   "type": "module",
@@ -101,6 +101,9 @@
       "prettier --write",
       "eslint --fix"
     ]
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   },
   "files": [
     "/dist"

@@ -72,19 +72,19 @@ const SelectItemStyled = styled.li<{ selected: boolean; disabled: boolean }>`
   outline: 2px solid transparent;
   outline-offset: 2px;
   cursor: default;
-  ${({ selected, theme }) =>
+  ${({ selected }) =>
     selected &&
     css`
-      background-color: ${theme.colors.gray['200']};
+      background-color: var(--gray-200);
     `}
-  ${({ disabled, theme }) =>
+  ${({ disabled }) =>
     disabled
       ? css`
           opacity: 0.5;
         `
       : css`
           &[aria-selected='false']:hover {
-            background-color: ${theme.colors.gray['100']};
+            background-color: var(--gray-100);
           }
         `}
 `;

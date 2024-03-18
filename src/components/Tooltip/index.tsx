@@ -13,9 +13,9 @@ const TooltipTrigger = styled.div<{ direction?: Direction }>`
   border-radius: 0.25rem;
   font-size: 0.875rem;
   transform: scale(0.9);
-  box-shadow: 0 2px 4px ${({ theme }) => theme.colors.black};
-  color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.black};
+  box-shadow: 0 2px 4px var(--black);
+  color: var(--white);
+  background-color: var(--black);
   animation: ${tooltip} 0.5s ease;
   z-index: 200;
   white-space: nowrap;
