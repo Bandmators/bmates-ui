@@ -26,6 +26,7 @@ export const DropdownToggle = React.forwardRef<HTMLButtonElement, ComponentProps
     return (
       <Comp
         ref={composeRefs(compRef, ref)}
+        aria-haspopup="true"
         onClick={composeEventHandlers(onClick, () => {
           if (compRef.current) {
             const rect = compRef.current;

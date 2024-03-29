@@ -21,8 +21,10 @@ export const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
       <DropdownItemStyled
         ref={ref}
         tabIndex={0}
+        role={'menuitem'}
         disabled={disabled}
         onClick={composeEventHandlers(props.onClick, onClickHandler)}
+        data-focus-enabled="true"
         {...props}
       ></DropdownItemStyled>
     );
@@ -47,7 +49,8 @@ const DropdownItemStyled = styled.li<{ disabled: boolean }>`
           opacity: 0.5;
         `
       : css`
-          &:hover {
+          &:hover,
+          &:focus {
             background-color: var(--gray-100);
           }
         `}

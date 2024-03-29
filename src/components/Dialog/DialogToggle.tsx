@@ -24,6 +24,7 @@ export const DialogToggle = React.forwardRef<HTMLButtonElement, ComponentPropsWi
     return (
       <Comp
         ref={ref}
+        aria-haspopup="true"
         onClick={composeEventHandlers(onClick, () => {
           setShowModal(true);
         })}

@@ -42,7 +42,7 @@ export const DialogContent = React.forwardRef<HTMLDivElement, ModalProps>(
           createPortal(
             <>
               <ModalBG onClick={close} className="bmates-modal-bg" />
-              <Modal ref={ref} maxWidth={maxWidth} {...props}>
+              <Modal ref={ref} role="dialog" aria-modal="true" maxWidth={maxWidth} {...props}>
                 {props.children}
                 {!hideClose && (
                   <ExitButton onClick={closeBtnHandler}>

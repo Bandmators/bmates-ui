@@ -3,21 +3,26 @@ import React from 'react';
 import { PortalContext } from '@/components/Portal/PortalContext';
 import { PositionType } from '@/types/position';
 
-export const usePortal = ({ modalRef }: { modalRef: React.RefObject<HTMLDivElement> }) => {
+export const usePortal = ({ portalRef }: { portalRef: React.RefObject<HTMLDivElement> }) => {
   const {
     showModal,
+    setShowModal: setModal,
+    toggleElement,
+    setToggleElment,
     align,
     space = 0,
-    toggleElement,
-    setShowModal,
-    setToggleElment,
   } = React.useContext(PortalContext)!;
   const [reorgPos, setReorgPos] = React.useState<PositionType>({ x: 0, y: 0 });
 
+  const setShowModal = (value: boolean) => {
+    setModal(value);
+    if (!value) window.setTimeout(() => toggleElement?.focus());
+  };
+
   React.useEffect(() => {
     const adjustmentPos = () => {
-      if (modalRef.current && toggleElement && showModal) {
-        const rect = modalRef.current;
+      if (portalRef.current && toggleElement && showModal) {
+        const rect = portalRef.current;
         const toggleRect = toggleElement.getBoundingClientRect();
 
         const isOverflowing = rect.offsetHeight + toggleRect.bottom + space >= window.innerHeight;
@@ -54,7 +59,7 @@ export const usePortal = ({ modalRef }: { modalRef: React.RefObject<HTMLDivEleme
     return () => {
       window.removeEventListener('resize', adjustmentPos);
     };
-  }, [align, showModal, toggleElement, modalRef, space]);
+  }, [align, showModal, toggleElement, portalRef, space]);
 
   return { showModal, align, toggleElement, setShowModal, setToggleElment, reorgPos };
 };

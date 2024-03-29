@@ -10,8 +10,13 @@ export interface PortalProviderProps extends React.PropsWithChildren, PortalType
 }
 
 export const PortalProvider = ({ align, space, enableScroll, children }: PortalProviderProps) => {
-  const [showModal, setShowModal] = useModal(enableScroll);
+  const [showModal, _setShowModal] = useModal(enableScroll);
   const [toggleElement, setToggleElment] = React.useState<HTMLElement>();
+
+  const setShowModal = (value: boolean) => {
+    _setShowModal(value);
+    if (!value) window.setTimeout(() => toggleElement?.focus());
+  };
 
   return (
     <PortalContext.Provider

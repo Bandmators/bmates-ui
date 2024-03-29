@@ -13,7 +13,7 @@ interface ModalProps extends React.ComponentPropsWithoutRef<'div'> {
  */
 export const DropdownContent = React.forwardRef<HTMLDivElement, ModalProps>(({ width, children, ...props }, ref) => {
   return (
-    <PortalContent width={width} ref={ref} {...props}>
+    <PortalContent width={width} ref={ref} role="group" {...props}>
       <DropdownListBox>{children}</DropdownListBox>
     </PortalContent>
   );
