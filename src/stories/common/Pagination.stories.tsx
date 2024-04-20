@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
 
-import { Pagination, PaginationContent, PaginationItem } from '../../';
+import { AutoPagination, Pagination, PaginationContent, PaginationItem, PaginationPrevious } from '../../';
 
 const meta = {
   title: 'common/Pagination',
@@ -31,6 +31,33 @@ export const Default: Story = {
           </PaginationContent>
         </Pagination>
       );
+    },
+  ],
+};
+
+export const Disabled: Story = {
+  args: {},
+  decorators: [
+    () => {
+      return (
+        <Pagination>
+          <PaginationContent>
+            <PaginationPrevious disabled />
+            <PaginationItem>1</PaginationItem>
+            <PaginationItem>2</PaginationItem>
+            <PaginationItem>3</PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      );
+    },
+  ],
+};
+
+export const Auto: Story = {
+  args: {},
+  decorators: [
+    () => {
+      return <AutoPagination pageNo={3} pageSize={17} pageGap={5} />;
     },
   ],
 };

@@ -1,10 +1,17 @@
 import styled from '@emotion/styled';
+import * as React from 'react';
 
-interface PaginationProps extends React.PropsWithChildren {}
+interface PaginationProps extends React.ComponentPropsWithoutRef<'ul'> {}
 
-export const PaginationContent = ({ children }: PaginationProps) => {
-  return <PaginationList>{children}</PaginationList>;
-};
+export const PaginationContent = React.forwardRef<HTMLUListElement, PaginationProps>(({ children, ...props }, ref) => {
+  return (
+    <PaginationList ref={ref} {...props}>
+      {children}
+    </PaginationList>
+  );
+});
+PaginationContent.displayName = 'PaginationContent';
+
 const PaginationList = styled.ul`
   list-style: none;
   margin: 0px;

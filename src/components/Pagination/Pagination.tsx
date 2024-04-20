@@ -1,13 +1,12 @@
-import styled from '@emotion/styled';
+import * as React from 'react';
 
-interface PaginationProps extends React.PropsWithChildren {}
+interface PaginationProps extends React.ComponentPropsWithoutRef<'nav'> {}
 
-export const Pagination = ({ children }: PaginationProps) => {
+export const Pagination = React.forwardRef<HTMLInputElement, PaginationProps>(({ children, ...props }, ref) => {
   return (
-    <PaginationNav role="navigation" aria-label="pagination">
+    <nav ref={ref} role="navigation" aria-label="pagination" {...props}>
       {children}
-    </PaginationNav>
+    </nav>
   );
-};
-
-const PaginationNav = styled.nav``;
+});
+Pagination.displayName = 'Pagination';
