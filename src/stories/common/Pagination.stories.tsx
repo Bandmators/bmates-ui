@@ -1,7 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
 
-import { AutoPagination, Pagination, PaginationContent, PaginationItem, PaginationPrevious } from '../../';
+import {
+  AutoPagination,
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+} from '../../';
 
 const meta = {
   title: 'common/Pagination',
@@ -25,9 +32,11 @@ export const Default: Story = {
       return (
         <Pagination>
           <PaginationContent>
-            <PaginationItem>1</PaginationItem>
-            <PaginationItem active>2</PaginationItem>
-            <PaginationItem>3</PaginationItem>
+            {[1, 2, 3].map(page => (
+              <PaginationItem key={page}>
+                <PaginationLink active={page === 2}>{page}</PaginationLink>
+              </PaginationItem>
+            ))}
           </PaginationContent>
         </Pagination>
       );
@@ -43,9 +52,11 @@ export const Disabled: Story = {
         <Pagination>
           <PaginationContent>
             <PaginationPrevious disabled />
-            <PaginationItem>1</PaginationItem>
-            <PaginationItem>2</PaginationItem>
-            <PaginationItem>3</PaginationItem>
+            {[1, 2, 3].map(page => (
+              <PaginationItem key={page}>
+                <PaginationLink>{page}</PaginationLink>
+              </PaginationItem>
+            ))}
           </PaginationContent>
         </Pagination>
       );
@@ -57,7 +68,7 @@ export const Auto: Story = {
   args: {},
   decorators: [
     () => {
-      return <AutoPagination pageNo={3} pageSize={17} pageGap={5} />;
+      return <AutoPagination pageNo={5} pageSize={17} pageGap={5} />;
     },
   ],
 };
