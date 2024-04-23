@@ -7,7 +7,7 @@ import {
   PaginationContent,
   PaginationItem,
   PaginationLink,
-  PaginationPrevious,
+  PaginationPreviousLink,
 } from '../../';
 
 const meta = {
@@ -51,7 +51,7 @@ export const Disabled: Story = {
       return (
         <Pagination>
           <PaginationContent>
-            <PaginationPrevious disabled />
+            <PaginationPreviousLink disabled />
             {[1, 2, 3].map(page => (
               <PaginationItem key={page}>
                 <PaginationLink>{page}</PaginationLink>

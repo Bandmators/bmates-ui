@@ -7,10 +7,17 @@ import { composeEventHandlers } from '@/libs/event';
 interface PaginationLinkProps extends React.ComponentPropsWithoutRef<'a'> {
   active?: boolean;
   disabled?: boolean;
+
+  as?: React.ElementType;
+
+  /*
+   * For React-Router-Dom Link
+   */
+  to?: string;
 }
 
 export const PaginationLink = React.forwardRef<HTMLAnchorElement, PaginationLinkProps>(
-  ({ active = false, disabled = false, onClick, ...props }, ref) => {
+  ({ active = false, disabled = false, onClick, as, ...props }, ref) => {
     const handleOnclick = (e: React.MouseEvent<HTMLAnchorElement>) => {
       if (disabled) e.preventDefault();
     };
@@ -18,9 +25,9 @@ export const PaginationLink = React.forwardRef<HTMLAnchorElement, PaginationLink
     return (
       <>
         {disabled ? (
-          <DisabledLink disabled={disabled} aria-disabled="true" {...props} />
+          <DisabledLink disabled={disabled} aria-disabled="true" as={as} {...props} />
         ) : (
-          <Link ref={ref} active={active} onClick={composeEventHandlers(handleOnclick, onClick)} {...props} />
+          <Link ref={ref} as={as} active={active} onClick={composeEventHandlers(handleOnclick, onClick)} {...props} />
         )}
       </>
     );
@@ -28,7 +35,12 @@ export const PaginationLink = React.forwardRef<HTMLAnchorElement, PaginationLink
 );
 PaginationLink.displayName = 'PaginationLink';
 
-export const PaginationPrevious = ({ active = false, disabled = false, children, ...props }: PaginationLinkProps) => {
+export const PaginationPreviousLink = ({
+  active = false,
+  disabled = false,
+  children,
+  ...props
+}: PaginationLinkProps) => {
   return (
     <PaginationLink active={active} disabled={disabled} {...props}>
       <svg
@@ -50,7 +62,7 @@ export const PaginationPrevious = ({ active = false, disabled = false, children,
   );
 };
 
-export const PaginationNext = ({ active = false, disabled = false, children, ...props }: PaginationLinkProps) => {
+export const PaginationNextLink = ({ active = false, disabled = false, children, ...props }: PaginationLinkProps) => {
   return (
     <PaginationLink active={active} disabled={disabled} {...props}>
       {children}
