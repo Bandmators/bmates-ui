@@ -8,6 +8,7 @@ export * from './HoverCard';
 export * from './Input';
 export * from './Label';
 export * from './Pagination';
+export * from './Search';
 export * from './Select';
 export * from './Switch';
 export * from './Textarea';

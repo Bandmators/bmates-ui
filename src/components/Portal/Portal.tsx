@@ -21,7 +21,7 @@ const Portal = ({ children, ref, width, onKeyDown, ...props }: ModalContentProps
   const ACTIONS: Record<string, (e: React.KeyboardEvent<HTMLInputElement>) => void> = {
     ArrowDown: () => focus('next'),
     ArrowUp: () => focus('prev'),
-    Tab: e => e.preventDefault(),
+    Tab: () => focus('next'),
     Enter: () => select(),
   };
 
@@ -65,7 +65,7 @@ const Portal = ({ children, ref, width, onKeyDown, ...props }: ModalContentProps
 
   const handleOpen = React.useCallback(() => {
     if (portalRef.current) {
-      portalRef.current.focus();
+      // portalRef.current.focus();
       setItems(
         Array.from(portalRef.current.querySelectorAll<HTMLElement>('[data-focus-enabled="true"]')).filter(e => {
           return e.getAttribute('disabled') == null;
@@ -102,6 +102,7 @@ const PortalStyled = styled.div<{ width?: React.CSSProperties['width']; position
   display: grid;
   min-width: max-content;
   ${({ width }) => width && `width: ${typeof width === 'string' ? width : `${width}px`};`}
+  max-width: 100%;
   padding: 0.25rem;
   border-radius: 0.25rem;
   position: fixed;
