@@ -1,19 +1,20 @@
 import styled from '@emotion/styled';
-import React from 'react';
 import { createPortal } from 'react-dom';
 
 import useContext from '@/hooks/useContext';
 
-import Portal from './Portal';
+import Portal, { PortalProps } from './Portal';
 import { PortalContext } from './PortalContext';
 
-interface ModalContentProps extends React.ComponentProps<'div'> {
-  ref: React.ForwardedRef<HTMLDivElement>;
-  width?: React.CSSProperties['width'];
-  disabledBG?: boolean;
-}
-
-export const PortalContent = ({ children, ref, width, disabledBG = false, onKeyDown, ...props }: ModalContentProps) => {
+export const PortalContent = ({
+  children,
+  ref,
+  width,
+  disabledBG = false,
+  disabledAutoFocus = false,
+  onKeyDown,
+  ...props
+}: PortalProps) => {
   const { showModal, setShowModal } = useContext(PortalContext)!;
 
   const close = () => {
@@ -26,7 +27,7 @@ export const PortalContent = ({ children, ref, width, disabledBG = false, onKeyD
         createPortal(
           <>
             {!disabledBG && <PortalBG id="bmates-portal-bg" className="bmates-portal-bg" onClick={close} />}
-            <Portal ref={ref} width={width} onKeyDown={onKeyDown} {...props}>
+            <Portal ref={ref} width={width} onKeyDown={onKeyDown} disabledAutoFocus={disabledAutoFocus} {...props}>
               {children}
             </Portal>
           </>,

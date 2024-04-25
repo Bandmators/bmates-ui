@@ -7,13 +7,14 @@ import { composeEventHandlers } from '@/libs/event';
 import { composeRefs } from '@/libs/ref';
 import { PositionType } from '@/types/position';
 
-interface ModalContentProps extends React.ComponentProps<'div'> {
+export interface PortalProps extends React.ComponentProps<'div'> {
   ref: React.ForwardedRef<HTMLDivElement>;
   width?: React.CSSProperties['width'];
   disabledBG?: boolean;
+  disabledAutoFocus?: boolean;
 }
 
-const Portal = ({ children, ref, width, onKeyDown, ...props }: ModalContentProps) => {
+const Portal = ({ children, ref, width, onKeyDown, disabledAutoFocus, ...props }: PortalProps) => {
   const portalRef = React.useRef<HTMLDivElement>(null);
   const { showModal, toggleElement, reorgPos } = usePortal({ portalRef });
   const [items, setItems] = useState<HTMLElement[]>([]);
@@ -65,18 +66,21 @@ const Portal = ({ children, ref, width, onKeyDown, ...props }: ModalContentProps
 
   const handleOpen = React.useCallback(() => {
     if (portalRef.current) {
-      // portalRef.current.focus();
-      setItems(
-        Array.from(portalRef.current.querySelectorAll<HTMLElement>('[data-focus-enabled="true"]')).filter(e => {
-          return e.getAttribute('disabled') == null;
-        }),
-      );
+      if (!disabledAutoFocus) portalRef.current.focus();
+
+      const newItems = Array.from(
+        portalRef.current.querySelectorAll<HTMLElement>('[data-focus-enabled="true"]'),
+      ).filter(e => {
+        return e.getAttribute('disabled') == null;
+      });
+      console.log(newItems);
+      setItems(newItems);
     }
-  }, []);
+  }, [disabledAutoFocus]);
 
   React.useEffect(() => {
     if (showModal && portalRef.current) handleOpen();
-  }, [handleOpen, showModal]);
+  }, [handleOpen, showModal, children]);
 
   return (
     <PortalStyled

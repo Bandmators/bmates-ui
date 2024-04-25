@@ -12,7 +12,7 @@ interface ModalProps extends React.ComponentPropsWithoutRef<'div'> {
  */
 export const SearchContent = React.forwardRef<HTMLDivElement, ModalProps>(({ width, children, ...props }, ref) => {
   return (
-    <PortalContent width={width} ref={ref} role="group" {...props}>
+    <PortalContent width={width} ref={ref} role="group" disabledAutoFocus {...props}>
       {children}
     </PortalContent>
   );

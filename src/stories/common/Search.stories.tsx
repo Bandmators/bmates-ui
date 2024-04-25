@@ -31,6 +31,24 @@ export default meta;
 
 type Story = StoryObj<typeof Search>;
 
+const animals = [
+  'dog',
+  'cat',
+  'elephant',
+  'lion',
+  'tiger',
+  'bear',
+  'giraffe',
+  'zebra',
+  'monkey',
+  'snake',
+  'rabbit',
+  'horse',
+  'deer',
+  'fox',
+  'wolf',
+];
+
 export const Default: Story = {
   args: {},
   decorators: [
@@ -55,27 +73,50 @@ export const Default: Story = {
   ],
 };
 
+const TempSearch = () => {
+  const [text, setText] = React.useState<string>('');
+
+  return (
+    <>
+      <SearchToggle>
+        Search Input <kbd style={{ marginLeft: '1rem' }}>/</kbd>
+      </SearchToggle>
+      <SearchContent width={600} style={{}}>
+        <SearchInput
+          onChange={e => {
+            setText(e.target.value);
+          }}
+        />
+        <SearchItemList>
+          <SearchLabel>Social</SearchLabel>
+          <SearchItem>
+            GitHub
+            <SearchShortcut>⌘+T</SearchShortcut>
+          </SearchItem>
+          <SearchItem>Facebook</SearchItem>
+          <SearchDivider />
+          <SearchLabel>User</SearchLabel>
+          <SearchItem>@bandmators</SearchItem>
+          <SearchItem>@bmates</SearchItem>
+          {animals
+            .filter(animal => animal.includes(text))
+            .slice(0, 5)
+            .map(item => (
+              <SearchItem key={item}>{item}</SearchItem>
+            ))}
+        </SearchItemList>
+      </SearchContent>
+    </>
+  );
+};
+
 export const Toggle: Story = {
   args: {},
   decorators: [
     () => {
       return (
         <Search>
-          <SearchToggle>
-            Search Input <kbd style={{ marginLeft: '1rem' }}>/</kbd>
-          </SearchToggle>
-          <SearchContent width={600} style={{}}>
-            <SearchInput />
-            <SearchItemList>
-              <SearchLabel>Social</SearchLabel>
-              <SearchItem>GitHub</SearchItem>
-              <SearchItem>Facebook</SearchItem>
-              <SearchDivider />
-              <SearchLabel>User</SearchLabel>
-              <SearchItem>@bandmators</SearchItem>
-              <SearchItem>@bmates</SearchItem>
-            </SearchItemList>
-          </SearchContent>
+          <TempSearch />
         </Search>
       );
     },
@@ -93,28 +134,7 @@ export const Space: Story = {
   args: {
     align: 'start',
     space: 16,
-    children: (
-      <>
-        <SearchToggle>
-          Search Input <kbd style={{ marginLeft: '1rem' }}>/</kbd>
-        </SearchToggle>
-        <SearchContent width={600} style={{}}>
-          <SearchInput />
-          <SearchItemList>
-            <SearchLabel>Social</SearchLabel>
-            <SearchItem>
-              GitHub
-              <SearchShortcut>⌘+T</SearchShortcut>
-            </SearchItem>
-            <SearchItem>Facebook</SearchItem>
-            <SearchDivider />
-            <SearchLabel>User</SearchLabel>
-            <SearchItem>@bandmators</SearchItem>
-            <SearchItem>@bmates</SearchItem>
-          </SearchItemList>
-        </SearchContent>
-      </>
-    ),
+    children: <TempSearch />,
   },
 };
 
@@ -128,28 +148,7 @@ export const AlignStart: Story = {
   },
   args: {
     align: 'start',
-    children: (
-      <>
-        <SearchToggle>
-          Search Input <kbd style={{ marginLeft: '1rem' }}>/</kbd>
-        </SearchToggle>
-        <SearchContent width={600} style={{}}>
-          <SearchInput />
-          <SearchItemList>
-            <SearchLabel>Social</SearchLabel>
-            <SearchItem>
-              GitHub
-              <SearchShortcut>⌘+T</SearchShortcut>
-            </SearchItem>
-            <SearchItem disabled>Facebook</SearchItem>
-            <SearchDivider />
-            <SearchLabel>User</SearchLabel>
-            <SearchItem>@bandmators</SearchItem>
-            <SearchItem>@bmates</SearchItem>
-          </SearchItemList>
-        </SearchContent>
-      </>
-    ),
+    children: <TempSearch />,
   },
 };
 
@@ -163,28 +162,7 @@ export const AlignCenter: Story = {
   },
   args: {
     align: 'center',
-    children: (
-      <>
-        <SearchToggle>
-          Search Input <kbd style={{ marginLeft: '1rem' }}>/</kbd>
-        </SearchToggle>
-        <SearchContent width={600} style={{}}>
-          <SearchInput />
-          <SearchItemList>
-            <SearchLabel>Social</SearchLabel>
-            <SearchItem>
-              GitHub
-              <SearchShortcut>⌘+T</SearchShortcut>
-            </SearchItem>
-            <SearchItem disabled>Facebook</SearchItem>
-            <SearchDivider />
-            <SearchLabel>User</SearchLabel>
-            <SearchItem>@bandmators</SearchItem>
-            <SearchItem>@bmates</SearchItem>
-          </SearchItemList>
-        </SearchContent>
-      </>
-    ),
+    children: <TempSearch />,
   },
 };
 
@@ -198,27 +176,6 @@ export const AlignEnd: Story = {
   },
   args: {
     align: 'end',
-    children: (
-      <>
-        <SearchToggle>
-          Search Input <kbd style={{ marginLeft: '1rem' }}>/</kbd>
-        </SearchToggle>
-        <SearchContent width={600} style={{}}>
-          <SearchInput />
-          <SearchItemList>
-            <SearchLabel>Social</SearchLabel>
-            <SearchItem>
-              GitHub
-              <SearchShortcut>⌘+T</SearchShortcut>
-            </SearchItem>
-            <SearchItem disabled>Facebook</SearchItem>
-            <SearchDivider />
-            <SearchLabel>User</SearchLabel>
-            <SearchItem>@bandmators</SearchItem>
-            <SearchItem>@bmates</SearchItem>
-          </SearchItemList>
-        </SearchContent>
-      </>
-    ),
+    children: <TempSearch />,
   },
 };
