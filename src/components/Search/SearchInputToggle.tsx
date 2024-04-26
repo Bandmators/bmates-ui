@@ -14,7 +14,7 @@ type ComponentPropsWithoutRef<E extends React.ElementType> = React.ComponentProp
  * @returns
  */
 export const SearchInputToggle = React.forwardRef<HTMLInputElement, ComponentPropsWithoutRef<'input'>>(
-  ({ onClick, onChange, ...props }, ref) => {
+  ({ onClick, onChange, onKeyDown, ...props }, ref) => {
     const { showModal, setShowModal, setToggleElment } = useContext(PortalContext);
     const compRef = React.useRef<HTMLInputElement | null>(null);
 
@@ -29,12 +29,39 @@ export const SearchInputToggle = React.forwardRef<HTMLInputElement, ComponentPro
       setShowModal(true);
     };
 
+    const closeModal = () => {
+      setShowModal(false);
+    };
+
+    const ACTIONS: Record<string, (e: React.KeyboardEvent<HTMLInputElement>) => void> = {
+      ArrowDown: () => focus('next'),
+      ArrowUp: () => focus('prev'),
+      Tab: () => closeModal(),
+      Enter: () => focus('next'),
+      Escape: () => closeModal(),
+    };
+
+    const handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      const handler = ACTIONS[e.key];
+
+      if (handler) {
+        // e.preventDefault();
+        handler(e);
+      }
+    };
+
+    const focus = (key: 'next' | 'prev'): void => {
+      const el = document.querySelector('#bmates-portal [data-focus-enabled="true"]') as HTMLElement;
+      if (key === 'next' && el) el.focus();
+    };
+
     return (
       <Input
         ref={composeRefs(compRef, ref)}
         aria-haspopup="true"
         onClick={composeEventHandlers(openModal, onClick)}
         onChange={composeEventHandlers(openModal, onChange)}
+        onKeyDown={composeEventHandlers(onKeyDown, handleOnKeyDown)}
         {...props}
       />
     );

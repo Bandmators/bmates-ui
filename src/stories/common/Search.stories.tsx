@@ -53,9 +53,15 @@ export const Default: Story = {
   args: {},
   decorators: [
     () => {
+      const [text, setText] = React.useState<string>('');
       return (
         <Search>
-          <SearchInputToggle placeholder="Search Input /" />
+          <SearchInputToggle
+            placeholder="Search Input /"
+            onChange={e => {
+              setText(e.target.value);
+            }}
+          />
           <SearchContent width={600} style={{}}>
             <SearchItemList>
               <SearchLabel>Social</SearchLabel>
@@ -63,8 +69,12 @@ export const Default: Story = {
               <SearchItem>Facebook</SearchItem>
               <SearchDivider />
               <SearchLabel>User</SearchLabel>
-              <SearchItem>@bandmators</SearchItem>
-              <SearchItem>@bmates</SearchItem>
+              {animals
+                .filter(animal => animal.includes(text))
+                .slice(0, 5)
+                .map(item => (
+                  <SearchItem key={item}>{item}</SearchItem>
+                ))}
             </SearchItemList>
           </SearchContent>
         </Search>

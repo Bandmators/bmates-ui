@@ -27,13 +27,11 @@ const Portal = ({ children, ref, width, onKeyDown, disabledAutoFocus, ...props }
   };
 
   const handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (Object.keys(ACTIONS).includes(e.key)) {
-      const handler = ACTIONS[e.key];
+    const handler = ACTIONS[e.key];
 
-      if (handler) {
-        e.preventDefault();
-        handler(e);
-      }
+    if (handler) {
+      e.preventDefault();
+      handler(e);
     }
   };
 
@@ -73,7 +71,6 @@ const Portal = ({ children, ref, width, onKeyDown, disabledAutoFocus, ...props }
       ).filter(e => {
         return e.getAttribute('disabled') == null;
       });
-      console.log(newItems);
       setItems(newItems);
     }
   }, [disabledAutoFocus]);

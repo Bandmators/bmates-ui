@@ -27,7 +27,14 @@ export const PortalContent = ({
         createPortal(
           <>
             {!disabledBG && <PortalBG id="bmates-portal-bg" className="bmates-portal-bg" onClick={close} />}
-            <Portal ref={ref} width={width} onKeyDown={onKeyDown} disabledAutoFocus={disabledAutoFocus} {...props}>
+            <Portal
+              id="bmates-portal"
+              ref={ref}
+              width={width}
+              onKeyDown={onKeyDown}
+              disabledAutoFocus={disabledAutoFocus}
+              {...props}
+            >
               {children}
             </Portal>
           </>,
