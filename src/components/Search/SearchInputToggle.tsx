@@ -1,11 +1,10 @@
 import * as React from 'react';
 
+import { Input } from '@/components/Input';
 import { PortalContext } from '@/components/Portal/PortalContext';
 import useContext from '@/hooks/useContext';
 import { composeEventHandlers } from '@/libs/event';
 import { composeRefs } from '@/libs/ref';
-
-import { Input } from '../..';
 
 type ComponentPropsWithoutRef<E extends React.ElementType> = React.ComponentPropsWithoutRef<E>;
 
@@ -29,9 +28,9 @@ export const SearchInputToggle = React.forwardRef<HTMLInputElement, ComponentPro
       setShowModal(true);
     };
 
-    const closeModal = () => {
+    const closeModal = React.useCallback(() => {
       setShowModal(false);
-    };
+    }, []);
 
     const ACTIONS: Record<string, (e: React.KeyboardEvent<HTMLInputElement>) => void> = {
       ArrowDown: () => focus('next'),
@@ -42,6 +41,7 @@ export const SearchInputToggle = React.forwardRef<HTMLInputElement, ComponentPro
     };
 
     const handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      console.log(e);
       const handler = ACTIONS[e.key];
 
       if (handler) {

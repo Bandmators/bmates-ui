@@ -16,7 +16,7 @@ export interface PortalProps extends React.ComponentProps<'div'> {
 
 const Portal = ({ children, ref, width, onKeyDown, disabledAutoFocus, ...props }: PortalProps) => {
   const portalRef = React.useRef<HTMLDivElement>(null);
-  const { showModal, toggleElement, reorgPos } = usePortal({ portalRef });
+  const { showModal, setShowModal, toggleElement, reorgPos } = usePortal({ portalRef });
   const [items, setItems] = useState<HTMLElement[]>([]);
 
   const ACTIONS: Record<string, (e: React.KeyboardEvent<HTMLInputElement>) => void> = {
@@ -24,6 +24,7 @@ const Portal = ({ children, ref, width, onKeyDown, disabledAutoFocus, ...props }
     ArrowUp: () => focus('prev'),
     Tab: () => focus('next'),
     Enter: () => select(),
+    Escape: () => setShowModal(false),
   };
 
   const handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
