@@ -7,32 +7,32 @@ import { composeEventHandlers } from '@/libs/event';
 import { composeRefs } from '@/libs/ref';
 import { PositionType } from '@/types/position';
 
-interface ModalContentProps extends React.ComponentProps<'div'> {
+export interface PortalProps extends React.ComponentProps<'div'> {
   ref: React.ForwardedRef<HTMLDivElement>;
   width?: React.CSSProperties['width'];
   disabledBG?: boolean;
+  disabledAutoFocus?: boolean;
 }
 
-const Portal = ({ children, ref, width, onKeyDown, ...props }: ModalContentProps) => {
+const Portal = ({ children, ref, width, onKeyDown, disabledAutoFocus, ...props }: PortalProps) => {
   const portalRef = React.useRef<HTMLDivElement>(null);
-  const { showModal, toggleElement, reorgPos } = usePortal({ portalRef });
+  const { showModal, setShowModal, toggleElement, reorgPos } = usePortal({ portalRef });
   const [items, setItems] = useState<HTMLElement[]>([]);
 
   const ACTIONS: Record<string, (e: React.KeyboardEvent<HTMLInputElement>) => void> = {
     ArrowDown: () => focus('next'),
     ArrowUp: () => focus('prev'),
-    Tab: e => e.preventDefault(),
+    Tab: () => focus('next'),
     Enter: () => select(),
+    Escape: () => setShowModal(false),
   };
 
   const handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (Object.keys(ACTIONS).includes(e.key)) {
-      const handler = ACTIONS[e.key];
+    const handler = ACTIONS[e.key];
 
-      if (handler) {
-        e.preventDefault();
-        handler(e);
-      }
+    if (handler) {
+      e.preventDefault();
+      handler(e);
     }
   };
 
@@ -65,18 +65,20 @@ const Portal = ({ children, ref, width, onKeyDown, ...props }: ModalContentProps
 
   const handleOpen = React.useCallback(() => {
     if (portalRef.current) {
-      portalRef.current.focus();
-      setItems(
-        Array.from(portalRef.current.querySelectorAll<HTMLElement>('[data-focus-enabled="true"]')).filter(e => {
-          return e.getAttribute('disabled') == null;
-        }),
-      );
+      if (!disabledAutoFocus) portalRef.current.focus();
+
+      const newItems = Array.from(
+        portalRef.current.querySelectorAll<HTMLElement>('[data-focus-enabled="true"]'),
+      ).filter(e => {
+        return e.getAttribute('disabled') == null;
+      });
+      setItems(newItems);
     }
-  }, []);
+  }, [disabledAutoFocus]);
 
   React.useEffect(() => {
     if (showModal && portalRef.current) handleOpen();
-  }, [handleOpen, showModal]);
+  }, [handleOpen, showModal, children]);
 
   return (
     <PortalStyled
@@ -102,6 +104,7 @@ const PortalStyled = styled.div<{ width?: React.CSSProperties['width']; position
   display: grid;
   min-width: max-content;
   ${({ width }) => width && `width: ${typeof width === 'string' ? width : `${width}px`};`}
+  max-width: 100%;
   padding: 0.25rem;
   border-radius: 0.25rem;
   position: fixed;

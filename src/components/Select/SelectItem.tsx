@@ -51,6 +51,7 @@ export const SelectItem = React.forwardRef<HTMLLIElement, SelectItemProps>(
         aria-selected={selected}
         selected={selected}
         onClick={composeEventHandlers(props.onClick, onClickHandler)}
+        data-focus-enabled="true"
         {...props}
       >
         {children}
@@ -83,7 +84,8 @@ const SelectItemStyled = styled.li<{ selected: boolean; disabled: boolean }>`
           opacity: 0.5;
         `
       : css`
-          &[aria-selected='false']:hover {
+          &[aria-selected='false']:hover,
+          &[aria-selected='false']:focus {
             background-color: var(--gray-100);
           }
         `}
