@@ -5,7 +5,7 @@ import * as React from 'react';
 import { composeEventHandlers } from '@/libs/event';
 
 interface PaginationLinkProps extends React.ComponentPropsWithoutRef<'a'> {
-  active?: boolean;
+  selected?: boolean;
   disabled?: boolean;
 
   as?: React.ElementType;
@@ -17,7 +17,7 @@ interface PaginationLinkProps extends React.ComponentPropsWithoutRef<'a'> {
 }
 
 export const PaginationLink = React.forwardRef<HTMLAnchorElement, PaginationLinkProps>(
-  ({ active = false, disabled = false, onClick, as, ...props }, ref) => {
+  ({ selected = false, disabled = false, onClick, as, ...props }, ref) => {
     const handleOnclick = (e: React.MouseEvent<HTMLAnchorElement>) => {
       if (disabled) e.preventDefault();
     };
@@ -27,7 +27,13 @@ export const PaginationLink = React.forwardRef<HTMLAnchorElement, PaginationLink
         {disabled ? (
           <DisabledLink disabled={disabled} aria-disabled="true" as={as} {...props} />
         ) : (
-          <Link ref={ref} as={as} active={active} onClick={composeEventHandlers(handleOnclick, onClick)} {...props} />
+          <Link
+            ref={ref}
+            as={as}
+            selected={selected}
+            onClick={composeEventHandlers(handleOnclick, onClick)}
+            {...props}
+          />
         )}
       </>
     );
@@ -36,13 +42,13 @@ export const PaginationLink = React.forwardRef<HTMLAnchorElement, PaginationLink
 PaginationLink.displayName = 'PaginationLink';
 
 export const PaginationPreviousLink = ({
-  active = false,
+  selected = false,
   disabled = false,
   children,
   ...props
 }: PaginationLinkProps) => {
   return (
-    <PaginationLink active={active} disabled={disabled} {...props}>
+    <PaginationLink selected={selected} disabled={disabled} {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="18"
@@ -62,9 +68,9 @@ export const PaginationPreviousLink = ({
   );
 };
 
-export const PaginationNextLink = ({ active = false, disabled = false, children, ...props }: PaginationLinkProps) => {
+export const PaginationNextLink = ({ selected = false, disabled = false, children, ...props }: PaginationLinkProps) => {
   return (
-    <PaginationLink active={active} disabled={disabled} {...props}>
+    <PaginationLink selected={selected} disabled={disabled} {...props}>
       {children}
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -96,14 +102,14 @@ const Link = styled.a<PaginationLinkProps>`
   cursor: pointer;
   text-decoration: none;
   color: inherit;
-  ${({ active, disabled }) =>
+  ${({ selected, disabled }) =>
     disabled
       ? css`
           cursor: default;
           border-color: transparent;
           opacity: 0.5;
         `
-      : active
+      : selected
         ? css`
             background-color: var(--primary);
             color: var(--background);

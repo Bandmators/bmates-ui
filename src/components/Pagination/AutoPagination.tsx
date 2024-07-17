@@ -29,7 +29,7 @@ export const AutoPagination = ({ pageNo, pageSize, pageGap = 10, linkas }: AutoP
         </PaginationItem>
         {pages.map(page => (
           <PaginationItem key={`bmates-pagination-${page}`}>
-            <PaginationLink active={page === pageNo} href={`?page=${page}`} to={`?page=${page}`} as={linkas}>
+            <PaginationLink selected={page === pageNo} href={`?page=${page}`} to={`?page=${page}`} as={linkas}>
               {page}
             </PaginationLink>
           </PaginationItem>
