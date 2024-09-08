@@ -34,7 +34,7 @@ export const Default: Story = {
           <PaginationContent>
             {[1, 2, 3].map(page => (
               <PaginationItem key={page}>
-                <PaginationLink active={page === 2}>{page}</PaginationLink>
+                <PaginationLink selected={page === 2}>{page}</PaginationLink>
               </PaginationItem>
             ))}
           </PaginationContent>

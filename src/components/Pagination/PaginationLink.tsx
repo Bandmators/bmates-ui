@@ -32,6 +32,7 @@ export const PaginationLink = React.forwardRef<HTMLAnchorElement, PaginationLink
             as={as}
             selected={selected}
             onClick={composeEventHandlers(handleOnclick, onClick)}
+            aria-current={selected ? 'page' : undefined}
             {...props}
           />
         )}
@@ -48,7 +49,7 @@ export const PaginationPreviousLink = ({
   ...props
 }: PaginationLinkProps) => {
   return (
-    <PaginationLink selected={selected} disabled={disabled} {...props}>
+    <PaginationLink selected={selected} disabled={disabled} aria-label="Previous page" {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="18"
@@ -70,7 +71,7 @@ export const PaginationPreviousLink = ({
 
 export const PaginationNextLink = ({ selected = false, disabled = false, children, ...props }: PaginationLinkProps) => {
   return (
-    <PaginationLink selected={selected} disabled={disabled} {...props}>
+    <PaginationLink selected={selected} disabled={disabled} aria-label="Next page" {...props}>
       {children}
       <svg
         xmlns="http://www.w3.org/2000/svg"

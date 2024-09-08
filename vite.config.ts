@@ -20,7 +20,7 @@ export default defineConfig({
       reportOnFailure: true,
       provider: 'v8',
       include: ['src/**'],
-      exclude: [...coverageConfigDefaults.exclude, 'src/stories/*', '**.config.**'],
+      exclude: [...coverageConfigDefaults.exclude, 'src/stories/*', '**.config.**', 'src/types/*'],
     },
   },
   resolve: {
