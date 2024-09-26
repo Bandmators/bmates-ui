@@ -17,7 +17,7 @@ interface ContextMenuProviderProps extends React.PropsWithChildren {
  * Displays a list of menus.
  * @returns
  */
-export const ContextMenuProvider = ({ align = 'center', space = 0, children }: ContextMenuProviderProps) => {
+export const ContextMenuProvider = ({ align = 'start', space = 0, children }: ContextMenuProviderProps) => {
   return (
     <PortalProvider align={align} space={space}>
       <ContextMenuContainer>{children}</ContextMenuContainer>

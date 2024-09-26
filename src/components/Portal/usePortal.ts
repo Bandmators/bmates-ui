@@ -24,12 +24,13 @@ export const usePortal = ({ portalRef }: { portalRef: React.RefObject<HTMLDivEle
 
   React.useEffect(() => {
     const adjustmentPos = () => {
-      if (portalRef.current && toggleElement && showModal) {
+      if (portalRef.current && showModal) {
         const rect = portalRef.current;
-        const toggleRect = toggleElement.getBoundingClientRect();
+        const toggleRect = toggleElement
+          ? toggleElement.getBoundingClientRect()
+          : { x: reorgPos.x, y: reorgPos.y, bottom: reorgPos.y, height: 0, width: 0 };
 
         const isOverflowing = rect.offsetHeight + toggleRect.bottom + space >= window.innerHeight;
-        const reorgPos = { x: 0, y: 0 };
 
         switch (align) {
           case 'center':
@@ -62,7 +63,7 @@ export const usePortal = ({ portalRef }: { portalRef: React.RefObject<HTMLDivEle
     return () => {
       window.removeEventListener('resize', adjustmentPos);
     };
-  }, [align, showModal, toggleElement, portalRef, space]);
+  }, [align, showModal, toggleElement, portalRef, space, reorgPos]);
 
   return { showModal, align, toggleElement, setShowModal, setToggleElment, reorgPos };
 };
