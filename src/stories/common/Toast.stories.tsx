@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
 import { Button, Toaster, useToast } from '../..';
-import { ToastData } from '../../components/common/Toast/type';
+import { ToastData } from '../../components/Toast';
 
 const ToastForStory = ({ ...props }: ToastData) => {
   const { toast } = useToast();

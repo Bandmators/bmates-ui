@@ -16,5 +16,6 @@ export * from './Toast';
 export * from './Toggle';
 export * from './Tooltip';
 export * from './Checkbox';
+export * from './ContextMenu';
 
 export { default as BMatesProvider } from './Provider/StyledProvider';

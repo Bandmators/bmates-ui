@@ -41,7 +41,6 @@ export const SearchInputToggle = React.forwardRef<HTMLInputElement, ComponentPro
     };
 
     const handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-      console.log(e);
       const handler = ACTIONS[e.key];
 
       if (handler) {
