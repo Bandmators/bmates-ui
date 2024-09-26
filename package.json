@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Bandmators/bmates-ui.git"
+    "url": "git+https://github.com/Bandmators/bmates-ui"
   },
   "homepage": "https://github.com/Bandmators/bmates-ui",
   "keywords": [
@@ -103,7 +103,7 @@
     ]
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "@kyechan99:registry": "https://npm.pkg.github.com/"
   },
   "files": [
     "/dist"
