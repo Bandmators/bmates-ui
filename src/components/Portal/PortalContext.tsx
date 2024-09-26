@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { AlignType } from '@/types/align';
+import { PositionType } from '@/types/position';
 
 export interface PortalContextType {
   /*
@@ -25,5 +26,8 @@ export interface PortalContextType {
    * Space Size
    */
   space?: number;
+
+  reorgPos: PositionType;
+  setReorgPos: (value: PositionType) => void;
 }
 export const PortalContext = React.createContext<PortalContextType | null>(null);

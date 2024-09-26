@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { PortalContext } from '@/components/Portal/PortalContext';
-import { PositionType } from '@/types/position';
+
+// import { PositionType } from '@/types/position';
 
 export const usePortal = ({ portalRef }: { portalRef: React.RefObject<HTMLDivElement> }) => {
   const {
@@ -11,8 +12,10 @@ export const usePortal = ({ portalRef }: { portalRef: React.RefObject<HTMLDivEle
     setToggleElment,
     align,
     space = 0,
+    reorgPos,
+    setReorgPos,
   } = React.useContext(PortalContext)!;
-  const [reorgPos, setReorgPos] = React.useState<PositionType>({ x: 0, y: 0 });
+  // const [reorgPos, setReorgPos] = React.useState<PositionType>({ x: 0, y: 0 });
 
   const setShowModal = (value: boolean) => {
     setModal(value);

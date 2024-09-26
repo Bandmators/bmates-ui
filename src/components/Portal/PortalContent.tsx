@@ -26,7 +26,17 @@ export const PortalContent = ({
       {showModal &&
         createPortal(
           <>
-            {!disabledBG && <PortalBG id="bmates-portal-bg" className="bmates-portal-bg" onClick={close} />}
+            {!disabledBG && (
+              <PortalBG
+                id="bmates-portal-bg"
+                className="bmates-portal-bg"
+                onClick={close}
+                onContextMenu={evt => {
+                  evt.preventDefault();
+                  close();
+                }}
+              />
+            )}
             <Portal
               id="bmates-portal"
               ref={ref}

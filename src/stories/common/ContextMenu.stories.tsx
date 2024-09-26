@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ContextMenuProvider, useContextMenu } from '../..';
+import { ContextMenu, ContextMenuItem, ContextMenuProvider } from '../..';
 
 export default {
   title: 'common/ContextMenu',
@@ -13,17 +13,26 @@ const Template = () => {
   return (
     <ContextMenuProvider>
       <InnerComponent />
+      <ContextMenu>
+        <ContextMenuItem>GitHub</ContextMenuItem>
+        <ContextMenuItem>Facebook</ContextMenuItem>
+      </ContextMenu>
     </ContextMenuProvider>
   );
 };
 
 const InnerComponent = () => {
-  const { openContextMenu } = useContextMenu();
-
   return (
     <div
-      style={{ height: '300px', border: '1px solid #ccc', position: 'relative', textAlign: 'center' }}
-      onContextMenu={openContextMenu}
+      style={{
+        height: '1000px',
+        border: '1px solid #ccc',
+        background: 'var(--gray-100)',
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
     >
       Right click here!
     </div>
