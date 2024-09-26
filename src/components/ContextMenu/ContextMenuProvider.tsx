@@ -36,7 +36,6 @@ export const ContextMenuContainer = React.forwardRef<HTMLDivElement, React.Compo
       <div
         ref={composeRefs(compRef, ref)}
         onContextMenu={composeEventHandlers(onContextMenu, evt => {
-          console.log(evt.button);
           if (evt.button !== 2) return;
           evt.preventDefault();
           // if (compRef.current) {
