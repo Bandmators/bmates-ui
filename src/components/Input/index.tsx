@@ -4,6 +4,7 @@ import * as React from 'react';
 
 export { default as InputGroup } from './InputGroup';
 export { default as InputDesc } from './InputDesc';
+export { default as InputFile } from './InputFile';
 
 export interface InputProps extends React.ComponentPropsWithoutRef<'input'> {}
 

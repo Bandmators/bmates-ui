@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
-import { Input, InputGroup, Label } from '../../';
+import { Input, InputFile, InputGroup, Label } from '../../';
 
 const meta = {
   title: 'common/Input',
@@ -44,5 +44,30 @@ export const WithLabel: Story = {
   args: {
     id: 'email',
     placeholder: 'Email',
+  },
+};
+
+export const FileInput: Story = {
+  decorators: [
+    () => {
+      const [fileName, setFileName] = React.useState<string | null>(null);
+      const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        setFileName(file ? file.name : null);
+      };
+      return (
+        <InputGroup>
+          <Label htmlFor="file-upload">File</Label>
+          <div>
+            <InputFile variant="primary" id="file-upload" onChange={handleFileChange}>
+              {fileName}
+            </InputFile>
+          </div>
+        </InputGroup>
+      );
+    },
+  ],
+  args: {
+    id: 'file-upload',
   },
 };
