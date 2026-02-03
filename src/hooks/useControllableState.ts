@@ -13,7 +13,7 @@ const useControllableState = <T>({
 
   const setValue: React.Dispatch<React.SetStateAction<T>> = React.useCallback(
     newValue => {
-      setValueInternal(newValue); // 상태 업데이트
+      setValueInternal(newValue); // State update
 
       if (typeof onChange === 'function') {
         onChange(newValue as T);
