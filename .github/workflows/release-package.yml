@@ -1,36 +1,77 @@
-name: Release Package
+name: Release
 
 on:
-  release:
-    types: [created]
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: Version bump type
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+        default: patch
 
 jobs:
-  publish:
+  release:
     runs-on: ubuntu-latest
-
     permissions:
-      contents: read
-      packages: write
+      contents: write
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Install Node
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
-          registry-url: 'https://npm.pkg.github.com'
+          node-version: 20
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
 
-      - name: Install pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify npm authentication
         run: |
-          npm install -g pnpm
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "::error::NPM_TOKEN secret is empty or not set. Add a granular npm token (with bypass 2FA enabled) to the repo secrets before re-running."
+            exit 1
+          fi
+          npm whoami
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Install Packages
-        run: pnpm install
+      - name: Build package
+        run: pnpm buildOnce
 
-      - run: pnpm buildOnce
+      - name: Configure git user
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - run: pnpm publish --no-git-checks
+      - name: Bump package version
+        id: bump
+        run: |
+          npm version "${{ github.event.inputs.release_type }}" --no-git-tag-version
+          NEXT_VERSION="$(node -p "require('./package.json').version")"
+          echo "next_version=$NEXT_VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and tag release
+        run: |
+          git add package.json
+          git commit -m "chore(release): v${{ steps.bump.outputs.next_version }}"
+          git tag "v${{ steps.bump.outputs.next_version }}"
+          git push origin HEAD
+          git push origin "v${{ steps.bump.outputs.next_version }}"
+
+      - name: Publish package to npm
+        run: pnpm publish --access public --no-git-checks --registry https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
