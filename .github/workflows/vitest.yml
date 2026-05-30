@@ -9,7 +9,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     permissions:
       # Required to checkout the code
       contents: read
@@ -17,29 +17,32 @@ jobs:
       pull-requests: write
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Install Node
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20.x'
-          
-    - name: Install pnpm
-      run: |
-        npm install -g pnpm
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
 
-    - name: Install Packages
-      run: pnpm install
+      - name: Install pnpm
+        run: |
+          npm install -g pnpm
 
-    - name: Run Vitest
-      run: npx vitest --coverage.enabled true
+      - name: Install Packages
+        run: pnpm install
 
-    - name: Report Coverage
-      if: always() 
-      uses:  davelosert/vitest-coverage-report-action@v2
+      - name: Generate Panda CSS
+        run: pnpm exec panda codegen && pnpm exec panda cssgen --clean
 
-    - name: Upload coverage reports to Codecov
-      uses: codecov/codecov-action@v3
-      env:
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      - name: Run Vitest
+        run: npx vitest --coverage.enabled true
+
+      - name: Report Coverage
+        if: always()
+        uses: davelosert/vitest-coverage-report-action@v2
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v6
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

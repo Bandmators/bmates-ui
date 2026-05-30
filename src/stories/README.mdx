@@ -1,3 +1,5 @@
+import { Unstyled } from '@storybook/blocks';
+
 import {
   BMatesProvider,
   Button,
@@ -33,39 +35,35 @@ npm i bmates-ui
 
 Add Styled Component, `BMatesProvider`
 
-```
+```jsx
 import { BMatesProvider } from 'bmates-ui';
 
-<BMatesProvider>
-    <!-- ... -->
-</BMatesProvider>
+<BMatesProvider>{/* ... */}</BMatesProvider>;
 ```
 
 <br />
 
 ### Example
 
-<div style={{ padding: '0.25rem 1rem', margin: '0 auto', maxWidth: '500px' }}>
-  <BMatesProvider>
-    <Card>
-      <CardHead>
-        <CardTitle>CardTitle</CardTitle>
-        <CardDesc>CardDesc..</CardDesc>
-      </CardHead>
-      <CardBody>
-        <InputGroup>
-          <Label htmlFor="bio">Label</Label>
-          <Input id="bio" />
-          <InputDesc>You can @mention other users to link to them.</InputDesc>
-        </InputGroup>
-      </CardBody>
-      <CardFooter>
-        <Button variant="primary">CardFooter</Button>
-      </CardFooter>
-    </Card>
-  </BMatesProvider>
-</div>
-
-<br />
-
-## Customize
+<Unstyled>
+  <div style={{ padding: '0.25rem 1rem', margin: '0 auto', maxWidth: '500px' }}>
+    <BMatesProvider>
+      <Card>
+        <CardHead>
+          <CardTitle>CardTitle</CardTitle>
+          <CardDesc>CardDesc..</CardDesc>
+        </CardHead>
+        <CardBody>
+          <InputGroup>
+            <Label htmlFor="bio">Label</Label>
+            <Input id="bio" />
+            <InputDesc>You can @mention other users to link to them.</InputDesc>
+          </InputGroup>
+        </CardBody>
+        <CardFooter>
+          <Button variant="primary">CardFooter</Button>
+        </CardFooter>
+      </Card>
+    </BMatesProvider>
+  </div>
+</Unstyled>

@@ -1,39 +1,42 @@
-import styled from '@emotion/styled';
+import { cx } from '@/styles/panda';
 import React, { ComponentPropsWithoutRef } from 'react';
 
+import {
+  cardBodyRecipe,
+  cardDescRecipe,
+  cardFooterRecipe,
+  cardHeadRecipe,
+  cardRecipe,
+  cardTitleRecipe,
+} from './card.recipe';
+
 export interface CardProps extends ComponentPropsWithoutRef<'div'> {
-  /*
-    Card Width
-  */
   width?: number;
 }
 
-const CardStyled = styled.div<CardProps>`
-  padding: 1rem;
-  border-radius: 0.5rem;
-  background-color: var(--background);
-  box-shadow: 0 0 4px var(--gray-300);
-  ${({ width }) => width && `width: ${width}px`};
-`;
+export const CardHead = ({ className, ...props }: ComponentPropsWithoutRef<'div'>) => (
+  <div className={cx(cardHeadRecipe(), className)} {...props} />
+);
+export const CardBody = ({ className, ...props }: ComponentPropsWithoutRef<'div'>) => (
+  <div className={cx(cardBodyRecipe(), className)} {...props} />
+);
+export const CardFooter = ({ className, ...props }: ComponentPropsWithoutRef<'div'>) => (
+  <div className={cx(cardFooterRecipe(), className)} {...props} />
+);
 
-export const CardHead = styled.div`
-  margin-bottom: 1rem;
-`;
-export const CardBody = styled.div``;
-export const CardFooter = styled.div`
-  margin-top: 1rem;
-`;
+export const CardTitle = ({ className, ...props }: ComponentPropsWithoutRef<'h3'>) => (
+  <h3 className={cx(cardTitleRecipe(), className)} {...props} />
+);
+export const CardDesc = ({ className, ...props }: ComponentPropsWithoutRef<'p'>) => (
+  <p className={cx(cardDescRecipe(), className)} {...props} />
+);
 
-export const CardTitle = styled.h3`
-  margin: 0px;
-`;
-export const CardDesc = styled.p`
-  margin: 0px;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  color: var(--gray-500);
-`;
-export const Card = React.forwardRef<HTMLDivElement, CardProps>(({ className, width, ...props }, ref) => (
-  <CardStyled ref={ref} className={className} width={width} {...props} />
+export const Card = React.forwardRef<HTMLDivElement, CardProps>(({ className, width, style, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cx(cardRecipe(), className)}
+    style={{ ...(style || {}), ...(width ? { width: `${width}px` } : {}) }}
+    {...props}
+  />
 ));
 Card.displayName = 'Card';

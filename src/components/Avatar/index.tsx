@@ -1,15 +1,11 @@
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
+import { cx } from '@/styles/panda';
 import React, { ComponentPropsWithoutRef } from 'react';
 
 import { SizeType } from '@/types/size';
 
-import bandmate_60 from '@/assets/bandmate_60.png';
+import { avatarRecipe } from './avatar.recipe';
 
 export interface AvatarVariantProps {
-  /*
-    Button size
-  */
   size?: SizeType;
 }
 export interface AvatarProps extends ComponentPropsWithoutRef<'img'>, AvatarVariantProps {
@@ -17,34 +13,9 @@ export interface AvatarProps extends ComponentPropsWithoutRef<'img'>, AvatarVari
   alt: string;
 }
 
-const AvatarSizeStyles = ({ size }: { size: SizeType }) => {
-  switch (size) {
-    case 'sm':
-      return css`
-        width: 1.5rem;
-        height: 1.5rem;
-      `;
-    case 'lg':
-      return css`
-        width: 3rem;
-        height: 3rem;
-      `;
-    case 'md':
-    default:
-      return css`
-        width: 2rem;
-        height: 2rem;
-      `;
-  }
-};
-
-const AvatarImage = styled.img<AvatarVariantProps>`
-  border-radius: 50%;
-  ${({ size }) => size && AvatarSizeStyles({ size })}
-`;
 export const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>(
   ({ className, src, alt, size = 'md', ...props }, ref) => (
-    <AvatarImage src={src || bandmate_60} alt={alt} size={size} ref={ref} className={className} {...props} />
+    <img src={src} alt={alt} ref={ref} className={cx(avatarRecipe({ size }), className)} {...props} />
   ),
 );
 Avatar.displayName = 'Avatar';

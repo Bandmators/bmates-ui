@@ -1,4 +1,13 @@
-import styled from '@emotion/styled';
+import { cx } from '@/styles/panda';
+import * as React from 'react';
+
+import {
+  searchDescriptionRecipe,
+  searchDividerRecipe,
+  searchItemListRecipe,
+  searchLabelRecipe,
+  searchShortcutRecipe,
+} from './search.common.recipe';
 
 /* eslint-disable react-refresh/only-export-components */
 export * from './Search';
@@ -8,33 +17,19 @@ export * from './SearchItem';
 export * from './SearchInput';
 export * from './SearchInputToggle';
 
-export const SearchLabel = styled.h3`
-  font-weight: 600;
-  font-size: 0.75rem;
-  line-height: 1rem;
-  padding: 0.375rem 0.5rem;
-  margin: 0px;
-`;
+export const SearchLabel = ({ className, ...props }: React.ComponentPropsWithoutRef<'h3'>) => (
+  <h3 className={cx(searchLabelRecipe(), className)} {...props} />
+);
+export const SearchDivider = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) => (
+  <div className={cx(searchDividerRecipe(), className)} {...props} />
+);
+export const SearchDescription = ({ className, ...props }: React.ComponentPropsWithoutRef<'p'>) => (
+  <p className={cx(searchDescriptionRecipe(), className)} {...props} />
+);
+export const SearchShortcut = ({ className, ...props }: React.ComponentPropsWithoutRef<'span'>) => (
+  <span className={cx(searchShortcutRecipe(), className)} {...props} />
+);
 
-export const SearchDivider = styled.div`
-  height: 1px;
-  margin: 0.25rem -0.25rem;
-  background: var(--gray-300);
-`;
-export const SearchDescription = styled.p`
-  margin: 0.375rem 0px;
-  font-weight: 300;
-`;
-
-export const SearchShortcut = styled.span`
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  line-height: 1rem;
-  margin-left: auto;
-  opacity: 0.5;
-`;
-
-export const SearchItemList = styled.ul`
-  margin: 0px;
-  padding: 0px;
-`;
+export const SearchItemList = ({ className, ...props }: React.ComponentPropsWithoutRef<'ul'>) => (
+  <ul className={cx(searchItemListRecipe(), className)} {...props} />
+);

@@ -1,57 +1,44 @@
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
+import { cx } from '@/styles/panda';
 import * as React from 'react';
 
 import { PortalContext } from '@/components/Portal/PortalContext';
+import { usePortalFocusItem } from '@/components/Portal/usePortalFocusItem';
 import useContext from '@/hooks/useContext';
 import { composeEventHandlers } from '@/libs/event';
+import { composeRefs } from '@/libs/ref';
+
+import { contextMenuItemRecipe } from './contextMenuItem.recipe';
 
 interface ContextMenuItemProps extends React.ComponentPropsWithoutRef<'li'> {
   disabled?: boolean;
 }
 export const ContextMenuItem = React.forwardRef<HTMLLIElement, ContextMenuItemProps>(
-  ({ disabled = false, ...props }, ref) => {
+  ({ disabled = false, onClick, className, ...props }, ref) => {
     const { setShowModal } = useContext(PortalContext);
+    const itemRef = React.useRef<HTMLLIElement>(null);
+    usePortalFocusItem(itemRef, disabled);
 
-    const onClickHandler = () => {
-      if (!disabled) setShowModal(false);
+    const onClickHandler = (event: React.MouseEvent<HTMLLIElement>) => {
+      if (disabled) {
+        event.preventDefault();
+        return;
+      }
+
+      setShowModal(false);
     };
 
     return (
-      <ContextMenuItemStyled
-        ref={ref}
-        tabIndex={0}
+      <li
+        ref={composeRefs(itemRef, ref)}
+        tabIndex={disabled ? -1 : 0}
         role={'menuitem'}
-        disabled={disabled}
-        onClick={composeEventHandlers(props.onClick, onClickHandler)}
-        data-focus-enabled="true"
+        aria-disabled={disabled}
+        data-disabled={disabled}
+        onClick={composeEventHandlers(onClick, onClickHandler)}
+        className={cx(contextMenuItemRecipe({ disabled }), className)}
         {...props}
-      ></ContextMenuItemStyled>
+      />
     );
   },
 );
 ContextMenuItem.displayName = 'ContextMenuItem';
-
-const ContextMenuItemStyled = styled.li<{ disabled: boolean }>`
-  display: flex;
-  position: relative;
-  align-items: center;
-  padding: 0.375rem 0.5rem;
-  border-radius: 0.25rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-  cursor: default;
-  ${({ disabled }) =>
-    disabled
-      ? css`
-          opacity: 0.5;
-        `
-      : css`
-          &:hover,
-          &:focus {
-            background-color: var(--gray-100);
-          }
-        `}
-`;

@@ -1,10 +1,9 @@
 import type { StorybookConfig } from '@storybook/react-vite';
-import path from 'path';
 
-const { loadConfigFromFile, mergeConfig } = require('vite');
-const config: StorybookConfig = {
+const config = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
+    '@storybook/addon-docs',
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-onboarding',
@@ -14,11 +13,8 @@ const config: StorybookConfig = {
     name: '@storybook/react-vite',
     options: {},
   },
-  docs: {
-    autodocs: 'tag',
-  },
   core: {
     builder: '@storybook/builder-vite',
   },
-};
+} satisfies StorybookConfig;
 export default config;

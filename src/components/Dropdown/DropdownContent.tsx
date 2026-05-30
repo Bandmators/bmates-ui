@@ -1,7 +1,9 @@
-import styled from '@emotion/styled';
+import { cx } from '@/styles/panda';
 import * as React from 'react';
 
 import { PortalContent } from '@/components/Portal/PortalContent';
+
+import { dropdownListBoxRecipe } from './dropdown.recipe';
 
 interface ModalProps extends React.ComponentPropsWithoutRef<'div'> {
   width?: React.CSSProperties['width'];
@@ -14,13 +16,8 @@ interface ModalProps extends React.ComponentPropsWithoutRef<'div'> {
 export const DropdownContent = React.forwardRef<HTMLDivElement, ModalProps>(({ width, children, ...props }, ref) => {
   return (
     <PortalContent width={width} ref={ref} role="group" {...props}>
-      <DropdownListBox>{children}</DropdownListBox>
+      <ul className={cx(dropdownListBoxRecipe())}>{children}</ul>
     </PortalContent>
   );
 });
 DropdownContent.displayName = 'DropdownContent';
-
-const DropdownListBox = styled.ul`
-  margin: 0px;
-  padding: 0px;
-`;

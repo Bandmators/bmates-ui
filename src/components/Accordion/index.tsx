@@ -1,9 +1,21 @@
-import styled from '@emotion/styled';
+import { cx } from '@/styles/panda';
 import * as React from 'react';
 
 import useContext from '@/hooks/useContext';
 import useControllableState from '@/hooks/useControllableState';
+import { useIsomorphicLayoutEffect } from '@/libs/dom';
 import { composeEventHandlers } from '@/libs/event';
+
+import {
+  accordionContentInnerRecipe,
+  accordionContentWrapperRecipe,
+  accordionHeadRecipe,
+  accordionIconRecipe,
+  accordionIndicatorRecipe,
+  accordionItemRecipe,
+  accordionRootRecipe,
+  accordionTitleRecipe,
+} from './accordion.recipe';
 
 interface AccordionContextType {
   openItems: string[];
@@ -76,9 +88,9 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
     );
 
     return (
-      <AccordionRoot ref={ref} className={className} {...props}>
+      <div ref={ref} className={cx(accordionRootRecipe(), className)} {...props}>
         <AccordionContext.Provider value={{ openItems, type, toggle }}>{children}</AccordionContext.Provider>
-      </AccordionRoot>
+      </div>
     );
   },
 );
@@ -113,9 +125,15 @@ export const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps
           triggerId: `accordion-trigger-${triggerId}`,
         }}
       >
-        <AccordionItemContainer ref={ref} className={className} data-open={isOpen} data-disabled={disabled} {...props}>
+        <div
+          ref={ref}
+          className={cx(accordionItemRecipe(), className)}
+          data-open={isOpen}
+          data-disabled={disabled}
+          {...props}
+        >
           {children}
-        </AccordionItemContainer>
+        </div>
       </AccordionItemContext.Provider>
     );
   },
@@ -134,9 +152,9 @@ export const AccordionTrigger = React.forwardRef<HTMLButtonElement, AccordionTri
     const { isOpen, disabled, toggle, value, contentId, triggerId } = useContext(AccordionItemContext);
 
     return (
-      <AccordionHead
+      <button
         ref={ref}
-        className={className}
+        className={cx(accordionHeadRecipe(), className)}
         type="button"
         disabled={disabled}
         aria-expanded={isOpen}
@@ -146,15 +164,15 @@ export const AccordionTrigger = React.forwardRef<HTMLButtonElement, AccordionTri
         onClick={composeEventHandlers(onClick, () => toggle(value))}
         {...props}
       >
-        <AccordionTitle>{children}</AccordionTitle>
-        <AccordionIndicator data-open={isOpen} aria-hidden>
+        <span className={cx(accordionTitleRecipe())}>{children}</span>
+        <span className={cx(accordionIndicatorRecipe())} data-open={isOpen} aria-hidden>
           {indicator ?? (
-            <Icon viewBox="0 0 24 24">
+            <svg className={cx(accordionIconRecipe())} viewBox="0 0 24 24">
               <path d="M6 9l6 6l6-6" />
-            </Icon>
+            </svg>
           )}
-        </AccordionIndicator>
-      </AccordionHead>
+        </span>
+      </button>
     );
   },
 );
@@ -166,16 +184,16 @@ export const AccordionContent = React.forwardRef<HTMLDivElement, React.Component
     const innerRef = React.useRef<HTMLDivElement | null>(null);
     const [contentHeight, setContentHeight] = React.useState<number>(0);
 
-    React.useLayoutEffect(() => {
+    useIsomorphicLayoutEffect(() => {
       if (innerRef.current) {
         setContentHeight(innerRef.current.scrollHeight);
       }
     }, [children]);
 
     return (
-      <AccordionContentWrapper
+      <div
         ref={ref}
-        className={className}
+        className={cx(accordionContentWrapperRecipe(), className)}
         id={contentId}
         role="region"
         aria-labelledby={triggerId}
@@ -184,98 +202,11 @@ export const AccordionContent = React.forwardRef<HTMLDivElement, React.Component
         style={{ maxHeight: isOpen ? contentHeight : 0 }}
         {...props}
       >
-        <AccordionContentInner ref={innerRef}>{children}</AccordionContentInner>
-      </AccordionContentWrapper>
+        <div ref={innerRef} className={cx(accordionContentInnerRecipe())}>
+          {children}
+        </div>
+      </div>
     );
   },
 );
 AccordionContent.displayName = 'AccordionContent';
-
-const AccordionRoot = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const AccordionItemContainer = styled.div`
-  border: 1px solid var(--gray-200);
-  border-radius: 0.5rem;
-  background-color: var(--background);
-  overflow: hidden;
-
-  &:not(:last-child) {
-    margin-bottom: 0.5rem;
-  }
-`;
-
-const AccordionHead = styled.button`
-  width: 100%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  padding: 1rem;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-  color: var(--gray-800);
-
-  &:focus-visible {
-    outline: none;
-    box-shadow: var(--focus-shadow);
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-
-  &[data-open='true'] {
-    border-bottom: 1px solid var(--gray-200);
-  }
-`;
-
-const AccordionTitle = styled.span`
-  flex: 1;
-  text-align: left;
-`;
-
-const AccordionIndicator = styled.span`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 200ms ease;
-
-  &[data-open='true'] {
-    transform: rotate(180deg);
-  }
-`;
-
-const Icon = styled.svg`
-  width: 1rem;
-  height: 1rem;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2px;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-`;
-
-const AccordionContentWrapper = styled.div`
-  overflow: hidden;
-  transition:
-    max-height 200ms ease,
-    opacity 200ms ease;
-  opacity: 0;
-
-  &[data-open='true'] {
-    opacity: 1;
-  }
-`;
-
-const AccordionContentInner = styled.div`
-  padding: 1rem;
-  color: var(--gray-600);
-  font-size: 0.875rem;
-  line-height: 1.5;
-`;

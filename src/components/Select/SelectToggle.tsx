@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import { cx } from '@/styles/panda';
 import * as React from 'react';
 
 import { PortalContext } from '@/components/Portal/PortalContext';
@@ -9,6 +9,7 @@ import { composeRefs } from '@/libs/ref';
 
 import { Button } from '../../';
 import SelectContext from './SelectContext';
+import { selectDownIconWrapperRecipe, selectToggleContentRecipe } from './select.recipe';
 
 type ComponentPropsWithoutRef<E extends React.ElementType> = React.ComponentPropsWithoutRef<E> & {
   asChild?: boolean;
@@ -41,10 +42,10 @@ export const SelectToggle = React.forwardRef<HTMLButtonElement, ComponentPropsWi
         aria-expanded="true"
         {...props}
       >
-        <SelectToggleContent>
+        <div className={cx(selectToggleContentRecipe())}>
           {selectedValue.length > 0 ? selectedValue.map(val => val.name).join(',') : children}
-        </SelectToggleContent>
-        <SelectDownIconWrapper>
+        </div>
+        <div className={cx(selectDownIconWrapperRecipe())}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="18"
@@ -58,21 +59,9 @@ export const SelectToggle = React.forwardRef<HTMLButtonElement, ComponentPropsWi
           >
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
-        </SelectDownIconWrapper>
+        </div>
       </Comp>
     );
   },
 );
 SelectToggle.displayName = 'SelectToggle';
-
-const SelectDownIconWrapper = styled.div`
-  margin-left: auto;
-  padding-left: 1rem;
-  display: flex;
-  align-items: center;
-`;
-const SelectToggleContent = styled.div`
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-`;

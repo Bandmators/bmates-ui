@@ -1,4 +1,12 @@
-import styled from '@emotion/styled';
+import { cx } from '@/styles/panda';
+import type React from 'react';
+
+import {
+  dropdownDescriptionRecipe,
+  dropdownDividerRecipe,
+  dropdownLabelRecipe,
+  dropdownShortcutRecipe,
+} from './dropdown.recipe';
 
 /* eslint-disable react-refresh/only-export-components */
 export * from './Dropdown';
@@ -6,28 +14,17 @@ export * from './DropdownContent';
 export * from './DropdownToggle';
 export * from './DropdownItem';
 
-export const DropdownLabel = styled.h2`
-  font-weight: 600;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  padding: 0.375rem 0.5rem;
-  margin: 0px;
-`;
+export const DropdownLabel = ({ className, ...props }: React.ComponentPropsWithoutRef<'h2'>) => (
+  <h2 className={cx(dropdownLabelRecipe(), className)} {...props} />
+);
 
-export const DropdownDivider = styled.div`
-  height: 1px;
-  margin: 0.25rem -0.25rem;
-  background: var(--gray-300);
-`;
-export const DropdownDescription = styled.p`
-  margin: 0.375rem 0px;
-  font-weight: 300;
-`;
+export const DropdownDivider = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) => (
+  <div className={cx(dropdownDividerRecipe(), className)} {...props} />
+);
+export const DropdownDescription = ({ className, ...props }: React.ComponentPropsWithoutRef<'p'>) => (
+  <p className={cx(dropdownDescriptionRecipe(), className)} {...props} />
+);
 
-export const DropdownShortcut = styled.span`
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  line-height: 1rem;
-  margin-left: auto;
-  opacity: 0.5;
-`;
+export const DropdownShortcut = ({ className, ...props }: React.ComponentPropsWithoutRef<'span'>) => (
+  <span className={cx(dropdownShortcutRecipe(), className)} {...props} />
+);

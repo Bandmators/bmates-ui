@@ -25,20 +25,20 @@
   ],
   "scripts": {
     "dev": "concurrently \"pnpm storybook\" \"pnpm build\"",
-    "build": "tsc && vite build --watch",
-    "buildOnce": "tsc && vite build",
+    "build": "panda codegen && panda cssgen --clean && tsc && vite build --watch",
+    "buildOnce": "panda codegen && panda cssgen --clean && tsc && vite build",
+    "panda:watch": "concurrently \"pnpm exec panda codegen --watch\" \"pnpm run panda:css:watch\"",
+    "panda:css:watch": "pnpm exec panda cssgen --watch --splitting",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "prepare": "husky install",
+    "prepare": "panda codegen && panda cssgen --clean && husky install",
     "test": "vitest",
     "testOnce": "vitest run --run --coverage"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
     "concurrently": "^8.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -46,14 +46,17 @@
     "vite-tsconfig-paths": "^4.2.2"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
+  "sideEffects": [
+    "*.css"
+  ],
   "devDependencies": {
     "@commitlint/cli": "^18.4.4",
     "@commitlint/config-conventional": "^18.4.4",
+    "@pandacss/dev": "^1.11.1",
+    "@storybook/addon-docs": "7.6.24",
     "@storybook/addon-essentials": "7.6.24",
     "@storybook/addon-interactions": "7.6.24",
     "@storybook/addon-links": "7.6.24",
@@ -109,5 +112,6 @@
     "/dist"
   ],
   "readme": "ERROR: No README data found!",
-  "_id": "bmates-ui@0.0.1"
+  "_id": "bmates-ui@0.0.1",
+  "packageManager": "pnpm@10.9.0+sha512.0486e394640d3c1fb3c9d43d49cf92879ff74f8516959c235308f5a8f62e2e19528a65cdc2a3058f587cde71eba3d5b56327c8c33a97e4c4051ca48a10ca2d5f"
 }

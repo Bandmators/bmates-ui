@@ -1,4 +1,4 @@
-name: "Chromatic"
+name: 'Chromatic'
 
 on:
   push:
@@ -29,7 +29,10 @@ jobs:
       - name: Install Packages
         run: pnpm install
 
+      - name: Generate Panda CSS
+        run: pnpm exec panda codegen && pnpm exec panda cssgen --clean
+
       - name: Publish to Chromatic
-        uses: chromaui/action@latest
+        uses: chromaui/action@v11
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}

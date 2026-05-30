@@ -12,7 +12,7 @@ import useHoverWaiting from './useHoverWaiting';
  * @returns
  */
 export const HoverCardToggle = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<'div'>>(
-  ({ ...props }, ref) => {
+  ({ onPointerEnter, onPointerLeave, onFocus, onBlur, onTouchStart, ...props }, ref) => {
     const { setToggleElment } = useContext(PortalContext);
     const compRef = React.useRef<HTMLDivElement | null>(null);
     const { onOpen: onOpenWaiting, onClose } = useHoverWaiting();
@@ -36,12 +36,12 @@ export const HoverCardToggle = React.forwardRef<HTMLDivElement, React.ComponentP
     return (
       <div
         ref={composeRefs(compRef, ref)}
-        onPointerEnter={composeEventHandlers(props.onPointerEnter, excludeTouchEventHandler(onOpen))}
-        onPointerLeave={composeEventHandlers(props.onPointerLeave, excludeTouchEventHandler(onClose))}
-        onFocus={composeEventHandlers(props.onFocus, onOpen)}
-        onBlur={composeEventHandlers(props.onBlur, onClose)}
+        onPointerEnter={composeEventHandlers(onPointerEnter, excludeTouchEventHandler(onOpen))}
+        onPointerLeave={composeEventHandlers(onPointerLeave, excludeTouchEventHandler(onClose))}
+        onFocus={composeEventHandlers(onFocus, onOpen)}
+        onBlur={composeEventHandlers(onBlur, onClose)}
         // prevent focus event on touch devices
-        onTouchStart={composeEventHandlers(props.onTouchStart, event => event.preventDefault())}
+        onTouchStart={composeEventHandlers(onTouchStart, event => event.preventDefault())}
         {...props}
       />
     );

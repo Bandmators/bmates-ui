@@ -7,7 +7,7 @@ const meta = {
   component: Avatar,
   tags: ['autodocs'],
   args: {
-    src: 'https://raw.githubusercontent.com/Bandmators/bandmates-fe/main/src/assets/bandmate_60.png',
+    src: 'https://avatars.githubusercontent.com/u/157222787?s=200&v=4',
     alt: 'bandmate',
   },
   parameters: {

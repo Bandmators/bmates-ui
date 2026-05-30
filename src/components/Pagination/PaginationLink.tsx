@@ -1,8 +1,9 @@
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
+import { cx } from '@/styles/panda';
 import * as React from 'react';
 
 import { composeEventHandlers } from '@/libs/event';
+
+import { paginationLinkRecipe } from './paginationLink.recipe';
 
 interface PaginationLinkProps extends React.ComponentPropsWithoutRef<'a'> {
   selected?: boolean;
@@ -17,26 +18,28 @@ interface PaginationLinkProps extends React.ComponentPropsWithoutRef<'a'> {
 }
 
 export const PaginationLink = React.forwardRef<HTMLAnchorElement, PaginationLinkProps>(
-  ({ selected = false, disabled = false, onClick, as, ...props }, ref) => {
+  ({ selected = false, disabled = false, onClick, as: Component = 'a', className, ...props }, ref) => {
+    const LinkComponent = Component as React.ElementType;
+
     const handleOnclick = (e: React.MouseEvent<HTMLAnchorElement>) => {
       if (disabled) e.preventDefault();
     };
 
+    if (disabled) {
+      const { to, href, target, rel, download, onKeyDown, ...spanProps } = props;
+      return (
+        <span aria-disabled="true" className={cx(paginationLinkRecipe({ disabled: true }), className)} {...spanProps} />
+      );
+    }
+
     return (
-      <>
-        {disabled ? (
-          <DisabledLink disabled={disabled} aria-disabled="true" as={as} {...props} />
-        ) : (
-          <Link
-            ref={ref}
-            as={as}
-            selected={selected}
-            onClick={composeEventHandlers(handleOnclick, onClick)}
-            aria-current={selected ? 'page' : undefined}
-            {...props}
-          />
-        )}
-      </>
+      <LinkComponent
+        ref={ref}
+        onClick={composeEventHandlers(handleOnclick, onClick)}
+        aria-current={selected ? 'page' : undefined}
+        className={cx(paginationLinkRecipe({ selected }), className)}
+        {...props}
+      />
     );
   },
 );
@@ -90,36 +93,3 @@ export const PaginationNextLink = ({ selected = false, disabled = false, childre
     </PaginationLink>
   );
 };
-
-const Link = styled.a<PaginationLinkProps>`
-  min-width: 2.5rem;
-  min-height: 2.5rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.25rem;
-  font-weight: 500;
-  line-height: 2.5rem;
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
-  ${({ selected, disabled }) =>
-    disabled
-      ? css`
-          cursor: default;
-          border-color: transparent;
-          opacity: 0.5;
-        `
-      : selected
-        ? css`
-            background-color: var(--primary);
-            color: var(--background);
-          `
-        : css`
-            &:hover {
-              background-color: var(--gray-200);
-            }
-          `}
-`;
-
-const DisabledLink = Link.withComponent('span');

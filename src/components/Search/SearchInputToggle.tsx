@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { Input } from '@/components/Input';
 import { PortalContext } from '@/components/Portal/PortalContext';
+import { getEnabledPortalItems } from '@/components/Portal/focus';
 import useContext from '@/hooks/useContext';
 import { composeEventHandlers } from '@/libs/event';
 import { composeRefs } from '@/libs/ref';
@@ -14,7 +15,7 @@ type ComponentPropsWithoutRef<E extends React.ElementType> = React.ComponentProp
  */
 export const SearchInputToggle = React.forwardRef<HTMLInputElement, ComponentPropsWithoutRef<'input'>>(
   ({ onClick, onChange, onKeyDown, ...props }, ref) => {
-    const { showModal, setShowModal, setToggleElment } = useContext(PortalContext);
+    const { showModal, setShowModal, setToggleElment, focusItems } = useContext(PortalContext);
     const compRef = React.useRef<HTMLInputElement | null>(null);
 
     const openModal = () => {
@@ -30,7 +31,7 @@ export const SearchInputToggle = React.forwardRef<HTMLInputElement, ComponentPro
 
     const closeModal = React.useCallback(() => {
       setShowModal(false);
-    }, []);
+    }, [setShowModal]);
 
     const ACTIONS: Record<string, (e: React.KeyboardEvent<HTMLInputElement>) => void> = {
       ArrowDown: () => focus('next'),
@@ -50,8 +51,15 @@ export const SearchInputToggle = React.forwardRef<HTMLInputElement, ComponentPro
     };
 
     const focus = (key: 'next' | 'prev'): void => {
-      const el = document.querySelector('#bmates-portal [data-focus-enabled="true"]') as HTMLElement;
-      if (key === 'next' && el) el.focus();
+      const items = getEnabledPortalItems(focusItems);
+      if (!items.length) return;
+
+      if (key === 'next') {
+        items[0]?.element.focus();
+        return;
+      }
+
+      items[items.length - 1]?.element.focus();
     };
 
     return (

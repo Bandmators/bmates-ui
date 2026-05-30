@@ -1,8 +1,11 @@
-import styled from '@emotion/styled';
+import { cx } from '@/styles/panda';
+
+import { selectIconRecipe } from './select.recipe';
 
 const SelectIcon = () => {
   return (
-    <SelectSVG
+    <svg
+      className={cx(selectIconRecipe())}
       xmlns="http://www.w3.org/2000/svg"
       width="18"
       height="18"
@@ -14,11 +17,7 @@ const SelectIcon = () => {
       strokeLinejoin="round"
     >
       <polyline points="20 6 9 17 4 12"></polyline>
-    </SelectSVG>
+    </svg>
   );
 };
 export default SelectIcon;
-
-const SelectSVG = styled.svg`
-  margin-left: auto;
-`;
