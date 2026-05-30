@@ -1,5 +1,3 @@
-import { Theme } from '@emotion/react';
-
 export const BMateColors = {
   background: '#FFF',
   white: '#FAFAFA',
@@ -39,9 +37,9 @@ export const BMateBreakpoints = {
 };
 export type BreakpointTypes = typeof BMateBreakpoints;
 
-const theme: Theme = {
+const theme = {
   colors: BMateColors,
   fontSizes: BMateFontSizes,
   breakpoints: BMateBreakpoints,
-};
+} as const;
 export default theme;

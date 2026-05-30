@@ -31,3 +31,9 @@ coverage
 
 # Panda-generated output
 styled-system/
+
+# Local development
+local/
+*.local
+.claude/settings.local.json
+.vscode/settings.json

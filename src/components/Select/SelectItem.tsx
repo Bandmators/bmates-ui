@@ -1,13 +1,15 @@
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
+import { cx } from '@/styles/panda';
 import * as React from 'react';
 
 import { PortalContext } from '@/components/Portal/PortalContext';
+import { usePortalFocusItem } from '@/components/Portal/usePortalFocusItem';
 import useContext from '@/hooks/useContext';
 import { composeEventHandlers } from '@/libs/event';
+import { composeRefs } from '@/libs/ref';
 
 import SelectContext from './SelectContext';
 import SelectIcon from './SelectIcon';
+import { selectItemRecipe } from './select.recipe';
 
 interface SelectItemProps extends React.ComponentPropsWithoutRef<'li'> {
   value: string | number | readonly string[];
@@ -18,9 +20,17 @@ export const SelectItem = React.forwardRef<HTMLLIElement, SelectItemProps>(
     const { setShowModal } = useContext(PortalContext);
     const { selectedValue, setSelectedValue, multi } = useContext(SelectContext);
     const selected = selectedValue?.some(v => v.value === value) || false;
+    const itemRef = React.useRef<HTMLLIElement>(null);
 
-    const onClickHandler = () => {
-      if (!disabled) setShowModal(false);
+    usePortalFocusItem(itemRef, disabled);
+
+    const onClickHandler = (event: React.MouseEvent<HTMLLIElement>) => {
+      if (disabled) {
+        event.preventDefault();
+        return;
+      }
+
+      setShowModal(false);
 
       if (selected) {
         setSelectedValue([...selectedValue.filter(val => val.value !== value)]);
@@ -43,50 +53,21 @@ export const SelectItem = React.forwardRef<HTMLLIElement, SelectItemProps>(
     };
 
     return (
-      <SelectItemStyled
-        ref={ref}
-        disabled={disabled}
-        tabIndex={0}
+      <li
+        ref={composeRefs(itemRef, ref)}
+        className={cx(selectItemRecipe({ selected, disabled }))}
+        tabIndex={disabled ? -1 : 0}
         role={'option'}
         aria-selected={selected}
-        selected={selected}
+        aria-disabled={disabled}
+        data-disabled={disabled}
         onClick={composeEventHandlers(props.onClick, onClickHandler)}
-        data-focus-enabled="true"
         {...props}
       >
         {children}
         {selected && <SelectIcon />}
-      </SelectItemStyled>
+      </li>
     );
   },
 );
 SelectItem.displayName = 'SelectItem';
-
-const SelectItemStyled = styled.li<{ selected: boolean; disabled: boolean }>`
-  display: flex;
-  position: relative;
-  align-items: center;
-  padding: 0.375rem 0.5rem;
-  border-radius: 0.25rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-  cursor: default;
-  ${({ selected }) =>
-    selected &&
-    css`
-      background-color: var(--gray-200);
-    `}
-  ${({ disabled }) =>
-    disabled
-      ? css`
-          opacity: 0.5;
-        `
-      : css`
-          &[aria-selected='false']:hover,
-          &[aria-selected='false']:focus {
-            background-color: var(--gray-100);
-          }
-        `}
-`;

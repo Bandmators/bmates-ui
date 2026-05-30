@@ -1,10 +1,12 @@
-import styled from '@emotion/styled';
+import { cx } from '@/styles/panda';
 import { createPortal } from 'react-dom';
 
 import useContext from '@/hooks/useContext';
+import { canUseDOM } from '@/libs/dom';
 
 import Portal, { PortalProps } from './Portal';
 import { PortalContext } from './PortalContext';
+import { portalBGRecipe } from './portal.recipe';
 
 export const PortalContent = ({
   children,
@@ -21,6 +23,8 @@ export const PortalContent = ({
     setShowModal(false);
   };
 
+  if (!canUseDOM) return null;
+
   return (
     <>
       {showModal &&
@@ -31,7 +35,7 @@ export const PortalContent = ({
                 id="bmates-portal-bg"
                 className="bmates-portal-bg"
                 onClick={close}
-                onContextMenu={evt => {
+                onContextMenu={(evt: React.MouseEvent) => {
                   evt.preventDefault();
                   close();
                 }}
@@ -54,10 +58,6 @@ export const PortalContent = ({
   );
 };
 
-const PortalBG = styled.div`
-  position: fixed;
-  background-color: transparent;
-  pointer-events: auto;
-  z-index: 50;
-  inset: 0;
-`;
+const PortalBG = (props: React.ComponentPropsWithoutRef<'div'>) => (
+  <div className={cx(portalBGRecipe(), props.className)} {...props} />
+);

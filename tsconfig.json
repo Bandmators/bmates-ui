@@ -21,11 +21,12 @@
     "noFallthroughCasesInSwitch": true,
 
     "baseUrl": ".",
+    "ignoreDeprecations": "5.0",
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "index.ts"],
+  "include": ["src", "index.ts", "styled-system"],
   "exclude": ["**/*.test.*", "**/*.stories.*", "**/*.mdx", "src/libs/test.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

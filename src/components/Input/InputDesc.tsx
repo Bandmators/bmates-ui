@@ -1,16 +1,11 @@
-import styled from '@emotion/styled';
+import { cx } from '@/styles/panda';
 import * as React from 'react';
+
+import { inputDescRecipe } from './inputDesc.recipe';
 
 export interface InputGroupProps extends React.ComponentProps<'p'> {}
 
-const StyledInputDesc = styled.p`
-  margin: 0px;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  color: var(--gray-500);
-`;
-
 const InputDesc = ({ className, ...props }: InputGroupProps) => {
-  return <StyledInputDesc className={className} {...props} />;
+  return <p className={cx(inputDescRecipe(), className)} {...props} />;
 };
 export default InputDesc;

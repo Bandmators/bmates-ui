@@ -1,11 +1,13 @@
-import { keyframes } from '@emotion/react';
-import styled from '@emotion/styled';
-import React, { useState } from 'react';
+import { cx } from '@/styles/panda';
+import React from 'react';
 
+import { getNextPortalItem } from '@/components/Portal/focus';
 import { usePortal } from '@/components/Portal/usePortal';
+import { canUseDOM } from '@/libs/dom';
 import { composeEventHandlers } from '@/libs/event';
 import { composeRefs } from '@/libs/ref';
-import { PositionType } from '@/types/position';
+
+import { portalRecipe } from './portal.recipe';
 
 export interface PortalProps extends React.ComponentProps<'div'> {
   ref: React.ForwardedRef<HTMLDivElement>;
@@ -16,8 +18,7 @@ export interface PortalProps extends React.ComponentProps<'div'> {
 
 const Portal = ({ children, ref, width, onKeyDown, disabledAutoFocus, ...props }: PortalProps) => {
   const portalRef = React.useRef<HTMLDivElement>(null);
-  const { showModal, setShowModal, toggleElement, reorgPos } = usePortal({ portalRef });
-  const [items, setItems] = useState<HTMLElement[]>([]);
+  const { showModal, setShowModal, toggleElement, reorgPos, focusItems } = usePortal({ portalRef });
 
   const ACTIONS: Record<string, (e: React.KeyboardEvent<HTMLInputElement>) => void> = {
     ArrowDown: () => focus('next'),
@@ -37,21 +38,17 @@ const Portal = ({ children, ref, width, onKeyDown, disabledAutoFocus, ...props }
   };
 
   const focus = (key: 'next' | 'prev'): void => {
-    if (!items.length) return;
+    if (!focusItems.length || !canUseDOM) return;
 
     const { activeElement } = document;
 
-    if (activeElement instanceof HTMLElement) {
-      let idx = items.indexOf(activeElement);
-      if (key === 'next') idx = (idx + 1) % items.length;
-      else idx = (idx - 1 + items.length) % items.length;
-
-      const nextElement = items[idx] as HTMLElement;
-      if (nextElement) nextElement.focus();
-    }
+    const nextItem = getNextPortalItem(focusItems, activeElement instanceof HTMLElement ? activeElement : null, key);
+    nextItem?.element.focus();
   };
 
   const select = () => {
+    if (!canUseDOM) return;
+
     const { activeElement } = document;
 
     const clickEvent = new MouseEvent('click', {
@@ -66,13 +63,6 @@ const Portal = ({ children, ref, width, onKeyDown, disabledAutoFocus, ...props }
   const handleOpen = React.useCallback(() => {
     if (portalRef.current) {
       if (!disabledAutoFocus) portalRef.current.focus();
-
-      const newItems = Array.from(
-        portalRef.current.querySelectorAll<HTMLElement>('[data-focus-enabled="true"]'),
-      ).filter(e => {
-        return e.getAttribute('disabled') == null;
-      });
-      setItems(newItems);
     }
   }, [disabledAutoFocus]);
 
@@ -95,30 +85,23 @@ const Portal = ({ children, ref, width, onKeyDown, disabledAutoFocus, ...props }
 };
 export default Portal;
 
-const enterAnimation = keyframes`
-    0% { opacity: 0; }
-    100% { opacity: 1; } 
-`;
+type PortalStyledProps = React.ComponentPropsWithoutRef<'div'> & {
+  position: { x: number; y: number };
+  width?: React.CSSProperties['width'];
+};
 
-const PortalStyled = styled.div<{ width?: React.CSSProperties['width']; position: PositionType }>`
-  display: grid;
-  min-width: max-content;
-  ${({ width }) => width && `width: ${typeof width === 'string' ? width : `${width}px`};`}
-  max-width: 100%;
-  padding: 0.25rem;
-  border-radius: 0.25rem;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  transform: ${({ position }) => `translate(${position.x}px, ${position.y}px)`};
-  background-color: white;
-  pointer-events: auto;
-  z-index: 50;
-  animation-name: ${enterAnimation};
-  animation-duration: 0.15s;
-  border: 1px solid var(--gray-300);
-  box-shadow: 0px 2px 2px 0px var(--gray-300);
-  &:focus {
-    outline: none;
-  }
-`;
+const PortalStyled = React.forwardRef<HTMLDivElement, PortalStyledProps>(
+  ({ position, width, className, style, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cx(portalRecipe(), className)}
+      style={{
+        ...(style || {}),
+        transform: `translate(${position.x}px, ${position.y}px)`,
+        ...(width ? { width: typeof width === 'string' ? width : `${width}px` } : {}),
+      }}
+      {...props}
+    />
+  ),
+);
+PortalStyled.displayName = 'PortalStyled';

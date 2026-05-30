@@ -29,5 +29,17 @@ export interface PortalContextType {
 
   reorgPos: PositionType;
   setReorgPos: (value: PositionType) => void;
+
+  focusItems: PortalFocusItem[];
+  registerFocusItem: (item: PortalFocusItem) => void;
+  unregisterFocusItem: (id: string) => void;
 }
+
+export interface PortalFocusItem {
+  id: string;
+  element: HTMLElement;
+  disabled: boolean;
+  focus: () => void;
+}
+
 export const PortalContext = React.createContext<PortalContextType | null>(null);

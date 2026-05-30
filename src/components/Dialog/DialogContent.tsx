@@ -1,11 +1,12 @@
-import { keyframes } from '@emotion/react';
-import styled from '@emotion/styled';
+import { cx } from '@/styles/panda';
 import * as React from 'react';
 import { createPortal } from 'react-dom';
 
 import useContext from '@/hooks/useContext';
+import { canUseDOM } from '@/libs/dom';
 
 import DialogContext from './DialogContext';
+import { exitButtonRecipe, modalBGRecipe, modalRecipe } from './dialog.recipe';
 
 interface ModalProps extends React.ComponentPropsWithoutRef<'div'> {
   /*
@@ -36,16 +37,25 @@ export const DialogContent = React.forwardRef<HTMLDivElement, ModalProps>(
       setShowModal(false);
     };
 
+    if (!canUseDOM) return null;
+
     return (
       <>
         {showModal &&
           createPortal(
             <>
-              <ModalBG onClick={close} className="bmates-modal-bg" />
-              <Modal ref={ref} role="dialog" aria-modal="true" maxWidth={maxWidth} {...props}>
+              <div onClick={close} className={cx(modalBGRecipe(), 'bmates-modal-bg')} />
+              <div
+                ref={ref}
+                role="dialog"
+                aria-modal="true"
+                className={cx(modalRecipe())}
+                style={{ maxWidth: typeof maxWidth === 'string' ? maxWidth : `${maxWidth}px` }}
+                {...props}
+              >
                 {props.children}
                 {!hideClose && (
-                  <ExitButton onClick={closeBtnHandler}>
+                  <button className={cx(exitButtonRecipe())} onClick={closeBtnHandler}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -60,9 +70,9 @@ export const DialogContent = React.forwardRef<HTMLDivElement, ModalProps>(
                       <line x1="18" y1="6" x2="6" y2="18"></line>
                       <line x1="6" y1="6" x2="18" y2="18"></line>
                     </svg>
-                  </ExitButton>
+                  </button>
                 )}
-              </Modal>
+              </div>
             </>,
             document.body,
           )}
@@ -71,53 +81,4 @@ export const DialogContent = React.forwardRef<HTMLDivElement, ModalProps>(
   },
 );
 
-const enter = keyframes`
-  0% { opacity: 0;   }
-  100% { opacity: 1; }
-`;
-
-const ModalBG = styled.div`
-  pointer-events: auto;
-  animation-name: ${enter};
-  animation-duration: 0.15s;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 50;
-  inset: 0;
-  position: fixed;
-`;
-
-const Modal = styled.div<{ maxWidth: number | string }>`
-  display: grid;
-  width: 100%;
-  max-width: ${({ maxWidth }) => {
-    if (typeof maxWidth === 'string') return maxWidth;
-    return `${maxWidth}px`;
-  }};
-  padding: 1.5rem;
-  border-radius: 0.375rem;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  gap: 1rem;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  pointer-events: auto;
-  animation-name: ${enter};
-  animation-duration: 0.15s;
-  z-index: 50;
-`;
-
-const ExitButton = styled.button`
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  background: transparent;
-  border: none;
-  padding: 0px;
-  opacity: 0.5;
-  cursor: pointer;
-  svg {
-    width: 1rem;
-    height: 1rem;
-  }
-`;
+// styles moved to recipes

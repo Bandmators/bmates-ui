@@ -1,4 +1,6 @@
-import styled from '@emotion/styled';
+import { cx } from '@/styles/panda';
+
+import { dialogDescriptionRecipe, dialogFooterRecipe, dialogHeaderRecipe, dialogTitleRecipe } from './dialog.recipe';
 
 /* eslint-disable react-refresh/only-export-components */
 export * from './Dialog';
@@ -6,25 +8,24 @@ export * from './DialogContent';
 export * from './DialogToggle';
 export * from './DialogClose';
 
-export const DialogHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+export const DialogHeader = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) => (
+  <div className={cx(dialogHeaderRecipe(), className)} {...props} />
+);
 
-export const DialogFooter = styled.div<{ justify?: React.CSSProperties['justifyContent'] }>`
-  display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
-  align-items: flex-start;
-  justify-content: ${({ justify }) => justify || 'flex-end'};
-`;
+export const DialogFooter = ({
+  className,
+  justify,
+  ...props
+}: React.ComponentPropsWithoutRef<'div'> & { justify?: React.CSSProperties['justifyContent'] }) => (
+  <div
+    className={cx(dialogFooterRecipe({ justify: justify === 'flex-start' ? 'start' : 'end' }), className)}
+    {...props}
+  />
+);
 
-export const DialogTitle = styled.h2`
-  font-weight: 600;
-  line-height: 1;
-  margin: 0px;
-`;
-export const DialogDescription = styled.p`
-  margin: 0.375rem 0px;
-  font-weight: 300;
-`;
+export const DialogTitle = ({ className, ...props }: React.ComponentPropsWithoutRef<'h2'>) => (
+  <h2 className={cx(dialogTitleRecipe(), className)} {...props} />
+);
+export const DialogDescription = ({ className, ...props }: React.ComponentPropsWithoutRef<'p'>) => (
+  <p className={cx(dialogDescriptionRecipe(), className)} {...props} />
+);

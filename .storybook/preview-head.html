@@ -1,3 +1,115 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+<style>
+	.sbdocs pre {
+		margin: 1rem 0 !important;
+		padding: 0.9rem 1rem !important;
+		border: 1px solid rgba(33, 33, 33, 0.12) !important;
+		border-radius: 12px !important;
+		background: #fafafa !important;
+		overflow-x: auto !important;
+		line-height: 1.6 !important;
+		box-shadow: 0 1px 2px rgba(17, 24, 39, 0.04) !important;
+	}
+
+	.sbdocs pre code {
+		display: block !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		border: 0 !important;
+		background: transparent !important;
+		color: #1f2937 !important;
+		font-family: Consolas, 'SFMono-Regular', 'Courier New', monospace !important;
+		font-size: 0.875rem !important;
+		white-space: pre !important;
+	}
+
+	.sbdocs code:not(pre code) {
+		padding: 0.15rem 0.35rem !important;
+		border-radius: 6px !important;
+		background: rgba(33, 33, 33, 0.08) !important;
+		font-family: Consolas, 'SFMono-Regular', 'Courier New', monospace !important;
+		font-size: 0.875em !important;
+	}
+
+	.sbdocs pre {
+		position: relative !important;
+	}
+
+	.sbdocs .sbdocs-copy-button {
+		position: absolute;
+		top: 0.5rem;
+		right: 0.5rem;
+		z-index: 1;
+		border: 1px solid rgba(33, 33, 33, 0.12);
+		border-radius: 999px;
+		background: #ffffff;
+		color: #111827;
+		font-size: 0.75rem;
+		line-height: 1;
+		padding: 0.35rem 0.55rem;
+		cursor: pointer;
+		box-shadow: 0 1px 2px rgba(17, 24, 39, 0.08);
+	}
+
+	.sbdocs .sbdocs-copy-button:hover {
+		background: #f3f4f6;
+	}
+
+	.sbdocs .sbdocs-copy-button:active {
+		transform: translateY(1px);
+	}
+</style>
+<script>
+	(function () {
+		function ensureCopyButtons() {
+			try {
+				document.querySelectorAll('.sbdocs pre').forEach((pre) => {
+					if (pre.querySelector('.sbdocs-copy-button')) return;
+					const button = document.createElement('button');
+					button.type = 'button';
+					button.className = 'sbdocs-copy-button';
+					button.textContent = 'Copy';
+					button.addEventListener('click', async () => {
+						const text = pre.innerText.replace(/\nCopy\s*$/, '').trimEnd();
+						try {
+							await navigator.clipboard.writeText(text);
+							const original = button.textContent;
+							button.textContent = 'Copied';
+							setTimeout(() => {
+								button.textContent = original;
+							}, 1200);
+						} catch (error) {
+							button.textContent = 'Failed';
+							setTimeout(() => {
+								button.textContent = 'Copy';
+							}, 1200);
+						}
+					});
+					pre.appendChild(button);
+				});
+			} catch (error) {
+				// ignore
+			}
+		}
+
+		function startObserver() {
+			try {
+				const root = document.body || document.documentElement;
+				if (!root) return;
+				ensureCopyButtons();
+				const observer = new MutationObserver(ensureCopyButtons);
+				observer.observe(root, { childList: true, subtree: true });
+			} catch (error) {
+				// ignore
+			}
+		}
+
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', startObserver);
+		} else {
+			startObserver();
+		}
+	})();
+</script>

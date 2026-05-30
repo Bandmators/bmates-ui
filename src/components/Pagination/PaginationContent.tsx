@@ -1,22 +1,15 @@
-import styled from '@emotion/styled';
+import { cx } from '@/styles/panda';
 import * as React from 'react';
+
+import { paginationListRecipe } from './pagination.recipe';
 
 interface PaginationProps extends React.ComponentPropsWithoutRef<'ul'> {}
 
 export const PaginationContent = React.forwardRef<HTMLUListElement, PaginationProps>(({ children, ...props }, ref) => {
   return (
-    <PaginationList ref={ref} {...props}>
+    <ul ref={ref} className={cx(paginationListRecipe())} {...props}>
       {children}
-    </PaginationList>
+    </ul>
   );
 });
 PaginationContent.displayName = 'PaginationContent';
-
-const PaginationList = styled.ul`
-  list-style: none;
-  margin: 0px;
-  padding: 0px;
-  display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
-`;

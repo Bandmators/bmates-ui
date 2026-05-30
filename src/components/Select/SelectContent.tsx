@@ -1,7 +1,9 @@
-import styled from '@emotion/styled';
+import { cx } from '@/styles/panda';
 import * as React from 'react';
 
 import { PortalContent } from '@/components/Portal/PortalContent';
+
+import { selectListBoxRecipe } from './select.recipe';
 
 interface ModalProps extends React.ComponentPropsWithoutRef<'div'> {
   width?: React.CSSProperties['width'];
@@ -14,13 +16,10 @@ interface ModalProps extends React.ComponentPropsWithoutRef<'div'> {
 export const SelectContent = React.forwardRef<HTMLDivElement, ModalProps>(({ width, children, ...props }, ref) => {
   return (
     <PortalContent width={width} ref={ref} {...props}>
-      <SelectListBox role="listbox">{children}</SelectListBox>
+      <ul role="listbox" className={cx(selectListBoxRecipe())}>
+        {children}
+      </ul>
     </PortalContent>
   );
 });
 SelectContent.displayName = 'SelectContent';
-
-const SelectListBox = styled.ul`
-  margin: 0px;
-  padding: 0px;
-`;

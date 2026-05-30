@@ -1,9 +1,13 @@
 import * as React from 'react';
 
+import { canUseDOM } from '@/libs/dom';
+
 const useModal = (enableScroll: boolean = true): [boolean, React.Dispatch<React.SetStateAction<boolean>>] => {
   const [showModal, setShowModal] = React.useState<boolean>(false);
 
   React.useEffect(() => {
+    if (!canUseDOM) return;
+
     if (!enableScroll) return;
 
     if (showModal) {

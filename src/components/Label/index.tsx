@@ -1,14 +1,11 @@
-import styled from '@emotion/styled';
+import { cx } from '@/styles/panda';
 import * as React from 'react';
+
+import { labelRecipe } from './label.recipe';
 
 export interface LabelProps extends React.ComponentPropsWithoutRef<'label'> {}
 
-const StyledLabel = styled.label`
-  font-weight: 500;
-  line-height: 1;
-`;
-
 export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(({ className, ...props }, ref) => (
-  <StyledLabel ref={ref} className={className} {...props} />
+  <label ref={ref} className={cx(labelRecipe(), className)} {...props} />
 ));
 Label.displayName = 'Label';
