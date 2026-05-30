@@ -28,3 +28,6 @@ dist-ssr
 # Coverage
 coverage
 .scannerwork
+
+# Panda-generated output
+styled-system/
