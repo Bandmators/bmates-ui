@@ -3,8 +3,6 @@ import React, { ComponentPropsWithoutRef } from 'react';
 
 import { SizeType } from '@/types/size';
 
-import bandmate_60 from '@/assets/bandmate_60.png';
-
 import { avatarRecipe } from './avatar.recipe';
 
 export interface AvatarVariantProps {
@@ -17,7 +15,7 @@ export interface AvatarProps extends ComponentPropsWithoutRef<'img'>, AvatarVari
 
 export const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>(
   ({ className, src, alt, size = 'md', ...props }, ref) => (
-    <img src={src || bandmate_60} alt={alt} ref={ref} className={cx(avatarRecipe({ size }), className)} {...props} />
+    <img src={src} alt={alt} ref={ref} className={cx(avatarRecipe({ size }), className)} {...props} />
   ),
 );
 Avatar.displayName = 'Avatar';

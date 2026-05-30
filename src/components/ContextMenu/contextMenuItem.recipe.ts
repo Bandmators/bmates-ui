@@ -12,11 +12,11 @@ export const contextMenuItemRecipe = cva({
     outline: '2px solid transparent',
     outlineOffset: '2px',
     cursor: 'default',
-    '&[data-focus-enabled="true"]:hover, &[data-focus-enabled="true"]:focus': {
-      backgroundColor: 'var(--gray-100)',
-    },
   },
   variants: {
-    disabled: { true: { opacity: 0.5 } },
+    disabled: {
+      true: { opacity: 0.5, cursor: 'not-allowed' },
+      false: { '&:hover,&:focus': { backgroundColor: 'var(--gray-100)' } },
+    },
   },
 });

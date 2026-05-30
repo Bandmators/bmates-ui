@@ -12,5 +12,7 @@ module.exports = {
   plugins: ['react-refresh'],
   rules: {
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+    // Allow omitting props via rest destructuring (e.g. stripping link-only props before spreading onto a span)
+    '@typescript-eslint/no-unused-vars': ['error', { ignoreRestSiblings: true }],
   },
 };

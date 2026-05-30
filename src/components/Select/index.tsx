@@ -1,4 +1,5 @@
 import { cx } from '@/styles/panda';
+import * as React from 'react';
 
 import { selectDescriptionRecipe, selectDividerRecipe, selectLabelRecipe, selectShortcutRecipe } from './select.recipe';
 

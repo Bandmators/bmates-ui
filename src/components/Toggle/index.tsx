@@ -12,7 +12,7 @@ export interface ToggleProps extends React.ComponentPropsWithoutRef<'button'> {
 }
 
 export const Toggle = React.forwardRef<HTMLButtonElement, ToggleProps>(
-  ({ className, selected = false, size, disabled = false, ...props }, ref) => {
+  ({ className, selected = false, size, disabled = false, onClick, ...props }, ref) => {
     const [sel, setSel] = React.useState<boolean>(selected);
 
     React.useEffect(() => {
@@ -25,7 +25,7 @@ export const Toggle = React.forwardRef<HTMLButtonElement, ToggleProps>(
         className={cx(toggleRecipe({ selected: sel, size: size || 'md', disabled }), className)}
         ref={ref}
         disabled={disabled}
-        onClick={composeEventHandlers(props.onClick, () => {
+        onClick={composeEventHandlers(onClick, () => {
           setSel(prev => !prev);
         })}
         {...props}

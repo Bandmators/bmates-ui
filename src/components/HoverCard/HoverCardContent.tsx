@@ -13,20 +13,22 @@ interface ModalProps extends React.ComponentPropsWithoutRef<'div'> {
  * HoverCardContent
  * @returns
  */
-export const HoverCardContent = React.forwardRef<HTMLDivElement, ModalProps>(({ width, children, ...props }, ref) => {
-  const { onOpen, onClose } = useHoverWaiting();
+export const HoverCardContent = React.forwardRef<HTMLDivElement, ModalProps>(
+  ({ width, children, onPointerEnter, onPointerLeave, ...props }, ref) => {
+    const { onOpen, onClose } = useHoverWaiting();
 
-  return (
-    <PortalContent
-      width={width}
-      ref={ref}
-      disabledBG
-      onPointerEnter={composeEventHandlers(props.onPointerEnter, excludeTouchEventHandler(onOpen))}
-      onPointerLeave={composeEventHandlers(props.onPointerLeave, excludeTouchEventHandler(onClose))}
-      {...props}
-    >
-      {children}
-    </PortalContent>
-  );
-});
+    return (
+      <PortalContent
+        width={width}
+        ref={ref}
+        disabledBG
+        onPointerEnter={composeEventHandlers(onPointerEnter, excludeTouchEventHandler(onOpen))}
+        onPointerLeave={composeEventHandlers(onPointerLeave, excludeTouchEventHandler(onClose))}
+        {...props}
+      >
+        {children}
+      </PortalContent>
+    );
+  },
+);
 HoverCardContent.displayName = 'HoverCardContent';

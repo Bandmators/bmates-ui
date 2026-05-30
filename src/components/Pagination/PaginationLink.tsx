@@ -26,8 +26,9 @@ export const PaginationLink = React.forwardRef<HTMLAnchorElement, PaginationLink
     };
 
     if (disabled) {
+      const { to, href, target, rel, download, onKeyDown, ...spanProps } = props;
       return (
-        <span aria-disabled="true" className={cx(paginationLinkRecipe({ disabled: true }), className)} {...props} />
+        <span aria-disabled="true" className={cx(paginationLinkRecipe({ disabled: true }), className)} {...spanProps} />
       );
     }
 

@@ -17,11 +17,13 @@ type InputFileVariantType = SpecialVariantType | 'default';
 
 export const InputFile = React.forwardRef<HTMLInputElement, InputFileProps>(
   ({ label, variant = 'default', disabled = false, children, id, className, ...props }, ref) => {
+    const generatedId = React.useId();
+    const inputId = id ?? generatedId;
     return (
       <div className={cx(inputFileContainerRecipe(), className)}>
         {label && <span>{label}</span>}
-        <input id={id} className={inputFileHiddenRecipe()} type="file" ref={ref} {...props} />
-        <label htmlFor={id} className={cx(inputFileLabelRecipe({ variant, disabled }))}>
+        <input id={inputId} className={inputFileHiddenRecipe()} type="file" ref={ref} disabled={disabled} {...props} />
+        <label htmlFor={inputId} className={cx(inputFileLabelRecipe({ variant, disabled }))}>
           {children ?? 'File Input'}
         </label>
       </div>

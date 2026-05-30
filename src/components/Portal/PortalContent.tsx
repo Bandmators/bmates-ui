@@ -58,6 +58,6 @@ export const PortalContent = ({
   );
 };
 
-const PortalBG = (props: React.ComponentPropsWithoutRef<'div'>) => (
-  <div className={cx(portalBGRecipe(), props.className)} {...props} />
+const PortalBG = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) => (
+  <div className={cx(portalBGRecipe(), className)} {...props} />
 );

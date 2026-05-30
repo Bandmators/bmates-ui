@@ -16,6 +16,6 @@ export const paginationLinkRecipe = cva({
   },
   variants: {
     selected: { true: { backgroundColor: 'var(--primary)', color: 'var(--background)' } },
-    disabled: { true: { cursor: 'default', borderColor: 'transparent', opacity: 0.5 } },
+    disabled: { true: { cursor: 'not-allowed', opacity: 0.5 } },
   },
 });

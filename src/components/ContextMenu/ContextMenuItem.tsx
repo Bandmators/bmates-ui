@@ -13,7 +13,7 @@ interface ContextMenuItemProps extends React.ComponentPropsWithoutRef<'li'> {
   disabled?: boolean;
 }
 export const ContextMenuItem = React.forwardRef<HTMLLIElement, ContextMenuItemProps>(
-  ({ disabled = false, ...props }, ref) => {
+  ({ disabled = false, onClick, className, ...props }, ref) => {
     const { setShowModal } = useContext(PortalContext);
     const itemRef = React.useRef<HTMLLIElement>(null);
     usePortalFocusItem(itemRef, disabled);
@@ -34,8 +34,8 @@ export const ContextMenuItem = React.forwardRef<HTMLLIElement, ContextMenuItemPr
         role={'menuitem'}
         aria-disabled={disabled}
         data-disabled={disabled}
-        onClick={composeEventHandlers(props.onClick, onClickHandler)}
-        className={cx(contextMenuItemRecipe({ disabled }), props.className)}
+        onClick={composeEventHandlers(onClick, onClickHandler)}
+        className={cx(contextMenuItemRecipe({ disabled }), className)}
         {...props}
       />
     );

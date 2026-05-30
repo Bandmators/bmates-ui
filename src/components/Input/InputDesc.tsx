@@ -3,9 +3,9 @@ import * as React from 'react';
 
 import { inputDescRecipe } from './inputDesc.recipe';
 
-export interface InputGroupProps extends React.ComponentProps<'p'> {}
+export interface InputDescProps extends React.ComponentProps<'p'> {}
 
-const InputDesc = ({ className, ...props }: InputGroupProps) => {
+const InputDesc = ({ className, ...props }: InputDescProps) => {
   return <p className={cx(inputDescRecipe(), className)} {...props} />;
 };
 export default InputDesc;

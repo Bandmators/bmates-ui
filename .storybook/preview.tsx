@@ -1,7 +1,5 @@
-import { ThemeProvider } from '@emotion/react';
 import { withThemeFromJSXProvider } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/react';
-import React from 'react';
 
 import GlobalStyle from '../src/styles/GlobalStyle';
 import theme from '../src/styles/theme';
@@ -31,7 +29,6 @@ export const decorators = [
       dark: theme,
     },
     defaultTheme: 'light',
-    Provider: ThemeProvider,
     GlobalStyles: GlobalStyle,
   }),
 ];

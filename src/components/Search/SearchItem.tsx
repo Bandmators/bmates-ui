@@ -12,31 +12,34 @@ import { searchItemRecipe } from './search.recipe';
 interface SearchItemProps extends React.ComponentPropsWithoutRef<'li'> {
   disabled?: boolean;
 }
-export const SearchItem = React.forwardRef<HTMLLIElement, SearchItemProps>(({ disabled = false, ...props }, ref) => {
-  const { setShowModal } = useContext(PortalContext);
-  const itemRef = React.useRef<HTMLLIElement>(null);
-  usePortalFocusItem(itemRef, disabled);
 
-  const onClickHandler = (event: React.MouseEvent<HTMLLIElement>) => {
-    if (disabled) {
-      event.preventDefault();
-      return;
-    }
+export const SearchItem = React.forwardRef<HTMLLIElement, SearchItemProps>(
+  ({ disabled = false, onClick, className, ...props }, ref) => {
+    const { setShowModal } = useContext(PortalContext);
+    const itemRef = React.useRef<HTMLLIElement>(null);
+    usePortalFocusItem(itemRef, disabled);
 
-    setShowModal(false);
-  };
+    const onClickHandler = (event: React.MouseEvent<HTMLLIElement>) => {
+      if (disabled) {
+        event.preventDefault();
+        return;
+      }
 
-  return (
-    <li
-      ref={composeRefs(itemRef, ref)}
-      tabIndex={disabled ? -1 : 0}
-      role={'menuitem'}
-      aria-disabled={disabled}
-      data-disabled={disabled}
-      onClick={composeEventHandlers(props.onClick, onClickHandler)}
-      className={cx(searchItemRecipe({ disabled }), props.className)}
-      {...props}
-    />
-  );
-});
+      setShowModal(false);
+    };
+
+    return (
+      <li
+        ref={composeRefs(itemRef, ref)}
+        tabIndex={disabled ? -1 : 0}
+        role={'menuitem'}
+        aria-disabled={disabled}
+        data-disabled={disabled}
+        onClick={composeEventHandlers(onClick, onClickHandler)}
+        className={cx(searchItemRecipe({ disabled }), className)}
+        {...props}
+      />
+    );
+  },
+);
 SearchItem.displayName = 'SearchItem';

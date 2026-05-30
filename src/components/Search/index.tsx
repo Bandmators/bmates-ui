@@ -1,4 +1,5 @@
 import { cx } from '@/styles/panda';
+import * as React from 'react';
 
 import {
   searchDescriptionRecipe,
@@ -16,19 +17,19 @@ export * from './SearchItem';
 export * from './SearchInput';
 export * from './SearchInputToggle';
 
-export const SearchLabel = (props: React.ComponentPropsWithoutRef<'h3'>) => (
-  <h3 {...props} className={cx(searchLabelRecipe(), props.className)} />
+export const SearchLabel = ({ className, ...props }: React.ComponentPropsWithoutRef<'h3'>) => (
+  <h3 className={cx(searchLabelRecipe(), className)} {...props} />
 );
-export const SearchDivider = (props: React.ComponentPropsWithoutRef<'div'>) => (
-  <div {...props} className={cx(searchDividerRecipe(), props.className)} />
+export const SearchDivider = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) => (
+  <div className={cx(searchDividerRecipe(), className)} {...props} />
 );
-export const SearchDescription = (props: React.ComponentPropsWithoutRef<'p'>) => (
-  <p {...props} className={cx(searchDescriptionRecipe(), props.className)} />
+export const SearchDescription = ({ className, ...props }: React.ComponentPropsWithoutRef<'p'>) => (
+  <p className={cx(searchDescriptionRecipe(), className)} {...props} />
 );
-export const SearchShortcut = (props: React.ComponentPropsWithoutRef<'span'>) => (
-  <span {...props} className={cx(searchShortcutRecipe(), props.className)} />
+export const SearchShortcut = ({ className, ...props }: React.ComponentPropsWithoutRef<'span'>) => (
+  <span className={cx(searchShortcutRecipe(), className)} {...props} />
 );
 
-export const SearchItemList = (props: React.ComponentPropsWithoutRef<'ul'>) => (
-  <ul {...props} className={cx(searchItemListRecipe(), props.className)} />
+export const SearchItemList = ({ className, ...props }: React.ComponentPropsWithoutRef<'ul'>) => (
+  <ul className={cx(searchItemListRecipe(), className)} {...props} />
 );

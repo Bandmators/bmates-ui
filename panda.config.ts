@@ -6,4 +6,18 @@ export default defineConfig({
   exclude: [],
   jsxFramework: 'react',
   outdir: 'styled-system',
+  theme: {
+    extend: {
+      keyframes: {
+        'bmates-portal-enter': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        'bmates-tooltip': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+      },
+    },
+  },
 });

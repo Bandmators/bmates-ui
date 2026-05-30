@@ -25,11 +25,12 @@ export interface ButtonVariantProps {
 export interface ButtonProps extends ComponentPropsWithoutRef<'button'>, ButtonVariantProps {}
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = 'default', size = 'md', children, full = false, ...props }, ref) => {
+  ({ className, variant = 'default', size = 'md', children, full = false, disabled, ...props }, ref) => {
     return (
       <button
         ref={ref}
-        className={cx(buttonRecipe({ variant, full, size, disabled: props.disabled }), className)}
+        className={cx(buttonRecipe({ variant, full, size, disabled: disabled }), className)}
+        disabled={disabled}
         {...props}
       >
         {children}

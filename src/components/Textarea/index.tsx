@@ -7,7 +7,9 @@ export interface TextareaProps extends React.ComponentPropsWithoutRef<'textarea'
 
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className, disabled, ...props }, ref) => {
-    return <textarea className={cx(textareaRecipe({ disabled }), className)} ref={ref} {...props} />;
+    return (
+      <textarea className={cx(textareaRecipe({ disabled }), className)} disabled={disabled} ref={ref} {...props} />
+    );
   },
 );
 Textarea.displayName = 'Textarea';

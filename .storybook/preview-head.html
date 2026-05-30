@@ -72,7 +72,9 @@
 					button.className = 'sbdocs-copy-button';
 					button.textContent = 'Copy';
 					button.addEventListener('click', async () => {
-						const text = pre.innerText.replace(/\nCopy\s*$/, '').trimEnd();
+						const code = pre.querySelector('code');
+						const source = code || pre;
+						const text = (source.innerText || source.textContent || '').trim();
 						try {
 							await navigator.clipboard.writeText(text);
 							const original = button.textContent;

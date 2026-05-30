@@ -16,7 +16,7 @@ interface SelectItemProps extends React.ComponentPropsWithoutRef<'li'> {
   disabled?: boolean;
 }
 export const SelectItem = React.forwardRef<HTMLLIElement, SelectItemProps>(
-  ({ disabled = false, children, value, ...props }, ref) => {
+  ({ disabled = false, children, value, onClick, ...props }, ref) => {
     const { setShowModal } = useContext(PortalContext);
     const { selectedValue, setSelectedValue, multi } = useContext(SelectContext);
     const selected = selectedValue?.some(v => v.value === value) || false;
@@ -61,7 +61,7 @@ export const SelectItem = React.forwardRef<HTMLLIElement, SelectItemProps>(
         aria-selected={selected}
         aria-disabled={disabled}
         data-disabled={disabled}
-        onClick={composeEventHandlers(props.onClick, onClickHandler)}
+        onClick={composeEventHandlers(onClick, onClickHandler)}
         {...props}
       >
         {children}

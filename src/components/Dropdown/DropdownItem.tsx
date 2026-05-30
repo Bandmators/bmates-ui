@@ -13,7 +13,7 @@ interface DropdownItemProps extends React.ComponentPropsWithoutRef<'li'> {
   disabled?: boolean;
 }
 export const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
-  ({ disabled = false, ...props }, ref) => {
+  ({ disabled = false, onClick, className, ...props }, ref) => {
     const { setShowModal } = useContext(PortalContext);
     const itemRef = React.useRef<HTMLLIElement>(null);
     usePortalFocusItem(itemRef, disabled);
@@ -34,8 +34,8 @@ export const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
         role={'menuitem'}
         aria-disabled={disabled}
         data-disabled={disabled}
-        className={cx(dropdownItemRecipe({ disabled }))}
-        onClick={composeEventHandlers(props.onClick, onClickHandler)}
+        className={cx(dropdownItemRecipe({ disabled }), className)}
+        onClick={composeEventHandlers(onClick, onClickHandler)}
         {...props}
       ></li>
     );

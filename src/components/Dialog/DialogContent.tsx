@@ -27,7 +27,7 @@ interface ModalProps extends React.ComponentPropsWithoutRef<'div'> {
  * @returns
  */
 export const DialogContent = React.forwardRef<HTMLDivElement, ModalProps>(
-  ({ outEvent = false, hideClose = false, maxWidth = '450px', ...props }, ref) => {
+  ({ outEvent = false, hideClose = false, maxWidth = '450px', children, ...props }, ref) => {
     const { showModal, setShowModal } = useContext(DialogContext);
 
     const close = () => {
@@ -53,9 +53,9 @@ export const DialogContent = React.forwardRef<HTMLDivElement, ModalProps>(
                 style={{ maxWidth: typeof maxWidth === 'string' ? maxWidth : `${maxWidth}px` }}
                 {...props}
               >
-                {props.children}
+                {children}
                 {!hideClose && (
-                  <button className={cx(exitButtonRecipe())} onClick={closeBtnHandler}>
+                  <button aria-label="Close" className={cx(exitButtonRecipe())} onClick={closeBtnHandler}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"

@@ -20,7 +20,7 @@ export const Tooltip = ({ children, message, direction = 'top', ...props }: Tool
   return (
     <div className={cx(tooltipWrapperRecipe())} {...props}>
       {children}
-      <div className={cx(tooltipTriggerRecipe({ direction })) + ' tooltip'}>{message}</div>
+      <div className={cx(tooltipTriggerRecipe({ direction }), 'tooltip')}>{message}</div>
     </div>
   );
 };

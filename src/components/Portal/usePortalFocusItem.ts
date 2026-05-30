@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import useContext from '@/hooks/useContext';
+import { useIsomorphicLayoutEffect } from '@/libs/dom';
 
 import { PortalContext } from './PortalContext';
 
@@ -8,7 +9,7 @@ export const usePortalFocusItem = (ref: React.RefObject<HTMLElement>, disabled: 
   const { registerFocusItem, unregisterFocusItem } = useContext(PortalContext);
   const id = React.useId();
 
-  React.useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const element = ref.current;
     if (!element) return;
 

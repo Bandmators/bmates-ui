@@ -27,7 +27,7 @@
     "dev": "concurrently \"pnpm storybook\" \"pnpm build\"",
     "build": "panda codegen && panda cssgen --clean && tsc && vite build --watch",
     "buildOnce": "panda codegen && panda cssgen --clean && tsc && vite build",
-    "panda:watch": "pnpm exec panda codegen --watch & pnpm run panda:css:watch",
+    "panda:watch": "concurrently \"pnpm exec panda codegen --watch\" \"pnpm run panda:css:watch\"",
     "panda:css:watch": "pnpm exec panda cssgen --watch --splitting",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write .",
@@ -39,8 +39,6 @@
     "testOnce": "vitest run --run --coverage"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
     "concurrently": "^8.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -48,8 +46,6 @@
     "vite-tsconfig-paths": "^4.2.2"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

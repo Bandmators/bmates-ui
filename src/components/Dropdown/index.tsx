@@ -1,4 +1,5 @@
 import { cx } from '@/styles/panda';
+import type React from 'react';
 
 import {
   dropdownDescriptionRecipe,

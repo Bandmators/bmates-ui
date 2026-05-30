@@ -13,5 +13,6 @@ export default function GlobalStyle(): JSX.Element {
     ::-moz-selection { background: var(--primary); color: white; }
   `;
 
+  // Safe: `styles` is built from static CSS and theme.colors via cssCustomProperties — no user input.
   return <style dangerouslySetInnerHTML={{ __html: styles }} />;
 }
