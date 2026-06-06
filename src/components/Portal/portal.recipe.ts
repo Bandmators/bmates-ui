@@ -10,7 +10,7 @@ export const portalRecipe = cva({
     position: 'fixed',
     top: '0px',
     left: '0px',
-    backgroundColor: 'white',
+    backgroundColor: 'var(--background)',
     pointerEvents: 'auto',
     zIndex: 50,
     animationName: 'bmates-portal-enter',
