@@ -58,6 +58,9 @@ export const buttonRecipe = cva({
       },
       ghost: {
         backgroundColor: 'transparent',
+        '&:hover': {
+          backgroundColor: 'var(--gray-100)',
+        },
       },
       primary: {
         color: 'white',
