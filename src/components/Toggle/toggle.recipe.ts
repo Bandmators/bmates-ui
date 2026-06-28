@@ -5,20 +5,22 @@ export const toggleRecipe = cva({
     display: 'inline-flex',
     padding: '0.5rem',
     outline: 'none',
-    borderRadius: '0.375rem',
+    borderRadius: 'var(--radius)',
     fontWeight: '500',
     justifyContent: 'center',
     alignItems: 'center',
     whiteSpace: 'nowrap',
     cursor: 'pointer',
+    color: 'var(--text)',
     backgroundColor: 'transparent',
     border: '1px solid transparent',
-    '&:focus': { boxShadow: '0 0 5px var(--gray-200)' },
+    transition: 'background-color var(--transition), border-color var(--transition)',
+    '&:focus-visible': { outline: 'none', boxShadow: 'var(--focus-shadow)' },
   },
   variants: {
     selected: {
-      true: { border: '1px solid var(--gray-300)', backgroundColor: 'var(--gray-200)' },
-      false: { '&:hover': { opacity: '0.5', backgroundColor: 'var(--gray-200)' } },
+      true: { border: '1px solid var(--border-strong)', backgroundColor: 'var(--surface-active)' },
+      false: { '&:hover': { backgroundColor: 'var(--surface-hover)' } },
     },
     size: {
       sm: { padding: '0.25rem' },
@@ -26,7 +28,7 @@ export const toggleRecipe = cva({
       lg: { padding: '0.75rem' },
     },
     disabled: {
-      true: { opacity: '0.7', backgroundColor: 'var(--gray-100)', cursor: 'not-allowed' },
+      true: { opacity: '0.7', backgroundColor: 'var(--surface-hover)', cursor: 'not-allowed' },
     },
   },
 });

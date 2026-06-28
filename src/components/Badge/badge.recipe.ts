@@ -5,33 +5,43 @@ export const badgeRecipe = cva({
     fontWeight: '500',
     fontSize: '75%',
     lineHeight: '1rem',
-    borderRadius: '6px',
+    borderRadius: 'var(--radius-sm)',
     border: '1px solid transparent',
     display: 'inline-flex',
     alignItems: 'center',
+    gap: '0.3rem',
   },
   variants: {
     variant: {
       primary: {
-        color: 'white',
+        color: 'var(--primary-fg)',
         backgroundColor: 'var(--primary)',
       },
       secondary: {
+        color: 'var(--secondary-fg)',
         backgroundColor: 'var(--secondary)',
       },
+      success: {
+        color: 'var(--success-fg)',
+        backgroundColor: 'var(--success)',
+      },
       danger: {
-        color: 'var(--white)',
+        color: 'var(--danger-fg)',
         backgroundColor: 'var(--danger)',
       },
       warning: {
-        color: 'var(--white)',
+        color: 'var(--warning-fg)',
         backgroundColor: 'var(--warning)',
+      },
+      info: {
+        color: 'var(--info-fg)',
+        backgroundColor: 'var(--info)',
       },
       outline: {
         backgroundColor: 'transparent',
-        border: '1px solid var(--gray-300)',
+        border: '1px solid var(--border-strong)',
         '&:hover': {
-          backgroundColor: 'var(--gray-100)',
+          backgroundColor: 'var(--surface-hover)',
         },
       },
       ghost: {

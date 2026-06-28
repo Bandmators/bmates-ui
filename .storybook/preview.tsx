@@ -1,15 +1,19 @@
-import { withThemeFromJSXProvider } from '@storybook/addon-themes';
-import type { Preview } from '@storybook/react';
+/// <reference types="vite/client" />
+import { withThemeByDataAttribute } from '@storybook/addon-themes';
+import type { Decorator, Preview } from '@storybook/react';
 
 import GlobalStyle from '../src/styles/GlobalStyle';
-import theme from '../src/styles/theme';
 import '../styled-system/styles.css';
+
+const withGlobalStyle: Decorator = Story => (
+  <>
+    <GlobalStyle />
+    <Story />
+  </>
+);
 
 const preview: Preview = {
   parameters: {
-    backgrounds: {
-      default: 'light',
-    },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
@@ -23,12 +27,16 @@ const preview: Preview = {
 export default preview;
 
 export const decorators = [
-  withThemeFromJSXProvider({
+  withGlobalStyle,
+  // Toggles `data-theme` on the <html> element — the same hook the design
+  // tokens use (`html[data-theme='dark']`). Switch via the paintbrush icon
+  // in the Storybook toolbar.
+  withThemeByDataAttribute({
     themes: {
-      light: theme,
-      dark: theme,
+      light: 'light',
+      dark: 'dark',
     },
     defaultTheme: 'light',
-    GlobalStyles: GlobalStyle,
+    attributeName: 'data-theme',
   }),
 ];

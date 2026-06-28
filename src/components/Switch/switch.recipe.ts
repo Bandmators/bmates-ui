@@ -45,8 +45,10 @@ export const switchBoxRecipe = cva({
     variant: {
       primary: {},
       secondary: {},
+      success: {},
       danger: {},
       warning: {},
+      info: {},
     },
     size: {
       sm: {
@@ -78,9 +80,11 @@ export const switchBoxRecipe = cva({
     { checked: true, size: 'lg', css: { '&:after': { left: 'calc(100% - 0.2rem)' } } },
     { checked: true, size: 'xl', css: { '&:after': { left: 'calc(100% - 0.4rem)' } } },
     // track color when checked (per variant)
-    { checked: true, variant: 'primary', css: { color: 'white', backgroundColor: 'var(--primary)' } },
+    { checked: true, variant: 'primary', css: { backgroundColor: 'var(--primary)' } },
     { checked: true, variant: 'secondary', css: { backgroundColor: 'var(--secondary)' } },
-    { checked: true, variant: 'danger', css: { color: 'var(--white)', backgroundColor: 'var(--danger)' } },
-    { checked: true, variant: 'warning', css: { color: 'var(--white)', backgroundColor: 'var(--warning)' } },
+    { checked: true, variant: 'success', css: { backgroundColor: 'var(--success)' } },
+    { checked: true, variant: 'danger', css: { backgroundColor: 'var(--danger)' } },
+    { checked: true, variant: 'warning', css: { backgroundColor: 'var(--warning)' } },
+    { checked: true, variant: 'info', css: { backgroundColor: 'var(--info)' } },
   ],
 });

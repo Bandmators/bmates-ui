@@ -3,11 +3,19 @@ import React from 'react';
 
 import { Badge } from '../..';
 
+const VARIANTS = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'outline', 'ghost'] as const;
+
 const meta = {
   title: 'common/Badge',
   component: Badge,
   tags: ['autodocs'],
-  argTypes: {},
+  args: {
+    children: 'Badge',
+  },
+  argTypes: {
+    variant: { control: 'select', options: VARIANTS },
+    size: { control: 'select', options: ['sm', 'md', 'lg'] },
+  },
   parameters: {
     layout: 'centered',
     componentSubtitle: 'Base Badge',
@@ -18,45 +26,26 @@ export default meta;
 
 type Story = StoryObj<typeof Badge>;
 
-export const Primary: Story = {
-  args: {
-    children: 'Badge',
-  },
-};
+export const Primary: Story = { args: { children: 'Badge' } };
+export const Secondary: Story = { args: { variant: 'secondary', children: 'Badge' } };
+export const Success: Story = { args: { variant: 'success', children: 'Badge' } };
+export const Danger: Story = { args: { variant: 'danger', children: 'Badge' } };
+export const Warning: Story = { args: { variant: 'warning', children: 'Badge' } };
+export const Info: Story = { args: { variant: 'info', children: 'Badge' } };
+export const Outline: Story = { args: { variant: 'outline', children: 'Badge' } };
+export const Ghost: Story = { args: { variant: 'ghost', children: 'Badge' } };
 
-export const Secondary: Story = {
-  args: {
-    variant: 'secondary',
-    ...Primary.args,
-  },
-};
-
-export const Danger: Story = {
-  args: {
-    variant: 'danger',
-    ...Primary.args,
-  },
-};
-
-export const Warning: Story = {
-  args: {
-    variant: 'warning',
-    ...Primary.args,
-  },
-};
-
-export const Outline: Story = {
-  args: {
-    variant: 'outline',
-    ...Primary.args,
-  },
-};
-
-export const Ghost: Story = {
-  args: {
-    variant: 'ghost',
-    ...Primary.args,
-  },
+/** Every available variant at a glance. */
+export const AllVariants: Story = {
+  render: args => (
+    <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+      {VARIANTS.map(variant => (
+        <Badge key={variant} {...args} variant={variant}>
+          {variant}
+        </Badge>
+      ))}
+    </div>
+  ),
 };
 
 export const WithLink: Story = {

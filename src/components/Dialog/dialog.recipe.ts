@@ -9,12 +9,14 @@ export const dialogFooterRecipe = cva({
 });
 
 export const dialogTitleRecipe = cva({ base: { fontWeight: '600', lineHeight: '1', margin: '0px' } });
-export const dialogDescriptionRecipe = cva({ base: { margin: '0.375rem 0px', fontWeight: '300' } });
+export const dialogDescriptionRecipe = cva({
+  base: { margin: '0.375rem 0px', fontWeight: '400', fontSize: '0.875rem', lineHeight: '1.4', color: 'var(--muted)' },
+});
 
 export const modalBGRecipe = cva({
   base: {
     pointerEvents: 'auto',
-    backgroundColor: 'rgba(0,0,0,0.8)',
+    backgroundColor: 'var(--overlay)',
     zIndex: 50,
     inset: '0',
     position: 'fixed',
@@ -27,13 +29,15 @@ export const modalRecipe = cva({
     display: 'grid',
     width: '100%',
     padding: '1.5rem',
-    borderRadius: '0.375rem',
+    borderRadius: 'var(--radius-lg)',
     position: 'fixed',
     top: '50%',
     left: '50%',
     gap: '1rem',
     transform: 'translate(-50%, -50%)',
-    backgroundColor: 'white',
+    color: 'var(--text)',
+    backgroundColor: 'var(--elevated)',
+    boxShadow: 'var(--shadow-lg)',
     pointerEvents: 'auto',
     zIndex: 50,
     animationDuration: '0.15s',

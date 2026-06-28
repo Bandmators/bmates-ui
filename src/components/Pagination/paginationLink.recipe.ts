@@ -7,15 +7,19 @@ export const paginationLinkRecipe = cva({
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: '0.25rem',
+    borderRadius: 'var(--radius-sm)',
     fontWeight: 500,
     lineHeight: '2.5rem',
     cursor: 'pointer',
     textDecoration: 'none',
-    color: 'inherit',
+    color: 'var(--text)',
+    transition: 'background-color var(--transition), color var(--transition)',
   },
   variants: {
-    selected: { true: { backgroundColor: 'var(--primary)', color: 'var(--background)' } },
+    selected: {
+      true: { backgroundColor: 'var(--primary)', color: 'var(--background)' },
+      false: { '&:hover': { backgroundColor: 'var(--surface-hover)' } },
+    },
     disabled: { true: { cursor: 'not-allowed', opacity: 0.5 } },
   },
 });

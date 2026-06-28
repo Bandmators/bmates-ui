@@ -3,14 +3,18 @@ import { cva } from '../../../styled-system/css';
 export const buttonRecipe = cva({
   base: {
     display: 'inline-flex',
+    gap: '0.4rem',
     outline: 'none',
-    border: 'none',
-    borderRadius: '0.375rem',
+    border: '1px solid transparent',
+    borderRadius: 'var(--radius)',
     fontWeight: '500',
+    fontSize: '0.875rem',
+    lineHeight: '1.25rem',
     justifyContent: 'center',
     alignItems: 'center',
     whiteSpace: 'nowrap',
     cursor: 'pointer',
+    transition: 'background-color var(--transition), border-color var(--transition), color var(--transition)',
     '&:focus-visible': {
       borderColor: 'var(--focus-border)',
       boxShadow: 'var(--focus-shadow)',
@@ -19,56 +23,57 @@ export const buttonRecipe = cva({
   variants: {
     variant: {
       default: {
-        color: 'var(--black)',
-        backgroundColor: 'var(--background)',
-        border: '1px solid var(--gray-300)',
-        '&:hover': {
-          opacity: '0.8',
-        },
-      },
-      secondary: {
-        border: '1px solid var(--secondary)',
-        backgroundColor: 'var(--secondary)',
-        '&:hover': {
-          opacity: '0.8',
-        },
-      },
-      danger: {
-        color: 'var(--white)',
-        border: '1px solid var(--danger)',
-        backgroundColor: 'var(--danger)',
-        '&:hover': {
-          opacity: '0.8',
-        },
-      },
-      warning: {
-        color: 'var(--white)',
-        border: '1px solid var(--warning)',
-        backgroundColor: 'var(--warning)',
-        '&:hover': {
-          opacity: '0.8',
-        },
-      },
-      outline: {
-        border: '1px solid var(--gray-300)',
-        backgroundColor: 'transparent',
-        '&:hover': {
-          backgroundColor: 'var(--gray-100)',
-        },
-      },
-      ghost: {
-        backgroundColor: 'transparent',
-        '&:hover': {
-          backgroundColor: 'var(--gray-100)',
-        },
+        color: 'var(--text)',
+        backgroundColor: 'var(--surface)',
+        border: '1px solid var(--border-strong)',
+        '&:hover': { backgroundColor: 'var(--surface-hover)' },
       },
       primary: {
-        color: 'white',
+        color: 'var(--primary-fg)',
         border: '1px solid var(--primary)',
         backgroundColor: 'var(--primary)',
-        '&:hover': {
-          opacity: '0.8',
-        },
+        '&:hover': { backgroundColor: 'var(--primary-hover)', borderColor: 'var(--primary-hover)' },
+      },
+      secondary: {
+        color: 'var(--secondary-fg)',
+        border: '1px solid var(--secondary)',
+        backgroundColor: 'var(--secondary)',
+        '&:hover': { backgroundColor: 'var(--secondary-hover)', borderColor: 'var(--secondary-hover)' },
+      },
+      success: {
+        color: 'var(--success-fg)',
+        border: '1px solid var(--success)',
+        backgroundColor: 'var(--success)',
+        '&:hover': { backgroundColor: 'var(--success-hover)', borderColor: 'var(--success-hover)' },
+      },
+      danger: {
+        color: 'var(--danger-fg)',
+        border: '1px solid var(--danger)',
+        backgroundColor: 'var(--danger)',
+        '&:hover': { backgroundColor: 'var(--danger-hover)', borderColor: 'var(--danger-hover)' },
+      },
+      warning: {
+        color: 'var(--warning-fg)',
+        border: '1px solid var(--warning)',
+        backgroundColor: 'var(--warning)',
+        '&:hover': { backgroundColor: 'var(--warning-hover)', borderColor: 'var(--warning-hover)' },
+      },
+      info: {
+        color: 'var(--info-fg)',
+        border: '1px solid var(--info)',
+        backgroundColor: 'var(--info)',
+        '&:hover': { backgroundColor: 'var(--info-hover)', borderColor: 'var(--info-hover)' },
+      },
+      outline: {
+        color: 'var(--text)',
+        border: '1px solid var(--border-strong)',
+        backgroundColor: 'transparent',
+        '&:hover': { backgroundColor: 'var(--surface-hover)' },
+      },
+      ghost: {
+        color: 'var(--text)',
+        backgroundColor: 'transparent',
+        '&:hover': { backgroundColor: 'var(--surface-hover)' },
       },
     },
     size: {
@@ -82,7 +87,7 @@ export const buttonRecipe = cva({
         padding: '0.75rem 1.5rem',
       },
       icon: {
-        padding: '0.375rem',
+        padding: '0.5rem',
         '& img': {
           width: '20px',
           height: '20px',

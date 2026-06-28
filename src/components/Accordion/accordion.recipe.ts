@@ -4,9 +4,9 @@ export const accordionRootRecipe = cva({ base: { display: 'flex', flexDirection:
 
 export const accordionItemRecipe = cva({
   base: {
-    border: '1px solid var(--gray-200)',
-    borderRadius: '0.5rem',
-    backgroundColor: 'var(--background)',
+    border: '1px solid var(--border)',
+    borderRadius: 'var(--radius-lg)',
+    backgroundColor: 'var(--surface)',
     overflow: 'hidden',
     '&:not(:last-child)': { marginBottom: '0.5rem' },
   },
@@ -24,10 +24,12 @@ export const accordionHeadRecipe = cva({
     border: 'none',
     cursor: 'pointer',
     fontWeight: '600',
-    color: 'var(--gray-800)',
+    color: 'var(--text-strong)',
+    transition: 'background-color var(--transition)',
+    '&:hover': { backgroundColor: 'var(--surface-hover)' },
     '&:focus-visible': { outline: 'none', boxShadow: 'var(--focus-shadow)' },
     '&:disabled': { opacity: '0.6', cursor: 'not-allowed' },
-    '&[data-open="true"]': { borderBottom: '1px solid var(--gray-200)' },
+    '&[data-open="true"]': { borderBottom: '1px solid var(--border)' },
   },
 });
 
@@ -53,7 +55,7 @@ export const accordionContentWrapperRecipe = cva({
 });
 
 export const accordionContentInnerRecipe = cva({
-  base: { padding: '1rem', color: 'var(--gray-600)', fontSize: '0.875rem', lineHeight: '1.5' },
+  base: { padding: '1rem', color: 'var(--muted)', fontSize: '0.875rem', lineHeight: '1.5' },
 });
 
 export const accordionIconRecipe = cva({

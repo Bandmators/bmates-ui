@@ -2,13 +2,12 @@ import { cx } from '@/styles/panda';
 import * as React from 'react';
 
 import { SizeType } from '@/types/size';
+import { SpecialVariantType } from '@/types/variant';
 
 import { badgeRecipe } from './badge.recipe';
 
-type BadgeVariantType = 'primary' | 'secondary' | 'warning' | 'danger' | 'outline' | 'ghost';
-
 export interface BadgeVariantProps {
-  variant?: BadgeVariantType;
+  variant?: SpecialVariantType;
   size?: SizeType;
 }
 
