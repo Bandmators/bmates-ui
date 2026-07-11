@@ -2,7 +2,6 @@ import { cx } from '@/styles/panda';
 
 import { dialogDescriptionRecipe, dialogFooterRecipe, dialogHeaderRecipe, dialogTitleRecipe } from './dialog.recipe';
 
-/* eslint-disable react-refresh/only-export-components */
 export * from './Dialog';
 export * from './DialogContent';
 export * from './DialogToggle';

@@ -76,4 +76,23 @@ describe('UI test', () => {
     fireEvent.keyDown(portal as HTMLElement, { key: 'ArrowDown' });
     expect(screen.getByText('Twitter')).toHaveFocus();
   });
+
+  it('positions the portal with top/left instead of transform', () => {
+    render(
+      <Dropdown>
+        <DropdownToggle>DropdownToggle</DropdownToggle>
+        <DropdownContent width={'15rem'}>
+          <DropdownItem>GitHub</DropdownItem>
+        </DropdownContent>
+      </Dropdown>,
+    );
+
+    fireEvent.click(screen.getByText('DropdownToggle'));
+
+    const portal = document.getElementById('bmates-portal') as HTMLElement;
+    expect(portal).toBeInTheDocument();
+    expect(portal.style.top).toBeTruthy();
+    expect(portal.style.left).toBeTruthy();
+    expect(portal.style.transform).toBe('');
+  });
 });

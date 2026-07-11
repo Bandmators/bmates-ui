@@ -8,7 +8,6 @@ import {
   dropdownShortcutRecipe,
 } from './dropdown.recipe';
 
-/* eslint-disable react-refresh/only-export-components */
 export * from './Dropdown';
 export * from './DropdownContent';
 export * from './DropdownToggle';

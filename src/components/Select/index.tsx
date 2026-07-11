@@ -3,7 +3,6 @@ import * as React from 'react';
 
 import { selectDescriptionRecipe, selectDividerRecipe, selectLabelRecipe, selectShortcutRecipe } from './select.recipe';
 
-/* eslint-disable react-refresh/only-export-components */
 export * from './Select';
 export * from './SelectContent';
 export * from './SelectToggle';

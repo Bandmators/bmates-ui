@@ -9,7 +9,6 @@ import {
   searchShortcutRecipe,
 } from './search.common.recipe';
 
-/* eslint-disable react-refresh/only-export-components */
 export * from './Search';
 export * from './SearchContent';
 export * from './SearchToggle';

@@ -97,7 +97,8 @@ const PortalStyled = React.forwardRef<HTMLDivElement, PortalStyledProps>(
       className={cx(portalRecipe(), className)}
       style={{
         ...(style || {}),
-        transform: `translate(${position.x}px, ${position.y}px)`,
+        left: `${position.x}px`,
+        top: `${position.y}px`,
         ...(width ? { width: typeof width === 'string' ? width : `${width}px` } : {}),
       }}
       {...props}

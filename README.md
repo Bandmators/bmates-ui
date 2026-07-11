@@ -27,3 +27,27 @@
 </p>
 
 # bmates-ui
+
+## Usage
+
+Import the stylesheet once in your app entry. It includes component styles and
+default design tokens, so components render correctly without requiring a
+provider.
+
+```tsx
+import { Button, Dropdown, DropdownContent, DropdownItem, DropdownToggle } from 'bmates-ui';
+import 'bmates-ui/style.css';
+```
+
+Override semantic CSS variables in your app only when you want to customize the
+theme.
+
+```css
+:root {
+  --primary: #2563eb;
+  --radius: 8px;
+}
+```
+
+`BMatesProvider` is optional. Use it when you also want bmates-ui to inject its
+global body styles and theme variables at runtime.
