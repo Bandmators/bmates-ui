@@ -9,6 +9,7 @@ export default function GlobalStyle(): JSX.Element {
     *, ::after, ::before { box-sizing: border-box; }
     :root { color-scheme: light; ${vars} }
     html[data-theme='dark'] { color-scheme: dark; ${darkVars} }
+    html { scrollbar-gutter: stable; }
     body { margin: 0; background: var(--background); color: var(--text); font-family: 'Barlow', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'; }
     button, input, optgroup, select, textarea { font-family: inherit; }
     ::selection { background: var(--primary); color: white; }
