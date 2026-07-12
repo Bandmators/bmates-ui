@@ -3,7 +3,7 @@ import * as React from 'react';
 import { PortalContext } from '@/components/Portal/PortalContext';
 import Slot from '@/components/Slot';
 import useContext from '@/hooks/useContext';
-import { composeEventHandlers } from '@/libs/event';
+import { composeEventHandlers, excludeTouchEventHandler } from '@/libs/event';
 import { composeRefs } from '@/libs/ref';
 
 import { Button } from '../../';
@@ -17,22 +17,37 @@ type ComponentPropsWithoutRef<E extends React.ElementType> = React.ComponentProp
  * @returns
  */
 export const DropdownToggle = React.forwardRef<HTMLButtonElement, ComponentPropsWithoutRef<'button'>>(
-  ({ asChild, onClick, ...props }, ref) => {
-    const { setShowModal, setToggleElment } = useContext(PortalContext);
+  ({ asChild, onClick, onPointerEnter, onPointerLeave, ...props }, ref) => {
+    const { hoverOpen, setShowModal, setToggleElment, openHover } = useContext(PortalContext);
     const compRef = React.useRef<HTMLButtonElement | null>(null);
 
     const Comp = asChild ? Slot : Button;
+
+    const syncToggle = () => {
+      if (compRef.current) {
+        setToggleElment(compRef.current);
+      }
+    };
 
     return (
       <Comp
         ref={composeRefs(compRef, ref)}
         aria-haspopup="true"
+        onPointerEnter={composeEventHandlers(
+          onPointerEnter,
+          excludeTouchEventHandler(() => {
+            syncToggle();
+            if (hoverOpen) openHover();
+          }),
+        )}
+        onPointerLeave={composeEventHandlers(
+          onPointerLeave,
+          excludeTouchEventHandler(() => {
+            // hover-open is closed from portal-level pointer tracking
+          }),
+        )}
         onClick={composeEventHandlers(onClick, () => {
-          if (compRef.current) {
-            const rect = compRef.current;
-            setToggleElment(rect);
-          }
-
+          syncToggle();
           setShowModal(true);
         })}
         {...props}

@@ -1,9 +1,9 @@
 import '@testing-library/jest-dom';
 import React from 'react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { Select, SelectContent, SelectDivider, SelectItem, SelectLabel, SelectToggle } from '../';
-import { fireEvent, render, screen } from '../../libs/test';
+import { fireEvent, render, screen, waitFor } from '../../libs/test';
 
 const items = [
   {
@@ -70,6 +70,45 @@ describe('UI test', () => {
     // when click item, select content should be closed.
     fireEvent.click(screen.getByText(items[0].label));
     expect(selectLabel).not.toBeInTheDocument();
+  });
+
+  it('Should appear SelectContent on hover when hoverOpen is enabled', async () => {
+    const originalElementFromPoint = (
+      document as typeof document & { elementFromPoint?: typeof document.elementFromPoint }
+    ).elementFromPoint;
+    Object.defineProperty(document, 'elementFromPoint', {
+      configurable: true,
+      value: vi.fn(() => document.body),
+    });
+
+    try {
+      render(
+        <Select align="start" hoverOpen>
+          <SelectToggle>SelectToggle</SelectToggle>
+          <SelectContent width={'15rem'}>
+            <SelectLabel>Animals</SelectLabel>
+            <SelectDivider />
+            {items.map(item => (
+              <SelectItem key={item.value} value={item.value} disabled={item.disabled}>
+                {item.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>,
+      );
+
+      const toggleBtn = screen.getByText('SelectToggle');
+      fireEvent.pointerEnter(toggleBtn, { pointerType: 'mouse' });
+      await waitFor(() => expect(screen.getByText('Animals')).toBeInTheDocument());
+
+      fireEvent.pointerMove(document, { clientX: 9999, clientY: 9999 });
+      await waitFor(() => expect(screen.queryByText('Animals')).not.toBeInTheDocument());
+    } finally {
+      Object.defineProperty(document, 'elementFromPoint', {
+        configurable: true,
+        value: originalElementFromPoint,
+      });
+    }
   });
 
   it('Should skip disabled option when navigating with keyboard', () => {

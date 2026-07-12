@@ -38,7 +38,6 @@ export const dropdownItemRecipe = cva({
     padding: '0.5rem 0.55rem',
     borderRadius: 'var(--radius-sm)',
     fontSize: '0.85rem',
-    fontWeight: '500',
     lineHeight: '1.3',
     color: 'var(--text)',
     outline: 'none',

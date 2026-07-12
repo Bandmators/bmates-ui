@@ -94,3 +94,33 @@ export const Space: Story = {
     ),
   },
 };
+
+export const HoverOpen: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: '`<Select hoverOpen />`',
+      },
+    },
+  },
+  args: {
+    align: 'center',
+    hoverOpen: true,
+    children: (
+      <>
+        <SelectToggle style={{ width: '12rem' }}>Hover me</SelectToggle>
+        <SelectContent width={'12rem'}>
+          <SelectLabel>Animals</SelectLabel>
+          <SelectDivider />
+          <SelectItem value="cat">Cat</SelectItem>
+          <SelectItem value="dog">Dog</SelectItem>
+          <SelectItem value="fox">Fox</SelectItem>
+          <SelectItem value="nilgai">Nilgai</SelectItem>
+          <SelectItem value="nunbird" disabled>
+            Numbird
+          </SelectItem>
+        </SelectContent>
+      </>
+    ),
+  },
+};

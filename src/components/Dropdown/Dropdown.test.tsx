@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import React from 'react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import {
   Dropdown,
@@ -11,7 +11,7 @@ import {
   DropdownShortcut,
   DropdownToggle,
 } from '../';
-import { fireEvent, render, screen } from '../../libs/test';
+import { fireEvent, render, screen, waitFor } from '../../libs/test';
 
 describe('UI test', () => {
   it('Should appear DropdownContent when click DropdownToggle', () => {
@@ -49,6 +49,39 @@ describe('UI test', () => {
     fireEvent.click(dropdownItem);
 
     expect(dropdownLabel).not.toBeInTheDocument();
+  });
+
+  it('Should appear DropdownContent on hover when hoverOpen is enabled', async () => {
+    const originalElementFromPoint = (
+      document as typeof document & { elementFromPoint?: typeof document.elementFromPoint }
+    ).elementFromPoint;
+    Object.defineProperty(document, 'elementFromPoint', {
+      configurable: true,
+      value: vi.fn(() => document.body),
+    });
+
+    try {
+      render(
+        <Dropdown hoverOpen>
+          <DropdownToggle>DropdownToggle</DropdownToggle>
+          <DropdownContent width={'15rem'}>
+            <DropdownItem>GitHub</DropdownItem>
+          </DropdownContent>
+        </Dropdown>,
+      );
+
+      const toggleBtn = screen.getByText('DropdownToggle');
+      fireEvent.pointerEnter(toggleBtn, { pointerType: 'mouse' });
+      await waitFor(() => expect(screen.getByText('GitHub')).toBeInTheDocument());
+
+      fireEvent.pointerMove(document, { clientX: 9999, clientY: 9999 });
+      await waitFor(() => expect(screen.queryByText('GitHub')).not.toBeInTheDocument());
+    } finally {
+      Object.defineProperty(document, 'elementFromPoint', {
+        configurable: true,
+        value: originalElementFromPoint,
+      });
+    }
   });
 
   it('Should skip disabled menu item when navigating with keyboard', () => {

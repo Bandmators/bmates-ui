@@ -160,3 +160,32 @@ export const AlignEnd: Story = {
     ),
   },
 };
+
+export const HoverOpen: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: '`<Dropdown hoverOpen />`',
+      },
+    },
+  },
+  args: {
+    align: 'center',
+    hoverOpen: true,
+    children: (
+      <>
+        <DropdownToggle>Hover me</DropdownToggle>
+        <DropdownContent width={'15rem'}>
+          <DropdownLabel>Share Social</DropdownLabel>
+          <DropdownDivider />
+          <DropdownItem>
+            GitHub
+            <DropdownShortcut>??T</DropdownShortcut>
+          </DropdownItem>
+          <DropdownItem disabled>Facebook</DropdownItem>
+          <DropdownItem>Twitter</DropdownItem>
+        </DropdownContent>
+      </>
+    ),
+  },
+};

@@ -10,17 +10,18 @@ interface SelectProps extends React.PropsWithChildren {
   multi?: boolean;
   align?: AlignType;
   space?: number;
+  hoverOpen?: boolean;
 }
 
 /**
  * Displays a list of options.
  * @returns
  */
-export const Select = ({ align = 'center', space = 0, multi = false, children }: SelectProps) => {
+export const Select = ({ align = 'center', space = 0, multi = false, hoverOpen = false, children }: SelectProps) => {
   const [selectedValue, setSelectedValue] = React.useState<SelectType[]>([]);
 
   return (
-    <PortalProvider align={align} space={space}>
+    <PortalProvider align={align} space={space} hoverOpen={hoverOpen}>
       <SelectContext.Provider value={{ multi, selectedValue, setSelectedValue }}>{children}</SelectContext.Provider>
     </PortalProvider>
   );
