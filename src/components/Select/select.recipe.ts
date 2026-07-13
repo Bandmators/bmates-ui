@@ -64,7 +64,18 @@ export const selectItemRecipe = cva({
 export const selectIconRecipe = cva({ base: { marginLeft: 'auto', color: 'var(--muted)' } });
 
 export const selectToggleContentRecipe = cva({
-  base: { overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' },
+  base: {
+    display: 'flex',
+    alignItems: 'center',
+    flex: '1',
+    minWidth: '0',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+  },
+});
+export const selectToggleValueRecipe = cva({
+  base: { display: 'inline-flex', alignItems: 'center', gap: '0.5rem', minWidth: '0' },
 });
 export const selectDownIconWrapperRecipe = cva({
   base: { marginLeft: 'auto', paddingLeft: '1rem', display: 'flex', alignItems: 'center', color: 'var(--muted)' },

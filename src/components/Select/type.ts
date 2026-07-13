@@ -1,6 +1,7 @@
-import { ReactNode } from 'react';
+import type * as React from 'react';
 
 export type SelectType = {
-  name: ReactNode;
+  label: React.ReactNode;
+  textValue: string;
   value: string | number | readonly string[];
 };

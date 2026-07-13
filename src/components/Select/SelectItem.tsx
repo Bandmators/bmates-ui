@@ -15,6 +15,15 @@ interface SelectItemProps extends React.ComponentPropsWithoutRef<'li'> {
   value: string | number | readonly string[];
   disabled?: boolean;
 }
+
+const extractText = (node: React.ReactNode): string => {
+  if (node == null || typeof node === 'boolean') return '';
+  if (typeof node === 'string' || typeof node === 'number') return String(node);
+  if (Array.isArray(node)) return node.map(extractText).join(' ').replace(/\s+/g, ' ').trim();
+  if (React.isValidElement(node)) return extractText(node.props.children);
+  return '';
+};
+
 export const SelectItem = React.forwardRef<HTMLLIElement, SelectItemProps>(
   ({ disabled = false, children, value, onClick, ...props }, ref) => {
     const { setShowModal } = useContext(PortalContext);
@@ -37,7 +46,8 @@ export const SelectItem = React.forwardRef<HTMLLIElement, SelectItemProps>(
       } else if (!multi) {
         setSelectedValue([
           {
-            name: children,
+            label: children,
+            textValue: extractText(children),
             value: value,
           },
         ]);
@@ -45,7 +55,8 @@ export const SelectItem = React.forwardRef<HTMLLIElement, SelectItemProps>(
         setSelectedValue([
           ...selectedValue,
           {
-            name: children,
+            label: children,
+            textValue: extractText(children),
             value: value,
           },
         ]);

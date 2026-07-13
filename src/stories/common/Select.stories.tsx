@@ -69,6 +69,86 @@ export const MultiSelect: Story = {
   },
 };
 
+export const RichItemContent: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Selected items preserve their ReactNode content instead of being flattened to text.',
+      },
+    },
+  },
+  args: {
+    align: 'start',
+    children: (
+      <>
+        <SelectToggle style={{ width: '14rem' }}>Select channel</SelectToggle>
+        <SelectContent width={'14rem'}>
+          <SelectItem value="design">
+            <span
+              aria-hidden="true"
+              style={{
+                alignItems: 'center',
+                background: '#dbeafe',
+                borderRadius: '999px',
+                color: '#1d4ed8',
+                display: 'inline-flex',
+                fontSize: '0.7rem',
+                fontWeight: 700,
+                height: '1.25rem',
+                justifyContent: 'center',
+                width: '1.25rem',
+              }}
+            >
+              D
+            </span>
+            <span>Design</span>
+          </SelectItem>
+          <SelectItem value="frontend">
+            <span
+              aria-hidden="true"
+              style={{
+                alignItems: 'center',
+                background: '#dcfce7',
+                borderRadius: '999px',
+                color: '#15803d',
+                display: 'inline-flex',
+                fontSize: '0.7rem',
+                fontWeight: 700,
+                height: '1.25rem',
+                justifyContent: 'center',
+                width: '1.25rem',
+              }}
+            >
+              F
+            </span>
+            <span>Frontend</span>
+          </SelectItem>
+          <SelectItem value="backend">
+            <span
+              aria-hidden="true"
+              style={{
+                alignItems: 'center',
+                background: '#fee2e2',
+                borderRadius: '999px',
+                color: '#b91c1c',
+                display: 'inline-flex',
+                fontSize: '0.7rem',
+                fontWeight: 700,
+                height: '1.25rem',
+                justifyContent: 'center',
+                width: '1.25rem',
+              }}
+            >
+              B
+            </span>
+            <span>Backend</span>
+          </SelectItem>
+        </SelectContent>
+      </>
+    ),
+  },
+};
+
 export const Space: Story = {
   parameters: {
     docs: {

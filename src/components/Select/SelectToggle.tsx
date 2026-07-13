@@ -9,7 +9,7 @@ import { composeRefs } from '@/libs/ref';
 
 import { Button } from '../../';
 import SelectContext from './SelectContext';
-import { selectDownIconWrapperRecipe, selectToggleContentRecipe } from './select.recipe';
+import { selectDownIconWrapperRecipe, selectToggleContentRecipe, selectToggleValueRecipe } from './select.recipe';
 
 type ComponentPropsWithoutRef<E extends React.ElementType> = React.ComponentPropsWithoutRef<E> & {
   asChild?: boolean;
@@ -58,7 +58,14 @@ export const SelectToggle = React.forwardRef<HTMLButtonElement, ComponentPropsWi
         {...props}
       >
         <div className={cx(selectToggleContentRecipe())}>
-          {selectedValue.length > 0 ? selectedValue.map(val => val.name).join(',') : children}
+          {selectedValue.length > 0
+            ? selectedValue.map((val, index) => (
+                <React.Fragment key={String(val.value)}>
+                  {index > 0 && ', '}
+                  <span className={cx(selectToggleValueRecipe())}>{val.label}</span>
+                </React.Fragment>
+              ))
+            : children}
         </div>
         <div className={cx(selectDownIconWrapperRecipe())}>
           <svg

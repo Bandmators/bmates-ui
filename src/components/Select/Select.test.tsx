@@ -186,4 +186,27 @@ describe('UI test', () => {
       expect(itemLI2).toHaveAttribute('aria-selected', 'true');
     });
   });
+
+  it('Should display SelectItem contents when SelectItem contains nested elements', () => {
+    render(
+      <Select>
+        <SelectToggle>SelectToggle</SelectToggle>
+        <SelectContent width={'15rem'}>
+          <SelectItem value="docs">
+            <span data-testid="docs-icon" aria-hidden="true">
+              D
+            </span>
+            <span>Docs</span>
+          </SelectItem>
+        </SelectContent>
+      </Select>,
+    );
+
+    fireEvent.click(screen.getByText('SelectToggle'));
+    fireEvent.click(screen.getByText('Docs'));
+
+    expect(screen.getByText('Docs')).toBeInTheDocument();
+    expect(screen.getByTestId('docs-icon')).toBeInTheDocument();
+    expect(screen.queryByText('[object Object]')).not.toBeInTheDocument();
+  });
 });
