@@ -110,7 +110,7 @@
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
     "vite-plugin-dts": "^3.7.1",
-    "vitest": "^1.2.0"
+    "vitest": "^3.0.0"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
