@@ -16,7 +16,10 @@ describe('Lib test', () => {
   test('exposes a shared primitive and responsive token contract', () => {
     expect(BMateColors.primaryScale[100]).toBe('#F5F5F5');
     expect(BMateColorScales.primary[100]).toBe('#F5F5F5');
+    expect(BMateColors.secondary).toBe('#F1F3F5');
     expect(BMateColors.infoScale[600]).toBe('#2563eb');
+    expect(BMateColors.success).toBe('#22c55e');
+    expect(BMateColors['danger-hover']).toBe('#dc2626');
     expect(BMateSpacing[6]).toBe('1.5rem');
     expect(BMateTypography['font-size-2xl']).toBe('1.5rem');
     expect(BMateBreakpoints.lg).toBe('1024px');
@@ -28,6 +31,8 @@ describe('Lib test', () => {
 
     expect(css).toContain('--primary-100: #f5f5f5');
     expect(css).toContain('--info-600: #2563eb');
+    expect(css).toContain('--success: var(--success-500)');
+    expect(css).toContain('--info-fg: #ffffff');
     expect(css).toContain('--space-6: 1.5rem');
     expect(css).toContain('--breakpoint-lg: 1024px');
     expect(css).toContain('@media screen and (min-width: 1024px)');

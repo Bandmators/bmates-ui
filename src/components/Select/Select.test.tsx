@@ -30,6 +30,25 @@ const items = [
 ];
 
 describe('UI test', () => {
+  it('supports controlled values and reports selection changes', () => {
+    const onValueChange = vi.fn();
+    const selected = [{ label: 'Cat', textValue: 'Cat', value: 'cat' }];
+    render(
+      <Select value={selected} onValueChange={onValueChange}>
+        <SelectToggle>Animals</SelectToggle>
+        <SelectContent>
+          <SelectItem value="cat">Cat</SelectItem>
+          <SelectItem value="dog">Dog</SelectItem>
+        </SelectContent>
+      </Select>,
+    );
+
+    expect(screen.getByText('Cat')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Cat' }));
+    fireEvent.click(screen.getByText('Dog'));
+    expect(onValueChange).toHaveBeenCalledWith([{ label: 'Dog', textValue: 'Dog', value: 'dog' }]);
+  });
+
   it('Should appear SelectContent when click SelectToggle', () => {
     render(
       <Select align="start">

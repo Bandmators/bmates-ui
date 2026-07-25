@@ -1,0 +1,65 @@
+@layer bmates.components {
+  .bm-tabs {
+    --bm-tabs-trigger-h: 2rem;
+    --bm-tabs-trigger-px: 0.625rem;
+    --bm-tabs-trigger-font-size: 0.875rem;
+  }
+  .bm-tabs--size-sm {
+    --bm-tabs-trigger-h: 1.625rem;
+    --bm-tabs-trigger-px: 0.5rem;
+    --bm-tabs-trigger-font-size: 0.8125rem;
+  }
+  .bm-tabs--size-lg {
+    --bm-tabs-trigger-h: 2.5rem;
+    --bm-tabs-trigger-px: 0.75rem;
+    --bm-tabs-trigger-font-size: 1rem;
+  }
+  .bm-tabs__list {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.125rem;
+    padding: 0.125rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+  }
+  .bm-tabs__trigger {
+    min-height: var(--bm-tabs-trigger-h);
+    padding: 0.125rem var(--bm-tabs-trigger-px);
+    border: 1px solid transparent;
+    border-radius: calc(var(--radius-sm) - 2px);
+    color: var(--muted);
+    background: transparent;
+    font: inherit;
+    font-size: var(--bm-tabs-trigger-font-size);
+    font-weight: 500;
+    line-height: 1.25;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+      background-color var(--transition),
+      border-color var(--transition),
+      color var(--transition);
+  }
+  .bm-tabs__trigger:hover {
+    color: var(--text);
+    background: var(--surface-hover);
+  }
+  .bm-tabs__trigger--active {
+    color: var(--text-strong);
+    border-color: var(--border);
+    background: var(--surface-hover);
+  }
+  .bm-tabs__trigger:focus-visible {
+    outline: 0;
+    border-color: var(--focus-border);
+    box-shadow: var(--focus-shadow);
+  }
+  .bm-tabs__trigger:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .bm-tabs__content[hidden] {
+    display: none;
+  }
+}

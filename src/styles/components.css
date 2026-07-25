@@ -1,10 +1,12 @@
 @import '../components/Button/button.css';
+@import '../components/Alert/alert.css';
 @import '../components/Accordion/accordion.css';
 @import '../components/Avatar/avatar.css';
 @import '../components/Badge/badge.css';
 @import '../components/Card/card.css';
 @import '../components/Checkbox/checkbox.css';
 @import '../components/ContextMenu/context-menu.css';
+@import '../components/DataTable/data-table.css';
 @import '../components/Dialog/dialog.css';
 @import '../components/Dropdown/dropdown.css';
 @import '../components/Input/input.css';
@@ -15,6 +17,8 @@
 @import '../components/Search/search.css';
 @import '../components/Select/select.css';
 @import '../components/Switch/switch.css';
+@import '../components/Table/table.css';
+@import '../components/Tabs/tabs.css';
 @import '../components/Toast/toast.css';
 @import '../components/Toggle/toggle.css';
 @import '../components/Tooltip/tooltip.css';

@@ -1,4 +1,5 @@
 export * from './Accordion';
+export * from './Alert';
 export * from './Avatar';
 export * from './Badge';
 export * from './Button';
@@ -13,10 +14,13 @@ export * from './Search';
 export * from './Select';
 export * from './Switch';
 export * from './Textarea';
+export * from './Table';
+export * from './Tabs';
 export * from './Toast';
 export * from './Toggle';
 export * from './Tooltip';
 export * from './Checkbox';
 export * from './ContextMenu';
+export * from './DataTable';
 
 export { default as BMatesProvider } from './Provider/StyledProvider';

@@ -1,7 +1,6 @@
 import { cx } from '@/styles/classnames';
 import * as React from 'react';
 
-import useControllableState from '@/hooks/useControllableState';
 import { composeEventHandlers } from '@/libs/event';
 
 import {
@@ -54,7 +53,8 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (
     {
       className,
-      checked = false,
+      checked,
+      defaultChecked = false,
       label,
       id,
       children,
@@ -67,20 +67,20 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     },
     ref,
   ) => {
-    const [chk, setChk] = useControllableState<boolean>({
-      initValue: checked,
-      onChange: onCheckedChange,
-    });
+    const [uncontrolledChecked, setUncontrolledChecked] = React.useState(defaultChecked);
+    const chk = checked ?? uncontrolledChecked;
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setChk(e.target.checked);
+      if (checked === undefined) setUncontrolledChecked(e.target.checked);
+      onCheckedChange?.(e.target.checked);
     };
 
     const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (disabled) return;
       if (e.key === 'Enter' || e.which === 13 || e.key === ' ' || e.which === 32) {
         e.preventDefault();
-        setChk(!chk);
+        if (checked === undefined) setUncontrolledChecked(!chk);
+        onCheckedChange?.(!chk);
       }
     };
 

@@ -1,0 +1,53 @@
+@layer bmates.components {
+  .bm-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+  .bm-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: var(--text);
+    font-size: 0.875rem;
+  }
+  .bm-table__head {
+    color: var(--text-strong);
+    background: var(--surface-hover);
+    font-weight: 600;
+    text-align: left;
+    white-space: nowrap;
+  }
+  .bm-table__head,
+  .bm-table__cell {
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .bm-table__head:last-child,
+  .bm-table__cell:last-child {
+    border-right: 0;
+  }
+  .bm-table__body .bm-table__row:last-child .bm-table__cell {
+    border-bottom: 0;
+  }
+  .bm-table--size-sm .bm-table__head,
+  .bm-table--size-sm .bm-table__cell {
+    padding: 0.375rem 0.625rem;
+  }
+  .bm-table--size-md .bm-table__head,
+  .bm-table--size-md .bm-table__cell {
+    padding: 0.625rem 0.75rem;
+  }
+  .bm-table--size-lg .bm-table__head,
+  .bm-table--size-lg .bm-table__cell {
+    padding: 0.875rem 1rem;
+  }
+  .bm-table--hoverable .bm-table__body .bm-table__row {
+    transition: background-color var(--transition);
+  }
+  .bm-table--hoverable .bm-table__body .bm-table__row:hover {
+    background: color-mix(in srgb, var(--surface-hover) 55%, var(--surface));
+  }
+}

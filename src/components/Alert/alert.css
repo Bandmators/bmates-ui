@@ -1,0 +1,70 @@
+@layer bmates.components {
+  .bm-alert {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.625rem;
+    padding: 0.75rem 0.875rem;
+    border: 1px solid var(--bm-alert-border);
+    border-left-width: 0.25rem;
+    border-radius: var(--radius);
+    color: var(--text);
+    background: var(--bm-alert-bg);
+  }
+  .bm-alert--info {
+    --bm-alert-accent: var(--info);
+    --bm-alert-bg: var(--info-soft);
+    --bm-alert-border: var(--info-border);
+  }
+  .bm-alert--success {
+    --bm-alert-accent: var(--success);
+    --bm-alert-bg: var(--success-soft);
+    --bm-alert-border: var(--success-border);
+  }
+  .bm-alert--warning {
+    --bm-alert-accent: var(--warning);
+    --bm-alert-bg: var(--warning-soft);
+    --bm-alert-border: var(--warning-border);
+  }
+  .bm-alert--danger {
+    --bm-alert-accent: var(--danger);
+    --bm-alert-bg: var(--danger-soft);
+    --bm-alert-border: var(--danger-border);
+  }
+  .bm-alert__icon {
+    display: inline-flex;
+    grid-row: span 2;
+    align-items: center;
+    justify-content: center;
+    width: 1.125rem;
+    height: 1.125rem;
+    color: var(--bm-alert-accent);
+  }
+  .bm-alert__icon > svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .bm-alert__title {
+    margin: 0;
+    color: var(--bm-alert-accent);
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .bm-alert__description {
+    grid-column: 2;
+    color: var(--text);
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  .bm-alert__description > :first-child {
+    margin-top: 0;
+  }
+  .bm-alert__description > :last-child {
+    margin-bottom: 0;
+  }
+}
