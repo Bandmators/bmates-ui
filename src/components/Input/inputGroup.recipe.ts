@@ -1,3 +1,3 @@
-import { cva } from '../../../styled-system/css';
+import { createRecipe } from '@/styles/recipe';
 
-export const inputGroupRecipe = cva({ base: { display: 'grid', alignItems: 'center', gap: '0.5rem' } });
+export const inputGroupRecipe = createRecipe('bm-input-group');

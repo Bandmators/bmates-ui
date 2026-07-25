@@ -33,6 +33,7 @@ export default defineConfig({
   // Build
   build: {
     ssr: true,
+    cssMinify: 'esbuild',
 
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),

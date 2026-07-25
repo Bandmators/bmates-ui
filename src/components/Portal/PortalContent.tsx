@@ -1,4 +1,4 @@
-import { cx } from '@/styles/panda';
+import { cx } from '@/styles/classnames';
 import { createPortal } from 'react-dom';
 
 import useContext from '@/hooks/useContext';

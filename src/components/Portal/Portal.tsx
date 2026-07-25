@@ -1,4 +1,4 @@
-import { cx } from '@/styles/panda';
+import { cx } from '@/styles/classnames';
 import React from 'react';
 
 import { getNextPortalItem } from '@/components/Portal/focus';

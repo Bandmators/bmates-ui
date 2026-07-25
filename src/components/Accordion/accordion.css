@@ -1,0 +1,30 @@
+@layer bmates.components {
+    .bm-accordion { display: flex; flex-direction: column
+    }
+    .bm-accordion__item { overflow: hidden; margin-bottom: .5rem; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface)
+    }
+    .bm-accordion__head { display: inline-flex; width: 100%; align-items: center; justify-content: space-between; gap: .75rem; padding: 1rem; border: 0; color: var(--text-strong); background: transparent; font-weight: 600; cursor: pointer; transition: background-color var(--transition)
+    }
+    .bm-accordion__head:hover { background: var(--surface-hover)
+    }
+    .bm-accordion__head:focus-visible { outline: 0; box-shadow: var(--focus-shadow)
+    }
+    .bm-accordion__head:disabled { opacity: .6; cursor: not-allowed
+    }
+    .bm-accordion__head[data-open='true'] { border-bottom: 1px solid var(--border)
+    }
+    .bm-accordion__title { flex: 1; text-align: left
+    }
+    .bm-accordion__indicator { display: inline-flex; align-items: center; justify-content: center; transition: transform 200ms ease
+    }
+    .bm-accordion__indicator[data-open='true'] { transform: rotate(180deg)
+    }
+    .bm-accordion__content { overflow: hidden; opacity: 0; transition: max-height 200ms ease, opacity 200ms ease
+    }
+    .bm-accordion__content[data-open='true'] { opacity: 1
+    }
+    .bm-accordion__content-inner { padding: 1rem; color: var(--muted); font-size: .875rem; line-height: 1.5
+    }
+    .bm-accordion__icon { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2px; stroke-linecap: round; stroke-linejoin: round
+    }
+}

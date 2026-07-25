@@ -1,8 +1,3 @@
-import { cva } from '../../../styled-system/css';
+import { createRecipe } from '@/styles/recipe';
 
-export const labelRecipe = cva({
-  base: {
-    fontWeight: '500',
-    lineHeight: '1',
-  },
-});
+export const labelRecipe = createRecipe('bm-label');

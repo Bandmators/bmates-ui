@@ -1,0 +1,30 @@
+@layer bmates.components {
+    .bm-badge { display: inline-flex; align-items: center; gap: .3rem; border: 1px solid transparent; border-radius: var(--radius-sm); font-size: 75%; font-weight: 500; line-height: 1rem
+    }
+    .bm-badge--size-sm { padding: .125rem .5rem
+    }
+    .bm-badge--size-md { padding: .25rem .625rem
+    }
+    .bm-badge--size-lg { padding: .375rem .75rem
+    }
+    .bm-badge--variant-primary, .bm-badge--variant-secondary, .bm-badge--variant-success, .bm-badge--variant-danger, .bm-badge--variant-warning, .bm-badge--variant-info { color: var(--bm-badge-fg); background: var(--bm-badge-bg)
+    }
+    .bm-badge--variant-primary { --bm-badge-fg: var(--primary-fg); --bm-badge-bg: var(--primary)
+    }
+    .bm-badge--variant-secondary { --bm-badge-fg: var(--secondary-fg); --bm-badge-bg: var(--secondary)
+    }
+    .bm-badge--variant-success { --bm-badge-fg: var(--success-fg); --bm-badge-bg: var(--success)
+    }
+    .bm-badge--variant-danger { --bm-badge-fg: var(--danger-fg); --bm-badge-bg: var(--danger)
+    }
+    .bm-badge--variant-warning { --bm-badge-fg: var(--warning-fg); --bm-badge-bg: var(--warning)
+    }
+    .bm-badge--variant-info { --bm-badge-fg: var(--info-fg); --bm-badge-bg: var(--info)
+    }
+    .bm-badge--variant-outline, .bm-badge--variant-ghost { background: transparent
+    }
+    .bm-badge--variant-outline { border-color: var(--border-strong)
+    }
+    .bm-badge--variant-outline:hover { background: var(--surface-hover)
+    }
+}

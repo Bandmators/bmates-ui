@@ -1,4 +1,4 @@
-import { cx } from '@/styles/panda';
+import { cx } from '@/styles/classnames';
 import React, { ComponentPropsWithoutRef } from 'react';
 
 import { SizeType } from '@/types/size';

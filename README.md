@@ -49,5 +49,6 @@ theme.
 }
 ```
 
-`BMatesProvider` is optional. Use it when you also want bmates-ui to inject its
-global body styles and theme variables at runtime.
+`BMatesProvider` is deprecated and retained only as a compatibility wrapper. It
+does not inject styles or theme variables; import `bmates-ui/style.css` once at
+your application entry instead.

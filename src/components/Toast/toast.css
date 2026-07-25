@@ -1,0 +1,46 @@
+@layer bmates.components {
+    .bm-toast-list { position: fixed; z-index: 100; display: flex; width: 100%; max-width: 25rem; max-height: 100vh; flex-direction: column; gap: 1rem; margin: 0; padding: 1rem; list-style: none
+    }
+    .bm-toast-list--position-top-left { top:0;left:0;bottom:auto
+    }
+    .bm-toast-list--position-top-center { top:0;left:50%;bottom:auto;transform:translate(-50%)
+    }
+    .bm-toast-list--position-top-right { top:0;right:0;bottom:auto
+    }
+    .bm-toast-list--position-bottom-left { top:auto;bottom:0;left:0
+    }
+    .bm-toast-list--position-bottom-center { top:auto;bottom:0;left:50%;transform:translate(-50%)
+    }
+    .bm-toast-list--position-bottom-right { top:auto;right:0;bottom:0
+    }
+    .bm-toast { display: flex; flex-direction: column; justify-content: space-between; padding: 1rem; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--elevated); box-shadow: var(--shadow); cursor: pointer; transition: transform .25s cubic-bezier(.75,-.5,.25,1.25)
+    }
+    .bm-toast--variant-default { color:var(--text)
+    }
+    .bm-toast--variant-primary { color:var(--primary-fg);background:var(--primary)
+    }
+    .bm-toast--variant-secondary { color:var(--secondary-fg);background:var(--secondary)
+    }
+    .bm-toast--variant-success { color:var(--success-fg);background:var(--success)
+    }
+    .bm-toast--variant-danger { color:var(--danger-fg);background:var(--danger)
+    }
+    .bm-toast--variant-warning { color:var(--warning-fg);background:var(--warning)
+    }
+    .bm-toast--variant-info { color:var(--info-fg);background:var(--info)
+    }
+    .bm-toast--position-top-left, .bm-toast--position-bottom-left { transform:translateX(calc(-100% - 2rem))
+    }
+    .bm-toast--position-top-right, .bm-toast--position-bottom-right { transform:translateX(calc(100% + 2rem))
+    }
+    .bm-toast--position-top-center { transform:translateY(-100vh)
+    }
+    .bm-toast--position-bottom-center { transform:translateY(100vh)
+    }
+    .bm-toast--active { transform:translate(0)
+    }
+    .bm-toast__title { font-size:.875rem;line-height:1.25rem;font-weight:600
+    }
+    .bm-toast__description { font-size:.75rem;line-height:1rem;font-weight:400
+    }
+}

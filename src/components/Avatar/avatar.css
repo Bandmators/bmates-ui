@@ -1,0 +1,10 @@
+@layer bmates.components {
+    .bm-avatar { border-radius: 50%
+    }
+    .bm-avatar--size-sm { width: 1.5rem; height: 1.5rem
+    }
+    .bm-avatar--size-md { width: 2rem; height: 2rem
+    }
+    .bm-avatar--size-lg { width: 3rem; height: 3rem
+    }
+}

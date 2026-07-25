@@ -10,6 +10,8 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+storybook-static
+styled-system
 *.local
 
 # Editor directories and files
@@ -28,9 +30,6 @@ dist-ssr
 # Coverage
 coverage
 .scannerwork
-
-# Panda-generated output
-styled-system/
 
 # Local development
 local/

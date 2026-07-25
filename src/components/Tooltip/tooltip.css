@@ -1,0 +1,16 @@
+@layer bmates.components {
+    .bm-tooltip__wrapper { position:relative;width:fit-content;height:fit-content
+    }
+    .bm-tooltip { position:absolute;z-index:200;display:none;padding:.4rem .6rem;border-radius:var(--radius-sm);transform:scale(.9);color:var(--background);background:var(--text-strong);box-shadow:var(--shadow);font-size:.8rem;font-weight:500;white-space:nowrap;animation:bm-tooltip .5s ease
+    }
+    .bm-tooltip__wrapper:hover>.tooltip, .bm-tooltip__wrapper:active>.tooltip { display:block
+    }
+    .bm-tooltip--direction-top { left:calc(50% + .25rem);bottom:calc(100% + .5rem);transform:translateX(calc(-50% - 4px))
+    }
+    .bm-tooltip--direction-bottom { top:calc(100% + .5rem);left:calc(50% + .25rem);transform:translateX(calc(-50% - 4px))
+    }
+    .bm-tooltip--direction-left { top:calc(50% + .25rem);right:calc(100% + .5rem);transform:translateY(calc(-50% - 4px))
+    }
+    .bm-tooltip--direction-right { top:calc(50% + .25rem);left:calc(100% + .5rem);transform:translateY(calc(-50% - 4px))
+    }
+}

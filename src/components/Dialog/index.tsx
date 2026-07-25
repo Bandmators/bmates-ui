@@ -1,4 +1,4 @@
-import { cx } from '@/styles/panda';
+import { cx } from '@/styles/classnames';
 
 import { dialogDescriptionRecipe, dialogFooterRecipe, dialogHeaderRecipe, dialogTitleRecipe } from './dialog.recipe';
 

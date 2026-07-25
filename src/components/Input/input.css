@@ -1,0 +1,46 @@
+@layer bmates.components {
+    .bm-input { width: 100%; padding: .5rem .75rem; border: 1px solid var(--border-strong); border-radius: var(--radius); outline: 0; color: var(--text); background: transparent; font: inherit; font-size: .875rem; line-height: 1.25rem; transition: border-color var(--transition),box-shadow var(--transition)
+    }
+    .bm-input::placeholder { color: var(--faint)
+    }
+    .bm-input:focus { border-color: var(--focus-border); box-shadow: var(--focus-shadow)
+    }
+    .bm-input--disabled { opacity: .7; background: var(--surface-hover); cursor: not-allowed
+    }
+    .bm-input__description { margin: 0; color: var(--muted); font-size: .875rem; line-height: 1.25rem
+    }
+    .bm-input-group { display: grid; align-items: center; gap: .5rem
+    }
+    .bm-file-input { display: flex; flex-direction: column; gap: .5rem
+    }
+    .bm-file-input__input { display: none
+    }
+    .bm-file-input__label { display: inline-flex; align-items: center; justify-content: center; gap: .4rem; padding: .5rem 1rem; border: 1px solid transparent; border-radius: var(--radius); font-size: .875rem; font-weight: 500; line-height: 1.25rem; text-align: center; cursor: pointer; transition: background-color var(--transition),border-color var(--transition),color var(--transition)
+    }
+    .bm-file-input__label--disabled { opacity: .5; pointer-events: none; cursor: not-allowed
+    }
+    .bm-file-input__label--variant-default { border-color: var(--border-strong); color: var(--text); background: var(--surface)
+    }
+    .bm-file-input__label--variant-default:hover, .bm-file-input__label--variant-outline:hover, .bm-file-input__label--variant-ghost:hover { background: var(--surface-hover)
+    }
+    .bm-file-input__label--variant-outline, .bm-file-input__label--variant-ghost { color: var(--text); background: transparent
+    }
+    .bm-file-input__label--variant-outline { border-color: var(--border-strong)
+    }
+    .bm-file-input__label--variant-primary, .bm-file-input__label--variant-secondary, .bm-file-input__label--variant-success, .bm-file-input__label--variant-danger, .bm-file-input__label--variant-warning, .bm-file-input__label--variant-info { color: var(--bm-file-fg); border-color: var(--bm-file-bg); background: var(--bm-file-bg)
+    }
+    .bm-file-input__label--variant-primary { --bm-file-fg:var(--primary-fg);--bm-file-bg:var(--primary);--bm-file-hover:var(--primary-hover)
+    }
+    .bm-file-input__label--variant-secondary { --bm-file-fg:var(--secondary-fg);--bm-file-bg:var(--secondary);--bm-file-hover:var(--secondary-hover)
+    }
+    .bm-file-input__label--variant-success { --bm-file-fg:var(--success-fg);--bm-file-bg:var(--success);--bm-file-hover:var(--success-hover)
+    }
+    .bm-file-input__label--variant-danger { --bm-file-fg:var(--danger-fg);--bm-file-bg:var(--danger);--bm-file-hover:var(--danger-hover)
+    }
+    .bm-file-input__label--variant-warning { --bm-file-fg:var(--warning-fg);--bm-file-bg:var(--warning);--bm-file-hover:var(--warning-hover)
+    }
+    .bm-file-input__label--variant-info { --bm-file-fg:var(--info-fg);--bm-file-bg:var(--info);--bm-file-hover:var(--info-hover)
+    }
+    .bm-file-input__label--variant-primary:hover, .bm-file-input__label--variant-secondary:hover, .bm-file-input__label--variant-success:hover, .bm-file-input__label--variant-danger:hover, .bm-file-input__label--variant-warning:hover, .bm-file-input__label--variant-info:hover { border-color: var(--bm-file-hover); background: var(--bm-file-hover)
+    }
+}

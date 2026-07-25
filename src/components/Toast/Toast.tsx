@@ -1,4 +1,4 @@
-import { cx } from '@/styles/panda';
+import { cx } from '@/styles/classnames';
 import React from 'react';
 
 import { composeEventHandlers } from '@/libs/event';

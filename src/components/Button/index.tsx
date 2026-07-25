@@ -1,4 +1,4 @@
-import { cx } from '@/styles/panda';
+import { cx } from '@/styles/classnames';
 import React, { ComponentPropsWithoutRef } from 'react';
 
 import { SizeType } from '@/types/size';
@@ -27,12 +27,7 @@ export interface ButtonProps extends ComponentPropsWithoutRef<'button'>, ButtonV
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'default', size = 'md', children, full = false, disabled, ...props }, ref) => {
     return (
-      <button
-        ref={ref}
-        className={cx(buttonRecipe({ variant, full, size, disabled: disabled }), className)}
-        disabled={disabled}
-        {...props}
-      >
+      <button ref={ref} className={cx(buttonRecipe({ variant, full, size }), className)} disabled={disabled} {...props}>
         {children}
       </button>
     );

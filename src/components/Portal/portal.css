@@ -1,0 +1,6 @@
+@layer bmates.components {
+    .bm-portal { position: fixed; top: 0; left: 0; z-index: 50; display: grid; min-width: max-content; max-width: 100%; padding: .3rem; border: 1px solid var(--border); border-radius: var(--radius); outline: 0; color: var(--text); background: var(--elevated); box-shadow: var(--shadow); pointer-events: auto; animation: bm-portal-enter .16s var(--ease-out)
+    }
+    .bm-portal__backdrop { position: fixed; inset: 0; z-index: 50; background: transparent; pointer-events: auto
+    }
+}

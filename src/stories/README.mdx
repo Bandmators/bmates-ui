@@ -1,7 +1,6 @@
 import { Unstyled } from '@storybook/blocks';
 
 import {
-  BMatesProvider,
   Button,
   Card,
   CardBody,
@@ -31,15 +30,17 @@ npm i bmates-ui
 
 <br />
 
-### BMatesProvider
+### Stylesheet
 
-Add Styled Component, `BMatesProvider`
+Import the stylesheet once at your application entry. It includes the component
+styles, global base styles, and default design tokens.
 
 ```jsx
-import { BMatesProvider } from 'bmates-ui';
-
-<BMatesProvider>{/* ... */}</BMatesProvider>;
+import 'bmates-ui/style.css';
 ```
+
+`BMatesProvider` remains available as a deprecated compatibility wrapper, but
+it no longer injects styles.
 
 <br />
 
@@ -47,23 +48,21 @@ import { BMatesProvider } from 'bmates-ui';
 
 <Unstyled>
   <div style={{ padding: '0.25rem 1rem', margin: '0 auto', maxWidth: '500px' }}>
-    <BMatesProvider>
-      <Card>
-        <CardHead>
-          <CardTitle>CardTitle</CardTitle>
-          <CardDesc>CardDesc..</CardDesc>
-        </CardHead>
-        <CardBody>
-          <InputGroup>
-            <Label htmlFor="bio">Label</Label>
-            <Input id="bio" />
-            <InputDesc>You can @mention other users to link to them.</InputDesc>
-          </InputGroup>
-        </CardBody>
-        <CardFooter>
-          <Button variant="primary">CardFooter</Button>
-        </CardFooter>
-      </Card>
-    </BMatesProvider>
+    <Card>
+      <CardHead>
+        <CardTitle>CardTitle</CardTitle>
+        <CardDesc>CardDesc..</CardDesc>
+      </CardHead>
+      <CardBody>
+        <InputGroup>
+          <Label htmlFor="bio">Label</Label>
+          <Input id="bio" />
+          <InputDesc>You can @mention other users to link to them.</InputDesc>
+        </InputGroup>
+      </CardBody>
+      <CardFooter>
+        <Button variant="primary">CardFooter</Button>
+      </CardFooter>
+    </Card>
   </div>
 </Unstyled>

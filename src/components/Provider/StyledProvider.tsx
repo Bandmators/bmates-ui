@@ -1,12 +1,5 @@
-import GlobalStyle from '@/styles/GlobalStyle.tsx';
 import { PropsWithChildren } from 'react';
 
-const StyledProvider = ({ children }: PropsWithChildren) => {
-  return (
-    <>
-      <GlobalStyle />
-      {children}
-    </>
-  );
-};
+/** @deprecated Import `bmates-ui/style.css`; this compatibility provider has no runtime styling work. */
+const StyledProvider = ({ children }: PropsWithChildren) => <>{children}</>;
 export default StyledProvider;

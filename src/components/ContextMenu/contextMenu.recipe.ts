@@ -1,3 +1,3 @@
-import { cva } from '../../../styled-system/css';
+import { createRecipe } from '@/styles/recipe';
 
-export const contextMenuListRecipe = cva({ base: { margin: 0, padding: 0 } });
+export const contextMenuListRecipe = createRecipe('bm-context-menu');

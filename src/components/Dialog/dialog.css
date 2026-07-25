@@ -1,0 +1,22 @@
+@layer bmates.components {
+    .bm-dialog__header { display: flex; flex-direction: column
+    }
+    .bm-dialog__footer { display: flex; align-items: flex-start; gap: .5rem
+    }
+    .bm-dialog__footer--justify-start { justify-content: flex-start
+    }
+    .bm-dialog__footer--justify-end { justify-content: flex-end
+    }
+    .bm-dialog__title { margin: 0; font-weight: 600; line-height: 1
+    }
+    .bm-dialog__description { margin: .375rem 0; color: var(--muted); font-size: .875rem; font-weight: 400; line-height: 1.4
+    }
+    .bm-dialog__backdrop { position: fixed; inset: 0; z-index: 50; pointer-events: auto; background: var(--overlay); animation-duration: .15s
+    }
+    .bm-dialog { position: fixed; top: 50%; left: 50%; z-index: 50; display: grid; width: 100%; gap: 1rem; padding: 1.5rem; transform: translate(-50%,-50%); border-radius: var(--radius-lg); color: var(--text); background: var(--elevated); box-shadow: var(--shadow-lg); pointer-events: auto; animation-duration: .15s
+    }
+    .bm-dialog__close { position: absolute; top: 1rem; right: 1rem; padding: 0; border: 0; background: transparent; opacity: .5; cursor: pointer
+    }
+    .bm-dialog__close svg { width: 1rem; height: 1rem
+    }
+}

@@ -1,0 +1,18 @@
+@layer bmates.components {
+    .bm-toggle { display:inline-flex;align-items:center;justify-content:center;padding:.5rem;border:1px solid transparent;border-radius:var(--radius);outline:0;color:var(--text);background:transparent;font-weight:500;white-space:nowrap;cursor:pointer;transition:background-color var(--transition),border-color var(--transition)
+    }
+    .bm-toggle:focus-visible { box-shadow:var(--focus-shadow)
+    }
+    .bm-toggle--selected { border-color:var(--border-strong);background:var(--surface-active)
+    }
+    .bm-toggle:not(.bm-toggle--selected):hover { background:var(--surface-hover)
+    }
+    .bm-toggle--size-sm { padding:.25rem
+    }
+    .bm-toggle--size-md { padding:.5rem
+    }
+    .bm-toggle--size-lg { padding:.75rem
+    }
+    .bm-toggle--disabled { opacity:.7;background:var(--surface-hover);cursor:not-allowed
+    }
+}

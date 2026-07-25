@@ -1,0 +1,81 @@
+@layer bmates.components {
+    .bm-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    outline: none;
+    color: var(--text);
+    background-color: var(--surface);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color var(--transition), border-color var(--transition), color var(--transition)
+    }
+    .bm-button:focus-visible {
+    border-color: var(--focus-border);
+    box-shadow: var(--focus-shadow)
+    }
+    .bm-button:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed
+    }
+    .bm-button--variant-default {
+    border-color: var(--border-strong)
+    }
+    .bm-button--variant-default:hover, .bm-button--variant-outline:hover, .bm-button--variant-ghost:hover {
+    background-color: var(--surface-hover)
+    }
+    .bm-button--variant-primary, .bm-button--variant-secondary, .bm-button--variant-success, .bm-button--variant-danger, .bm-button--variant-warning, .bm-button--variant-info {
+    color: var(--bm-button-fg);
+    border-color: var(--bm-button-bg);
+    background-color: var(--bm-button-bg)
+    }
+    .bm-button--variant-primary { --bm-button-bg: var(--primary); --bm-button-fg: var(--primary-fg)
+    }
+    .bm-button--variant-secondary { --bm-button-bg: var(--secondary); --bm-button-fg: var(--secondary-fg)
+    }
+    .bm-button--variant-success { --bm-button-bg: var(--success); --bm-button-fg: var(--success-fg)
+    }
+    .bm-button--variant-danger { --bm-button-bg: var(--danger); --bm-button-fg: var(--danger-fg)
+    }
+    .bm-button--variant-warning { --bm-button-bg: var(--warning); --bm-button-fg: var(--warning-fg)
+    }
+    .bm-button--variant-info { --bm-button-bg: var(--info); --bm-button-fg: var(--info-fg)
+    }
+    .bm-button--variant-primary:hover { --bm-button-bg: var(--primary-hover)
+    }
+    .bm-button--variant-secondary:hover { --bm-button-bg: var(--secondary-hover)
+    }
+    .bm-button--variant-success:hover { --bm-button-bg: var(--success-hover)
+    }
+    .bm-button--variant-danger:hover { --bm-button-bg: var(--danger-hover)
+    }
+    .bm-button--variant-warning:hover { --bm-button-bg: var(--warning-hover)
+    }
+    .bm-button--variant-info:hover { --bm-button-bg: var(--info-hover)
+    }
+    .bm-button--variant-outline, .bm-button--variant-ghost {
+    color: var(--text);
+    background-color: transparent
+    }
+    .bm-button--variant-outline { border-color: var(--border-strong)
+    }
+    .bm-button--size-sm { padding: 0.375rem 0.75rem
+    }
+    .bm-button--size-md { padding: 0.5rem 1rem
+    }
+    .bm-button--size-lg { padding: 0.75rem 1.5rem
+    }
+    .bm-button--size-icon { padding: 0.5rem
+    }
+    .bm-button--size-icon img { width: 20px; height: 20px
+    }
+    .bm-button--full { width: 100%
+    }
+}

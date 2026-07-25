@@ -38,16 +38,14 @@
   ],
   "scripts": {
     "dev": "concurrently \"pnpm storybook\" \"pnpm build\"",
-    "build": "panda codegen && panda cssgen --clean && tsc && vite build --watch",
-    "buildOnce": "panda codegen && panda cssgen --clean && tsc && vite build",
-    "panda:watch": "concurrently \"pnpm exec panda codegen --watch\" \"pnpm run panda:css:watch\"",
-    "panda:css:watch": "pnpm exec panda cssgen --watch --splitting",
+    "build": "tsc && vite build --watch",
+    "buildOnce": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "prepare": "panda codegen && panda cssgen --clean && husky install",
+    "prepare": "husky install",
     "test": "vitest",
     "testOnce": "vitest run --run --coverage"
   },
@@ -68,7 +66,6 @@
   "devDependencies": {
     "@commitlint/cli": "^18.4.4",
     "@commitlint/config-conventional": "^18.4.4",
-    "@pandacss/dev": "^1.11.1",
     "@storybook/addon-docs": "7.6.24",
     "@storybook/addon-essentials": "7.6.24",
     "@storybook/addon-interactions": "7.6.24",

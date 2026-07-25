@@ -1,4 +1,4 @@
-import { cx } from '@/styles/panda';
+import { cx } from '@/styles/classnames';
 import * as React from 'react';
 
 import { textareaRecipe } from './textarea.recipe';
