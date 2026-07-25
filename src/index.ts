@@ -5,3 +5,15 @@ import './styles/theme-vars.css';
 export * from './components';
 export * from './libs';
 export { buttonClasses } from './components/Button/button.recipe';
+export {
+  BMateBreakpoints,
+  BMateColorScales,
+  BMateColors,
+  BMateColorsDark,
+  BMateContainers,
+  BMateFontSizes,
+  BMateSpacing,
+  BMateTokens,
+  BMateTokensDark,
+  BMateTypography,
+} from './styles/theme';

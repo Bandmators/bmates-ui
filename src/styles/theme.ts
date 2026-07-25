@@ -4,6 +4,18 @@ export const BMateColors = {
   black: '#212121',
   primary: '#212121',
   secondary: '#E0E0E0',
+  primaryScale: {
+    50: '#FAFAFA',
+    100: '#F5F5F5',
+    200: '#EEEEEE',
+    300: '#E0E0E0',
+    400: '#BDBDBD',
+    500: '#9E9E9E',
+    600: '#757575',
+    700: '#616161',
+    800: '#424242',
+    900: '#212121',
+  },
   gray: {
     50: '#FAFAFA',
     100: '#F5F5F5',
@@ -18,6 +30,54 @@ export const BMateColors = {
   },
   danger: '#dc2626',
   warning: '#d97706',
+  successScale: {
+    50: '#f0fdf4',
+    100: '#dcfce7',
+    200: '#bbf7d0',
+    300: '#86efac',
+    400: '#4ade80',
+    500: '#22c55e',
+    600: '#16a34a',
+    700: '#15803d',
+    800: '#166534',
+    900: '#14532d',
+  },
+  dangerScale: {
+    50: '#fef2f2',
+    100: '#fee2e2',
+    200: '#fecaca',
+    300: '#fca5a5',
+    400: '#f87171',
+    500: '#ef4444',
+    600: '#dc2626',
+    700: '#b91c1c',
+    800: '#991b1b',
+    900: '#7f1d1d',
+  },
+  warningScale: {
+    50: '#fffbeb',
+    100: '#fef3c7',
+    200: '#fde68a',
+    300: '#fcd34d',
+    400: '#fbbf24',
+    500: '#f59e0b',
+    600: '#d97706',
+    700: '#b45309',
+    800: '#92400e',
+    900: '#78350f',
+  },
+  infoScale: {
+    50: '#eff6ff',
+    100: '#dbeafe',
+    200: '#bfdbfe',
+    300: '#93c5fd',
+    400: '#60a5fa',
+    500: '#3b82f6',
+    600: '#2563eb',
+    700: '#1d4ed8',
+    800: '#1e40af',
+    900: '#1e3a8a',
+  },
 
   // primary (brand neutral)
   'primary-fg': '#ffffff',
@@ -84,6 +144,16 @@ export const BMateColors = {
 };
 export type ColorTypes = typeof BMateColors;
 
+export const BMateColorScales = {
+  primary: BMateColors.primaryScale,
+  success: BMateColors.successScale,
+  danger: BMateColors.dangerScale,
+  warning: BMateColors.warningScale,
+  info: BMateColors.infoScale,
+  gray: BMateColors.gray,
+} as const;
+export type ColorScaleTypes = typeof BMateColorScales;
+
 /**
  * Non-color design tokens (radius scale, easing curves, elevation shadows).
  */
@@ -102,6 +172,48 @@ export const BMateTokens = {
   'shadow-lg': '0 12px 32px rgba(33, 33, 33, 0.14)',
 };
 export type TokenTypes = typeof BMateTokens;
+
+export const BMateSpacing = {
+  0: '0',
+  1: '0.25rem',
+  2: '0.5rem',
+  3: '0.75rem',
+  4: '1rem',
+  5: '1.25rem',
+  6: '1.5rem',
+  8: '2rem',
+  10: '2.5rem',
+  12: '3rem',
+  16: '4rem',
+  20: '5rem',
+  24: '6rem',
+} as const;
+export type SpacingTypes = typeof BMateSpacing;
+
+export const BMateTypography = {
+  'font-sans': "'Barlow', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif",
+  'font-mono': "'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace",
+  'font-size-xs': '0.75rem',
+  'font-size-sm': '0.875rem',
+  'font-size-md': '1rem',
+  'font-size-lg': '1.125rem',
+  'font-size-xl': '1.25rem',
+  'font-size-2xl': '1.5rem',
+  'font-size-3xl': '1.875rem',
+  'font-size-4xl': '2.25rem',
+  'line-height-tight': '1.2',
+  'line-height-normal': '1.5',
+  'line-height-relaxed': '1.7',
+} as const;
+export type TypographyTypes = typeof BMateTypography;
+
+export const BMateContainers = {
+  sm: '40rem',
+  md: '48rem',
+  lg: '64rem',
+  xl: '80rem',
+} as const;
+export type ContainerTypes = typeof BMateContainers;
 
 /**
  * Dark theme overrides — applied under `html[data-theme='dark']`.
@@ -185,20 +297,40 @@ export const BMateTokensDark = {
   'shadow-lg': '0 12px 32px rgba(0, 0, 0, 0.55)',
 };
 
-export const BMateFontSizes = {};
+export const BMateFontSizes = {
+  xs: BMateTypography['font-size-xs'],
+  sm: BMateTypography['font-size-sm'],
+  md: BMateTypography['font-size-md'],
+  lg: BMateTypography['font-size-lg'],
+  xl: BMateTypography['font-size-xl'],
+  '2xl': BMateTypography['font-size-2xl'],
+  '3xl': BMateTypography['font-size-3xl'],
+  '4xl': BMateTypography['font-size-4xl'],
+} as const;
 export type FontSizeTypes = typeof BMateFontSizes;
 
 export const BMateBreakpoints = {
+  xs: '0px',
+  sm: '576px',
+  md: '768px',
+  lg: '1024px',
+  xl: '1200px',
+  '2xl': '1440px',
+  // Legacy aliases retained for existing consumers.
   desktopLarge: '1200px',
   desktop: '1024px',
   tablet: '768px',
   mobile: '576px',
-};
+} as const;
 export type BreakpointTypes = typeof BMateBreakpoints;
 
 const theme = {
   colors: BMateColors,
+  colorScales: BMateColorScales,
   tokens: BMateTokens,
+  spacing: BMateSpacing,
+  typography: BMateTypography,
+  containers: BMateContainers,
   colorsDark: BMateColorsDark,
   tokensDark: BMateTokensDark,
   fontSizes: BMateFontSizes,

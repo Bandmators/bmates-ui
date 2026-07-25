@@ -39,14 +39,37 @@ import { Button, Dropdown, DropdownContent, DropdownItem, DropdownToggle } from 
 import 'bmates-ui/style.css';
 ```
 
-Override semantic CSS variables in your app only when you want to customize the
-theme.
+## Tokens
+
+The stylesheet exposes primitive color scales, semantic component tokens, and
+layout tokens. Prefer semantic tokens in application UI; use a scale when a
+specific tonal step is genuinely required.
 
 ```css
 :root {
   --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-100: #dbeafe;
+  --space-6: 1.5rem;
   --radius: 8px;
 }
+```
+
+Available scales include `--primary-50` through `--primary-900`, plus
+`--success-*`, `--danger-*`, `--warning-*`, `--info-*`, and `--gray-*`.
+
+For responsive CSS, use the supplied responsive aliases such as
+`--layout-gutter-responsive`, `--font-size-body`, and `--font-size-heading`.
+They update at the shared `sm` and `lg` breakpoints. CSS variables cannot be
+used as `@media` conditions, so TypeScript exports the same breakpoint values
+for CSS-in-JS and application logic.
+
+```ts
+import { BMateBreakpoints, BMateColorScales, minMedia } from 'bmates-ui';
+
+BMateBreakpoints.lg; // '1024px'
+BMateColorScales.primary[100]; // '#F5F5F5'
+minMedia.lg; // '@media screen and (min-width: 1024px)'
 ```
 
 `BMatesProvider` is deprecated and retained only as a compatibility wrapper. It
