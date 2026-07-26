@@ -7,8 +7,9 @@ import { composeEventHandlers, excludeTouchEventHandler } from '@/libs/event';
 import { composeRefs } from '@/libs/ref';
 
 import { Button } from '../../';
+import type { ButtonProps } from '../Button';
 
-type ComponentPropsWithoutRef<E extends React.ElementType> = React.ComponentPropsWithoutRef<E> & {
+type DropdownToggleProps = ButtonProps & {
   asChild?: boolean;
 };
 
@@ -16,12 +17,12 @@ type ComponentPropsWithoutRef<E extends React.ElementType> = React.ComponentProp
  * DropdownToggle
  * @returns
  */
-export const DropdownToggle = React.forwardRef<HTMLButtonElement, ComponentPropsWithoutRef<'button'>>(
+export const DropdownToggle = React.forwardRef<HTMLButtonElement, DropdownToggleProps>(
   ({ asChild, onClick, onPointerEnter, onPointerLeave, ...props }, ref) => {
     const { hoverOpen, setShowModal, setToggleElment, openHover } = useContext(PortalContext);
     const compRef = React.useRef<HTMLButtonElement | null>(null);
 
-    const Comp = asChild ? Slot : Button;
+    const Comp: React.ElementType = asChild ? Slot : Button;
 
     const syncToggle = () => {
       if (compRef.current) {

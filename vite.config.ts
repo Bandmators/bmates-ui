@@ -9,7 +9,7 @@ import { coverageConfigDefaults } from 'vitest/config';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), tsconfigPaths(), dts()],
+  plugins: [react(), tsconfigPaths(), dts({ rollupTypes: true })],
   test: {
     globals: true,
     environment: 'jsdom',

@@ -7,8 +7,9 @@ import { composeEventHandlers } from '@/libs/event';
 import { composeRefs } from '@/libs/ref';
 
 import { Button } from '../..';
+import type { ButtonProps } from '../Button';
 
-type ComponentPropsWithoutRef<E extends React.ElementType> = React.ComponentPropsWithoutRef<E> & {
+type SearchToggleProps = ButtonProps & {
   asChild?: boolean;
 };
 
@@ -16,12 +17,12 @@ type ComponentPropsWithoutRef<E extends React.ElementType> = React.ComponentProp
  * SearchToggle
  * @returns
  */
-export const SearchToggle = React.forwardRef<HTMLButtonElement, ComponentPropsWithoutRef<'button'>>(
+export const SearchToggle = React.forwardRef<HTMLButtonElement, SearchToggleProps>(
   ({ asChild, onClick, ...props }, ref) => {
     const { setShowModal, setToggleElment } = useContext(PortalContext);
     const compRef = React.useRef<HTMLButtonElement | null>(null);
 
-    const Comp = asChild ? Slot : Button;
+    const Comp: React.ElementType = asChild ? Slot : Button;
 
     return (
       <Comp
