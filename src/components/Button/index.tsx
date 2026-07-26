@@ -24,6 +24,11 @@ export interface ButtonVariantProps {
 }
 export interface ButtonProps extends ComponentPropsWithoutRef<'button'>, ButtonVariantProps {}
 
+/** Props shared by components that render a Button unless `asChild` is used. */
+export interface ButtonAsChildProps extends ButtonProps {
+  asChild?: boolean;
+}
+
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'default', size = 'md', children, full = false, disabled, ...props }, ref) => {
     return (

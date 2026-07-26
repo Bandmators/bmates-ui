@@ -7,17 +7,13 @@ import { composeEventHandlers } from '@/libs/event';
 import { composeRefs } from '@/libs/ref';
 
 import { Button } from '../..';
-import type { ButtonProps } from '../Button';
-
-type SearchToggleProps = ButtonProps & {
-  asChild?: boolean;
-};
+import type { ButtonAsChildProps } from '../Button';
 
 /**
  * SearchToggle
  * @returns
  */
-export const SearchToggle = React.forwardRef<HTMLButtonElement, SearchToggleProps>(
+export const SearchToggle = React.forwardRef<HTMLButtonElement, ButtonAsChildProps>(
   ({ asChild, onClick, ...props }, ref) => {
     const { setShowModal, setToggleElment } = useContext(PortalContext);
     const compRef = React.useRef<HTMLButtonElement | null>(null);

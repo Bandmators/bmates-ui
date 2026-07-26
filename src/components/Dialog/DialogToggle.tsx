@@ -5,21 +5,18 @@ import useContext from '@/hooks/useContext';
 import { composeEventHandlers } from '@/libs/event';
 
 import { Button } from '../';
+import type { ButtonAsChildProps } from '../Button';
 import DialogContext from './DialogContext';
-
-type ComponentPropsWithoutRef<E extends React.ElementType> = React.ComponentPropsWithoutRef<E> & {
-  asChild?: boolean;
-};
 
 /**
  * DialogToggle
  * @returns
  */
-export const DialogToggle = React.forwardRef<HTMLButtonElement, ComponentPropsWithoutRef<'button'>>(
+export const DialogToggle = React.forwardRef<HTMLButtonElement, ButtonAsChildProps>(
   ({ asChild, onClick, ...props }, ref) => {
     const { setShowModal } = useContext(DialogContext);
 
-    const Comp = asChild ? Slot : Button;
+    const Comp: React.ElementType = asChild ? Slot : Button;
 
     return (
       <Comp
