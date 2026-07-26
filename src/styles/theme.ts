@@ -1,21 +1,36 @@
+export const BMatePrimaryLightScale = {
+  50: '#FAFAFA',
+  100: '#F5F5F5',
+  200: '#EEEEEE',
+  300: '#E0E0E0',
+  400: '#BDBDBD',
+  500: '#9E9E9E',
+  600: '#757575',
+  700: '#616161',
+  800: '#424242',
+  900: '#212121',
+} as const;
+
+export const BMatePrimaryDarkScale = {
+  50: '#1E1E20',
+  100: '#29292D',
+  200: '#323237',
+  300: '#3A3A40',
+  400: '#55555D',
+  500: '#76767E',
+  600: '#A6A6AE',
+  700: '#D4D4D8',
+  800: '#E4E4E7',
+  900: '#FAFAFA',
+} as const;
+
 export const BMateColors = {
   background: '#FFF',
   white: '#FAFAFA',
   black: '#212121',
   primary: '#212121',
   secondary: '#F1F3F5',
-  primaryScale: {
-    50: '#FAFAFA',
-    100: '#F5F5F5',
-    200: '#EEEEEE',
-    300: '#E0E0E0',
-    400: '#BDBDBD',
-    500: '#9E9E9E',
-    600: '#757575',
-    700: '#616161',
-    800: '#424242',
-    900: '#212121',
-  },
+  primaryScale: BMatePrimaryLightScale,
   gray: {
     50: '#FAFAFA',
     100: '#F5F5F5',
@@ -146,6 +161,8 @@ export type ColorTypes = typeof BMateColors;
 
 export const BMateColorScales = {
   primary: BMateColors.primaryScale,
+  primaryLight: BMatePrimaryLightScale,
+  primaryDark: BMatePrimaryDarkScale,
   success: BMateColors.successScale,
   danger: BMateColors.dangerScale,
   warning: BMateColors.warningScale,

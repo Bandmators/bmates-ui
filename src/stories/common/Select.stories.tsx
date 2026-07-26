@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
 
-import { Select, SelectContent, SelectDivider, SelectItem, SelectLabel, SelectToggle } from '../../';
+import { Select, SelectContent, SelectDivider, SelectItem, SelectLabel, SelectToggle, SelectType } from '../../';
 
 const meta = {
   title: 'common/Select',
@@ -19,6 +19,44 @@ const meta = {
 export default meta;
 
 type Story = StoryObj<typeof Select>;
+
+function ControlledSelect() {
+  const [value, setValue] = React.useState<SelectType[]>([]);
+
+  return (
+    <div style={{ display: 'grid', gap: '0.75rem', width: '16rem' }}>
+      <Select value={value} onValueChange={setValue} align="start">
+        <SelectToggle>Select environment</SelectToggle>
+        <SelectContent width="16rem">
+          <SelectItem value="development">Development</SelectItem>
+          <SelectItem value="staging">Staging</SelectItem>
+          <SelectItem value="production">Production</SelectItem>
+        </SelectContent>
+      </Select>
+      <output style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>Selected: {value[0]?.textValue ?? 'None'}</output>
+    </div>
+  );
+}
+
+function ControlledMultiSelectStory() {
+  const [value, setValue] = React.useState<SelectType[]>([]);
+
+  return (
+    <div style={{ display: 'grid', gap: '0.75rem', width: '16rem' }}>
+      <Select value={value} onValueChange={setValue} align="start" multi>
+        <SelectToggle>Filter status</SelectToggle>
+        <SelectContent width="16rem">
+          <SelectItem value="ready">Ready</SelectItem>
+          <SelectItem value="draft">Draft</SelectItem>
+          <SelectItem value="archived">Archived</SelectItem>
+        </SelectContent>
+      </Select>
+      <output style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>
+        Selected: {value.length ? value.map(item => item.textValue).join(', ') : 'None'}
+      </output>
+    </div>
+  );
+}
 
 export const Default: Story = {
   args: {},
@@ -67,6 +105,14 @@ export const MultiSelect: Story = {
       </>
     ),
   },
+};
+
+export const Controlled: Story = {
+  render: () => <ControlledSelect />,
+};
+
+export const ControlledMultiSelect: Story = {
+  render: () => <ControlledMultiSelectStory />,
 };
 
 export const RichItemContent: Story = {

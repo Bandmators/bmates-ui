@@ -7,6 +7,7 @@ export * from './Select';
 export * from './SelectContent';
 export * from './SelectToggle';
 export * from './SelectItem';
+export type { SelectType } from './type';
 
 export const SelectLabel = ({ className, ...props }: React.ComponentPropsWithoutRef<'h2'>) => (
   <h2 className={cx(selectLabelRecipe(), className)} {...props} />

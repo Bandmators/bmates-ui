@@ -2,7 +2,15 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 import { maxMedia, minMedia } from '../libs/media';
-import { BMateBreakpoints, BMateColorScales, BMateColors, BMateSpacing, BMateTypography } from '../styles/theme';
+import {
+  BMateBreakpoints,
+  BMateColorScales,
+  BMateColors,
+  BMatePrimaryDarkScale,
+  BMatePrimaryLightScale,
+  BMateSpacing,
+  BMateTypography,
+} from '../styles/theme';
 
 describe('Lib test', () => {
   test('generates correct media query strings', () => {
@@ -16,6 +24,9 @@ describe('Lib test', () => {
   test('exposes a shared primitive and responsive token contract', () => {
     expect(BMateColors.primaryScale[100]).toBe('#F5F5F5');
     expect(BMateColorScales.primary[100]).toBe('#F5F5F5');
+    expect(BMatePrimaryLightScale[100]).toBe('#F5F5F5');
+    expect(BMatePrimaryDarkScale[100]).toBe('#29292D');
+    expect(BMateColorScales.primaryDark[100]).toBe('#29292D');
     expect(BMateColors.secondary).toBe('#F1F3F5');
     expect(BMateColors.infoScale[600]).toBe('#2563eb');
     expect(BMateColors.success).toBe('#22c55e');
@@ -30,6 +41,10 @@ describe('Lib test', () => {
     const css = readFileSync(resolve(process.cwd(), 'src/styles/theme-vars.css'), 'utf8');
 
     expect(css).toContain('--primary-100: #f5f5f5');
+    expect(css).toContain('--primary-light-100: #f5f5f5');
+    expect(css).toContain('--primary-dark-100: #29292d');
+    expect(css).toContain('--secondary-dark-soft: #29292d');
+    expect(css).toContain('--success-dark-soft-fg: #4ade80');
     expect(css).toContain('--info-600: #2563eb');
     expect(css).toContain('--success: var(--success-500)');
     expect(css).toContain('--info-fg: #ffffff');

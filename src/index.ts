@@ -10,6 +10,8 @@ export {
   BMateColorScales,
   BMateColors,
   BMateColorsDark,
+  BMatePrimaryDarkScale,
+  BMatePrimaryLightScale,
   BMateContainers,
   BMateFontSizes,
   BMateSpacing,
