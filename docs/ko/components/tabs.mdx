@@ -1,20 +1,22 @@
 ﻿---
 title: Tabs
-description: ??踰덉뿉 ?섎굹???뱀뀡???쒖떆?섎뒗 ?⑤꼸 吏묓빀?낅땲??
+description: 여러 패널 중 한 번에 하나의 섹션만 보여주는 컴포넌트입니다.
 navTitle: Tabs
 ---
 
 # Tabs
 
-??踰덉뿉 ?섎굹???뱀뀡???쒖떆?섎뒗 ?⑤꼸 吏묓빀?낅땲??
+여러 패널 중 한 번에 하나의 섹션만 보여주는 컴포넌트입니다.
 
-## 媛?몄삤湲?
+## 가져오기
+
 ```tsx
 import { Tabs, TabsList, TabsTrigger, TabsContent } from 'bmates-ui';
 ```
 
-## 湲곕낯 ?ъ슜踰?
-?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+## 기본 사용법
+
+아래 예제는 기본 Storybook 구성을 바탕으로 하며 구현을 시작할 때 활용할 수 있습니다.
 
 ```tsx
 <Tabs defaultValue="overview">
@@ -27,7 +29,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from 'bmates-ui';
 </Tabs>
 ```
 
-## 誘몃━蹂닿린
+## 미리보기
 
 :::: playground[Tabs]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "tabs", example: "default" }} minHeight={160} />
@@ -43,74 +45,75 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from 'bmates-ui';
 ```
 ::::
 
-## Props 誘몃━蹂닿린
+## 주요 속성 미리보기
 
-?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+아래 예제에서는 시각적 결과나 상호작용을 바꾸는 주요 속성을 각각 확인할 수 있습니다.
 
-### ?쒖뼱 ?곹깭
+### 제어 값
 
-:::: playground[?쒖뼱 ?곹깭]{isolation="inline"}
+:::: playground[제어 값]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "tabs", example: "controlled" }} minHeight={160} />
 ```tsx
 <Tabs value={value} onValueChange={setValue} defaultValue="profile">...</Tabs>
 ```
 ::::
 
-### Size
+### 크기
 
-:::: playground[Size]{isolation="inline"}
+:::: playground[크기]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "tabs", example: "large" }} minHeight={170} />
 ```tsx
 <Tabs size="lg" defaultValue="profile">...</Tabs>
 ```
 ::::
 
-### 鍮꾪솢????
-:::: playground[鍮꾪솢????]{isolation="inline"}
+### 비활성화 탭
+
+:::: playground[비활성화 탭]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "tabs", example: "disabled" }} minHeight={160} />
 ```tsx
 <TabsTrigger value="settings" disabled>Settings</TabsTrigger>
 ```
 ::::
 
-## 而댄룷?뚰듃 API
+## 컴포넌트 API
 
 :::: api-list
 ::: api-item
 :property: `value`
 :type: `string`
-Controlled active tab value.
+외부에서 제어하는 활성 탭 값입니다.
 :::
 ::: api-item
 :property: `defaultValue`
 :type: `string`
-Required initial active tab value.
+필수 초기 활성 탭 값입니다.
 :::
 ::: api-item
 :property: `onValueChange`
 :type: `(value: string) => void`
-Called after a tab is activated.
+탭이 활성화된 뒤 호출됩니다.
 :::
 ::: api-item
 :property: `size`
 :type: `xs` | `sm` | `md` | `lg` | `xl`
 :default: `md`
-Tab control size.
+탭 컨트롤의 크기입니다.
 :::
 ::: api-item
 :property: `TabsTrigger.value`
 :type: `string`
-Required value paired with a panel.
+패널과 연결되는 필수 값입니다.
 :::
 ::: api-item
 :property: `TabsContent.value`
 :type: `string`
-Required value of its matching trigger.
+연결된 트리거와 일치하는 필수 값입니다.
 :::
 ::::
 
-## ?ъ슜 ?덈궡
+## 사용 참고사항
 
-- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
-- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
-- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.
+- 문서에 표시된 모든 컴포넌트는 `bmates-ui`에서 내보냅니다.
+- 별도 설명이 없다면 각 컴포넌트는 기반 HTML 요소의 표준 속성도 지원합니다.
+- 애플리케이션이 상태를 관리한다면 `default*` 속성만 사용하지 말고 제어 값과 변경 핸들러를 함께 사용합니다.

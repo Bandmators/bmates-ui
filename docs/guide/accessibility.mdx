@@ -1,0 +1,120 @@
+---
+title: Accessibility
+description: Shared accessibility principles for interfaces built with BMates UI.
+navTitle: Accessibility
+---
+
+# Accessibility
+
+BMates UI provides accessible building blocks, but the application still owns
+the surrounding content, labels, focus flow, and user feedback. This guide
+covers conventions that apply across the library.
+
+Component-specific keyboard interactions, focus behavior, and ARIA props belong
+in each component reference. Consult the relevant component page when behavior
+depends on a particular component.
+
+## Start with semantics
+
+Choose a component for its meaning and behavior, not only its appearance.
+Preserve native elements such as buttons, links, inputs, headings, and tables
+instead of recreating them with generic `div` or `span` elements.
+
+When adding application markup around BMates UI components:
+
+- Keep the heading hierarchy in a logical order.
+- Use links for navigation and buttons for actions.
+- Keep table headers associated with their data cells.
+- Avoid positive `tabIndex` values that create a custom focus order.
+
+## Provide accessible names
+
+Interactive elements need a name that describes their purpose. Prefer visible
+text because it helps every user. Use `aria-label` when a visible label is not
+practical, such as an icon-only action.
+
+Associate form labels and controls with matching `htmlFor` and `id` values.
+
+```tsx
+<Label htmlFor="profile-name">Profile name</Label>
+<Input id="profile-name" name="profileName" />
+```
+
+Connect supporting or error text with `aria-describedby` when it provides
+information required to complete the field.
+
+```tsx
+<Input
+  id="email"
+  aria-describedby="email-help email-error"
+  aria-invalid={hasError}
+/>
+<p id="email-help">Use the address associated with your account.</p>
+{hasError && <p id="email-error">Enter a valid email address.</p>}
+```
+
+## Preserve keyboard access
+
+Every action available with a pointer should also be available from the
+keyboard. Native interactive elements already provide the expected keyboard
+behavior, so avoid replacing them or intercepting their key events without a
+specific reason.
+
+- Keep all actionable controls reachable with `Tab`.
+- Do not add keyboard handlers that duplicate or block native behavior.
+- Avoid application shortcuts that conflict with typing or browser shortcuts.
+- Test forward and reverse focus order with `Tab` and `Shift+Tab`.
+
+## Make focus visible and predictable
+
+Do not remove focus outlines unless they are replaced with an equally visible
+indicator. BMates UI exposes `--focus-border` and `--focus-shadow` for custom UI
+that should match the library.
+
+Move focus programmatically only when the user's context changes and the next
+focus target is unambiguous. For component-managed behavior such as opening and
+closing an overlay, follow the guidance in that component's reference.
+
+## Communicate state clearly
+
+Do not rely on color alone to communicate selection, validation, loading, or
+failure. Pair color with text, an icon, or another perceivable indicator.
+
+Use native state attributes when they exist and add ARIA state only when it
+describes behavior that native HTML cannot express. Disabled controls should be
+visually distinct and unavailable through every input method.
+
+For application-owned asynchronous updates, provide a persistent status message
+or an appropriate live region so the result is not visible only on screen.
+
+## Respect contrast and motion preferences
+
+Use semantic color tokens so content remains legible in both light and dark
+themes. Verify contrast after overriding theme values, especially for muted
+text, borders, focus indicators, and text placed on status colors.
+
+Application-defined animation should respect `prefers-reduced-motion`. Important
+information and actions must remain available when motion is reduced or
+disabled.
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  .app-transition {
+    animation: none;
+    transition: none;
+  }
+}
+```
+
+## Review checklist
+
+Before shipping an interface:
+
+- Navigate the complete flow using only a keyboard.
+- Confirm every control has an accessible name.
+- Verify labels, help text, and error messages are programmatically associated.
+- Check that focus remains visible and follows a logical order.
+- Test status and validation changes without relying on color alone.
+- Review light and dark themes at increased text size and browser zoom.
+- Test with reduced-motion preferences enabled.
+

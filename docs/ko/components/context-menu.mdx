@@ -1,14 +1,15 @@
 ﻿---
 title: ContextMenu
-description: ???而⑦뀓?ㅽ듃?먯꽌 ?대━???≪뀡 硫붾돱?낅땲??
+description: 대상의 컨텍스트에서 열리는 동작 메뉴입니다.
 navTitle: ContextMenu
 ---
 
 # ContextMenu
 
-???而⑦뀓?ㅽ듃?먯꽌 ?대━???≪뀡 硫붾돱?낅땲??
+대상의 컨텍스트에서 열리는 동작 메뉴입니다.
 
-## 媛?몄삤湲?
+## 가져오기
+
 ```tsx
 import {
   ContextMenu,
@@ -18,8 +19,9 @@ import {
 } from 'bmates-ui';
 ```
 
-## 湲곕낯 ?ъ슜踰?
-?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+## 기본 사용법
+
+아래 예제는 기본 Storybook 구성을 바탕으로 하며 구현을 시작할 때 활용할 수 있습니다.
 
 ```tsx
 <ContextMenuProvider>
@@ -31,7 +33,7 @@ import {
 </ContextMenuProvider>
 ```
 
-## 誘몃━蹂닿린
+## 미리보기
 
 :::: playground[ContextMenu]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "context-menu", example: "default" }} minHeight={324} />
@@ -46,49 +48,49 @@ import {
 ```
 ::::
 
-## Props 誘몃━蹂닿린
+## 주요 속성 미리보기
 
-?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+아래 예제에서는 시각적 결과나 상호작용을 바꾸는 주요 속성을 각각 확인할 수 있습니다.
 
-### 鍮꾪솢????ぉ
+### 비활성화 항목
 
-:::: playground[鍮꾪솢????ぉ]{isolation="inline"}
+:::: playground[비활성화 항목]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "context-menu", example: "disabled" }} minHeight={324} />
 ```tsx
 <ContextMenuItem disabled>Delete</ContextMenuItem>
 ```
 ::::
 
-## 而댄룷?뚰듃 API
+## 컴포넌트 API
 
 :::: api-list
 ::: api-item
 :property: `ContextMenuProvider.align`
 :type: `start` | `center` | `end`
 :default: `start`
-Horizontal alignment for the floating menu.
+플로팅 메뉴의 가로 정렬을 지정합니다.
 :::
 ::: api-item
 :property: `ContextMenuProvider.space`
 :type: `number`
 :default: `0`
-Gap, in pixels, between target and menu.
+대상과 메뉴 사이의 간격을 픽셀 단위로 지정합니다.
 :::
 ::: api-item
 :property: `ContextMenu.width`
 :type: `CSSProperties[width]`
-Floating menu width.
+플로팅 메뉴의 너비입니다.
 :::
 ::: api-item
 :property: `ContextMenuItem.disabled`
 :type: `boolean`
 :default: `false`
-Prevents the item action.
+항목의 동작을 비활성화합니다.
 :::
 ::::
 
-## ?ъ슜 ?덈궡
+## 사용 참고사항
 
-- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
-- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
-- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.
+- 문서에 표시된 모든 컴포넌트는 `bmates-ui`에서 내보냅니다.
+- 별도 설명이 없다면 각 컴포넌트는 기반 HTML 요소의 표준 속성도 지원합니다.
+- 애플리케이션이 상태를 관리한다면 `default*` 속성만 사용하지 말고 제어 값과 변경 핸들러를 함께 사용합니다.

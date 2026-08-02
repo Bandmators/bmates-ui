@@ -1,14 +1,15 @@
 ﻿---
 title: Pagination
-description: ?щ윭 ?섏씠吏濡??대（?댁쭊 而щ젆?섏쓣 ?대룞?섎뒗 ?대퉬寃뚯씠?섏엯?덈떎.
+description: 여러 페이지로 구성된 콘텐츠를 이동하기 위한 내비게이션입니다.
 navTitle: Pagination
 ---
 
 # Pagination
 
-?щ윭 ?섏씠吏濡??대（?댁쭊 而щ젆?섏쓣 ?대룞?섎뒗 ?대퉬寃뚯씠?섏엯?덈떎.
+여러 페이지로 구성된 콘텐츠를 이동하기 위한 내비게이션입니다.
 
-## 媛?몄삤湲?
+## 가져오기
+
 ```tsx
 import {
   AutoPagination,
@@ -18,8 +19,9 @@ import {
 } from 'bmates-ui';
 ```
 
-## 湲곕낯 ?ъ슜踰?
-?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+## 기본 사용법
+
+아래 예제는 기본 Storybook 구성을 바탕으로 하며 구현을 시작할 때 활용할 수 있습니다.
 
 ```tsx
 <Pagination>
@@ -31,7 +33,7 @@ import {
 </Pagination>
 ```
 
-## 誘몃━蹂닿린
+## 미리보기
 
 :::: playground[Pagination]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "pagination", example: "default" }} minHeight={132} />
@@ -46,68 +48,68 @@ import {
 ```
 ::::
 
-## Props 誘몃━蹂닿린
+## 주요 속성 미리보기
 
-?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+아래 예제에서는 시각적 결과나 상호작용을 바꾸는 주요 속성을 각각 확인할 수 있습니다.
 
-### Selected page
+### 선택된 페이지
 
-:::: playground[Selected page]{isolation="inline"}
+:::: playground[선택된 페이지]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "pagination", example: "selected" }} minHeight={132} />
 ```tsx
 <PaginationLink selected>2</PaginationLink>
 ```
 ::::
 
-### 鍮꾪솢??留곹겕
+### 비활성화 링크
 
-:::: playground[鍮꾪솢??留곹겕]{isolation="inline"}
+:::: playground[비활성화 링크]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "pagination", example: "disabled" }} minHeight={132} />
 ```tsx
 <PaginationLink disabled>1</PaginationLink>
 ```
 ::::
 
-## 而댄룷?뚰듃 API
+## 컴포넌트 API
 
 :::: api-list
 ::: api-item
 :property: `PaginationLink.selected`
 :type: `boolean`
 :default: `false`
-Marks the current page.
+현재 페이지임을 표시합니다.
 :::
 ::: api-item
 :property: `PaginationLink.disabled`
 :type: `boolean`
 :default: `false`
-Prevents navigation.
+페이지 이동을 비활성화합니다.
 :::
 ::: api-item
 :property: `AutoPagination.pageNo`
 :type: `number`
-Required current page number.
+필수 현재 페이지 번호입니다.
 :::
 ::: api-item
 :property: `AutoPagination.pageSize`
 :type: `number`
-Required total number of pages.
+필수 전체 페이지 수입니다.
 :::
 ::: api-item
 :property: `AutoPagination.pageGap`
 :type: `number`
 :default: `10`
-Maximum visible page links.
+화면에 표시할 최대 페이지 링크 수입니다.
 :::
 ::: api-item
 :property: `AutoPagination.linkas`
 :type: `React.ElementType`
-Custom link component.
+사용자 정의 링크 컴포넌트입니다.
 :::
 ::::
 
-## ?ъ슜 ?덈궡
+## 사용 참고사항
 
-- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
-- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
-- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.
+- 문서에 표시된 모든 컴포넌트는 `bmates-ui`에서 내보냅니다.
+- 별도 설명이 없다면 각 컴포넌트는 기반 HTML 요소의 표준 속성도 지원합니다.
+- 애플리케이션이 상태를 관리한다면 `default*` 속성만 사용하지 말고 제어 값과 변경 핸들러를 함께 사용합니다.

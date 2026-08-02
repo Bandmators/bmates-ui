@@ -1,20 +1,22 @@
 ﻿---
 title: Toast
-description: 臾몄꽌 ?먮쫫 諛뽰뿉 ?좎떆 ?섑??섎뒗 ?뚮┝?낅땲??
+description: 문서 흐름 밖에 일시적으로 표시되는 알림입니다.
 navTitle: Toast
 ---
 
 # Toast
 
-臾몄꽌 ?먮쫫 諛뽰뿉 ?좎떆 ?섑??섎뒗 ?뚮┝?낅땲??
+문서 흐름 밖에 일시적으로 표시되는 알림입니다.
 
-## 媛?몄삤湲?
+## 가져오기
+
 ```tsx
 import { Toaster, Toast, useToast, ToastData } from 'bmates-ui';
 ```
 
-## 湲곕낯 ?ъ슜踰?
-?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+## 기본 사용법
+
+아래 예제는 기본 Storybook 구성을 바탕으로 하며 구현을 시작할 때 활용할 수 있습니다.
 
 ```tsx
 function SaveToast() {
@@ -32,7 +34,7 @@ function SaveToast() {
 <Toaster position="bottom-right" />
 ```
 
-## 誘몃━蹂닿린
+## 미리보기
 
 :::: playground[Toast]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "toast", example: "default" }} minHeight={132} />
@@ -53,71 +55,71 @@ function SaveToast() {
 ```
 ::::
 
-## Props 誘몃━蹂닿린
+## 주요 속성 미리보기
 
-?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+아래 예제에서는 시각적 결과나 상호작용을 바꾸는 주요 속성을 각각 확인할 수 있습니다.
 
-### ?꾩튂
+### 위치
 
-:::: playground[?꾩튂]{isolation="inline"}
+:::: playground[위치]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "toast", example: "top" }} minHeight={132} />
 ```tsx
 <Toaster position="top-right" />
 ```
 ::::
 
-### Danger variant
+### 위험 상태
 
-:::: playground[Danger variant]{isolation="inline"}
+:::: playground[위험 상태]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "toast", example: "danger" }} minHeight={132} />
 ```tsx
 toast({ title: "Error", variant: "danger" })
 ```
 ::::
 
-## 而댄룷?뚰듃 API
+## 컴포넌트 API
 
 :::: api-list
 ::: api-item
 :property: `Toaster.position`
 :type: `top-left` | `top-center` | `top-right` | `bottom-left` | `bottom-center` | `bottom-right`
 :default: `bottom-right`
-Viewport position for queued toasts.
+대기 중인 Toast를 표시할 viewport 위치입니다.
 :::
 ::: api-item
 :property: `toast.title`
 :type: `ReactNode`
-Toast heading.
+Toast 제목입니다.
 :::
 ::: api-item
 :property: `toast.description`
 :type: `ReactNode`
-Toast body content.
+Toast 본문 콘텐츠입니다.
 :::
 ::: api-item
 :property: `toast.variant`
 :type: `default` | `primary` | `secondary` | `success` | `danger` | `warning` | `info`
-Visual notification status.
+알림의 시각적 상태입니다.
 :::
 ::: api-item
 :property: `toast.time`
 :type: `number`
-Dismiss delay in milliseconds; a negative value keeps it visible.
+닫히기 전 지연 시간입니다. 음수 값을 사용하면 계속 표시됩니다.
 :::
 ::: api-item
 :property: `toast.action`
 :type: `(data: unknown) => void`
-Called when the toast is clicked.
+Toast를 클릭할 때 호출됩니다.
 :::
 ::: api-item
 :property: `toast.data`
 :type: `unknown`
-`action` 肄쒕갚???꾨떖???ъ슜???곗씠?곗엯?덈떎.
+`action` 콜백에 전달할 사용자 정의 데이터입니다.
 :::
 ::::
 
-## ?ъ슜 ?덈궡
+## 사용 참고사항
 
-- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
-- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
-- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.
+- 문서에 표시된 모든 컴포넌트는 `bmates-ui`에서 내보냅니다.
+- 별도 설명이 없다면 각 컴포넌트는 기반 HTML 요소의 표준 속성도 지원합니다.
+- 애플리케이션이 상태를 관리한다면 `default*` 속성만 사용하지 말고 제어 값과 변경 핸들러를 함께 사용합니다.

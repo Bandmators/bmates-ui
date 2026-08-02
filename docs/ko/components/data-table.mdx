@@ -1,20 +1,22 @@
 ﻿---
 title: DataTable
-description: ?뺣젹, ?꾪꽣留? ???좏깮??吏?먰븯???곗씠???뚯씠釉붿엯?덈떎.
+description: 클라이언트 측 정렬, 필터링 및 행 선택을 지원하는 데이터 테이블입니다.
 navTitle: DataTable
 ---
 
 # DataTable
 
-?뺣젹, ?꾪꽣留? ???좏깮??吏?먰븯???곗씠???뚯씠釉붿엯?덈떎.
+클라이언트 측 정렬, 필터링 및 행 선택을 지원하는 데이터 테이블입니다.
 
-## 媛?몄삤湲?
+## 가져오기
+
 ```tsx
 import { DataTable } from 'bmates-ui';
 ```
 
-## 湲곕낯 ?ъ슜踰?
-?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+## 기본 사용법
+
+아래 예제는 기본 Storybook 구성을 바탕으로 하며 구현을 시작할 때 활용할 수 있습니다.
 
 ```tsx
 <DataTable
@@ -31,7 +33,7 @@ import { DataTable } from 'bmates-ui';
 />
 ```
 
-## 誘몃━蹂닿린
+## 미리보기
 
 :::: playground[DataTable]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "data-table", example: "default" }} minHeight={300} />
@@ -51,104 +53,104 @@ import { DataTable } from 'bmates-ui';
 ```
 ::::
 
-## Props 誘몃━蹂닿린
+## 주요 속성 미리보기
 
-?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+아래 예제에서는 시각적 결과나 상호작용을 바꾸는 주요 속성을 각각 확인할 수 있습니다.
 
-### Filtering
+### 필터링
 
-:::: playground[Filtering]{isolation="inline"}
+:::: playground[필터링]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "data-table", example: "filterable" }} minHeight={360} />
 ```tsx
 <DataTable filterable {...props} />
 ```
 ::::
 
-### Row selection
+### 행 선택
 
-:::: playground[Row selection]{isolation="inline"}
+:::: playground[행 선택]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "data-table", example: "selectable" }} minHeight={320} />
 ```tsx
 <DataTable selectable {...props} />
 ```
 ::::
 
-### Empty state
+### 빈 상태
 
-:::: playground[Empty state]{isolation="inline"}
+:::: playground[빈 상태]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "data-table", example: "empty" }} minHeight={180} />
 ```tsx
 <DataTable data={[]} emptyMessage="No instruments." {...props} />
 ```
 ::::
 
-## 而댄룷?뚰듃 API
+## 컴포넌트 API
 
 :::: api-list
 ::: api-item
 :property: `columns`
 :type: `DataTableColumn<T>[]`
-Required columns with `id`, `header`, and optional `accessor`, `cell`, or `sortable`.
+`id`, `header`와 선택적인 `accessor`, `cell`, `sortable`을 포함하는 필수 열 정의입니다.
 :::
 ::: api-item
 :property: `data`
 :type: `T[]`
-Required row data.
+필수 행 데이터입니다.
 :::
 ::: api-item
 :property: `getRowId`
 :type: `(row: T) => string`
-Required stable row identifier.
+각 행을 안정적으로 구분하는 필수 식별자입니다.
 :::
 ::: api-item
 :property: `selectable`
 :type: `boolean`
 :default: `false`
-Shows row-selection controls.
+행 선택 컨트롤을 표시합니다.
 :::
 ::: api-item
 :property: `filterable`
 :type: `boolean`
 :default: `false`
-Shows the client-side filter field.
+클라이언트 측 필터 입력 필드를 표시합니다.
 :::
 ::: api-item
 :property: `filterPlaceholder`
 :type: `string`
 :default: `Filter rows...`
-Filter input placeholder.
+필터 입력 필드의 placeholder입니다.
 :::
 ::: api-item
 :property: `emptyMessage`
 :type: `ReactNode`
 :default: `No matching rows.`
-Content shown when no rows match.
+일치하는 행이 없을 때 표시할 콘텐츠입니다.
 :::
 ::: api-item
 :property: `selectedRowIds`
 :type: `string[]`
-Controlled selection state.
+외부에서 제어하는 선택 상태입니다.
 :::
 ::: api-item
 :property: `onSelectedRowIdsChange`
 :type: `(rowIds: string[]) => void`
-Receives selection changes.
+선택 상태가 변경될 때 호출됩니다.
 :::
 ::: api-item
 :property: `defaultSelectedRowIds`
 :type: `string[]`
 :default: `[]`
-鍮꾩젣??紐⑤뱶?먯꽌 泥섏쓬 ?좏깮????ID?낅땲??
+비제어 방식에서 처음 선택할 행 ID 목록입니다.
 :::
 ::: api-item
 :property: `className`
 :type: `string`
-猷⑦듃 ?붿냼??異붽????대옒???대쫫?낅땲??
+루트 요소에 추가할 class 이름입니다.
 :::
 ::::
 
-## ?ъ슜 ?덈궡
+## 사용 참고사항
 
-- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
-- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
-- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.
+- 문서에 표시된 모든 컴포넌트는 `bmates-ui`에서 내보냅니다.
+- 별도 설명이 없다면 각 컴포넌트는 기반 HTML 요소의 표준 속성도 지원합니다.
+- 애플리케이션이 상태를 관리한다면 `default*` 속성만 사용하지 말고 제어 값과 변경 핸들러를 함께 사용합니다.

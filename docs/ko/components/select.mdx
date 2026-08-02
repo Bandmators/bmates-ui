@@ -1,20 +1,22 @@
 ﻿---
 title: Select
-description: 紐⑸줉?먯꽌 ?섎굹 ?댁긽???듭뀡???좏깮?섎뒗 議고빀??而⑦듃濡ㅼ엯?덈떎.
+description: 목록에서 하나 이상의 옵션을 선택하도록 조합할 수 있는 컨트롤입니다.
 navTitle: Select
 ---
 
 # Select
 
-紐⑸줉?먯꽌 ?섎굹 ?댁긽???듭뀡???좏깮?섎뒗 議고빀??而⑦듃濡ㅼ엯?덈떎.
+목록에서 하나 이상의 옵션을 선택하도록 조합할 수 있는 컨트롤입니다.
 
-## 媛?몄삤湲?
+## 가져오기
+
 ```tsx
 import { Select, SelectToggle, SelectContent, SelectItem } from 'bmates-ui';
 ```
 
-## 湲곕낯 ?ъ슜踰?
-?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+## 기본 사용법
+
+아래 예제는 기본 Storybook 구성을 바탕으로 하며 구현을 시작할 때 활용할 수 있습니다.
 
 ```tsx
 <Select align="start">
@@ -26,7 +28,7 @@ import { Select, SelectToggle, SelectContent, SelectItem } from 'bmates-ui';
 </Select>
 ```
 
-## 誘몃━蹂닿린
+## 미리보기
 
 :::: playground[Select]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "select", example: "default" }} minHeight={324} />
@@ -41,95 +43,95 @@ import { Select, SelectToggle, SelectContent, SelectItem } from 'bmates-ui';
 ```
 ::::
 
-## Props 誘몃━蹂닿린
+## 주요 속성 미리보기
 
-?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+아래 예제에서는 시각적 결과나 상호작용을 바꾸는 주요 속성을 각각 확인할 수 있습니다.
 
-### ?ㅼ쨷 ?좏깮
+### 다중 선택
 
-:::: playground[?ㅼ쨷 ?좏깮]{isolation="inline"}
+:::: playground[다중 선택]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "select", example: "multi" }} minHeight={324} />
 ```tsx
 <Select multi>...</Select>
 ```
 ::::
 
-### Open on hover
+### 호버로 열기
 
-:::: playground[Open on hover]{isolation="inline"}
+:::: playground[호버로 열기]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "select", example: "hover" }} minHeight={324} />
 ```tsx
 <Select hoverOpen>...</Select>
 ```
 ::::
 
-### ?몃━嫄?媛꾧꺽
+### 트리거 간격
 
-:::: playground[?몃━嫄?媛꾧꺽]{isolation="inline"}
+:::: playground[트리거 간격]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "select", example: "space" }} minHeight={324} />
 ```tsx
 <Select space={16}>...</Select>
 ```
 ::::
 
-## 而댄룷?뚰듃 API
+## 컴포넌트 API
 
 :::: api-list
 ::: api-item
 :property: `value`
 :type: `SelectType[]`
-Controlled selected options.
+외부에서 제어하는 선택 옵션입니다.
 :::
 ::: api-item
 :property: `defaultValue`
 :type: `SelectType[]`
 :default: `[]`
-Initial uncontrolled selected options.
+비제어 방식에서 사용할 초기 선택 옵션입니다.
 :::
 ::: api-item
 :property: `onValueChange`
 :type: `(value: SelectType[]) => void`
-Called with the next selected options.
+선택 옵션이 바뀔 때 다음 값과 함께 호출됩니다.
 :::
 ::: api-item
 :property: `multi`
 :type: `boolean`
 :default: `false`
-Allows more than one option.
+둘 이상의 옵션을 선택할 수 있도록 합니다.
 :::
 ::: api-item
 :property: `align`
 :type: `start` | `center` | `end`
 :default: `center`
-Content alignment.
+콘텐츠 정렬을 지정합니다.
 :::
 ::: api-item
 :property: `space`
 :type: `number`
 :default: `0`
-Gap between trigger and list in pixels.
+트리거와 목록 사이의 간격을 픽셀 단위로 지정합니다.
 :::
 ::: api-item
 :property: `hoverOpen`
 :type: `boolean`
 :default: `false`
-Opens the list on hover.
+마우스를 올리면 목록을 엽니다.
 :::
 ::: api-item
 :property: `SelectItem.value`
 :type: `string`
-Required option value.
+필수 옵션 값입니다.
 :::
 ::: api-item
 :property: `SelectItem.disabled`
 :type: `boolean`
 :default: `false`
-Prevents selecting an option.
+옵션을 선택하지 못하게 합니다.
 :::
 ::::
 
-## ?ъ슜 ?덈궡
+## 사용 참고사항
 
-- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
-- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
-- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.
+- 문서에 표시된 모든 컴포넌트는 `bmates-ui`에서 내보냅니다.
+- 별도 설명이 없다면 각 컴포넌트는 기반 HTML 요소의 표준 속성도 지원합니다.
+- 애플리케이션이 상태를 관리한다면 `default*` 속성만 사용하지 말고 제어 값과 변경 핸들러를 함께 사용합니다.

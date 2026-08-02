@@ -1,20 +1,22 @@
 ﻿---
 title: BMatesProvider
-description: ?쇱씠釉뚮윭由??뚮쭏? 怨듯넻 ?ㅽ???而⑦뀓?ㅽ듃瑜??쒓났?섎뒗 ?꾨줈諛붿씠?붿엯?덈떎.
+description: 라이브러리 테마와 공통 스타일 컨텍스트를 제공하는 Provider입니다.
 navTitle: BMatesProvider
 ---
 
 # BMatesProvider
 
-?쇱씠釉뚮윭由??뚮쭏? 怨듯넻 ?ㅽ???而⑦뀓?ㅽ듃瑜??쒓났?섎뒗 ?꾨줈諛붿씠?붿엯?덈떎.
+라이브러리 테마와 공통 스타일 컨텍스트를 제공하는 Provider입니다.
 
-## 媛?몄삤湲?
+## 가져오기
+
 ```tsx
 import { BMatesProvider } from 'bmates-ui';
 ```
 
-## 湲곕낯 ?ъ슜踰?
-?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+## 기본 사용법
+
+아래 예제는 기본 Storybook 구성을 바탕으로 하며 구현을 시작할 때 활용할 수 있습니다.
 
 ```tsx
 <BMatesProvider>
@@ -22,7 +24,7 @@ import { BMatesProvider } from 'bmates-ui';
 </BMatesProvider>
 ```
 
-## 誘몃━蹂닿린
+## 미리보기
 
 :::: playground[BMatesProvider]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "provider", example: "default" }} minHeight={132} />
@@ -33,31 +35,31 @@ import { BMatesProvider } from 'bmates-ui';
 ```
 ::::
 
-## Props 誘몃━蹂닿린
+## 주요 속성 미리보기
 
-?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+아래 예제에서는 시각적 결과나 상호작용을 바꾸는 주요 속성을 각각 확인할 수 있습니다.
 
-### Provider content
+### Provider 콘텐츠
 
-:::: playground[Provider content]{isolation="inline"}
+:::: playground[Provider 콘텐츠]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "provider", example: "default" }} minHeight={132} />
 ```tsx
 <BMatesProvider><Button>Child</Button></BMatesProvider>
 ```
 ::::
 
-## 而댄룷?뚰듃 API
+## 컴포넌트 API
 
 :::: api-list
 ::: api-item
 :property: `children`
 :type: `ReactNode`
-Application subtree receiving BMates context.
+BMates 컨텍스트를 전달받는 애플리케이션 하위 트리입니다.
 :::
 ::::
 
-## ?ъ슜 ?덈궡
+## 사용 참고사항
 
-- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
-- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
-- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.
+- 문서에 표시된 모든 컴포넌트는 `bmates-ui`에서 내보냅니다.
+- 별도 설명이 없다면 각 컴포넌트는 기반 HTML 요소의 표준 속성도 지원합니다.
+- 애플리케이션이 상태를 관리한다면 `default*` 속성만 사용하지 말고 제어 값과 변경 핸들러를 함께 사용합니다.

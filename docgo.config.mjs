@@ -38,6 +38,7 @@ export default defineConfig({
           { text: 'Get started', link: '/guide/getting-started' },
           { text: 'Design tokens', link: '/guide/tokens' },
           { text: 'Theming', link: '/guide/theming' },
+          { text: 'Accessibility', link: '/guide/accessibility' },
         ],
       },
     ],

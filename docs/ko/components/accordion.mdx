@@ -1,14 +1,15 @@
 ﻿---
 title: Accordion
-description: 愿??肄섑뀗痢좊? ?묎퀬 ?쇱퀜 蹂댁뿬二쇰뒗 ?뱀뀡?낅땲??
+description: 관련 콘텐츠를 접고 펼쳐 한 번에 필요한 내용만 보여주는 섹션입니다.
 navTitle: Accordion
 ---
 
 # Accordion
 
-愿??肄섑뀗痢좊? ?묎퀬 ?쇱퀜 蹂댁뿬二쇰뒗 ?뱀뀡?낅땲??
+관련 콘텐츠를 접고 펼쳐 한 번에 필요한 내용만 보여주는 섹션입니다.
 
-## 媛?몄삤湲?
+## 가져오기
+
 ```tsx
 import {
   Accordion,
@@ -18,8 +19,9 @@ import {
 } from 'bmates-ui';
 ```
 
-## 湲곕낯 ?ъ슜踰?
-?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+## 기본 사용법
+
+아래 예제는 기본 Storybook 구성을 바탕으로 하며 구현을 시작할 때 활용할 수 있습니다.
 
 ```tsx
 {/* One item may be open at a time. */}
@@ -37,7 +39,7 @@ import {
 </Accordion>
 ```
 
-## 誘몃━蹂닿린
+## 미리보기
 
 :::: playground[Accordion]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "accordion", example: "default" }} minHeight={220} />
@@ -58,72 +60,72 @@ import {
 ```
 ::::
 
-## Props 誘몃━蹂닿린
+## 주요 속성 미리보기
 
-?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+아래 예제에서는 시각적 결과나 상호작용을 바꾸는 주요 속성을 각각 확인할 수 있습니다.
 
-### Multiple items
+### 여러 항목
 
-:::: playground[Multiple items]{isolation="inline"}
+:::: playground[여러 항목]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "accordion", example: "multiple" }} minHeight={260} />
 ```tsx
 <Accordion type="multiple" defaultValue={["one", "two"]}>...</Accordion>
 ```
 ::::
 
-### 鍮꾪솢????ぉ
+### 비활성화 항목
 
-:::: playground[鍮꾪솢????ぉ]{isolation="inline"}
+:::: playground[비활성화 항목]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "accordion", example: "disabled" }} minHeight={220} />
 ```tsx
 <AccordionItem value="two" disabled>...</AccordionItem>
 ```
 ::::
 
-### Custom indicator
+### 사용자 정의 표시기
 
-:::: playground[Custom indicator]{isolation="inline"}
+:::: playground[사용자 정의 표시기]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "accordion", example: "indicator" }} minHeight={220} />
 ```tsx
 <AccordionTrigger indicator="+">Section</AccordionTrigger>
 ```
 ::::
 
-## 而댄룷?뚰듃 API
+## 컴포넌트 API
 
 :::: api-list
 ::: api-item
 :property: `type`
 :type: `single` | `multiple`
 :default: `single`
-Allows one open item or several open items.
+하나 또는 여러 항목을 동시에 열 수 있도록 설정합니다.
 :::
 ::: api-item
 :property: `defaultValue`
 :type: string | string[]
-Initially open item value. Use a string array with `multiple`.
+처음 열어 둘 항목의 값입니다. `multiple`에서는 문자열 배열을 사용합니다.
 :::
 ::: api-item
 :property: `AccordionItem.value`
 :type: `string`
-Required, unique identifier for an item.
+각 항목을 구분하는 필수 고유 값입니다.
 :::
 ::: api-item
 :property: `AccordionItem.disabled`
 :type: `boolean`
 :default: `false`
-Prevents its trigger from changing the item.
+해당 항목의 트리거가 상태를 변경하지 못하게 합니다.
 :::
 ::: api-item
 :property: `AccordionTrigger.indicator`
 :type: `ReactNode`
 :default: `Chevron icon`
-Replaces the default disclosure indicator.
+기본 펼침 표시기를 사용자 정의 콘텐츠로 대체합니다.
 :::
 ::::
 
-## ?ъ슜 ?덈궡
+## 사용 참고사항
 
-- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
-- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
-- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.
+- 문서에 표시된 모든 컴포넌트는 `bmates-ui`에서 내보냅니다.
+- 별도 설명이 없다면 각 컴포넌트는 기반 HTML 요소의 표준 속성도 지원합니다.
+- 애플리케이션이 상태를 관리한다면 `default*` 속성만 사용하지 말고 제어 값과 변경 핸들러를 함께 사용합니다.

@@ -1,26 +1,28 @@
 ﻿---
 title: Button
-description: 紐낇솗???꾧퀎? ?곹깭瑜?媛뽯뒗 ?≪뀡 而⑦듃濡ㅼ엯?덈떎.
+description: 명확한 위계와 상태를 제공하는 동작 컨트롤입니다.
 navTitle: Button
 ---
 
 # Button
 
-紐낇솗???꾧퀎? ?곹깭瑜?媛뽯뒗 ?≪뀡 而⑦듃濡ㅼ엯?덈떎.
+명확한 위계와 상태를 제공하는 동작 컨트롤입니다.
 
-## 媛?몄삤湲?
+## 가져오기
+
 ```tsx
 import { Button } from 'bmates-ui';
 ```
 
-## 湲곕낯 ?ъ슜踰?
-?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+## 기본 사용법
+
+아래 예제는 기본 Storybook 구성을 바탕으로 하며 구현을 시작할 때 활용할 수 있습니다.
 
 ```tsx
 <Button variant="primary">Save changes</Button>
 ```
 
-## 誘몃━蹂닿린
+## 미리보기
 
 :::: playground[Button]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "button", example: "default" }} minHeight={180} />
@@ -29,67 +31,68 @@ import { Button } from 'bmates-ui';
 ```
 ::::
 
-## Props 誘몃━蹂닿린
+## 주요 속성 미리보기
 
-?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+아래 예제에서는 시각적 결과나 상호작용을 바꾸는 주요 속성을 각각 확인할 수 있습니다.
 
-### ?ㅽ???蹂??
-:::: playground[?ㅽ???蹂??]{isolation="inline"}
+### 스타일
+
+:::: playground[스타일]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "button", example: "variants" }} minHeight={180} />
 ```tsx
 <Button variant="success">Success</Button>
 ```
 ::::
 
-### ?ш린
+### 크기
 
-:::: playground[?ш린]{isolation="inline"}
+:::: playground[크기]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "button", example: "sizes" }} minHeight={132} />
 ```tsx
 <Button size="lg">Large</Button>
 ```
 ::::
 
-### ?곹깭
+### 상태
 
-:::: playground[?곹깭]{isolation="inline"}
+:::: playground[상태]{isolation="inline"}
 <ClientPreview name="bmates-preview" props={{ component: "button", example: "states" }} minHeight={132} />
 ```tsx
 <Button disabled>Disabled</Button>
 ```
 ::::
 
-## 而댄룷?뚰듃 API
+## 컴포넌트 API
 
 :::: api-list
 ::: api-item
 :property: `variant`
 :type: `default` | `primary` | `secondary` | `success` | `danger` | `warning` | `info` | `outline` | `ghost`
 :default: `default`
-?쒓컖???ㅽ??쇱엯?덈떎. ?ъ슜?????덈뒗 媛? `default`, `secondary`, `success`, `danger`, `warning`, `info`, `outline`, and `ghost`.
+시각적 스타일입니다. `default`, `secondary`, `success`, `danger`, `warning`, `info`, `outline`, `ghost`를 사용할 수 있습니다.
 :::
 ::: api-item
 :property: `size`
 :type: `sm` | `md` | `lg` | `icon`
 :default: `md`
-踰꾪듉???믪씠? ?щ갚??議곗젅?⑸땲??
+버튼의 높이와 내부 여백을 조절합니다.
 :::
 ::: api-item
 :property: `full`
 :type: `boolean`
 :default: `false`
-踰꾪듉??而⑦뀒?대꼫 ?덈퉬瑜?梨꾩슦?꾨줉 ?⑸땲??
+버튼이 컨테이너 너비를 채우도록 합니다.
 :::
 ::: api-item
 :property: `disabled`
 :type: `boolean`
 :default: `false`
-?곹샇?묒슜??鍮꾪솢?깊솕?⑸땲?? `type`, `onClick` ???ㅼ씠?곕툕 button ?띿꽦??吏?먰빀?덈떎.
+상호작용을 비활성화합니다. `type`, `onClick`을 포함한 네이티브 버튼 속성도 지원합니다.
 :::
 ::::
 
-## ?ъ슜 ?덈궡
+## 사용 참고사항
 
-- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
-- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
-- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.
+- 문서에 표시된 모든 컴포넌트는 `bmates-ui`에서 내보냅니다.
+- 별도 설명이 없다면 각 컴포넌트는 기반 HTML 요소의 표준 속성도 지원합니다.
+- 애플리케이션이 상태를 관리한다면 `default*` 속성만 사용하지 말고 제어 값과 변경 핸들러를 함께 사용합니다.
