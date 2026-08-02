@@ -1,0 +1,90 @@
+﻿---
+title: Card
+description: A surface that groups related content and actions.
+navTitle: Card
+---
+
+# Card
+
+A surface that groups related content and actions.
+
+## Import
+
+```tsx
+import {
+  Card,
+  CardBody,
+  CardDesc,
+  CardFooter,
+  CardHead,
+  CardTitle,
+} from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<Card>
+  <CardHead>
+    <CardTitle>Project status</CardTitle>
+    <CardDesc>Updated just now</CardDesc>
+  </CardHead>
+  <CardBody>All systems are operational.</CardBody>
+</Card>
+```
+
+## Preview
+
+:::: playground[Card]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "card", example: "default" }} minHeight={300} />
+```tsx
+<Card>
+  <CardHead>
+    <CardTitle>Project status</CardTitle>
+    <CardDesc>Updated just now</CardDesc>
+  </CardHead>
+  <CardBody>All systems are operational.</CardBody>
+</Card>
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Width and regions
+
+:::: playground[Width and regions]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "card", example: "width" }} minHeight={300} />
+```tsx
+<Card width={420}><CardHead>...</CardHead><CardBody>...</CardBody></Card>
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `width`
+:type: `number`
+Sets the root card width in pixels.
+:::
+::: api-item
+:property: `CardHead`, `CardBody`, `CardFooter`
+:type: `div props`
+Layout regions for header, body, and footer.
+:::
+::: api-item
+:property: `CardTitle`, `CardDesc`
+:type: `h3 / p props`
+Semantic title and supporting text.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

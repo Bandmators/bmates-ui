@@ -1,7 +1,6 @@
 import { cx } from '@/styles/classnames';
 import * as React from 'react';
 
-import useControllableState from '@/hooks/useControllableState';
 import { composeEventHandlers } from '@/libs/event';
 import { SpecialSizeType } from '@/types/size';
 import { VariantType } from '@/types/variant';
@@ -41,7 +40,8 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
       id,
       className,
       label,
-      checked = false,
+      checked,
+      defaultChecked = false,
       variant = 'primary',
       size = 'md',
       align = 'center',
@@ -53,20 +53,25 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
     },
     ref,
   ) => {
-    const [chk, setChk] = useControllableState<boolean>({
-      initValue: checked,
-      onChange: onCheckedChange,
-    });
+    const [uncontrolledChecked, setUncontrolledChecked] = React.useState(defaultChecked);
+    const chk = checked ?? uncontrolledChecked;
+
+    React.useEffect(() => {
+      if (checked === undefined) setUncontrolledChecked(defaultChecked);
+    }, [checked, defaultChecked]);
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setChk(e.target.checked);
+      if (checked === undefined) setUncontrolledChecked(e.target.checked);
+      onCheckedChange(e.target.checked);
     };
 
     const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (disabled) return;
       if (e.key === 'Enter' || e.which === 13 || e.key === ' ' || e.which === 32) {
         e.preventDefault();
-        setChk(!chk);
+        const nextChecked = !chk;
+        if (checked === undefined) setUncontrolledChecked(nextChecked);
+        onCheckedChange(nextChecked);
       }
     };
 
@@ -77,7 +82,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           id={id}
           type="checkbox"
           disabled={disabled}
-          defaultChecked={chk}
+          checked={chk}
           data-checked={chk}
           aria-checked={chk}
           onChange={composeEventHandlers(onChange, onChangeHandler)}

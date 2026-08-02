@@ -1,0 +1,64 @@
+﻿---
+title: Label
+description: ??而⑦듃濡ㅼ쓣 ?꾪븳 ?묎렐???띿뒪???덉씠釉붿엯?덈떎.
+navTitle: Label
+---
+
+# Label
+
+??而⑦듃濡ㅼ쓣 ?꾪븳 ?묎렐???띿뒪???덉씠釉붿엯?덈떎.
+
+## 媛?몄삤湲?
+```tsx
+import { Label } from 'bmates-ui';
+```
+
+## 湲곕낯 ?ъ슜踰?
+?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+
+```tsx
+<Label htmlFor="email">Email address</Label>
+```
+
+## 誘몃━蹂닿린
+
+:::: playground[Label]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "label", example: "default" }} minHeight={160} />
+```tsx
+<Label htmlFor="email">Email address</Label>
+```
+::::
+
+## Props 誘몃━蹂닿린
+
+?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+
+### Associated input
+
+:::: playground[Associated input]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "label", example: "default" }} minHeight={160} />
+```tsx
+<Label htmlFor="band-name">Band name</Label>
+```
+::::
+
+## 而댄룷?뚰듃 API
+
+:::: api-list
+::: api-item
+:property: `htmlFor`
+:type: `string`
+Associates the label with a form control ID.
+:::
+::: api-item
+:property: `children`
+:type: `ReactNode`
+Label content. Other native label props are supported.
+:::
+::::
+
+## ?ъ슜 ?덈궡
+
+- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
+- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
+- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.

@@ -1,0 +1,94 @@
+﻿---
+title: Checkbox
+description: A control for selecting one or more independent options.
+navTitle: Checkbox
+---
+
+# Checkbox
+
+A control for selecting one or more independent options.
+
+## Import
+
+```tsx
+import { Checkbox } from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<Checkbox defaultChecked>Send me product updates</Checkbox>
+```
+
+## Preview
+
+:::: playground[Checkbox]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "checkbox", example: "default" }} minHeight={132} />
+```tsx
+<Checkbox defaultChecked>Send me product updates</Checkbox>
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Checked and disabled states
+
+:::: playground[Checked and disabled states]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "checkbox", example: "states" }} minHeight={160} />
+```tsx
+<Checkbox defaultChecked label="Checked" />
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `checked`
+:type: `boolean`
+Controlled checked state.
+:::
+::: api-item
+:property: `defaultChecked`
+:type: `boolean`
+:default: `false`
+Initial uncontrolled checked state.
+:::
+::: api-item
+:property: `onCheckedChange`
+:type: `(checked: boolean) => void`
+Called whenever the checked state changes.
+:::
+::: api-item
+:property: `label`
+:type: `string`
+Text rendered next to the control.
+:::
+::: api-item
+:property: `align`
+:type: `start` | `center` | `end`
+:default: `center`
+Vertical alignment of the box and label.
+:::
+::: api-item
+:property: `iconEl`
+:type: `ReactNode`
+Custom checkmark content.
+:::
+::: api-item
+:property: `disabled`
+:type: `boolean`
+:default: `false`
+Prevents interaction.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

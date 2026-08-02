@@ -1,0 +1,78 @@
+﻿---
+title: Input
+description: ?띿뒪?몄? 湲고? 媛믪쓣 ?낅젰?섎뒗 ??以??꾨뱶?낅땲??
+navTitle: Input
+---
+
+# Input
+
+?띿뒪?몄? 湲고? 媛믪쓣 ?낅젰?섎뒗 ??以??꾨뱶?낅땲??
+
+## 媛?몄삤湲?
+```tsx
+import { Input, InputDesc, InputGroup / InputFile } from 'bmates-ui';
+```
+
+## 湲곕낯 ?ъ슜踰?
+?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+
+```tsx
+<Input type="email" placeholder="you@example.com" aria-label="Email address" />
+```
+
+## 誘몃━蹂닿린
+
+:::: playground[Input]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "input", example: "default" }} minHeight={160} />
+```tsx
+<Input type="email" placeholder="you@example.com" aria-label="Email address" />
+```
+::::
+
+## Props 誘몃━蹂닿린
+
+?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+
+### Input types
+
+:::: playground[Input types]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "input", example: "types" }} minHeight={210} />
+```tsx
+<Input type="email" placeholder="Email" />
+```
+::::
+
+### 鍮꾪솢???곹깭
+
+:::: playground[鍮꾪솢???곹깭]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "input", example: "states" }} minHeight={160} />
+```tsx
+<Input disabled placeholder="Disabled" />
+```
+::::
+
+## 而댄룷?뚰듃 API
+
+:::: api-list
+::: api-item
+:property: `Input`
+:type: `React.ComponentPropsWithoutRef<'input'>`
+`type`, `value`, `defaultValue`, `placeholder`, `disabled`, `required`, `onChange` ??紐⑤뱺 ?ㅼ씠?곕툕 input props瑜??꾨떖?????덉뒿?덈떎.
+:::
+::: api-item
+:property: `InputFile.accept`
+:type: `string`
+Accepted file types. Other native input props are forwarded.
+:::
+::: api-item
+:property: `InputDesc`
+:type: `p props`
+Supporting or validation text.
+:::
+::::
+
+## ?ъ슜 ?덈궡
+
+- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
+- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
+- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.

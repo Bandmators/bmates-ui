@@ -1,0 +1,121 @@
+﻿---
+title: Switch
+description: A control for immediately enabling or disabling a setting.
+navTitle: Switch
+---
+
+# Switch
+
+A control for immediately enabling or disabling a setting.
+
+## Import
+
+```tsx
+import { Switch } from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<Switch defaultChecked aria-label="Enable notifications" />
+```
+
+## Preview
+
+:::: playground[Switch]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "switch", example: "default" }} minHeight={160} />
+```tsx
+<Switch defaultChecked aria-label="Enable notifications" />
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Variants
+
+:::: playground[Variants]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "switch", example: "variants" }} minHeight={220} />
+```tsx
+<Switch variant="success" defaultChecked />
+```
+::::
+
+### Sizes
+
+:::: playground[Sizes]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "switch", example: "sizes" }} minHeight={160} />
+```tsx
+<Switch size="lg" defaultChecked />
+```
+::::
+
+### States
+
+:::: playground[States]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "switch", example: "states" }} minHeight={160} />
+```tsx
+<Switch disabled label="Disabled" />
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `checked`
+:type: `boolean`
+:default: `false`
+Controlled checked state.
+:::
+::: api-item
+:property: `onCheckedChange`
+:type: `(checked: boolean) => void`
+:default: `No-op`
+Called when the state changes.
+:::
+::: api-item
+:property: `variant`
+:type: `primary` | `secondary` | `success` | `danger` | `warning` | `info`
+:default: `primary`
+Track color.
+:::
+::: api-item
+:property: `size`
+:type: `sm` | `md` | `lg` | `xl`
+:default: `md`
+Switch size.
+:::
+::: api-item
+:property: `label`
+:type: `string`
+Text rendered beside the switch.
+:::
+::: api-item
+:property: `align`
+:type: `start` | `center` | `end`
+:default: `center`
+Vertical alignment.
+:::
+::: api-item
+:property: `disabled`
+:type: `boolean`
+:default: `false`
+Prevents interaction.
+:::
+::: api-item
+:property: `defaultChecked`
+:type: `boolean`
+:default: `false`
+Initial checked state in uncontrolled mode.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

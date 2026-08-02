@@ -7,6 +7,7 @@ import { contextMenuListRecipe } from './contextMenu.recipe';
 
 interface ModalProps extends React.ComponentPropsWithoutRef<'div'> {
   width?: React.CSSProperties['width'];
+  disabledAutoFocus?: boolean;
 }
 
 /**

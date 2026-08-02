@@ -1,0 +1,131 @@
+﻿---
+title: Accordion
+description: Collapsible sections for grouped content.
+navTitle: Accordion
+---
+
+# Accordion
+
+Collapsible sections for grouped content.
+
+## Import
+
+```tsx
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+{/* One item may be open at a time. */}
+<Accordion defaultValue="account">
+  <AccordionItem value="account">
+    <AccordionTrigger>Account</AccordionTrigger>
+    <AccordionContent>
+      Manage your profile and notification settings.
+    </AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="billing">
+    <AccordionTrigger>Billing</AccordionTrigger>
+    <AccordionContent>View invoices and payment methods.</AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+## Preview
+
+:::: playground[Accordion]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "accordion", example: "default" }} minHeight={220} />
+```tsx
+{/* One item may be open at a time. */}
+<Accordion defaultValue="account">
+  <AccordionItem value="account">
+    <AccordionTrigger>Account</AccordionTrigger>
+    <AccordionContent>
+      Manage your profile and notification settings.
+    </AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="billing">
+    <AccordionTrigger>Billing</AccordionTrigger>
+    <AccordionContent>View invoices and payment methods.</AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Multiple items
+
+:::: playground[Multiple items]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "accordion", example: "multiple" }} minHeight={260} />
+```tsx
+<Accordion type="multiple" defaultValue={["one", "two"]}>...</Accordion>
+```
+::::
+
+### Disabled item
+
+:::: playground[Disabled item]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "accordion", example: "disabled" }} minHeight={220} />
+```tsx
+<AccordionItem value="two" disabled>...</AccordionItem>
+```
+::::
+
+### Custom indicator
+
+:::: playground[Custom indicator]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "accordion", example: "indicator" }} minHeight={220} />
+```tsx
+<AccordionTrigger indicator="+">Section</AccordionTrigger>
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `type`
+:type: `single` | `multiple`
+:default: `single`
+Allows one open item or several open items.
+:::
+::: api-item
+:property: `defaultValue`
+:type: string | string[]
+Initially open item value. Use a string array with `multiple`.
+:::
+::: api-item
+:property: `AccordionItem.value`
+:type: `string`
+Required, unique identifier for an item.
+:::
+::: api-item
+:property: `AccordionItem.disabled`
+:type: `boolean`
+:default: `false`
+Prevents its trigger from changing the item.
+:::
+::: api-item
+:property: `AccordionTrigger.indicator`
+:type: `ReactNode`
+:default: `Chevron icon`
+Replaces the default disclosure indicator.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

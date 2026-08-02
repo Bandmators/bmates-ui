@@ -1,0 +1,80 @@
+﻿---
+title: Input
+description: A single-line field for entering text and other values.
+navTitle: Input
+---
+
+# Input
+
+A single-line field for entering text and other values.
+
+## Import
+
+```tsx
+import { Input, InputDesc, InputGroup / InputFile } from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<Input type="email" placeholder="you@example.com" aria-label="Email address" />
+```
+
+## Preview
+
+:::: playground[Input]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "input", example: "default" }} minHeight={160} />
+```tsx
+<Input type="email" placeholder="you@example.com" aria-label="Email address" />
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Input types
+
+:::: playground[Input types]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "input", example: "types" }} minHeight={210} />
+```tsx
+<Input type="email" placeholder="Email" />
+```
+::::
+
+### Disabled state
+
+:::: playground[Disabled state]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "input", example: "states" }} minHeight={160} />
+```tsx
+<Input disabled placeholder="Disabled" />
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `Input`
+:type: `React.ComponentPropsWithoutRef<'input'>`
+Accepts every native input prop, including `type`, `value`, `defaultValue`, `placeholder`, `disabled`, `required`, and `onChange`.
+:::
+::: api-item
+:property: `InputFile.accept`
+:type: `string`
+Accepted file types. Other native input props are forwarded.
+:::
+::: api-item
+:property: `InputDesc`
+:type: `p props`
+Supporting or validation text.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

@@ -12,8 +12,11 @@ export interface PortalProviderProps extends React.PropsWithChildren, PortalType
 }
 
 export const PortalProvider = ({ align, space, enableScroll, hoverOpen = false, children }: PortalProviderProps) => {
-  const [showModal, _setShowModal] = useModal(enableScroll);
   const [toggleElement, setToggleElment] = React.useState<HTMLElement>();
+  const [portalDocument, setPortalDocument] = React.useState<Document | undefined>(() =>
+    typeof document === 'undefined' ? undefined : document,
+  );
+  const [showModal, _setShowModal] = useModal(enableScroll, portalDocument);
   const [reorgPos, setReorgPos] = React.useState<PositionType>({ x: 0, y: 0 });
   const [focusItems, setFocusItems] = React.useState<PortalFocusItem[]>([]);
   const closeTimer = React.useRef<number | ReturnType<typeof setTimeout> | null>(null);
@@ -32,6 +35,11 @@ export const PortalProvider = ({ align, space, enableScroll, hoverOpen = false, 
     if (!value) setTimeout(() => toggleElement?.focus());
   };
 
+  const setPortalToggleElement = React.useCallback((value: HTMLElement) => {
+    setPortalDocument(value.ownerDocument);
+    setToggleElment(value);
+  }, []);
+
   const openHover = React.useCallback(() => {
     if (!hoverOpen) return;
     hoverModeRef.current = true;
@@ -49,8 +57,9 @@ export const PortalProvider = ({ align, space, enableScroll, hoverOpen = false, 
     if (!hoverOpen || !showModal || !hoverModeRef.current || !toggleElement) return;
 
     const handlePointerMove = (event: PointerEvent) => {
-      const portalElement = document.getElementById('bmates-portal');
-      const element = document.elementFromPoint(event.clientX, event.clientY);
+      const targetDocument = portalDocument ?? toggleElement.ownerDocument;
+      const portalElement = targetDocument.getElementById('bmates-portal');
+      const element = targetDocument.elementFromPoint(event.clientX, event.clientY);
 
       if (!element) return;
       if (portalElement?.contains(element) || toggleElement.contains(element)) return;
@@ -59,12 +68,13 @@ export const PortalProvider = ({ align, space, enableScroll, hoverOpen = false, 
       _setShowModal(false);
     };
 
-    document.addEventListener('pointermove', handlePointerMove, true);
+    const targetDocument = portalDocument ?? toggleElement.ownerDocument;
+    targetDocument.addEventListener('pointermove', handlePointerMove, true);
 
     return () => {
-      document.removeEventListener('pointermove', handlePointerMove, true);
+      targetDocument.removeEventListener('pointermove', handlePointerMove, true);
     };
-  }, [hoverOpen, showModal, toggleElement, _setShowModal]);
+  }, [hoverOpen, portalDocument, showModal, toggleElement, _setShowModal]);
 
   const registerFocusItem = React.useCallback((item: PortalFocusItem) => {
     setFocusItems(prevItems => {
@@ -84,7 +94,9 @@ export const PortalProvider = ({ align, space, enableScroll, hoverOpen = false, 
         setShowModal,
         hoverOpen,
         toggleElement,
-        setToggleElment,
+        setToggleElment: setPortalToggleElement,
+        portalDocument,
+        setPortalDocument,
         openHover,
         closeHover,
         align,

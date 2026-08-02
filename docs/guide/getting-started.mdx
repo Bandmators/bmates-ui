@@ -1,0 +1,44 @@
+---
+title: Getting started
+description: Install BMates UI and build your first interface.
+navTitle: Getting started
+---
+
+# Getting started
+
+BMates UI is a React component library for Bandmators products. Its stylesheet
+includes component styles and the default design tokens.
+
+## Install
+
+```bash
+pnpm add bmates-ui
+```
+
+React and React DOM are peer dependencies. Install React 18 or 19 in the
+application that consumes the library.
+
+## Load the stylesheet
+
+Import the stylesheet once from your application entry point.
+
+```tsx
+import 'bmates-ui/style.css';
+```
+
+## Your first component
+
+Import components from the package root and use them in your React tree.
+
+```tsx
+import { Button } from 'bmates-ui';
+
+export function SaveChanges() {
+  return <Button variant="primary">Save changes</Button>;
+}
+```
+
+## Next steps
+
+- Read about shared colors and spacing in [Design tokens](/guide/tokens).
+- Start with the [Button](/components/button) component reference.

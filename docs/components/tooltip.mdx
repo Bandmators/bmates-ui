@@ -1,0 +1,76 @@
+﻿---
+title: Tooltip
+description: A short, non-interactive description for a control.
+navTitle: Tooltip
+---
+
+# Tooltip
+
+A short, non-interactive description for a control.
+
+## Import
+
+```tsx
+import { Tooltip } from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<Tooltip content="Save the current changes">
+  <Button aria-label="Save">Save</Button>
+</Tooltip>
+```
+
+## Preview
+
+:::: playground[Tooltip]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "tooltip", example: "default" }} minHeight={284} />
+```tsx
+<Tooltip content="Save the current changes">
+  <Button aria-label="Save">Save</Button>
+</Tooltip>
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Directions
+
+:::: playground[Directions]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "tooltip", example: "directions" }} minHeight={284} />
+```tsx
+<Tooltip direction="right" message="More information">...</Tooltip>
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `message`
+:type: `string`
+Required tooltip text.
+:::
+::: api-item
+:property: `direction`
+:type: `top` | `bottom` | `left` | `right`
+:default: `top`
+Side on which the tooltip is displayed.
+:::
+::: api-item
+:property: `children`
+:type: `ReactNode`
+Tooltip target element.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

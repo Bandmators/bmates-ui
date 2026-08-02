@@ -1,0 +1,117 @@
+﻿---
+title: Dialog
+description: A modal surface for focused, blocking tasks.
+navTitle: Dialog
+---
+
+# Dialog
+
+A modal surface for focused, blocking tasks.
+
+## Import
+
+```tsx
+import { Dialog, DialogToggle, DialogContent, DialogClose } from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<Dialog>
+  <DialogToggle>Open dialog</DialogToggle>
+  <DialogContent>
+    <h2>Delete project?</h2>
+    <p>This action cannot be undone.</p>
+    <DialogClose>Cancel</DialogClose>
+  </DialogContent>
+</Dialog>
+```
+
+## Preview
+
+:::: playground[Dialog]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "dialog", example: "default" }} minHeight={424} />
+```tsx
+<Dialog>
+  <DialogToggle>Open dialog</DialogToggle>
+  <DialogContent>
+    <h2>Delete project?</h2>
+    <p>This action cannot be undone.</p>
+    <DialogClose>Cancel</DialogClose>
+  </DialogContent>
+</Dialog>
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Hidden close control
+
+:::: playground[Hidden close control]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "dialog", example: "hide-close" }} minHeight={424} />
+```tsx
+<DialogContent hideClose>...</DialogContent>
+```
+::::
+
+### Outside click
+
+:::: playground[Outside click]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "dialog", example: "outside" }} minHeight={424} />
+```tsx
+<DialogContent outEvent>...</DialogContent>
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `Dialog`
+:type: `div props`
+Root dialog context.
+:::
+::: api-item
+:property: `DialogToggle`
+:type: `button props`
+Opens or closes the dialog.
+:::
+::: api-item
+:property: `DialogContent`
+:type: `div props`
+Modal content surface.
+:::
+::: api-item
+:property: `DialogClose`
+:type: `button props`
+Closes the active dialog.
+:::
+::: api-item
+:property: `DialogContent.outEvent`
+:type: `boolean`
+:default: `false`
+Closes the dialog when its backdrop is clicked.
+:::
+::: api-item
+:property: `DialogContent.hideClose`
+:type: `boolean`
+:default: `false`
+Hides the built-in close button.
+:::
+::: api-item
+:property: `DialogContent.maxWidth`
+:type: `number | string`
+:default: `450px`
+Maximum width of the dialog content.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

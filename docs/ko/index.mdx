@@ -1,0 +1,60 @@
+---
+layout: home
+title: BMates UI
+description: 일관된 인터페이스를 만들기 위한 공통 React 디자인 시스템입니다.
+navTitle: 홈
+hero:
+  name: BMates UI
+  pattern: bmates-ui
+  text: |-
+    셀프 브랜딩을 위한
+    간단하고 예술적인 디자인 시스템
+  tagline: 명확한 화면을 만드는 React 컴포넌트, 신뢰할 수 있는 인터랙션 패턴, 디자인 토큰을 제공해요.
+  preview: false
+  actions:
+    - text: BMates UI 시작하기
+      link: /guide/getting-started
+      theme: brand
+    - text: 컴포넌트 둘러보기
+      link: /components/button
+      theme: alt
+features:
+  - icon: ACTION
+    title: 버튼, 입력, 선택
+    details: 접근성과 일관성을 갖춘 컨트롤로 폼과 제품 액션을 구성해요.
+    link: /ko/components/button
+  - icon: FLOW
+    title: 내비게이션과 피드백
+    details: 탭, 다이얼로그, 토스트, 알림으로 사용자의 다음 행동을 안내해요.
+    link: /ko/components/navigation
+  - icon: TOKEN
+    title: 토큰과 테마
+    details: 라이트·다크 모드를 포함한 하나의 시각 언어를 제품에 적용해요.
+    link: /ko/guide/tokens
+sections:
+  - type: split
+    eyebrow: 바로 사용할 수 있는 기반
+    title: |-
+      모든 인터페이스에 필요한
+      기본 요소부터 시작해요.
+    details: |-
+      패키지를 설치하고 스타일을 불러온 뒤, 
+      기능마다 공통 인터랙션을 다시 만들지 않고 컴포넌트를 조합해요.
+    code: |-
+      import { Button, Input, Badge } from 'bmates-ui';
+      import 'bmates-ui/style.css';
+
+      export function App() {
+        return (
+          <section>
+            <Badge variant="success">Ready</Badge>
+            <Input label="Release title" />
+            <Button variant="primary">Publish release</Button>
+          </section>
+        );
+      }
+    actions:
+      - text: 빠른 시작 읽기
+        link: /guide/getting-started
+        theme: brand
+---

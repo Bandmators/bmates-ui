@@ -10,6 +10,7 @@ import { dropdownListBoxRecipe } from './dropdown.recipe';
 
 interface ModalProps extends React.ComponentPropsWithoutRef<'div'> {
   width?: React.CSSProperties['width'];
+  disabledAutoFocus?: boolean;
 }
 
 /**

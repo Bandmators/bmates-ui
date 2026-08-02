@@ -1,0 +1,156 @@
+﻿---
+title: DataTable
+description: A table with client-side sorting, filtering, and row selection.
+navTitle: DataTable
+---
+
+# DataTable
+
+A table with client-side sorting, filtering, and row selection.
+
+## Import
+
+```tsx
+import { DataTable } from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<DataTable
+  columns={[
+    { id: 'name', header: 'Name', accessor: row => row.name, sortable: true },
+    { id: 'role', header: 'Role', accessor: row => row.role },
+  ]}
+  data={[
+    { id: 'jane', name: 'Jane Doe', role: 'Designer' },
+    { id: 'sam', name: 'Sam Lee', role: 'Engineer' },
+  ]}
+  getRowId={row => row.id}
+  filterable
+/>
+```
+
+## Preview
+
+:::: playground[DataTable]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "data-table", example: "default" }} minHeight={300} />
+```tsx
+<DataTable
+  columns={[
+    { id: 'name', header: 'Name', accessor: row => row.name, sortable: true },
+    { id: 'role', header: 'Role', accessor: row => row.role },
+  ]}
+  data={[
+    { id: 'jane', name: 'Jane Doe', role: 'Designer' },
+    { id: 'sam', name: 'Sam Lee', role: 'Engineer' },
+  ]}
+  getRowId={row => row.id}
+  filterable
+/>
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Filtering
+
+:::: playground[Filtering]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "data-table", example: "filterable" }} minHeight={360} />
+```tsx
+<DataTable filterable {...props} />
+```
+::::
+
+### Row selection
+
+:::: playground[Row selection]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "data-table", example: "selectable" }} minHeight={320} />
+```tsx
+<DataTable selectable {...props} />
+```
+::::
+
+### Empty state
+
+:::: playground[Empty state]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "data-table", example: "empty" }} minHeight={180} />
+```tsx
+<DataTable data={[]} emptyMessage="No instruments." {...props} />
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `columns`
+:type: `DataTableColumn<T>[]`
+Required columns with `id`, `header`, and optional `accessor`, `cell`, or `sortable`.
+:::
+::: api-item
+:property: `data`
+:type: `T[]`
+Required row data.
+:::
+::: api-item
+:property: `getRowId`
+:type: `(row: T) => string`
+Required stable row identifier.
+:::
+::: api-item
+:property: `selectable`
+:type: `boolean`
+:default: `false`
+Shows row-selection controls.
+:::
+::: api-item
+:property: `filterable`
+:type: `boolean`
+:default: `false`
+Shows the client-side filter field.
+:::
+::: api-item
+:property: `filterPlaceholder`
+:type: `string`
+:default: `Filter rows...`
+Filter input placeholder.
+:::
+::: api-item
+:property: `emptyMessage`
+:type: `ReactNode`
+:default: `No matching rows.`
+Content shown when no rows match.
+:::
+::: api-item
+:property: `selectedRowIds`
+:type: `string[]`
+Controlled selection state.
+:::
+::: api-item
+:property: `onSelectedRowIdsChange`
+:type: `(rowIds: string[]) => void`
+Receives selection changes.
+:::
+::: api-item
+:property: `defaultSelectedRowIds`
+:type: `string[]`
+:default: `[]`
+Initially selected row IDs in uncontrolled mode.
+:::
+::: api-item
+:property: `className`
+:type: `string`
+Additional class name for the root element.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

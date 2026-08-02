@@ -1,0 +1,124 @@
+﻿---
+title: Search
+description: ?좉?, ?낅젰李? 寃곌낵 ?곸뿭?쇰줈 援ъ꽦?섎뒗 寃???쒕㈃?낅땲??
+navTitle: Search
+---
+
+# Search
+
+?좉?, ?낅젰李? 寃곌낵 ?곸뿭?쇰줈 援ъ꽦?섎뒗 寃???쒕㈃?낅땲??
+
+## 媛?몄삤湲?
+```tsx
+import {
+  Search,
+  SearchContent,
+  SearchInput,
+  SearchInputToggle,
+  SearchItem,
+  SearchToggle,
+} from 'bmates-ui';
+```
+
+## 湲곕낯 ?ъ슜踰?
+?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+
+```tsx
+<Search>
+  <SearchToggle>Search</SearchToggle>
+  <SearchContent>
+    <SearchInput placeholder="Search projects" />
+    <SearchItem>Design system</SearchItem>
+  </SearchContent>
+</Search>
+```
+
+## 誘몃━蹂닿린
+
+:::: playground[Search]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "search", example: "default" }} minHeight={324} />
+```tsx
+<Search>
+  <SearchToggle>Search</SearchToggle>
+  <SearchContent>
+    <SearchInput placeholder="Search projects" />
+    <SearchItem>Design system</SearchItem>
+  </SearchContent>
+</Search>
+```
+::::
+
+## Props 誘몃━蹂닿린
+
+?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+
+### ?뺣젹
+
+:::: playground[?뺣젹]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "search", example: "end" }} minHeight={324} />
+```tsx
+<Search align="end">...</Search>
+```
+::::
+
+### ?몃━嫄?媛꾧꺽
+
+:::: playground[?몃━嫄?媛꾧꺽]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "search", example: "space" }} minHeight={324} />
+```tsx
+<Search space={16}>...</Search>
+```
+::::
+
+### 鍮꾪솢????ぉ
+
+:::: playground[鍮꾪솢????ぉ]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "search", example: "disabled" }} minHeight={324} />
+```tsx
+<SearchItem disabled>Delete</SearchItem>
+```
+::::
+
+## 而댄룷?뚰듃 API
+
+:::: api-list
+::: api-item
+:property: `Search`
+:type: `children`
+Root search context.
+:::
+::: api-item
+:property: `SearchContent.width`
+:type: `CSSProperties[width]`
+Search panel width.
+:::
+::: api-item
+:property: `SearchInput`
+:type: `input props`
+Native search field props.
+:::
+::: api-item
+:property: `SearchItem.disabled`
+:type: `boolean`
+:default: `false`
+Prevents selecting a result.
+:::
+::: api-item
+:property: `align`
+:type: `start | center | end`
+:default: `center`
+寃???⑤꼸 ?뺣젹?낅땲??
+:::
+::: api-item
+:property: `space`
+:type: `number`
+:default: `0`
+?몃━嫄곗? ?⑤꼸 ?ъ씠???쎌? 媛꾧꺽?낅땲??
+:::
+::::
+
+## ?ъ슜 ?덈궡
+
+- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
+- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
+- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.

@@ -1,0 +1,96 @@
+﻿---
+title: ContextMenu
+description: A menu of actions opened from a target context.
+navTitle: ContextMenu
+---
+
+# ContextMenu
+
+A menu of actions opened from a target context.
+
+## Import
+
+```tsx
+import {
+  ContextMenu,
+  ContextMenuContainer,
+  ContextMenuItem,
+  ContextMenuProvider,
+} from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<ContextMenuProvider>
+  <ContextMenuContainer>Right-click me</ContextMenuContainer>
+  <ContextMenu>
+    <ContextMenuItem>Rename</ContextMenuItem>
+    <ContextMenuItem>Delete</ContextMenuItem>
+  </ContextMenu>
+</ContextMenuProvider>
+```
+
+## Preview
+
+:::: playground[ContextMenu]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "context-menu", example: "default" }} minHeight={324} />
+```tsx
+<ContextMenuProvider>
+  <ContextMenuContainer>Right-click me</ContextMenuContainer>
+  <ContextMenu>
+    <ContextMenuItem>Rename</ContextMenuItem>
+    <ContextMenuItem>Delete</ContextMenuItem>
+  </ContextMenu>
+</ContextMenuProvider>
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Disabled item
+
+:::: playground[Disabled item]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "context-menu", example: "disabled" }} minHeight={324} />
+```tsx
+<ContextMenuItem disabled>Delete</ContextMenuItem>
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `ContextMenuProvider.align`
+:type: `start` | `center` | `end`
+:default: `start`
+Horizontal alignment for the floating menu.
+:::
+::: api-item
+:property: `ContextMenuProvider.space`
+:type: `number`
+:default: `0`
+Gap, in pixels, between target and menu.
+:::
+::: api-item
+:property: `ContextMenu.width`
+:type: `CSSProperties[width]`
+Floating menu width.
+:::
+::: api-item
+:property: `ContextMenuItem.disabled`
+:type: `boolean`
+:default: `false`
+Prevents the item action.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

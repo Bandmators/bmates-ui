@@ -1,0 +1,62 @@
+﻿---
+title: Alert
+description: A contextual message that communicates status or important information.
+navTitle: Alert
+---
+
+# Alert
+
+A contextual message that communicates status or important information.
+
+## Import
+
+```tsx
+import { Alert } from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<Alert variant="info">Your changes have been saved.</Alert>
+```
+
+## Preview
+
+:::: playground[Alert]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "alert", example: "default" }} minHeight={160} />
+```tsx
+<Alert variant="info">Your changes have been saved.</Alert>
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Variants
+
+:::: playground[Variants]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "alert", example: "variants" }} minHeight={420} />
+```tsx
+<Alert variant="success">...</Alert>
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `variant`
+:type: `info` | `success` | `warning` | `danger`
+:default: `info`
+Sets the message status color. Other standard `div` props are supported.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

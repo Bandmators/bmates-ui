@@ -40,7 +40,7 @@ const Portal = ({ children, ref, width, onKeyDown, disabledAutoFocus, ...props }
   const focus = (key: 'next' | 'prev'): void => {
     if (!focusItems.length || !canUseDOM) return;
 
-    const { activeElement } = document;
+    const { activeElement } = portalRef.current?.ownerDocument ?? document;
 
     const nextItem = getNextPortalItem(focusItems, activeElement instanceof HTMLElement ? activeElement : null, key);
     nextItem?.element.focus();
@@ -49,12 +49,14 @@ const Portal = ({ children, ref, width, onKeyDown, disabledAutoFocus, ...props }
   const select = () => {
     if (!canUseDOM) return;
 
-    const { activeElement } = document;
+    const targetDocument = portalRef.current?.ownerDocument ?? document;
+    const { activeElement } = targetDocument;
+    const targetWindow = targetDocument.defaultView ?? window;
 
     const clickEvent = new MouseEvent('click', {
       bubbles: true,
       cancelable: true,
-      view: window,
+      view: targetWindow,
     });
 
     activeElement?.dispatchEvent(clickEvent);

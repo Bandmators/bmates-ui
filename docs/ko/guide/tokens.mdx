@@ -1,0 +1,130 @@
+---
+title: 디자인 토큰
+description: BMates UI CSS 변수와 export 토큰 객체의 전체 레퍼런스입니다.
+navTitle: 디자인 토큰
+---
+
+# 디자인 토큰
+
+BMates UI는 `bmates-ui/style.css`에서 디자인 시스템을 CSS custom property로 제공합니다. 시맨틱 토큰은 `html[data-theme='dark']`에 따라 바뀌며, light/dark scale 토큰은 고정값입니다.
+
+## 색상 팔레트
+
+모든 팔레트는 `50`, `100`, `200`, `300`, `400`, `500`, `600`, `700`, `800`, `900` 단계를 제공합니다.
+
+<div className="token-scale">
+  <span className="token-scale__name">Primary</span>
+  <span className="token-swatch" style={{ '--token-color': 'var(--primary-50)' }}><i />50</span><span className="token-swatch" style={{ '--token-color': 'var(--primary-100)' }}><i />100</span><span className="token-swatch" style={{ '--token-color': 'var(--primary-200)' }}><i />200</span><span className="token-swatch" style={{ '--token-color': 'var(--primary-300)' }}><i />300</span><span className="token-swatch" style={{ '--token-color': 'var(--primary-400)' }}><i />400</span><span className="token-swatch" style={{ '--token-color': 'var(--primary-500)' }}><i />500</span><span className="token-swatch" style={{ '--token-color': 'var(--primary-600)' }}><i />600</span><span className="token-swatch" style={{ '--token-color': 'var(--primary-700)' }}><i />700</span><span className="token-swatch" style={{ '--token-color': 'var(--primary-800)' }}><i />800</span><span className="token-swatch" style={{ '--token-color': 'var(--primary-900)' }}><i />900</span>
+</div>
+
+<div className="token-scale">
+  <span className="token-scale__name">Gray</span>
+  <span className="token-swatch" style={{ '--token-color': 'var(--gray-50)' }}><i />50</span><span className="token-swatch" style={{ '--token-color': 'var(--gray-100)' }}><i />100</span><span className="token-swatch" style={{ '--token-color': 'var(--gray-200)' }}><i />200</span><span className="token-swatch" style={{ '--token-color': 'var(--gray-300)' }}><i />300</span><span className="token-swatch" style={{ '--token-color': 'var(--gray-400)' }}><i />400</span><span className="token-swatch" style={{ '--token-color': 'var(--gray-500)' }}><i />500</span><span className="token-swatch" style={{ '--token-color': 'var(--gray-600)' }}><i />600</span><span className="token-swatch" style={{ '--token-color': 'var(--gray-700)' }}><i />700</span><span className="token-swatch" style={{ '--token-color': 'var(--gray-800)' }}><i />800</span><span className="token-swatch" style={{ '--token-color': 'var(--gray-900)' }}><i />900</span>
+</div>
+
+<div className="token-scale">
+  <span className="token-scale__name">Success</span>
+  <span className="token-swatch" style={{ '--token-color': 'var(--success-50)' }}><i />50</span><span className="token-swatch" style={{ '--token-color': 'var(--success-100)' }}><i />100</span><span className="token-swatch" style={{ '--token-color': 'var(--success-200)' }}><i />200</span><span className="token-swatch" style={{ '--token-color': 'var(--success-300)' }}><i />300</span><span className="token-swatch" style={{ '--token-color': 'var(--success-400)' }}><i />400</span><span className="token-swatch" style={{ '--token-color': 'var(--success-500)' }}><i />500</span><span className="token-swatch" style={{ '--token-color': 'var(--success-600)' }}><i />600</span><span className="token-swatch" style={{ '--token-color': 'var(--success-700)' }}><i />700</span><span className="token-swatch" style={{ '--token-color': 'var(--success-800)' }}><i />800</span><span className="token-swatch" style={{ '--token-color': 'var(--success-900)' }}><i />900</span>
+</div>
+
+<div className="token-scale">
+  <span className="token-scale__name">Danger</span>
+  <span className="token-swatch" style={{ '--token-color': 'var(--danger-50)' }}><i />50</span><span className="token-swatch" style={{ '--token-color': 'var(--danger-100)' }}><i />100</span><span className="token-swatch" style={{ '--token-color': 'var(--danger-200)' }}><i />200</span><span className="token-swatch" style={{ '--token-color': 'var(--danger-300)' }}><i />300</span><span className="token-swatch" style={{ '--token-color': 'var(--danger-400)' }}><i />400</span><span className="token-swatch" style={{ '--token-color': 'var(--danger-500)' }}><i />500</span><span className="token-swatch" style={{ '--token-color': 'var(--danger-600)' }}><i />600</span><span className="token-swatch" style={{ '--token-color': 'var(--danger-700)' }}><i />700</span><span className="token-swatch" style={{ '--token-color': 'var(--danger-800)' }}><i />800</span><span className="token-swatch" style={{ '--token-color': 'var(--danger-900)' }}><i />900</span>
+</div>
+
+<div className="token-scale">
+  <span className="token-scale__name">Warning</span>
+  <span className="token-swatch" style={{ '--token-color': 'var(--warning-50)' }}><i />50</span><span className="token-swatch" style={{ '--token-color': 'var(--warning-100)' }}><i />100</span><span className="token-swatch" style={{ '--token-color': 'var(--warning-200)' }}><i />200</span><span className="token-swatch" style={{ '--token-color': 'var(--warning-300)' }}><i />300</span><span className="token-swatch" style={{ '--token-color': 'var(--warning-400)' }}><i />400</span><span className="token-swatch" style={{ '--token-color': 'var(--warning-500)' }}><i />500</span><span className="token-swatch" style={{ '--token-color': 'var(--warning-600)' }}><i />600</span><span className="token-swatch" style={{ '--token-color': 'var(--warning-700)' }}><i />700</span><span className="token-swatch" style={{ '--token-color': 'var(--warning-800)' }}><i />800</span><span className="token-swatch" style={{ '--token-color': 'var(--warning-900)' }}><i />900</span>
+</div>
+
+<div className="token-scale">
+  <span className="token-scale__name">Info</span>
+  <span className="token-swatch" style={{ '--token-color': 'var(--info-50)' }}><i />50</span><span className="token-swatch" style={{ '--token-color': 'var(--info-100)' }}><i />100</span><span className="token-swatch" style={{ '--token-color': 'var(--info-200)' }}><i />200</span><span className="token-swatch" style={{ '--token-color': 'var(--info-300)' }}><i />300</span><span className="token-swatch" style={{ '--token-color': 'var(--info-400)' }}><i />400</span><span className="token-swatch" style={{ '--token-color': 'var(--info-500)' }}><i />500</span><span className="token-swatch" style={{ '--token-color': 'var(--info-600)' }}><i />600</span><span className="token-swatch" style={{ '--token-color': 'var(--info-700)' }}><i />700</span><span className="token-swatch" style={{ '--token-color': 'var(--info-800)' }}><i />800</span><span className="token-swatch" style={{ '--token-color': 'var(--info-900)' }}><i />900</span>
+</div>
+
+| Token family | Complete tokens | Purpose |
+| --- | --- | --- |
+| Primary | `--primary-50` … `--primary-900` | Active neutral brand scale. |
+| Gray | `--gray-50` … `--gray-900` | Neutral UI scale. |
+| Success | `--success-50` … `--success-900` | Green feedback scale. |
+| Danger | `--danger-50` … `--danger-900` | Red feedback scale. |
+| Warning | `--warning-50` … `--warning-900` | Amber feedback scale. |
+| Info | `--info-50` … `--info-900` | Blue feedback scale. |
+| Fixed light/dark | `--gray-light-*`, `--gray-dark-*`, `--primary-light-*`, `--primary-dark-*` | Theme-independent neutral scales. Each supports steps `50`–`900`. |
+
+## 시맨틱 색상
+
+애플리케이션과 컴포넌트 스타일에서는 scale 단계를 직접 고르기보다 이 토큰을 사용하세요.
+Each status family (`primary`, `secondary`, `success`, `danger`, `warning`,
+`info`) supports the same suffixes.
+
+| Suffix | Tokens | Use |
+| --- | --- | --- |
+| Base | `--primary`, `--secondary`, `--success`, `--danger`, `--warning`, `--info` | Main fill or accent. |
+| Foreground | `--*-fg` | Text or icon on the base fill. |
+| Hover | `--*-hover` | Interactive hover fill. |
+| Soft | `--*-soft`, `--*-soft-fg`, `--*-soft-hover` | Low-emphasis surface, text, and hover state. |
+| Border | `--*-border` | Border paired with the family. |
+
+테마에 따라 바뀌는 구조 토큰은 다음과 같습니다.
+
+`--background`, `--white`, `--black`, `--surface`, `--surface-hover`,
+`--surface-active`, `--elevated`, `--border`, `--border-strong`, `--text`,
+`--text-strong`, `--muted`, `--faint`, `--overlay`, `--focus-border`, and
+`--focus-shadow`.
+
+<div className="token-groups">
+  <div className="token-group"><h3>Surfaces</h3><code>--background</code>, <code>--surface</code>, <code>--surface-hover</code>, <code>--surface-active</code>, <code>--elevated</code></div>
+  <div className="token-group"><h3>Content</h3><code>--text</code>, <code>--text-strong</code>, <code>--muted</code>, <code>--faint</code></div>
+  <div className="token-group"><h3>Boundaries</h3><code>--border</code>, <code>--border-strong</code>, <code>--overlay</code>, <code>--focus-border</code>, <code>--focus-shadow</code></div>
+</div>
+
+```css
+.notice {
+  color: var(--success-soft-fg);
+  background: var(--success-soft);
+  border: 1px solid var(--success-border);
+}
+```
+
+## 간격, 형태, 레이아웃
+
+| Token family | Complete tokens |
+| --- | --- |
+| Spacing | `--space-0` through `--space-24` |
+| Radius | `--radius-sm`, `--radius`, `--radius-lg`, `--radius-full` |
+| Shadows | `--shadow-sm`, `--shadow`, `--shadow-lg` |
+| Containers | `--container-sm`, `--container-md`, `--container-lg`, `--container-xl` |
+| Z-index | `--z-dropdown`, `--z-sticky`, `--z-modal`, `--z-popover`, `--z-toast`, `--z-tooltip` |
+
+## 타이포그래피와 모션
+
+| Token family | Complete tokens |
+| --- | --- |
+| Fonts | `--font-sans`, `--font-mono` |
+| Font sizes | `--font-size-xs`, `--font-size-sm`, `--font-size-md`, `--font-size-lg`, `--font-size-xl`, `--font-size-2xl`, `--font-size-3xl` |
+| Line heights | `--line-height-tight`, `--line-height-normal`, `--line-height-relaxed` |
+| Motion | `--transition`, `--ease`, `--ease-in`, `--ease-out`, `--ease-in-out` |
+
+## 브레이크포인트와 TypeScript export
+
+CSS 브레이크포인트 변수는 `--breakpoint-sm`, `--breakpoint-md`,
+`--breakpoint-lg`, `--breakpoint-xl`, and `--breakpoint-2xl`.
+
+```ts
+import {
+  BMateBreakpoints,
+  BMateColors,
+  BMateColorsDark,
+  BMateColorScales,
+  BMateTokens,
+  minMedia,
+  maxMedia,
+} from 'bmates-ui';
+
+BMateBreakpoints.lg; // '1024px'
+minMedia.lg; // '@media screen and (min-width: 1024px)'
+maxMedia.md; // '@media screen and (max-width: 767px)'
+BMateColorScales.success[500];
+BMateTokens['radius-lg'];
+```

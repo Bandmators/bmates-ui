@@ -1,0 +1,65 @@
+﻿---
+title: BMatesProvider
+description: The provider that supplies the library theme and shared styling context.
+navTitle: BMatesProvider
+---
+
+# BMatesProvider
+
+The provider that supplies the library theme and shared styling context.
+
+## Import
+
+```tsx
+import { BMatesProvider } from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<BMatesProvider>
+  <Button>Ready</Button>
+</BMatesProvider>
+```
+
+## Preview
+
+:::: playground[BMatesProvider]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "provider", example: "default" }} minHeight={132} />
+```tsx
+<BMatesProvider>
+  <Button>Ready</Button>
+</BMatesProvider>
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Provider content
+
+:::: playground[Provider content]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "provider", example: "default" }} minHeight={132} />
+```tsx
+<BMatesProvider><Button>Child</Button></BMatesProvider>
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `children`
+:type: `ReactNode`
+Application subtree receiving BMates context.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

@@ -1,0 +1,116 @@
+﻿---
+title: Dropdown
+description: A menu of actions opened from a compact trigger.
+navTitle: Dropdown
+---
+
+# Dropdown
+
+A menu of actions opened from a compact trigger.
+
+## Import
+
+```tsx
+import {
+  Dropdown,
+  DropdownContent,
+  DropdownItem,
+  DropdownToggle,
+} from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<Dropdown>
+  <DropdownToggle>Actions</DropdownToggle>
+  <DropdownContent>
+    <DropdownItem>Edit</DropdownItem>
+    <DropdownItem>Duplicate</DropdownItem>
+  </DropdownContent>
+</Dropdown>
+```
+
+## Preview
+
+:::: playground[Dropdown]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "dropdown", example: "default" }} minHeight={324} />
+```tsx
+<Dropdown>
+  <DropdownToggle>Actions</DropdownToggle>
+  <DropdownContent>
+    <DropdownItem>Edit</DropdownItem>
+    <DropdownItem>Duplicate</DropdownItem>
+  </DropdownContent>
+</Dropdown>
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Alignment
+
+:::: playground[Alignment]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "dropdown", example: "end" }} minHeight={324} />
+```tsx
+<Dropdown align="end">...</Dropdown>
+```
+::::
+
+### Trigger spacing
+
+:::: playground[Trigger spacing]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "dropdown", example: "space" }} minHeight={324} />
+```tsx
+<Dropdown space={16}>...</Dropdown>
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `Dropdown`
+:type: `children`
+Root menu context.
+:::
+::: api-item
+:property: `DropdownContent.width`
+:type: `CSSProperties[width]`
+Floating menu width.
+:::
+::: api-item
+:property: `DropdownItem.disabled`
+:type: `boolean`
+:default: `false`
+Prevents selecting an item.
+:::
+::: api-item
+:property: `align`
+:type: `start | center | end`
+:default: `center`
+Horizontal menu alignment.
+:::
+::: api-item
+:property: `space`
+:type: `number`
+:default: `0`
+Gap between the trigger and menu in pixels.
+:::
+::: api-item
+:property: `hoverOpen`
+:type: `boolean`
+:default: `false`
+Opens the menu on pointer hover.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

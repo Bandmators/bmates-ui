@@ -17,13 +17,15 @@ export const PortalContent = ({
   onKeyDown,
   ...props
 }: PortalProps) => {
-  const { showModal, setShowModal } = useContext(PortalContext)!;
+  const { showModal, setShowModal, portalDocument } = useContext(PortalContext)!;
 
   const close = () => {
     setShowModal(false);
   };
 
   if (!canUseDOM) return null;
+
+  const portalTarget = portalDocument?.body ?? document.body;
 
   return (
     <>
@@ -52,7 +54,7 @@ export const PortalContent = ({
               {children}
             </Portal>
           </>,
-          document.body,
+          portalTarget,
         )}
     </>
   );

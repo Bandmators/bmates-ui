@@ -1,0 +1,15 @@
+---
+title: Theming
+description: Apply the CSS-variable light and dark themes.
+navTitle: Theming
+---
+
+# Theming
+
+BMates UI uses CSS variables and switches theme with `data-theme` on the root HTML element.
+
+```ts
+document.documentElement.dataset.theme = 'dark';
+```
+
+Set it to `light` for the default appearance. A provider is not required; import `bmates-ui/style.css` once and use semantic tokens in custom UI.

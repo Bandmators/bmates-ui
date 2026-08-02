@@ -1,0 +1,98 @@
+﻿---
+title: Button
+description: An action control with clear hierarchy and state.
+navTitle: Button
+---
+
+# Button
+
+An action control with clear hierarchy and state.
+
+## Import
+
+```tsx
+import { Button } from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<Button variant="primary">Save changes</Button>
+```
+
+## Preview
+
+:::: playground[Button]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "button", example: "default" }} minHeight={180} />
+```tsx
+<Button variant="primary">Save changes</Button>
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Variants
+
+:::: playground[Variants]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "button", example: "variants" }} minHeight={180} />
+```tsx
+<Button variant="success">Success</Button>
+```
+::::
+
+### Sizes
+
+:::: playground[Sizes]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "button", example: "sizes" }} minHeight={132} />
+```tsx
+<Button size="lg">Large</Button>
+```
+::::
+
+### States
+
+:::: playground[States]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "button", example: "states" }} minHeight={132} />
+```tsx
+<Button disabled>Disabled</Button>
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `variant`
+:type: `default` | `primary` | `secondary` | `success` | `danger` | `warning` | `info` | `outline` | `ghost`
+:default: `default`
+Visual style. Available values: `default`, `secondary`, `success`, `danger`, `warning`, `info`, `outline`, and `ghost`.
+:::
+::: api-item
+:property: `size`
+:type: `sm` | `md` | `lg` | `icon`
+:default: `md`
+Controls the button height and padding.
+:::
+::: api-item
+:property: `full`
+:type: `boolean`
+:default: `false`
+Makes the button fill its container width.
+:::
+::: api-item
+:property: `disabled`
+:type: `boolean`
+:default: `false`
+Disables interaction. Native button props, including `type` and `onClick`, are supported.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

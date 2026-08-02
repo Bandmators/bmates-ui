@@ -1,0 +1,125 @@
+﻿---
+title: Toast
+description: A temporary notification that appears outside the document flow.
+navTitle: Toast
+---
+
+# Toast
+
+A temporary notification that appears outside the document flow.
+
+## Import
+
+```tsx
+import { Toaster, Toast, useToast, ToastData } from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+function SaveToast() {
+  const { toast } = useToast();
+  return (
+    <Button
+      onClick={() => toast({ title: 'Project saved', variant: 'success' })}
+    >
+      Show toast
+    </Button>
+  );
+}
+
+<SaveToast />
+<Toaster position="bottom-right" />
+```
+
+## Preview
+
+:::: playground[Toast]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "toast", example: "default" }} minHeight={132} />
+```tsx
+function SaveToast() {
+  const { toast } = useToast();
+  return (
+    <Button
+      onClick={() => toast({ title: 'Project saved', variant: 'success' })}
+    >
+      Show toast
+    </Button>
+  );
+}
+
+<SaveToast />
+<Toaster position="bottom-right" />
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Position
+
+:::: playground[Position]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "toast", example: "top" }} minHeight={132} />
+```tsx
+<Toaster position="top-right" />
+```
+::::
+
+### Danger variant
+
+:::: playground[Danger variant]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "toast", example: "danger" }} minHeight={132} />
+```tsx
+toast({ title: "Error", variant: "danger" })
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `Toaster.position`
+:type: `top-left` | `top-center` | `top-right` | `bottom-left` | `bottom-center` | `bottom-right`
+:default: `bottom-right`
+Viewport position for queued toasts.
+:::
+::: api-item
+:property: `toast.title`
+:type: `ReactNode`
+Toast heading.
+:::
+::: api-item
+:property: `toast.description`
+:type: `ReactNode`
+Toast body content.
+:::
+::: api-item
+:property: `toast.variant`
+:type: `default` | `primary` | `secondary` | `success` | `danger` | `warning` | `info`
+Visual notification status.
+:::
+::: api-item
+:property: `toast.time`
+:type: `number`
+Dismiss delay in milliseconds; a negative value keeps it visible.
+:::
+::: api-item
+:property: `toast.action`
+:type: `(data: unknown) => void`
+Called when the toast is clicked.
+:::
+::: api-item
+:property: `toast.data`
+:type: `unknown`
+Custom data passed to the `action` callback.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

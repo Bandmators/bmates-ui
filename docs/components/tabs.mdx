@@ -1,0 +1,119 @@
+﻿---
+title: Tabs
+description: A set of panels where one section is visible at a time.
+navTitle: Tabs
+---
+
+# Tabs
+
+A set of panels where one section is visible at a time.
+
+## Import
+
+```tsx
+import { Tabs, TabsList, TabsTrigger, TabsContent } from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<Tabs defaultValue="overview">
+  <TabsList>
+    <TabsTrigger value="overview">Overview</TabsTrigger>
+    <TabsTrigger value="activity">Activity</TabsTrigger>
+  </TabsList>
+  <TabsContent value="overview">Project overview</TabsContent>
+  <TabsContent value="activity">Recent activity</TabsContent>
+</Tabs>
+```
+
+## Preview
+
+:::: playground[Tabs]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "tabs", example: "default" }} minHeight={160} />
+```tsx
+<Tabs defaultValue="overview">
+  <TabsList>
+    <TabsTrigger value="overview">Overview</TabsTrigger>
+    <TabsTrigger value="activity">Activity</TabsTrigger>
+  </TabsList>
+  <TabsContent value="overview">Project overview</TabsContent>
+  <TabsContent value="activity">Recent activity</TabsContent>
+</Tabs>
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Controlled value
+
+:::: playground[Controlled value]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "tabs", example: "controlled" }} minHeight={160} />
+```tsx
+<Tabs value={value} onValueChange={setValue} defaultValue="profile">...</Tabs>
+```
+::::
+
+### Size
+
+:::: playground[Size]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "tabs", example: "large" }} minHeight={170} />
+```tsx
+<Tabs size="lg" defaultValue="profile">...</Tabs>
+```
+::::
+
+### Disabled tab
+
+:::: playground[Disabled tab]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "tabs", example: "disabled" }} minHeight={160} />
+```tsx
+<TabsTrigger value="settings" disabled>Settings</TabsTrigger>
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `value`
+:type: `string`
+Controlled active tab value.
+:::
+::: api-item
+:property: `defaultValue`
+:type: `string`
+Required initial active tab value.
+:::
+::: api-item
+:property: `onValueChange`
+:type: `(value: string) => void`
+Called after a tab is activated.
+:::
+::: api-item
+:property: `size`
+:type: `xs` | `sm` | `md` | `lg` | `xl`
+:default: `md`
+Tab control size.
+:::
+::: api-item
+:property: `TabsTrigger.value`
+:type: `string`
+Required value paired with a panel.
+:::
+::: api-item
+:property: `TabsContent.value`
+:type: `string`
+Required value of its matching trigger.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

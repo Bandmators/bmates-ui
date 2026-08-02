@@ -1,0 +1,123 @@
+﻿---
+title: Toast
+description: 臾몄꽌 ?먮쫫 諛뽰뿉 ?좎떆 ?섑??섎뒗 ?뚮┝?낅땲??
+navTitle: Toast
+---
+
+# Toast
+
+臾몄꽌 ?먮쫫 諛뽰뿉 ?좎떆 ?섑??섎뒗 ?뚮┝?낅땲??
+
+## 媛?몄삤湲?
+```tsx
+import { Toaster, Toast, useToast, ToastData } from 'bmates-ui';
+```
+
+## 湲곕낯 ?ъ슜踰?
+?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+
+```tsx
+function SaveToast() {
+  const { toast } = useToast();
+  return (
+    <Button
+      onClick={() => toast({ title: 'Project saved', variant: 'success' })}
+    >
+      Show toast
+    </Button>
+  );
+}
+
+<SaveToast />
+<Toaster position="bottom-right" />
+```
+
+## 誘몃━蹂닿린
+
+:::: playground[Toast]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "toast", example: "default" }} minHeight={132} />
+```tsx
+function SaveToast() {
+  const { toast } = useToast();
+  return (
+    <Button
+      onClick={() => toast({ title: 'Project saved', variant: 'success' })}
+    >
+      Show toast
+    </Button>
+  );
+}
+
+<SaveToast />
+<Toaster position="bottom-right" />
+```
+::::
+
+## Props 誘몃━蹂닿린
+
+?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+
+### ?꾩튂
+
+:::: playground[?꾩튂]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "toast", example: "top" }} minHeight={132} />
+```tsx
+<Toaster position="top-right" />
+```
+::::
+
+### Danger variant
+
+:::: playground[Danger variant]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "toast", example: "danger" }} minHeight={132} />
+```tsx
+toast({ title: "Error", variant: "danger" })
+```
+::::
+
+## 而댄룷?뚰듃 API
+
+:::: api-list
+::: api-item
+:property: `Toaster.position`
+:type: `top-left` | `top-center` | `top-right` | `bottom-left` | `bottom-center` | `bottom-right`
+:default: `bottom-right`
+Viewport position for queued toasts.
+:::
+::: api-item
+:property: `toast.title`
+:type: `ReactNode`
+Toast heading.
+:::
+::: api-item
+:property: `toast.description`
+:type: `ReactNode`
+Toast body content.
+:::
+::: api-item
+:property: `toast.variant`
+:type: `default` | `primary` | `secondary` | `success` | `danger` | `warning` | `info`
+Visual notification status.
+:::
+::: api-item
+:property: `toast.time`
+:type: `number`
+Dismiss delay in milliseconds; a negative value keeps it visible.
+:::
+::: api-item
+:property: `toast.action`
+:type: `(data: unknown) => void`
+Called when the toast is clicked.
+:::
+::: api-item
+:property: `toast.data`
+:type: `unknown`
+`action` 肄쒕갚???꾨떖???ъ슜???곗씠?곗엯?덈떎.
+:::
+::::
+
+## ?ъ슜 ?덈궡
+
+- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
+- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
+- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.

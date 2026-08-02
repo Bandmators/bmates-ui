@@ -1,0 +1,54 @@
+---
+layout: home
+title: BMates UI
+description: The shared React design system for building consistent interfaces.
+navTitle: Home
+hero:
+  name: BMates UI
+  pattern: bmates-ui
+  text: A Design System for Personal Branding
+  tagline: Production-ready React components, dependable interaction patterns, and tokens that help teams build with clarity.
+  preview: false
+  actions:
+    - text: Install BMates UI
+      link: /guide/getting-started
+      theme: brand
+    - text: Explore components
+      link: /components/button
+      theme: alt
+features:
+  - icon: ACTION
+    title: Buttons, inputs, and selection
+    details: Compose forms and actions from accessible, consistent controls.
+    link: /components/button
+  - icon: FLOW
+    title: Navigation and feedback
+    details: Guide people through tabs, dialogs, toasts, alerts, and status changes.
+    link: /components/navigation
+  - icon: TOKEN
+    title: Tokens and themes
+    details: Use one visual language across products, including light and dark modes.
+    link: /guide/tokens
+sections:
+  - type: split
+    eyebrow: READY TO SHIP
+    title: Start with the primitives every interface needs.
+    details: Install the package, load its styles, then combine components without rebuilding common interaction patterns for every feature.
+    code: |-
+      import { Button, Input, Badge } from 'bmates-ui';
+      import 'bmates-ui/style.css';
+
+      export function App() {
+        return (
+          <section>
+            <Badge variant="success">Ready</Badge>
+            <Input label="Release title" />
+            <Button variant="primary">Publish release</Button>
+          </section>
+        );
+      }
+    actions:
+      - text: Read the quick start
+        link: /guide/getting-started
+        theme: brand
+---

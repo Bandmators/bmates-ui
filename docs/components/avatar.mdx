@@ -1,0 +1,72 @@
+﻿---
+title: Avatar
+description: An image, initials, or fallback that represents a person or entity.
+navTitle: Avatar
+---
+
+# Avatar
+
+An image, initials, or fallback that represents a person or entity.
+
+## Import
+
+```tsx
+import { Avatar } from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<Avatar src="https://i.pravatar.cc/96?img=12" alt="Jane Doe" />
+```
+
+## Preview
+
+:::: playground[Avatar]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "avatar", example: "default" }} minHeight={132} />
+```tsx
+<Avatar src="https://i.pravatar.cc/96?img=12" alt="Jane Doe" />
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Sizes
+
+:::: playground[Sizes]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "avatar", example: "sizes" }} minHeight={132} />
+```tsx
+<Avatar src="/avatar.png" alt="Profile" size="lg" />
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `src`
+:type: `string`
+Required image source.
+:::
+::: api-item
+:property: `alt`
+:type: `string`
+Required accessible alternative text.
+:::
+::: api-item
+:property: `size`
+:type: `xs` | `sm` | `md` | `lg` | `xl`
+:default: `md`
+Rendered avatar size.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

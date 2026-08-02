@@ -1,0 +1,118 @@
+﻿---
+title: Switch
+description: ?ㅼ젙??利됱떆 耳쒓굅???꾨뒗 而⑦듃濡ㅼ엯?덈떎.
+navTitle: Switch
+---
+
+# Switch
+
+?ㅼ젙??利됱떆 耳쒓굅???꾨뒗 而⑦듃濡ㅼ엯?덈떎.
+
+## 媛?몄삤湲?
+```tsx
+import { Switch } from 'bmates-ui';
+```
+
+## 湲곕낯 ?ъ슜踰?
+?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+
+```tsx
+<Switch defaultChecked aria-label="Enable notifications" />
+```
+
+## 誘몃━蹂닿린
+
+:::: playground[Switch]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "switch", example: "default" }} minHeight={160} />
+```tsx
+<Switch defaultChecked aria-label="Enable notifications" />
+```
+::::
+
+## Props 誘몃━蹂닿린
+
+?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+
+### ?ㅽ???蹂??
+:::: playground[?ㅽ???蹂??]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "switch", example: "variants" }} minHeight={220} />
+```tsx
+<Switch variant="success" defaultChecked />
+```
+::::
+
+### ?ш린
+
+:::: playground[?ш린]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "switch", example: "sizes" }} minHeight={160} />
+```tsx
+<Switch size="lg" defaultChecked />
+```
+::::
+
+### ?곹깭
+
+:::: playground[?곹깭]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "switch", example: "states" }} minHeight={160} />
+```tsx
+<Switch disabled label="Disabled" />
+```
+::::
+
+## 而댄룷?뚰듃 API
+
+:::: api-list
+::: api-item
+:property: `checked`
+:type: `boolean`
+:default: `false`
+?쒖뼱?섎뒗 ?좏깮 ?곹깭?낅땲??
+:::
+::: api-item
+:property: `onCheckedChange`
+:type: `(checked: boolean) => void`
+:default: `No-op`
+Called when the state changes.
+:::
+::: api-item
+:property: `variant`
+:type: `primary` | `secondary` | `success` | `danger` | `warning` | `info`
+:default: `primary`
+Track color.
+:::
+::: api-item
+:property: `size`
+:type: `sm` | `md` | `lg` | `xl`
+:default: `md`
+Switch size.
+:::
+::: api-item
+:property: `label`
+:type: `string`
+Text rendered beside the switch.
+:::
+::: api-item
+:property: `align`
+:type: `start` | `center` | `end`
+:default: `center`
+Vertical alignment.
+:::
+::: api-item
+:property: `disabled`
+:type: `boolean`
+:default: `false`
+?곹샇?묒슜??留됱뒿?덈떎.
+:::
+::: api-item
+:property: `defaultChecked`
+:type: `boolean`
+:default: `false`
+鍮꾩젣??紐⑤뱶??珥덇린 ?곹깭?낅땲??
+:::
+::::
+
+## ?ъ슜 ?덈궡
+
+- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
+- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
+- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.

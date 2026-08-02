@@ -14,7 +14,7 @@ import DialogContext from './DialogContext';
  */
 export const DialogToggle = React.forwardRef<HTMLButtonElement, ButtonAsChildProps>(
   ({ asChild, onClick, ...props }, ref) => {
-    const { setShowModal } = useContext(DialogContext);
+    const { setShowModal, setPortalDocument } = useContext(DialogContext);
 
     const Comp: React.ElementType = asChild ? Slot : Button;
 
@@ -22,7 +22,8 @@ export const DialogToggle = React.forwardRef<HTMLButtonElement, ButtonAsChildPro
       <Comp
         ref={ref}
         aria-haspopup="true"
-        onClick={composeEventHandlers(onClick, () => {
+        onClick={composeEventHandlers(onClick, event => {
+          setPortalDocument(event.currentTarget.ownerDocument);
           setShowModal(true);
         })}
         {...props}

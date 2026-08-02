@@ -1,0 +1,70 @@
+﻿---
+title: Textarea
+description: A multi-line field for longer text input.
+navTitle: Textarea
+---
+
+# Textarea
+
+A multi-line field for longer text input.
+
+## Import
+
+```tsx
+import { Textarea } from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<Textarea rows={4} placeholder="Write a message" aria-label="Message" />
+```
+
+## Preview
+
+:::: playground[Textarea]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "textarea", example: "default" }} minHeight={160} />
+```tsx
+<Textarea rows={4} placeholder="Write a message" aria-label="Message" />
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Disabled state
+
+:::: playground[Disabled state]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "textarea", example: "disabled" }} minHeight={160} />
+```tsx
+<Textarea disabled />
+```
+::::
+
+### Label and helper text
+
+:::: playground[Label and helper text]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "textarea", example: "label" }} minHeight={180} />
+```tsx
+<Label htmlFor="bio">Bio</Label>
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `Textarea`
+:type: `React.ComponentPropsWithoutRef<'textarea'>`
+Accepts every native textarea prop, including `value`, `defaultValue`, `placeholder`, `rows`, `disabled`, `required`, `maxLength`, and `onChange`.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

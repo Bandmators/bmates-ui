@@ -1,0 +1,137 @@
+﻿---
+title: Select
+description: A composable control for choosing one or more options from a list.
+navTitle: Select
+---
+
+# Select
+
+A composable control for choosing one or more options from a list.
+
+## Import
+
+```tsx
+import { Select, SelectToggle, SelectContent, SelectItem } from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<Select align="start">
+  <SelectToggle>Select a country</SelectToggle>
+  <SelectContent width="16rem">
+    <SelectItem value="kr">Korea</SelectItem>
+    <SelectItem value="us">United States</SelectItem>
+  </SelectContent>
+</Select>
+```
+
+## Preview
+
+:::: playground[Select]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "select", example: "default" }} minHeight={324} />
+```tsx
+<Select align="start">
+  <SelectToggle>Select a country</SelectToggle>
+  <SelectContent width="16rem">
+    <SelectItem value="kr">Korea</SelectItem>
+    <SelectItem value="us">United States</SelectItem>
+  </SelectContent>
+</Select>
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Multiple selection
+
+:::: playground[Multiple selection]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "select", example: "multi" }} minHeight={324} />
+```tsx
+<Select multi>...</Select>
+```
+::::
+
+### Open on hover
+
+:::: playground[Open on hover]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "select", example: "hover" }} minHeight={324} />
+```tsx
+<Select hoverOpen>...</Select>
+```
+::::
+
+### Trigger spacing
+
+:::: playground[Trigger spacing]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "select", example: "space" }} minHeight={324} />
+```tsx
+<Select space={16}>...</Select>
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `value`
+:type: `SelectType[]`
+Controlled selected options.
+:::
+::: api-item
+:property: `defaultValue`
+:type: `SelectType[]`
+:default: `[]`
+Initial uncontrolled selected options.
+:::
+::: api-item
+:property: `onValueChange`
+:type: `(value: SelectType[]) => void`
+Called with the next selected options.
+:::
+::: api-item
+:property: `multi`
+:type: `boolean`
+:default: `false`
+Allows more than one option.
+:::
+::: api-item
+:property: `align`
+:type: `start` | `center` | `end`
+:default: `center`
+Content alignment.
+:::
+::: api-item
+:property: `space`
+:type: `number`
+:default: `0`
+Gap between trigger and list in pixels.
+:::
+::: api-item
+:property: `hoverOpen`
+:type: `boolean`
+:default: `false`
+Opens the list on hover.
+:::
+::: api-item
+:property: `SelectItem.value`
+:type: `string`
+Required option value.
+:::
+::: api-item
+:property: `SelectItem.disabled`
+:type: `boolean`
+:default: `false`
+Prevents selecting an option.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

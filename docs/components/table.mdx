@@ -1,0 +1,122 @@
+﻿---
+title: Table
+description: Semantic table primitives for tabular data.
+navTitle: Table
+---
+
+# Table
+
+Semantic table primitives for tabular data.
+
+## Import
+
+```tsx
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Status</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>Design system</TableCell>
+      <TableCell>Ready</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+## Preview
+
+:::: playground[Table]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "table", example: "default" }} minHeight={220} />
+```tsx
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Status</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>Design system</TableCell>
+      <TableCell>Ready</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Row hover
+
+:::: playground[Row hover]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "table", example: "hoverable" }} minHeight={220} />
+```tsx
+<Table hoverable>...</Table>
+```
+::::
+
+### Sizes
+
+:::: playground[Sizes]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "table", example: "sizes" }} minHeight={280} />
+```tsx
+<Table size="sm">...</Table>
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `size`
+:type: `xs` | `sm` | `md` | `lg` | `xl`
+:default: `md`
+Table density.
+:::
+::: api-item
+:property: `hoverable`
+:type: `boolean`
+:default: `false`
+Highlights rows on hover.
+:::
+::: api-item
+:property: `wrapperClassName`
+:type: `string`
+Class name for the overflow wrapper.
+:::
+::: api-item
+:property: `TableHeader`, `TableBody`, `TableRow`, `TableHead`, `TableCell`
+:type: `Native element props`
+Semantic table primitives.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

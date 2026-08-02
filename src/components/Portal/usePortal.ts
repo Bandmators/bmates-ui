@@ -11,6 +11,7 @@ export const usePortal = ({ portalRef }: { portalRef: React.RefObject<HTMLDivEle
     setShowModal: setModal,
     toggleElement,
     setToggleElment,
+    portalDocument,
     align,
     space = 0,
     reorgPos,
@@ -30,11 +31,12 @@ export const usePortal = ({ portalRef }: { portalRef: React.RefObject<HTMLDivEle
     const adjustmentPos = () => {
       if (portalRef.current && showModal) {
         const rect = portalRef.current;
+        const portalWindow = portalDocument?.defaultView ?? window;
         const toggleRect = toggleElement
           ? toggleElement.getBoundingClientRect()
           : { x: reorgPos.x, y: reorgPos.y, bottom: reorgPos.y, height: 0, width: 0 };
 
-        const isOverflowing = rect.offsetHeight + toggleRect.bottom + space >= window.innerHeight;
+        const isOverflowing = rect.offsetHeight + toggleRect.bottom + space >= portalWindow.innerHeight;
 
         const newPos = { x: reorgPos.x, y: reorgPos.y };
 
@@ -57,8 +59,8 @@ export const usePortal = ({ portalRef }: { portalRef: React.RefObject<HTMLDivEle
         }
 
         if (newPos.x <= 0) newPos.x = space;
-        else if (newPos.x + rect.offsetWidth >= window.innerWidth)
-          newPos.x = window.innerWidth - rect.offsetWidth - space;
+        else if (newPos.x + rect.offsetWidth >= portalWindow.innerWidth)
+          newPos.x = portalWindow.innerWidth - rect.offsetWidth - space;
 
         // only update when the position actually changes — prevents an
         // infinite layout-effect loop (each call creates a new object)
@@ -68,11 +70,12 @@ export const usePortal = ({ portalRef }: { portalRef: React.RefObject<HTMLDivEle
     // measure & position before paint to avoid a flash at (0, 0)
     adjustmentPos();
 
-    window.addEventListener('resize', adjustmentPos);
+    const portalWindow = portalDocument?.defaultView ?? window;
+    portalWindow.addEventListener('resize', adjustmentPos);
     return () => {
-      window.removeEventListener('resize', adjustmentPos);
+      portalWindow.removeEventListener('resize', adjustmentPos);
     };
-  }, [align, showModal, toggleElement, portalRef, space, reorgPos, setReorgPos]);
+  }, [align, portalDocument, showModal, toggleElement, portalRef, space, reorgPos, setReorgPos]);
 
   return { showModal, align, toggleElement, setShowModal, setToggleElment, reorgPos, focusItems };
 };

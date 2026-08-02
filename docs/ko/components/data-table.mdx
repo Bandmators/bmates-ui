@@ -1,0 +1,154 @@
+﻿---
+title: DataTable
+description: ?뺣젹, ?꾪꽣留? ???좏깮??吏?먰븯???곗씠???뚯씠釉붿엯?덈떎.
+navTitle: DataTable
+---
+
+# DataTable
+
+?뺣젹, ?꾪꽣留? ???좏깮??吏?먰븯???곗씠???뚯씠釉붿엯?덈떎.
+
+## 媛?몄삤湲?
+```tsx
+import { DataTable } from 'bmates-ui';
+```
+
+## 湲곕낯 ?ъ슜踰?
+?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+
+```tsx
+<DataTable
+  columns={[
+    { id: 'name', header: 'Name', accessor: row => row.name, sortable: true },
+    { id: 'role', header: 'Role', accessor: row => row.role },
+  ]}
+  data={[
+    { id: 'jane', name: 'Jane Doe', role: 'Designer' },
+    { id: 'sam', name: 'Sam Lee', role: 'Engineer' },
+  ]}
+  getRowId={row => row.id}
+  filterable
+/>
+```
+
+## 誘몃━蹂닿린
+
+:::: playground[DataTable]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "data-table", example: "default" }} minHeight={300} />
+```tsx
+<DataTable
+  columns={[
+    { id: 'name', header: 'Name', accessor: row => row.name, sortable: true },
+    { id: 'role', header: 'Role', accessor: row => row.role },
+  ]}
+  data={[
+    { id: 'jane', name: 'Jane Doe', role: 'Designer' },
+    { id: 'sam', name: 'Sam Lee', role: 'Engineer' },
+  ]}
+  getRowId={row => row.id}
+  filterable
+/>
+```
+::::
+
+## Props 誘몃━蹂닿린
+
+?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+
+### Filtering
+
+:::: playground[Filtering]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "data-table", example: "filterable" }} minHeight={360} />
+```tsx
+<DataTable filterable {...props} />
+```
+::::
+
+### Row selection
+
+:::: playground[Row selection]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "data-table", example: "selectable" }} minHeight={320} />
+```tsx
+<DataTable selectable {...props} />
+```
+::::
+
+### Empty state
+
+:::: playground[Empty state]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "data-table", example: "empty" }} minHeight={180} />
+```tsx
+<DataTable data={[]} emptyMessage="No instruments." {...props} />
+```
+::::
+
+## 而댄룷?뚰듃 API
+
+:::: api-list
+::: api-item
+:property: `columns`
+:type: `DataTableColumn<T>[]`
+Required columns with `id`, `header`, and optional `accessor`, `cell`, or `sortable`.
+:::
+::: api-item
+:property: `data`
+:type: `T[]`
+Required row data.
+:::
+::: api-item
+:property: `getRowId`
+:type: `(row: T) => string`
+Required stable row identifier.
+:::
+::: api-item
+:property: `selectable`
+:type: `boolean`
+:default: `false`
+Shows row-selection controls.
+:::
+::: api-item
+:property: `filterable`
+:type: `boolean`
+:default: `false`
+Shows the client-side filter field.
+:::
+::: api-item
+:property: `filterPlaceholder`
+:type: `string`
+:default: `Filter rows...`
+Filter input placeholder.
+:::
+::: api-item
+:property: `emptyMessage`
+:type: `ReactNode`
+:default: `No matching rows.`
+Content shown when no rows match.
+:::
+::: api-item
+:property: `selectedRowIds`
+:type: `string[]`
+Controlled selection state.
+:::
+::: api-item
+:property: `onSelectedRowIdsChange`
+:type: `(rowIds: string[]) => void`
+Receives selection changes.
+:::
+::: api-item
+:property: `defaultSelectedRowIds`
+:type: `string[]`
+:default: `[]`
+鍮꾩젣??紐⑤뱶?먯꽌 泥섏쓬 ?좏깮????ID?낅땲??
+:::
+::: api-item
+:property: `className`
+:type: `string`
+猷⑦듃 ?붿냼??異붽????대옒???대쫫?낅땲??
+:::
+::::
+
+## ?ъ슜 ?덈궡
+
+- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
+- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
+- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.

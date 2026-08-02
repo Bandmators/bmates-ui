@@ -19,6 +19,8 @@ export interface PortalContextType {
    */
   toggleElement: HTMLElement | undefined;
   setToggleElment: (value: HTMLElement) => void;
+  portalDocument: Document | undefined;
+  setPortalDocument: (value: Document) => void;
 
   /*
    * Align

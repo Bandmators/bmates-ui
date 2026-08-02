@@ -1,0 +1,66 @@
+﻿---
+title: Label
+description: An accessible text label for a form control.
+navTitle: Label
+---
+
+# Label
+
+An accessible text label for a form control.
+
+## Import
+
+```tsx
+import { Label } from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<Label htmlFor="email">Email address</Label>
+```
+
+## Preview
+
+:::: playground[Label]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "label", example: "default" }} minHeight={160} />
+```tsx
+<Label htmlFor="email">Email address</Label>
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Associated input
+
+:::: playground[Associated input]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "label", example: "default" }} minHeight={160} />
+```tsx
+<Label htmlFor="band-name">Band name</Label>
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `htmlFor`
+:type: `string`
+Associates the label with a form control ID.
+:::
+::: api-item
+:property: `children`
+:type: `ReactNode`
+Label content. Other native label props are supported.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

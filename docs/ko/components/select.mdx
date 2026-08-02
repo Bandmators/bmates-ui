@@ -1,0 +1,135 @@
+﻿---
+title: Select
+description: 紐⑸줉?먯꽌 ?섎굹 ?댁긽???듭뀡???좏깮?섎뒗 議고빀??而⑦듃濡ㅼ엯?덈떎.
+navTitle: Select
+---
+
+# Select
+
+紐⑸줉?먯꽌 ?섎굹 ?댁긽???듭뀡???좏깮?섎뒗 議고빀??而⑦듃濡ㅼ엯?덈떎.
+
+## 媛?몄삤湲?
+```tsx
+import { Select, SelectToggle, SelectContent, SelectItem } from 'bmates-ui';
+```
+
+## 湲곕낯 ?ъ슜踰?
+?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+
+```tsx
+<Select align="start">
+  <SelectToggle>Select a country</SelectToggle>
+  <SelectContent width="16rem">
+    <SelectItem value="kr">Korea</SelectItem>
+    <SelectItem value="us">United States</SelectItem>
+  </SelectContent>
+</Select>
+```
+
+## 誘몃━蹂닿린
+
+:::: playground[Select]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "select", example: "default" }} minHeight={324} />
+```tsx
+<Select align="start">
+  <SelectToggle>Select a country</SelectToggle>
+  <SelectContent width="16rem">
+    <SelectItem value="kr">Korea</SelectItem>
+    <SelectItem value="us">United States</SelectItem>
+  </SelectContent>
+</Select>
+```
+::::
+
+## Props 誘몃━蹂닿린
+
+?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+
+### ?ㅼ쨷 ?좏깮
+
+:::: playground[?ㅼ쨷 ?좏깮]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "select", example: "multi" }} minHeight={324} />
+```tsx
+<Select multi>...</Select>
+```
+::::
+
+### Open on hover
+
+:::: playground[Open on hover]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "select", example: "hover" }} minHeight={324} />
+```tsx
+<Select hoverOpen>...</Select>
+```
+::::
+
+### ?몃━嫄?媛꾧꺽
+
+:::: playground[?몃━嫄?媛꾧꺽]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "select", example: "space" }} minHeight={324} />
+```tsx
+<Select space={16}>...</Select>
+```
+::::
+
+## 而댄룷?뚰듃 API
+
+:::: api-list
+::: api-item
+:property: `value`
+:type: `SelectType[]`
+Controlled selected options.
+:::
+::: api-item
+:property: `defaultValue`
+:type: `SelectType[]`
+:default: `[]`
+Initial uncontrolled selected options.
+:::
+::: api-item
+:property: `onValueChange`
+:type: `(value: SelectType[]) => void`
+Called with the next selected options.
+:::
+::: api-item
+:property: `multi`
+:type: `boolean`
+:default: `false`
+Allows more than one option.
+:::
+::: api-item
+:property: `align`
+:type: `start` | `center` | `end`
+:default: `center`
+Content alignment.
+:::
+::: api-item
+:property: `space`
+:type: `number`
+:default: `0`
+Gap between trigger and list in pixels.
+:::
+::: api-item
+:property: `hoverOpen`
+:type: `boolean`
+:default: `false`
+Opens the list on hover.
+:::
+::: api-item
+:property: `SelectItem.value`
+:type: `string`
+Required option value.
+:::
+::: api-item
+:property: `SelectItem.disabled`
+:type: `boolean`
+:default: `false`
+Prevents selecting an option.
+:::
+::::
+
+## ?ъ슜 ?덈궡
+
+- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
+- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
+- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.

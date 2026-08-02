@@ -1,0 +1,95 @@
+﻿---
+title: Button
+description: 紐낇솗???꾧퀎? ?곹깭瑜?媛뽯뒗 ?≪뀡 而⑦듃濡ㅼ엯?덈떎.
+navTitle: Button
+---
+
+# Button
+
+紐낇솗???꾧퀎? ?곹깭瑜?媛뽯뒗 ?≪뀡 而⑦듃濡ㅼ엯?덈떎.
+
+## 媛?몄삤湲?
+```tsx
+import { Button } from 'bmates-ui';
+```
+
+## 湲곕낯 ?ъ슜踰?
+?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+
+```tsx
+<Button variant="primary">Save changes</Button>
+```
+
+## 誘몃━蹂닿린
+
+:::: playground[Button]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "button", example: "default" }} minHeight={180} />
+```tsx
+<Button variant="primary">Save changes</Button>
+```
+::::
+
+## Props 誘몃━蹂닿린
+
+?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+
+### ?ㅽ???蹂??
+:::: playground[?ㅽ???蹂??]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "button", example: "variants" }} minHeight={180} />
+```tsx
+<Button variant="success">Success</Button>
+```
+::::
+
+### ?ш린
+
+:::: playground[?ш린]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "button", example: "sizes" }} minHeight={132} />
+```tsx
+<Button size="lg">Large</Button>
+```
+::::
+
+### ?곹깭
+
+:::: playground[?곹깭]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "button", example: "states" }} minHeight={132} />
+```tsx
+<Button disabled>Disabled</Button>
+```
+::::
+
+## 而댄룷?뚰듃 API
+
+:::: api-list
+::: api-item
+:property: `variant`
+:type: `default` | `primary` | `secondary` | `success` | `danger` | `warning` | `info` | `outline` | `ghost`
+:default: `default`
+?쒓컖???ㅽ??쇱엯?덈떎. ?ъ슜?????덈뒗 媛? `default`, `secondary`, `success`, `danger`, `warning`, `info`, `outline`, and `ghost`.
+:::
+::: api-item
+:property: `size`
+:type: `sm` | `md` | `lg` | `icon`
+:default: `md`
+踰꾪듉???믪씠? ?щ갚??議곗젅?⑸땲??
+:::
+::: api-item
+:property: `full`
+:type: `boolean`
+:default: `false`
+踰꾪듉??而⑦뀒?대꼫 ?덈퉬瑜?梨꾩슦?꾨줉 ?⑸땲??
+:::
+::: api-item
+:property: `disabled`
+:type: `boolean`
+:default: `false`
+?곹샇?묒슜??鍮꾪솢?깊솕?⑸땲?? `type`, `onClick` ???ㅼ씠?곕툕 button ?띿꽦??吏?먰빀?덈떎.
+:::
+::::
+
+## ?ъ슜 ?덈궡
+
+- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
+- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
+- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.

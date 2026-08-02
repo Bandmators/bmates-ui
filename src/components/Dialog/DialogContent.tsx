@@ -28,7 +28,7 @@ interface ModalProps extends React.ComponentPropsWithoutRef<'div'> {
  */
 export const DialogContent = React.forwardRef<HTMLDivElement, ModalProps>(
   ({ outEvent = false, hideClose = false, maxWidth = '450px', children, ...props }, ref) => {
-    const { showModal, setShowModal } = useContext(DialogContext);
+    const { showModal, setShowModal, portalDocument } = useContext(DialogContext);
 
     const close = () => {
       if (outEvent) setShowModal(false);
@@ -38,6 +38,7 @@ export const DialogContent = React.forwardRef<HTMLDivElement, ModalProps>(
     };
 
     if (!canUseDOM) return null;
+    const portalTarget = portalDocument?.body ?? document.body;
 
     return (
       <>
@@ -74,7 +75,7 @@ export const DialogContent = React.forwardRef<HTMLDivElement, ModalProps>(
                 )}
               </div>
             </>,
-            document.body,
+            portalTarget,
           )}
       </>
     );

@@ -1,0 +1,129 @@
+﻿---
+title: Accordion
+description: 愿??肄섑뀗痢좊? ?묎퀬 ?쇱퀜 蹂댁뿬二쇰뒗 ?뱀뀡?낅땲??
+navTitle: Accordion
+---
+
+# Accordion
+
+愿??肄섑뀗痢좊? ?묎퀬 ?쇱퀜 蹂댁뿬二쇰뒗 ?뱀뀡?낅땲??
+
+## 媛?몄삤湲?
+```tsx
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from 'bmates-ui';
+```
+
+## 湲곕낯 ?ъ슜踰?
+?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+
+```tsx
+{/* One item may be open at a time. */}
+<Accordion defaultValue="account">
+  <AccordionItem value="account">
+    <AccordionTrigger>Account</AccordionTrigger>
+    <AccordionContent>
+      Manage your profile and notification settings.
+    </AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="billing">
+    <AccordionTrigger>Billing</AccordionTrigger>
+    <AccordionContent>View invoices and payment methods.</AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+## 誘몃━蹂닿린
+
+:::: playground[Accordion]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "accordion", example: "default" }} minHeight={220} />
+```tsx
+{/* One item may be open at a time. */}
+<Accordion defaultValue="account">
+  <AccordionItem value="account">
+    <AccordionTrigger>Account</AccordionTrigger>
+    <AccordionContent>
+      Manage your profile and notification settings.
+    </AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="billing">
+    <AccordionTrigger>Billing</AccordionTrigger>
+    <AccordionContent>View invoices and payment methods.</AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+::::
+
+## Props 誘몃━蹂닿린
+
+?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+
+### Multiple items
+
+:::: playground[Multiple items]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "accordion", example: "multiple" }} minHeight={260} />
+```tsx
+<Accordion type="multiple" defaultValue={["one", "two"]}>...</Accordion>
+```
+::::
+
+### 鍮꾪솢????ぉ
+
+:::: playground[鍮꾪솢????ぉ]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "accordion", example: "disabled" }} minHeight={220} />
+```tsx
+<AccordionItem value="two" disabled>...</AccordionItem>
+```
+::::
+
+### Custom indicator
+
+:::: playground[Custom indicator]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "accordion", example: "indicator" }} minHeight={220} />
+```tsx
+<AccordionTrigger indicator="+">Section</AccordionTrigger>
+```
+::::
+
+## 而댄룷?뚰듃 API
+
+:::: api-list
+::: api-item
+:property: `type`
+:type: `single` | `multiple`
+:default: `single`
+Allows one open item or several open items.
+:::
+::: api-item
+:property: `defaultValue`
+:type: string | string[]
+Initially open item value. Use a string array with `multiple`.
+:::
+::: api-item
+:property: `AccordionItem.value`
+:type: `string`
+Required, unique identifier for an item.
+:::
+::: api-item
+:property: `AccordionItem.disabled`
+:type: `boolean`
+:default: `false`
+Prevents its trigger from changing the item.
+:::
+::: api-item
+:property: `AccordionTrigger.indicator`
+:type: `ReactNode`
+:default: `Chevron icon`
+Replaces the default disclosure indicator.
+:::
+::::
+
+## ?ъ슜 ?덈궡
+
+- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
+- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
+- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.

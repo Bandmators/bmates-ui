@@ -1,0 +1,88 @@
+﻿---
+title: Card
+description: 愿??肄섑뀗痢좎? ?≪뀡???섎굹???쒕㈃?쇰줈 臾띕뒗 而⑦뀒?대꼫?낅땲??
+navTitle: Card
+---
+
+# Card
+
+愿??肄섑뀗痢좎? ?≪뀡???섎굹???쒕㈃?쇰줈 臾띕뒗 而⑦뀒?대꼫?낅땲??
+
+## 媛?몄삤湲?
+```tsx
+import {
+  Card,
+  CardBody,
+  CardDesc,
+  CardFooter,
+  CardHead,
+  CardTitle,
+} from 'bmates-ui';
+```
+
+## 湲곕낯 ?ъ슜踰?
+?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+
+```tsx
+<Card>
+  <CardHead>
+    <CardTitle>Project status</CardTitle>
+    <CardDesc>Updated just now</CardDesc>
+  </CardHead>
+  <CardBody>All systems are operational.</CardBody>
+</Card>
+```
+
+## 誘몃━蹂닿린
+
+:::: playground[Card]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "card", example: "default" }} minHeight={300} />
+```tsx
+<Card>
+  <CardHead>
+    <CardTitle>Project status</CardTitle>
+    <CardDesc>Updated just now</CardDesc>
+  </CardHead>
+  <CardBody>All systems are operational.</CardBody>
+</Card>
+```
+::::
+
+## Props 誘몃━蹂닿린
+
+?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+
+### Width and regions
+
+:::: playground[Width and regions]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "card", example: "width" }} minHeight={300} />
+```tsx
+<Card width={420}><CardHead>...</CardHead><CardBody>...</CardBody></Card>
+```
+::::
+
+## 而댄룷?뚰듃 API
+
+:::: api-list
+::: api-item
+:property: `width`
+:type: `number`
+Sets the root card width in pixels.
+:::
+::: api-item
+:property: `CardHead`, `CardBody`, `CardFooter`
+:type: `div props`
+Layout regions for header, body, and footer.
+:::
+::: api-item
+:property: `CardTitle`, `CardDesc`
+:type: `h3 / p props`
+Semantic title and supporting text.
+:::
+::::
+
+## ?ъ슜 ?덈궡
+
+- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
+- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
+- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.

@@ -1,0 +1,83 @@
+﻿---
+title: Toggle
+description: A two-state button for an on/off formatting or view option.
+navTitle: Toggle
+---
+
+# Toggle
+
+A two-state button for an on/off formatting or view option.
+
+## Import
+
+```tsx
+import { Toggle } from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<Toggle aria-label="Toggle bold">Bold</Toggle>
+```
+
+## Preview
+
+:::: playground[Toggle]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "toggle", example: "default" }} minHeight={160} />
+```tsx
+<Toggle aria-label="Toggle bold">Bold</Toggle>
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Sizes
+
+:::: playground[Sizes]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "toggle", example: "sizes" }} minHeight={132} />
+```tsx
+<Toggle size="lg">B</Toggle>
+```
+::::
+
+### Selection states
+
+:::: playground[Selection states]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "toggle", example: "states" }} minHeight={160} />
+```tsx
+<Toggle selected>Selected</Toggle>
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `selected`
+:type: `boolean`
+:default: `false`
+Initial pressed state. Updates when the prop changes.
+:::
+::: api-item
+:property: `size`
+:type: `sm` | `md` | `lg`
+:default: `md`
+Toggle size.
+:::
+::: api-item
+:property: `disabled`
+:type: `boolean`
+:default: `false`
+Prevents interaction. Native button props are supported.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

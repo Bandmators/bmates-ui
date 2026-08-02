@@ -1,0 +1,116 @@
+﻿---
+title: Tabs
+description: ??踰덉뿉 ?섎굹???뱀뀡???쒖떆?섎뒗 ?⑤꼸 吏묓빀?낅땲??
+navTitle: Tabs
+---
+
+# Tabs
+
+??踰덉뿉 ?섎굹???뱀뀡???쒖떆?섎뒗 ?⑤꼸 吏묓빀?낅땲??
+
+## 媛?몄삤湲?
+```tsx
+import { Tabs, TabsList, TabsTrigger, TabsContent } from 'bmates-ui';
+```
+
+## 湲곕낯 ?ъ슜踰?
+?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+
+```tsx
+<Tabs defaultValue="overview">
+  <TabsList>
+    <TabsTrigger value="overview">Overview</TabsTrigger>
+    <TabsTrigger value="activity">Activity</TabsTrigger>
+  </TabsList>
+  <TabsContent value="overview">Project overview</TabsContent>
+  <TabsContent value="activity">Recent activity</TabsContent>
+</Tabs>
+```
+
+## 誘몃━蹂닿린
+
+:::: playground[Tabs]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "tabs", example: "default" }} minHeight={160} />
+```tsx
+<Tabs defaultValue="overview">
+  <TabsList>
+    <TabsTrigger value="overview">Overview</TabsTrigger>
+    <TabsTrigger value="activity">Activity</TabsTrigger>
+  </TabsList>
+  <TabsContent value="overview">Project overview</TabsContent>
+  <TabsContent value="activity">Recent activity</TabsContent>
+</Tabs>
+```
+::::
+
+## Props 誘몃━蹂닿린
+
+?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+
+### ?쒖뼱 ?곹깭
+
+:::: playground[?쒖뼱 ?곹깭]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "tabs", example: "controlled" }} minHeight={160} />
+```tsx
+<Tabs value={value} onValueChange={setValue} defaultValue="profile">...</Tabs>
+```
+::::
+
+### Size
+
+:::: playground[Size]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "tabs", example: "large" }} minHeight={170} />
+```tsx
+<Tabs size="lg" defaultValue="profile">...</Tabs>
+```
+::::
+
+### 鍮꾪솢????
+:::: playground[鍮꾪솢????]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "tabs", example: "disabled" }} minHeight={160} />
+```tsx
+<TabsTrigger value="settings" disabled>Settings</TabsTrigger>
+```
+::::
+
+## 而댄룷?뚰듃 API
+
+:::: api-list
+::: api-item
+:property: `value`
+:type: `string`
+Controlled active tab value.
+:::
+::: api-item
+:property: `defaultValue`
+:type: `string`
+Required initial active tab value.
+:::
+::: api-item
+:property: `onValueChange`
+:type: `(value: string) => void`
+Called after a tab is activated.
+:::
+::: api-item
+:property: `size`
+:type: `xs` | `sm` | `md` | `lg` | `xl`
+:default: `md`
+Tab control size.
+:::
+::: api-item
+:property: `TabsTrigger.value`
+:type: `string`
+Required value paired with a panel.
+:::
+::: api-item
+:property: `TabsContent.value`
+:type: `string`
+Required value of its matching trigger.
+:::
+::::
+
+## ?ъ슜 ?덈궡
+
+- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
+- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
+- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.

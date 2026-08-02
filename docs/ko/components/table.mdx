@@ -1,0 +1,120 @@
+﻿---
+title: Table
+description: ???뺤떇 ?곗씠?곕? ?꾪븳 ?쒕㎤???뚯씠釉??꾨━誘명떚釉뚯엯?덈떎.
+navTitle: Table
+---
+
+# Table
+
+???뺤떇 ?곗씠?곕? ?꾪븳 ?쒕㎤???뚯씠釉??꾨━誘명떚釉뚯엯?덈떎.
+
+## 媛?몄삤湲?
+```tsx
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from 'bmates-ui';
+```
+
+## 湲곕낯 ?ъ슜踰?
+?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+
+```tsx
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Status</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>Design system</TableCell>
+      <TableCell>Ready</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+## 誘몃━蹂닿린
+
+:::: playground[Table]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "table", example: "default" }} minHeight={220} />
+```tsx
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Status</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>Design system</TableCell>
+      <TableCell>Ready</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+::::
+
+## Props 誘몃━蹂닿린
+
+?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+
+### Row hover
+
+:::: playground[Row hover]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "table", example: "hoverable" }} minHeight={220} />
+```tsx
+<Table hoverable>...</Table>
+```
+::::
+
+### ?ш린
+
+:::: playground[?ш린]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "table", example: "sizes" }} minHeight={280} />
+```tsx
+<Table size="sm">...</Table>
+```
+::::
+
+## 而댄룷?뚰듃 API
+
+:::: api-list
+::: api-item
+:property: `size`
+:type: `xs` | `sm` | `md` | `lg` | `xl`
+:default: `md`
+Table density.
+:::
+::: api-item
+:property: `hoverable`
+:type: `boolean`
+:default: `false`
+Highlights rows on hover.
+:::
+::: api-item
+:property: `wrapperClassName`
+:type: `string`
+Class name for the overflow wrapper.
+:::
+::: api-item
+:property: `TableHeader`, `TableBody`, `TableRow`, `TableHead`, `TableCell`
+:type: `Native element props`
+Semantic table primitives.
+:::
+::::
+
+## ?ъ슜 ?덈궡
+
+- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
+- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
+- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.

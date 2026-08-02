@@ -1,0 +1,68 @@
+﻿---
+title: Badge
+description: A compact label for status, category, or count.
+navTitle: Badge
+---
+
+# Badge
+
+A compact label for status, category, or count.
+
+## Import
+
+```tsx
+import { Badge } from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<Badge variant="success">Active</Badge>
+```
+
+## Preview
+
+:::: playground[Badge]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "badge", example: "default" }} minHeight={132} />
+```tsx
+<Badge variant="success">Active</Badge>
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Variants
+
+:::: playground[Variants]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "badge", example: "variants" }} minHeight={180} />
+```tsx
+<Badge variant="outline">Outline</Badge>
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `variant`
+:type: `primary` | `secondary` | `success` | `danger` | `warning` | `info` | `outline` | `ghost`
+:default: `primary`
+Sets the status color.
+:::
+::: api-item
+:property: `size`
+:type: `sm` | `md` | `lg`
+:default: `md`
+Sets the badge size.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

@@ -10,6 +10,7 @@ import { selectListBoxRecipe } from './select.recipe';
 
 interface ModalProps extends React.ComponentPropsWithoutRef<'div'> {
   width?: React.CSSProperties['width'];
+  disabledAutoFocus?: boolean;
 }
 
 /**

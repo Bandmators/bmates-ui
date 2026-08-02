@@ -7,6 +7,7 @@ import useHoverWaiting from './useHoverWaiting';
 
 interface ModalProps extends React.ComponentPropsWithoutRef<'div'> {
   width?: React.CSSProperties['width'];
+  disabledAutoFocus?: boolean;
 }
 
 /**

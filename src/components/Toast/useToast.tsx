@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 
-import { reducer } from './ToastContext';
+import { ToastDispatchContext, ToastStateContext, reducer } from './ToastContext';
 import { Action, State, ToastData } from './type';
 
 type ToastProps = Omit<ToastData, 'toastId'>;
@@ -37,9 +37,13 @@ const removeToast = (toastId: number) => {
 };
 
 export const useToast = () => {
+  const scopedState = useContext(ToastStateContext);
+  const scopedDispatch = useContext(ToastDispatchContext);
   const [state, setState] = useState<State>(memoryState);
 
   useEffect(() => {
+    if (scopedState && scopedDispatch) return;
+
     listeners.push(setState);
 
     return () => {
@@ -48,7 +52,47 @@ export const useToast = () => {
         listeners.splice(index, 1);
       }
     };
-  }, [state]);
+  }, [scopedDispatch, scopedState]);
+
+  const scopedToast = useCallback(
+    ({ ...props }: ToastProps) => {
+      if (!scopedDispatch) return toast(props);
+
+      const toastId = cnt++;
+      scopedDispatch({
+        type: 'ADD_TOAST',
+        toast: {
+          ...props,
+          toastId,
+        },
+      });
+
+      return {
+        toastId,
+      };
+    },
+    [scopedDispatch],
+  );
+
+  const scopedRemoveToast = useCallback(
+    (toastId: number) => {
+      if (!scopedDispatch) {
+        removeToast(toastId);
+        return;
+      }
+
+      scopedDispatch({ type: 'REMOVE_TOAST', toastId });
+    },
+    [scopedDispatch],
+  );
+
+  if (scopedState && scopedDispatch) {
+    return {
+      ...scopedState,
+      toast: scopedToast,
+      removeToast: scopedRemoveToast,
+    };
+  }
 
   return {
     ...state,

@@ -1,0 +1,114 @@
+﻿---
+title: Dropdown
+description: 媛꾧껐???몃━嫄곕줈 ?щ뒗 ?≪뀡 硫붾돱?낅땲??
+navTitle: Dropdown
+---
+
+# Dropdown
+
+媛꾧껐???몃━嫄곕줈 ?щ뒗 ?≪뀡 硫붾돱?낅땲??
+
+## 媛?몄삤湲?
+```tsx
+import {
+  Dropdown,
+  DropdownContent,
+  DropdownItem,
+  DropdownToggle,
+} from 'bmates-ui';
+```
+
+## 湲곕낯 ?ъ슜踰?
+?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+
+```tsx
+<Dropdown>
+  <DropdownToggle>Actions</DropdownToggle>
+  <DropdownContent>
+    <DropdownItem>Edit</DropdownItem>
+    <DropdownItem>Duplicate</DropdownItem>
+  </DropdownContent>
+</Dropdown>
+```
+
+## 誘몃━蹂닿린
+
+:::: playground[Dropdown]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "dropdown", example: "default" }} minHeight={324} />
+```tsx
+<Dropdown>
+  <DropdownToggle>Actions</DropdownToggle>
+  <DropdownContent>
+    <DropdownItem>Edit</DropdownItem>
+    <DropdownItem>Duplicate</DropdownItem>
+  </DropdownContent>
+</Dropdown>
+```
+::::
+
+## Props 誘몃━蹂닿린
+
+?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+
+### ?뺣젹
+
+:::: playground[?뺣젹]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "dropdown", example: "end" }} minHeight={324} />
+```tsx
+<Dropdown align="end">...</Dropdown>
+```
+::::
+
+### ?몃━嫄?媛꾧꺽
+
+:::: playground[?몃━嫄?媛꾧꺽]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "dropdown", example: "space" }} minHeight={324} />
+```tsx
+<Dropdown space={16}>...</Dropdown>
+```
+::::
+
+## 而댄룷?뚰듃 API
+
+:::: api-list
+::: api-item
+:property: `Dropdown`
+:type: `children`
+Root menu context.
+:::
+::: api-item
+:property: `DropdownContent.width`
+:type: `CSSProperties[width]`
+Floating menu width.
+:::
+::: api-item
+:property: `DropdownItem.disabled`
+:type: `boolean`
+:default: `false`
+Prevents selecting an item.
+:::
+::: api-item
+:property: `align`
+:type: `start | center | end`
+:default: `center`
+硫붾돱??媛濡??뺣젹?낅땲??
+:::
+::: api-item
+:property: `space`
+:type: `number`
+:default: `0`
+?몃━嫄곗? 硫붾돱 ?ъ씠???쎌? 媛꾧꺽?낅땲??
+:::
+::: api-item
+:property: `hoverOpen`
+:type: `boolean`
+:default: `false`
+?ъ씤?곕? ?щ졇????硫붾돱瑜??쎈땲??
+:::
+::::
+
+## ?ъ슜 ?덈궡
+
+- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
+- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
+- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.

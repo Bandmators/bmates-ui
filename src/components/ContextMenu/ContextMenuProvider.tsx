@@ -29,7 +29,7 @@ export const ContextMenuProvider = ({ align = 'start', space = 0, children }: Co
 
 export const ContextMenuContainer = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<'div'>>(
   ({ onContextMenu, ...props }, ref) => {
-    const { setShowModal, setReorgPos } = useContext(PortalContext);
+    const { setShowModal, setReorgPos, setPortalDocument } = useContext(PortalContext);
 
     const compRef = React.useRef<HTMLDivElement | null>(null);
     return (
@@ -42,6 +42,7 @@ export const ContextMenuContainer = React.forwardRef<HTMLDivElement, React.Compo
           //   const rect = compRef.current;
           //   setToggleElment(rect);
           // }
+          setPortalDocument(evt.currentTarget.ownerDocument);
           setReorgPos({ x: evt.clientX, y: evt.clientY });
 
           setShowModal(true);

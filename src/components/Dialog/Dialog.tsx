@@ -11,10 +11,13 @@ interface DialogProps extends React.ComponentPropsWithoutRef<'div'> {}
  * @returns
  */
 export const Dialog = ({ children, ...props }: DialogProps) => {
-  const [showModal, setShowModal] = useModal();
+  const [portalDocument, setPortalDocument] = React.useState<Document | undefined>(() =>
+    typeof document === 'undefined' ? undefined : document,
+  );
+  const [showModal, setShowModal] = useModal(true, portalDocument);
 
   return (
-    <DialogContext.Provider value={{ showModal, setShowModal }} {...props}>
+    <DialogContext.Provider value={{ showModal, setShowModal, portalDocument, setPortalDocument }} {...props}>
       {children}
     </DialogContext.Provider>
   );

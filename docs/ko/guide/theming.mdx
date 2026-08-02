@@ -1,0 +1,15 @@
+---
+title: 테마
+description: CSS 변수 기반 light/dark 테마를 적용합니다.
+navTitle: 테마
+---
+
+# 테마
+
+`html` 요소의 `data-theme`로 테마를 전환합니다.
+
+```ts
+document.documentElement.dataset.theme = 'dark';
+```
+
+별도의 provider는 필요하지 않습니다. 컴포넌트는 의미 토큰으로 테마에 맞춰 렌더링됩니다.

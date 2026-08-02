@@ -1,0 +1,81 @@
+﻿---
+title: Toggle
+description: ?쒖떇?대굹 蹂닿린 ?듭뀡??耳쒓퀬 ?꾨뒗 ???곹깭 踰꾪듉?낅땲??
+navTitle: Toggle
+---
+
+# Toggle
+
+?쒖떇?대굹 蹂닿린 ?듭뀡??耳쒓퀬 ?꾨뒗 ???곹깭 踰꾪듉?낅땲??
+
+## 媛?몄삤湲?
+```tsx
+import { Toggle } from 'bmates-ui';
+```
+
+## 湲곕낯 ?ъ슜踰?
+?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+
+```tsx
+<Toggle aria-label="Toggle bold">Bold</Toggle>
+```
+
+## 誘몃━蹂닿린
+
+:::: playground[Toggle]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "toggle", example: "default" }} minHeight={160} />
+```tsx
+<Toggle aria-label="Toggle bold">Bold</Toggle>
+```
+::::
+
+## Props 誘몃━蹂닿린
+
+?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+
+### ?ш린
+
+:::: playground[?ш린]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "toggle", example: "sizes" }} minHeight={132} />
+```tsx
+<Toggle size="lg">B</Toggle>
+```
+::::
+
+### Selection states
+
+:::: playground[Selection states]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "toggle", example: "states" }} minHeight={160} />
+```tsx
+<Toggle selected>Selected</Toggle>
+```
+::::
+
+## 而댄룷?뚰듃 API
+
+:::: api-list
+::: api-item
+:property: `selected`
+:type: `boolean`
+:default: `false`
+Initial pressed state. Updates when the prop changes.
+:::
+::: api-item
+:property: `size`
+:type: `sm` | `md` | `lg`
+:default: `md`
+Toggle size.
+:::
+::: api-item
+:property: `disabled`
+:type: `boolean`
+:default: `false`
+?곹샇?묒슜??留됱뒿?덈떎. Native button props are supported.
+:::
+::::
+
+## ?ъ슜 ?덈궡
+
+- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
+- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
+- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.

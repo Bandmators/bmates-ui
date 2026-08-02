@@ -1,0 +1,125 @@
+﻿---
+title: HoverCard
+description: A non-modal preview displayed when a target is hovered.
+navTitle: HoverCard
+---
+
+# HoverCard
+
+A non-modal preview displayed when a target is hovered.
+
+## Import
+
+```tsx
+import { HoverCard, HoverCardToggle, HoverCardContent } from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<HoverCard>
+  <HoverCardToggle>@bmates</HoverCardToggle>
+  <HoverCardContent>
+    <strong>BMates UI</strong>
+    <p>A React component library.</p>
+  </HoverCardContent>
+</HoverCard>
+```
+
+## Preview
+
+:::: playground[HoverCard]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "hover-card", example: "default" }} minHeight={324} />
+```tsx
+<HoverCard>
+  <HoverCardToggle>@bmates</HoverCardToggle>
+  <HoverCardContent>
+    <strong>BMates UI</strong>
+    <p>A React component library.</p>
+  </HoverCardContent>
+</HoverCard>
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Alignment
+
+:::: playground[Alignment]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "hover-card", example: "align" }} minHeight={324} />
+```tsx
+<HoverCard align="start">...</HoverCard>
+```
+::::
+
+### Open delay
+
+:::: playground[Open delay]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "hover-card", example: "delay" }} minHeight={324} />
+```tsx
+<HoverCard openDelay={800}>...</HoverCard>
+```
+::::
+
+### Trigger spacing
+
+:::: playground[Trigger spacing]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "hover-card", example: "space" }} minHeight={324} />
+```tsx
+<HoverCard space={24}>...</HoverCard>
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `HoverCard`
+:type: `children`
+Root hover-card context.
+:::
+::: api-item
+:property: `HoverCardContent.width`
+:type: `CSSProperties[width]`
+Preview surface width.
+:::
+::: api-item
+:property: `HoverCardToggle`
+:type: `div props`
+Target that opens the preview while hovered.
+:::
+::: api-item
+:property: `align`
+:type: `start | center | end`
+:default: `center`
+Content alignment.
+:::
+::: api-item
+:property: `space`
+:type: `number`
+:default: `16`
+Gap between trigger and content in pixels.
+:::
+::: api-item
+:property: `openDelay`
+:type: `number`
+:default: `500`
+Delay before opening in milliseconds.
+:::
+::: api-item
+:property: `closeDelay`
+:type: `number`
+:default: `200`
+Delay before closing in milliseconds.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

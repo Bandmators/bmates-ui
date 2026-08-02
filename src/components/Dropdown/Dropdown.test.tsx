@@ -11,7 +11,7 @@ import {
   DropdownShortcut,
   DropdownToggle,
 } from '../';
-import { fireEvent, render, screen, waitFor } from '../../libs/test';
+import { fireEvent, render, screen, waitFor, within } from '../../libs/test';
 
 describe('UI test', () => {
   it('Should appear DropdownContent when click DropdownToggle', () => {
@@ -127,5 +127,35 @@ describe('UI test', () => {
     expect(portal.style.top).toBeTruthy();
     expect(portal.style.left).toBeTruthy();
     expect(portal.style.transform).toBe('');
+  });
+
+  it('mounts portal content into the trigger ownerDocument', () => {
+    const iframe = document.createElement('iframe');
+    document.body.appendChild(iframe);
+    let unmount: (() => void) | undefined;
+
+    try {
+      const iframeDocument = iframe.contentDocument;
+      expect(iframeDocument).toBeTruthy();
+      if (!iframeDocument) return;
+
+      ({ unmount } = render(
+        <Dropdown>
+          <DropdownToggle>IframeDropdownToggle</DropdownToggle>
+          <DropdownContent width={'15rem'}>
+            <DropdownItem>IframeGitHub</DropdownItem>
+          </DropdownContent>
+        </Dropdown>,
+        { container: iframeDocument.body, baseElement: iframeDocument.body },
+      ));
+
+      fireEvent.click(within(iframeDocument.body).getByText('IframeDropdownToggle'));
+
+      expect(iframeDocument.getElementById('bmates-portal')).toBeInTheDocument();
+      expect(document.getElementById('bmates-portal')).not.toBeInTheDocument();
+    } finally {
+      unmount?.();
+      iframe.remove();
+    }
   });
 });

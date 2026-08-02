@@ -1,0 +1,115 @@
+﻿---
+title: Dialog
+description: 吏묒쨷???꾩슂???묒뾽???꾪븳 紐⑤떖 ?쒕㈃?낅땲??
+navTitle: Dialog
+---
+
+# Dialog
+
+吏묒쨷???꾩슂???묒뾽???꾪븳 紐⑤떖 ?쒕㈃?낅땲??
+
+## 媛?몄삤湲?
+```tsx
+import { Dialog, DialogToggle, DialogContent, DialogClose } from 'bmates-ui';
+```
+
+## 湲곕낯 ?ъ슜踰?
+?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+
+```tsx
+<Dialog>
+  <DialogToggle>Open dialog</DialogToggle>
+  <DialogContent>
+    <h2>Delete project?</h2>
+    <p>This action cannot be undone.</p>
+    <DialogClose>Cancel</DialogClose>
+  </DialogContent>
+</Dialog>
+```
+
+## 誘몃━蹂닿린
+
+:::: playground[Dialog]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "dialog", example: "default" }} minHeight={424} />
+```tsx
+<Dialog>
+  <DialogToggle>Open dialog</DialogToggle>
+  <DialogContent>
+    <h2>Delete project?</h2>
+    <p>This action cannot be undone.</p>
+    <DialogClose>Cancel</DialogClose>
+  </DialogContent>
+</Dialog>
+```
+::::
+
+## Props 誘몃━蹂닿린
+
+?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+
+### Hidden close control
+
+:::: playground[Hidden close control]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "dialog", example: "hide-close" }} minHeight={424} />
+```tsx
+<DialogContent hideClose>...</DialogContent>
+```
+::::
+
+### Outside click
+
+:::: playground[Outside click]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "dialog", example: "outside" }} minHeight={424} />
+```tsx
+<DialogContent outEvent>...</DialogContent>
+```
+::::
+
+## 而댄룷?뚰듃 API
+
+:::: api-list
+::: api-item
+:property: `Dialog`
+:type: `div props`
+Root dialog context.
+:::
+::: api-item
+:property: `DialogToggle`
+:type: `button props`
+Opens or closes the dialog.
+:::
+::: api-item
+:property: `DialogContent`
+:type: `div props`
+Modal content surface.
+:::
+::: api-item
+:property: `DialogClose`
+:type: `button props`
+Closes the active dialog.
+:::
+::: api-item
+:property: `DialogContent.outEvent`
+:type: `boolean`
+:default: `false`
+諛곌꼍 ?대┃ ???ㅼ씠?쇰줈洹몃? ?レ뒿?덈떎.
+:::
+::: api-item
+:property: `DialogContent.hideClose`
+:type: `boolean`
+:default: `false`
+湲곕낯 ?リ린 踰꾪듉???④퉩?덈떎.
+:::
+::: api-item
+:property: `DialogContent.maxWidth`
+:type: `number | string`
+:default: `450px`
+肄섑뀗痢좎쓽 理쒕? ?덈퉬?낅땲??
+:::
+::::
+
+## ?ъ슜 ?덈궡
+
+- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
+- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
+- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.

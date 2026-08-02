@@ -1,0 +1,123 @@
+﻿---
+title: HoverCard
+description: ??곸쓣 媛由ы궗 ???쒖떆?섎뒗 鍮꾨え??誘몃━蹂닿린?낅땲??
+navTitle: HoverCard
+---
+
+# HoverCard
+
+??곸쓣 媛由ы궗 ???쒖떆?섎뒗 鍮꾨え??誘몃━蹂닿린?낅땲??
+
+## 媛?몄삤湲?
+```tsx
+import { HoverCard, HoverCardToggle, HoverCardContent } from 'bmates-ui';
+```
+
+## 湲곕낯 ?ъ슜踰?
+?꾨옒 ?덉젣??Storybook?먯꽌 ?쒓났?섎뒗 湲곕낯 議고빀??臾몄꽌?먯꽌 諛붾줈 ?뺤씤?????덈룄濡?援ъ꽦?덉뒿?덈떎.
+
+```tsx
+<HoverCard>
+  <HoverCardToggle>@bmates</HoverCardToggle>
+  <HoverCardContent>
+    <strong>BMates UI</strong>
+    <p>A React component library.</p>
+  </HoverCardContent>
+</HoverCard>
+```
+
+## 誘몃━蹂닿린
+
+:::: playground[HoverCard]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "hover-card", example: "default" }} minHeight={324} />
+```tsx
+<HoverCard>
+  <HoverCardToggle>@bmates</HoverCardToggle>
+  <HoverCardContent>
+    <strong>BMates UI</strong>
+    <p>A React component library.</p>
+  </HoverCardContent>
+</HoverCard>
+```
+::::
+
+## Props 誘몃━蹂닿린
+
+?쒓컖??寃곌낵???숈옉???곹뼢??二쇰뒗 二쇱슂 props瑜??낅┰???덉젣濡??뺤씤?????덉뒿?덈떎.
+
+### ?뺣젹
+
+:::: playground[?뺣젹]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "hover-card", example: "align" }} minHeight={324} />
+```tsx
+<HoverCard align="start">...</HoverCard>
+```
+::::
+
+### Open delay
+
+:::: playground[Open delay]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "hover-card", example: "delay" }} minHeight={324} />
+```tsx
+<HoverCard openDelay={800}>...</HoverCard>
+```
+::::
+
+### ?몃━嫄?媛꾧꺽
+
+:::: playground[?몃━嫄?媛꾧꺽]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "hover-card", example: "space" }} minHeight={324} />
+```tsx
+<HoverCard space={24}>...</HoverCard>
+```
+::::
+
+## 而댄룷?뚰듃 API
+
+:::: api-list
+::: api-item
+:property: `HoverCard`
+:type: `children`
+Root hover-card context.
+:::
+::: api-item
+:property: `HoverCardContent.width`
+:type: `CSSProperties[width]`
+Preview surface width.
+:::
+::: api-item
+:property: `HoverCardToggle`
+:type: `div props`
+Target that opens the preview while hovered.
+:::
+::: api-item
+:property: `align`
+:type: `start | center | end`
+:default: `center`
+肄섑뀗痢??뺣젹?낅땲??
+:::
+::: api-item
+:property: `space`
+:type: `number`
+:default: `16`
+?몃━嫄곗? 肄섑뀗痢??ъ씠???쎌? 媛꾧꺽?낅땲??
+:::
+::: api-item
+:property: `openDelay`
+:type: `number`
+:default: `500`
+?닿린 ??吏???쒓컙(ms)?낅땲??
+:::
+::: api-item
+:property: `closeDelay`
+:type: `number`
+:default: `200`
+?リ린 ??吏???쒓컙(ms)?낅땲??
+:::
+::::
+
+## ?ъ슜 ?덈궡
+
+- ?쒖쓽 而댄룷?뚰듃??紐⑤몢 `bmates-ui`?먯꽌 export?⑸땲??
+- 蹂꾨룄濡??곹? ?덉? ?딆? 寃쎌슦, 媛?而댄룷?뚰듃???대떦 HTML ?붿냼???쒖? ?띿꽦??吏?먰빀?덈떎.
+- ?곹깭瑜??쒖뼱?댁빞 ?섎㈃ `default*` ?띿꽦 ????곹깭? ?대깽???몃뱾?щ? ?좏뵆由ъ??댁뀡?먯꽌 愿由ы븯?몄슂.

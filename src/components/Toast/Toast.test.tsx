@@ -4,6 +4,7 @@ import { expect, it } from 'vitest';
 
 import { Button, Toaster, useToast } from '../..';
 import { fireEvent, render, screen, waitFor } from '../../libs/test';
+import { ToasterProvider } from './ToastContext';
 import { ToastData } from './type';
 
 const ToastForTest = ({ ...props }: Omit<ToastData, 'toastId'>) => {
@@ -18,6 +19,17 @@ const ToastForTest = ({ ...props }: Omit<ToastData, 'toastId'>) => {
       >
         ToastButton
       </Button>
+    </>
+  );
+};
+
+const ScopedToastForTest = ({ buttonLabel, title }: { buttonLabel: string; title: string }) => {
+  const { toast } = useToast();
+
+  return (
+    <>
+      <Button onClick={() => toast({ title, time: -1 })}>{buttonLabel}</Button>
+      <Toaster />
     </>
   );
 };
@@ -73,5 +85,24 @@ describe('Toast', () => {
       // work action with data
       expect(testaction.className).toBe(toastData.data);
     });
+  });
+
+  it('keeps toasts isolated between providers', () => {
+    render(
+      <>
+        <ToasterProvider>
+          <ScopedToastForTest buttonLabel="FirstToastButton" title="First toast" />
+        </ToasterProvider>
+        <ToasterProvider>
+          <ScopedToastForTest buttonLabel="SecondToastButton" title="Second toast" />
+        </ToasterProvider>
+      </>,
+      {},
+    );
+
+    fireEvent.click(screen.getByText('FirstToastButton'));
+
+    expect(screen.getByText('First toast')).toBeInTheDocument();
+    expect(screen.queryByText('Second toast')).not.toBeInTheDocument();
   });
 });

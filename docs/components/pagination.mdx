@@ -1,0 +1,115 @@
+﻿---
+title: Pagination
+description: Navigation for moving through a collection of pages.
+navTitle: Pagination
+---
+
+# Pagination
+
+Navigation for moving through a collection of pages.
+
+## Import
+
+```tsx
+import {
+  AutoPagination,
+  Pagination,
+  PaginationLink,
+  PaginationPreviousLink,
+} from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<Pagination>
+  <PaginationContent>
+    <PaginationPreviousLink />
+    <PaginationItem><PaginationLink selected>1</PaginationLink></PaginationItem>
+    <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
+  </PaginationContent>
+</Pagination>
+```
+
+## Preview
+
+:::: playground[Pagination]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "pagination", example: "default" }} minHeight={132} />
+```tsx
+<Pagination>
+  <PaginationContent>
+    <PaginationPreviousLink />
+    <PaginationItem><PaginationLink selected>1</PaginationLink></PaginationItem>
+    <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
+  </PaginationContent>
+</Pagination>
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Selected page
+
+:::: playground[Selected page]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "pagination", example: "selected" }} minHeight={132} />
+```tsx
+<PaginationLink selected>2</PaginationLink>
+```
+::::
+
+### Disabled links
+
+:::: playground[Disabled links]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "pagination", example: "disabled" }} minHeight={132} />
+```tsx
+<PaginationLink disabled>1</PaginationLink>
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `PaginationLink.selected`
+:type: `boolean`
+:default: `false`
+Marks the current page.
+:::
+::: api-item
+:property: `PaginationLink.disabled`
+:type: `boolean`
+:default: `false`
+Prevents navigation.
+:::
+::: api-item
+:property: `AutoPagination.pageNo`
+:type: `number`
+Required current page number.
+:::
+::: api-item
+:property: `AutoPagination.pageSize`
+:type: `number`
+Required total number of pages.
+:::
+::: api-item
+:property: `AutoPagination.pageGap`
+:type: `number`
+:default: `10`
+Maximum visible page links.
+:::
+::: api-item
+:property: `AutoPagination.linkas`
+:type: `React.ElementType`
+Custom link component.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.

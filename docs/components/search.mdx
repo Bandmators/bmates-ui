@@ -1,0 +1,126 @@
+﻿---
+title: Search
+description: A composable search surface with a toggle, input, and results.
+navTitle: Search
+---
+
+# Search
+
+A composable search surface with a toggle, input, and results.
+
+## Import
+
+```tsx
+import {
+  Search,
+  SearchContent,
+  SearchInput,
+  SearchInputToggle,
+  SearchItem,
+  SearchToggle,
+} from 'bmates-ui';
+```
+
+## Basic usage
+
+The example below mirrors the primary Storybook composition and can be used as a starting point.
+
+```tsx
+<Search>
+  <SearchToggle>Search</SearchToggle>
+  <SearchContent>
+    <SearchInput placeholder="Search projects" />
+    <SearchItem>Design system</SearchItem>
+  </SearchContent>
+</Search>
+```
+
+## Preview
+
+:::: playground[Search]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "search", example: "default" }} minHeight={324} />
+```tsx
+<Search>
+  <SearchToggle>Search</SearchToggle>
+  <SearchContent>
+    <SearchInput placeholder="Search projects" />
+    <SearchItem>Design system</SearchItem>
+  </SearchContent>
+</Search>
+```
+::::
+
+## Prop previews
+
+The examples below isolate the props that change visual output or interaction.
+
+### Alignment
+
+:::: playground[Alignment]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "search", example: "end" }} minHeight={324} />
+```tsx
+<Search align="end">...</Search>
+```
+::::
+
+### Trigger spacing
+
+:::: playground[Trigger spacing]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "search", example: "space" }} minHeight={324} />
+```tsx
+<Search space={16}>...</Search>
+```
+::::
+
+### Disabled item
+
+:::: playground[Disabled item]{isolation="inline"}
+<ClientPreview name="bmates-preview" props={{ component: "search", example: "disabled" }} minHeight={324} />
+```tsx
+<SearchItem disabled>Delete</SearchItem>
+```
+::::
+
+## Component API
+
+:::: api-list
+::: api-item
+:property: `Search`
+:type: `children`
+Root search context.
+:::
+::: api-item
+:property: `SearchContent.width`
+:type: `CSSProperties[width]`
+Search panel width.
+:::
+::: api-item
+:property: `SearchInput`
+:type: `input props`
+Native search field props.
+:::
+::: api-item
+:property: `SearchItem.disabled`
+:type: `boolean`
+:default: `false`
+Prevents selecting a result.
+:::
+::: api-item
+:property: `align`
+:type: `start | center | end`
+:default: `center`
+Search panel alignment.
+:::
+::: api-item
+:property: `space`
+:type: `number`
+:default: `0`
+Gap between trigger and panel in pixels.
+:::
+::::
+
+## Usage notes
+
+- Every component in the table is exported from `bmates-ui`.
+- Unless noted otherwise, a component also accepts the standard props of its underlying HTML element.
+- For application-owned state, use a controlled value and its change handler instead of only a `default*` prop.
