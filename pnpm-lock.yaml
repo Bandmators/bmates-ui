@@ -28,8 +28,8 @@ importers:
         specifier: ^18.4.4
         version: 18.4.4
       '@kyechan99/docgo':
-        specifier: ^0.2.15
-        version: 0.2.15(@types/node@20.19.10)(@types/react@18.2.45)(esbuild@0.21.5)(jiti@1.21.0)(less@4.2.0)(terser@5.49.0)(tsx@4.23.1)(typescript@5.3.3)
+        specifier: ^0.2.16
+        version: 0.2.16(@types/node@20.19.10)(@types/react@18.2.45)(esbuild@0.21.5)(jiti@1.21.0)(less@4.2.0)(terser@5.49.0)(tsx@4.23.1)(typescript@5.3.3)
       '@storybook/addon-docs':
         specifier: 8.6.18
         version: 8.6.18(@types/react@18.2.45)(storybook@8.6.18(prettier@3.2.5))
@@ -787,8 +787,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@kyechan99/docgo@0.2.15':
-    resolution: {integrity: sha512-eB8NIBh3qf3c7EkyCC+fNw+zFnuz0cNVrE0Yn7kYIbsLkgU6zRpP3lndf/CoBE6GtTjdAw73t0ix+PmJZhCA+w==}
+  '@kyechan99/docgo@0.2.16':
+    resolution: {integrity: sha512-MHAIuU6/MkJJhTk/+JKZxJ5ytGK7TxCZKtWTRJRzIh+csiaoxPtxxT0WLTwsV4lxD5M94A3bLvzeQTCgVdZCaQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
 
@@ -1837,8 +1837,8 @@ packages:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
     engines: {node: '>=8'}
 
-  bmates-ui@1.1.3:
-    resolution: {integrity: sha512-CZwKCFckEYBvcx5GB0q1yHJzg14st7ABgTQZUaUNfS45WflFPp9KW2WzneBqaVt9UovyhQzJbZIO9mWnjzJCFQ==}
+  bmates-ui@1.1.4:
+    resolution: {integrity: sha512-u/AKLZM+UNchuDqxD7cXrppno/FjmqfYs5mk8dMpmQ10jry7gXQelG5vTqo/oaWEXQhcJ8bHndtDkkk3hGrV6A==}
     peerDependencies:
       react: ^18.2.0 || ^19.0.0
       react-dom: ^18.2.0 || ^19.0.0
@@ -5275,14 +5275,14 @@ snapshots:
       '@jridgewell/sourcemap-codec': 1.5.5
     optional: true
 
-  '@kyechan99/docgo@0.2.15(@types/node@20.19.10)(@types/react@18.2.45)(esbuild@0.21.5)(jiti@1.21.0)(less@4.2.0)(terser@5.49.0)(tsx@4.23.1)(typescript@5.3.3)':
+  '@kyechan99/docgo@0.2.16(@types/node@20.19.10)(@types/react@18.2.45)(esbuild@0.21.5)(jiti@1.21.0)(less@4.2.0)(terser@5.49.0)(tsx@4.23.1)(typescript@5.3.3)':
     dependencies:
       '@mdx-js/mdx': 3.1.1
       '@mdx-js/react': 3.1.1(@types/react@18.2.45)(react@19.2.8)
       '@shikijs/rehype': 4.3.1
       '@shikijs/transformers': 4.3.1
       '@vitejs/plugin-react': 6.0.4(vite@8.1.5(@types/node@20.19.10)(esbuild@0.21.5)(jiti@1.21.0)(less@4.2.0)(terser@5.49.0)(tsx@4.23.1))
-      bmates-ui: 1.1.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(typescript@5.3.3)(vite@8.1.5(@types/node@20.19.10)(esbuild@0.21.5)(jiti@1.21.0)(less@4.2.0)(terser@5.49.0)(tsx@4.23.1))
+      bmates-ui: 1.1.4(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(typescript@5.3.3)(vite@8.1.5(@types/node@20.19.10)(esbuild@0.21.5)(jiti@1.21.0)(less@4.2.0)(terser@5.49.0)(tsx@4.23.1))
       fast-glob: 3.3.3
       gray-matter: 4.0.3
       parse5: 8.0.1
@@ -6505,7 +6505,7 @@ snapshots:
 
   binary-extensions@2.2.0: {}
 
-  bmates-ui@1.1.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(typescript@5.3.3)(vite@8.1.5(@types/node@20.19.10)(esbuild@0.21.5)(jiti@1.21.0)(less@4.2.0)(terser@5.49.0)(tsx@4.23.1)):
+  bmates-ui@1.1.4(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(typescript@5.3.3)(vite@8.1.5(@types/node@20.19.10)(esbuild@0.21.5)(jiti@1.21.0)(less@4.2.0)(terser@5.49.0)(tsx@4.23.1)):
     dependencies:
       concurrently: 8.2.2
       react: 19.2.8

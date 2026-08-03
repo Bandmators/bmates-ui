@@ -77,7 +77,30 @@ export default defineConfig({
         items: [{ text: 'BMatesProvider', link: '/components/provider' }],
       },
     ],
-    '/': [{ text: 'Home', link: '/' }],
+    '/': [
+      {
+        text: 'Start here',
+        items: [
+          { text: 'Home', link: '/' },
+          { text: 'Get started', link: '/guide/getting-started' },
+        ],
+      },
+      {
+        text: 'Foundations',
+        items: [
+          { text: 'Design tokens', link: '/guide/tokens' },
+          { text: 'Theming', link: '/guide/theming' },
+          { text: 'Accessibility', link: '/guide/accessibility' },
+        ],
+      },
+      {
+        text: 'Explore',
+        items: [
+          { text: 'Components', link: '/components/button' },
+          { text: 'BMatesProvider', link: '/components/provider' },
+        ],
+      },
+    ],
   },
   socialLinks: [{ icon: 'github', link: 'https://github.com/Bandmators/bmates-ui' }],
   editLink: {
@@ -99,7 +122,14 @@ export default defineConfig({
     defaultLocale: 'en',
     locales: [
       { code: 'en', label: 'English' },
-      { code: 'ko', label: '한국어' },
+      {
+        code: 'ko',
+        label: '한국어',
+        footer: {
+          message: '개인 브랜딩을 위한 디자인 시스템',
+          copyright: '© 2026 kyechan99',
+        },
+      },
     ],
   },
   plugins: [],
