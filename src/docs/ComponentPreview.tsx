@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 import {
   Accordion,
   AccordionContent,
@@ -65,8 +67,7 @@ import {
   Toggle,
   Tooltip,
   useToast,
-} from 'bmates-ui';
-import * as React from 'react';
+} from '../index';
 
 type PreviewProps = {
   component: string;
