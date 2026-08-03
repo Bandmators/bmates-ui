@@ -106,7 +106,7 @@
     "storybook": "8.6.18",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
     "typescript": "^5.2.2",
-    "vite": "^5.0.8",
+    "vite": "^6.0.0",
     "vite-plugin-dts": "^3.7.1",
     "vite-tsconfig-paths": "^4.2.2",
     "vitest": "^1.2.0"
