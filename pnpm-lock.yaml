@@ -20,9 +20,6 @@ importers:
       react-router-dom:
         specifier: ^6.21.3
         version: 6.21.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      vite-tsconfig-paths:
-        specifier: ^4.2.2
-        version: 4.2.2(typescript@5.3.3)(vite@5.4.12(@types/node@20.19.10)(less@4.2.0)(lightningcss@1.33.0)(terser@5.49.0))
     devDependencies:
       '@commitlint/cli':
         specifier: ^18.4.4
@@ -153,6 +150,9 @@ importers:
       vite-plugin-dts:
         specifier: ^3.7.1
         version: 3.7.1(@types/node@20.19.10)(rollup@4.46.2)(typescript@5.3.3)(vite@5.4.12(@types/node@20.19.10)(less@4.2.0)(lightningcss@1.33.0)(terser@5.49.0))
+      vite-tsconfig-paths:
+        specifier: ^4.2.2
+        version: 4.2.2(typescript@5.3.3)(vite@5.4.12(@types/node@20.19.10)(less@4.2.0)(lightningcss@1.33.0)(terser@5.49.0))
       vitest:
         specifier: ^1.2.0
         version: 1.6.1(@types/node@20.19.10)(jsdom@23.2.0)(less@4.2.0)(lightningcss@1.33.0)(terser@5.49.0)
