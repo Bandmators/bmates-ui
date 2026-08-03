@@ -10,6 +10,7 @@ export interface PortalContextType {
   showModal: boolean;
   setShowModal: (value: boolean) => void;
   hoverOpen: boolean;
+  isHoverMode: boolean;
   openHover: () => void;
   closeHover: () => void;
 

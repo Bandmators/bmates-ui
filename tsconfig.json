@@ -23,7 +23,8 @@
     "baseUrl": ".",
     "ignoreDeprecations": "5.0",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "bmates-ui": ["./src/index.ts"]
     }
   },
   "include": ["src", "index.ts"],

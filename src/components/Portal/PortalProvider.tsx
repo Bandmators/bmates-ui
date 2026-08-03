@@ -20,7 +20,7 @@ export const PortalProvider = ({ align, space, enableScroll, hoverOpen = false, 
   const [reorgPos, setReorgPos] = React.useState<PositionType>({ x: 0, y: 0 });
   const [focusItems, setFocusItems] = React.useState<PortalFocusItem[]>([]);
   const closeTimer = React.useRef<number | ReturnType<typeof setTimeout> | null>(null);
-  const hoverModeRef = React.useRef(false);
+  const [isHoverMode, setIsHoverMode] = React.useState(false);
 
   const clearHoverCloseTimer = React.useCallback(() => {
     if (closeTimer.current === null) return;
@@ -30,7 +30,7 @@ export const PortalProvider = ({ align, space, enableScroll, hoverOpen = false, 
 
   const setShowModal = (value: boolean) => {
     clearHoverCloseTimer();
-    if (!value) hoverModeRef.current = false;
+    setIsHoverMode(false);
     _setShowModal(value);
     if (!value) setTimeout(() => toggleElement?.focus());
   };
@@ -42,7 +42,7 @@ export const PortalProvider = ({ align, space, enableScroll, hoverOpen = false, 
 
   const openHover = React.useCallback(() => {
     if (!hoverOpen) return;
-    hoverModeRef.current = true;
+    setIsHoverMode(true);
     clearHoverCloseTimer();
     if (showModal) return;
     _setShowModal(true);
@@ -54,7 +54,7 @@ export const PortalProvider = ({ align, space, enableScroll, hoverOpen = false, 
   }, [hoverOpen, showModal]);
 
   React.useEffect(() => {
-    if (!hoverOpen || !showModal || !hoverModeRef.current || !toggleElement) return;
+    if (!hoverOpen || !showModal || !isHoverMode || !toggleElement) return;
 
     const handlePointerMove = (event: PointerEvent) => {
       const targetDocument = portalDocument ?? toggleElement.ownerDocument;
@@ -64,7 +64,7 @@ export const PortalProvider = ({ align, space, enableScroll, hoverOpen = false, 
       if (!element) return;
       if (portalElement?.contains(element) || toggleElement.contains(element)) return;
 
-      hoverModeRef.current = false;
+      setIsHoverMode(false);
       _setShowModal(false);
     };
 
@@ -74,7 +74,7 @@ export const PortalProvider = ({ align, space, enableScroll, hoverOpen = false, 
     return () => {
       targetDocument.removeEventListener('pointermove', handlePointerMove, true);
     };
-  }, [hoverOpen, portalDocument, showModal, toggleElement, _setShowModal]);
+  }, [hoverOpen, isHoverMode, portalDocument, showModal, toggleElement, _setShowModal]);
 
   const registerFocusItem = React.useCallback((item: PortalFocusItem) => {
     setFocusItems(prevItems => {
@@ -93,6 +93,7 @@ export const PortalProvider = ({ align, space, enableScroll, hoverOpen = false, 
         showModal,
         setShowModal,
         hoverOpen,
+        isHoverMode,
         toggleElement,
         setToggleElment: setPortalToggleElement,
         portalDocument,

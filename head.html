@@ -52,7 +52,10 @@
     --focus-shadow: 0 0 0 3px rgba(236, 236, 239, 0.24);
   }
 
-  .token-scale { display: grid; grid-template-columns: 7rem repeat(10, minmax(2.4rem, 1fr)); gap: .35rem; align-items: end; margin: .75rem 0; }
+  .token-scales { width: 100%; max-width: 100%; margin: .75rem 0; padding-bottom: .4rem; overflow-x: auto; overscroll-behavior-inline: contain; }
+  .token-scale { display: grid; grid-template-columns: 7rem repeat(10, minmax(2.4rem, 1fr)); gap: .35rem; align-items: end; width: 100%; min-width: 34.5rem; margin: .75rem 0; }
+  .token-scale:first-child { margin-top: 0; }
+  .token-scale:last-child { margin-bottom: 0; }
   .token-scale__name { color: var(--muted); font: 600 .78rem/1.2 var(--font-mono); }
   .token-swatch { display: grid; gap: .25rem; min-width: 0; color: var(--muted); font: .68rem/1 var(--font-mono); text-align: center; }
   .token-swatch i { display: block; height: 2rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--token-color); }

@@ -130,6 +130,25 @@ describe('UI test', () => {
     }
   });
 
+  it('closes a hover-enabled Select on an outside tap', () => {
+    render(
+      <Select hoverOpen>
+        <SelectToggle>SelectToggle</SelectToggle>
+        <SelectContent>
+          <SelectItem value="cat">Cat</SelectItem>
+        </SelectContent>
+      </Select>,
+    );
+
+    const toggleBtn = screen.getByText('SelectToggle');
+    fireEvent.pointerEnter(toggleBtn, { pointerType: 'touch' });
+    fireEvent.click(toggleBtn);
+
+    expect(screen.getByText('Cat')).toBeInTheDocument();
+    fireEvent.click(document.getElementById('bmates-portal-bg') as HTMLElement);
+    expect(screen.queryByText('Cat')).not.toBeInTheDocument();
+  });
+
   it('Should skip disabled option when navigating with keyboard', () => {
     render(
       <Select align="start">

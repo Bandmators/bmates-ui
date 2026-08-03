@@ -84,6 +84,25 @@ describe('UI test', () => {
     }
   });
 
+  it('closes a hover-enabled Dropdown on an outside tap', () => {
+    render(
+      <Dropdown hoverOpen>
+        <DropdownToggle>DropdownToggle</DropdownToggle>
+        <DropdownContent>
+          <DropdownItem>GitHub</DropdownItem>
+        </DropdownContent>
+      </Dropdown>,
+    );
+
+    const toggleBtn = screen.getByText('DropdownToggle');
+    fireEvent.pointerEnter(toggleBtn, { pointerType: 'touch' });
+    fireEvent.click(toggleBtn);
+
+    expect(screen.getByText('GitHub')).toBeInTheDocument();
+    fireEvent.click(document.getElementById('bmates-portal-bg') as HTMLElement);
+    expect(screen.queryByText('GitHub')).not.toBeInTheDocument();
+  });
+
   it('Should skip disabled menu item when navigating with keyboard', () => {
     render(
       <Dropdown>

@@ -19,13 +19,13 @@ interface ModalProps extends React.ComponentPropsWithoutRef<'div'> {
  */
 export const SelectContent = React.forwardRef<HTMLDivElement, ModalProps>(
   ({ width, children, onPointerEnter, onPointerLeave, ...props }, ref) => {
-    const { hoverOpen, openHover } = useContext(PortalContext);
+    const { hoverOpen, isHoverMode, openHover } = useContext(PortalContext);
 
     return (
       <PortalContent
         width={width}
         ref={ref}
-        disabledBG={hoverOpen}
+        disabledBG={isHoverMode}
         onPointerEnter={composeEventHandlers(
           onPointerEnter,
           excludeTouchEventHandler(() => hoverOpen && openHover()),
