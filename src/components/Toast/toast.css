@@ -13,7 +13,7 @@
     }
     .bm-toast-list--position-bottom-right { top:auto;right:0;bottom:0
     }
-    .bm-toast { display: flex; flex-direction: column; justify-content: space-between; padding: 1rem; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--elevated); box-shadow: var(--shadow); cursor: pointer; transition: transform .25s cubic-bezier(.75,-.5,.25,1.25)
+    .bm-toast { display: flex; flex-direction: column; justify-content: space-between; padding: 1rem; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--elevated); box-shadow: var(--shadow); cursor: pointer; transition: transform var(--transition-bounce)
     }
     .bm-toast--variant-default { color:var(--text)
     }
@@ -39,8 +39,8 @@
     }
     .bm-toast--active { transform:translate(0)
     }
-    .bm-toast__title { font-size:.875rem;line-height:1.25rem;font-weight:600
+    .bm-toast__title { font-size:.875rem;line-height:1.2;font-weight:600
     }
-    .bm-toast__description { font-size:.75rem;line-height:1rem;font-weight:400
+    .bm-toast__description { font-size:.75rem;line-height:1.5;font-weight:400
     }
 }

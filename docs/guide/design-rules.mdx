@@ -1,0 +1,252 @@
+---
+title: Design rules
+description: Composition rules that keep BMates UI components visually consistent when combined.
+navTitle: Design rules
+---
+
+# Design rules
+
+[Design tokens](/guide/tokens) define _what values exist_. This page defines
+_how components must use them_ so that any two components look deliberate when
+placed side by side.
+
+Every rule below is normative: a component that breaks one is a bug, not a
+variation. Rules are numbered so audits and review comments can cite them
+(`DR-3.2`).
+
+## 1. The grid
+
+Every length must resolve to a whole pixel at the default 16px root. Because
+`1rem = 16px`, this means every value is an integer multiple of `0.0625rem`
+(1px) — and in practice, of `0.125rem` (2px).
+
+The system uses two tiers of granularity:
+
+| Tier          | Step             | Scope                                     |
+| ------------- | ---------------- | ----------------------------------------- |
+| **Layout**    | `0.25rem` (4px)  | Margin, container padding, dimensions      |
+| **Component** | `0.125rem` (2px) | Padding inside a control, gaps between a component's own parts, hairline insets, nested radius offsets |
+
+This matches the mainstream: Tailwind's scale is 4px-based but includes
+`1.5` (6px), `2.5` (10px) and `3.5` (14px); Carbon's spacing scale starts at
+`$spacing-01` = `0.125rem`; Polaris and Atlassian both expose a 2px half-step.
+
+**DR-1.1 — Layout spacing is a multiple of 4px.**
+Anything that positions one component relative to another — margin, container
+padding, width, height — comes from the `BMateSpacing` scale:
+
+| Token | Value | px  |
+| ----- | ----- | --- |
+| `1`   | 0.25rem | 4  |
+| `2`   | 0.5rem  | 8  |
+| `3`   | 0.75rem | 12 |
+| `4`   | 1rem    | 16 |
+| `5`   | 1.25rem | 20 |
+| `6`   | 1.5rem  | 24 |
+| `8`   | 2rem    | 32 |
+| `10`  | 2.5rem  | 40 |
+| `12`  | 3rem    | 48 |
+| `16`  | 4rem    | 64 |
+| `20`  | 5rem    | 80 |
+| `24`  | 6rem    | 96 |
+
+**DR-1.2 — Component-internal spacing may use the 2px half-step.**
+Padding inside a control, hairline insets, and nested radius offsets may use
+`0.125rem` increments — `0.375rem` (6px), `0.625rem` (10px), `0.875rem` (14px)
+are all legal. This is where the density of a control gets tuned, and 4px steps
+are too coarse to hit a target height cleanly.
+
+The half-step also covers `gap` between a component's own internal parts — the
+rows of a menu list, the triggers in a tab track. It does **not** apply to
+`margin`, or to the gap a consumer puts between two separate components. Two
+controls separated by 6px look like a mistake; separated by 8px they look
+intentional.
+
+**DR-1.3 — Every length resolves to a whole pixel.**
+The test is `value ÷ 0.0625` must be an integer. Values like `0.15rem` (2.4px),
+`0.55rem` (8.8px), `0.6rem` (9.6px), `0.45rem` (7.2px), `0.1rem` (1.6px), and
+`0.3rem` (4.8px) fail it and are forbidden.
+
+Sub-pixel lengths are not merely "slightly off" — the browser resolves them by
+rounding against the element's absolute position, so the same component renders
+with different edge weights depending on where it lands on the page. A 1px
+border above an `8.8px` padding will look thicker or thinner as the page
+scrolls or the parent moves.
+
+**DR-1.4 — Relative and viewport units are not spacing.**
+`%`, `em`, `vh`, and `vw` are permitted for layout containment (`width: 100%`,
+`max-height: 100vh`) but never for padding, margin, gap, or font size. They
+resolve against a context the component does not control.
+
+## 2. Control heights
+
+**DR-2.1 — All interactive controls share one height scale.**
+Anything a user clicks or types into that can sit on the same row —
+`Button`, `Input`, `Select` trigger, `Search` input, `Toggle`, `Tabs` trigger,
+`Pagination` link, `Textarea` (minimum) — resolves to:
+
+| Size | Height        | Font size | Horizontal padding |
+| ---- | ------------- | --------- | ------------------ |
+| `sm` | 32px (`2rem`)   | `sm` 14px | 12px |
+| `md` | 40px (`2.5rem`) | `sm` 14px | 16px |
+| `lg` | 48px (`3rem`)   | `md` 16px | 24px |
+
+**Height is declared, not summed.** Vertical padding varies with font metrics,
+so a control must set its height explicitly and center content with flexbox —
+never let `padding-y + line-height + border` be the load-bearing calculation:
+
+```css
+/* ✓ height is the contract */
+.bm-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--bm-control-h);
+}
+.bm-button--size-md {
+  --bm-control-h: 2.5rem;
+  padding-inline: 1rem;
+}
+```
+
+Vertical padding on such a control is exempt from `DR-1.1`, because height —
+not padding — is the governed dimension. Horizontal padding is not exempt.
+
+**DR-2.2 — Height is set by the size prop, never by content.**
+A `Button` with an icon and a `Button` with text at the same size must have
+identical height.
+
+**DR-2.3 — Icon-only controls are square.**
+`size-icon` uses the same height as `md` and equal horizontal padding.
+
+## 3. Padding
+
+**DR-3.1 — Horizontal padding is roughly 2× vertical.**
+This is the density ratio that makes controls read as one family.
+`sm: 6/12`, `md: 8/16`, `lg: 12/24` for buttons.
+
+**DR-3.2 — Container padding scales with container weight.**
+
+| Surface                       | Padding |
+| ----------------------------- | ------- |
+| Menu item (`Dropdown`, `Select`, `Search`, `ContextMenu`) | `8px 12px` |
+| Alert / inline notice         | `12px 16px` |
+| `Card`                        | `20px`  |
+| `Dialog`, `Toast`             | `24px` / `16px` |
+
+**DR-3.3 — Sibling components at the same nesting level use the same padding.**
+`Dropdown`, `Select`, `Search`, and `ContextMenu` items are the same primitive
+and must be pixel-identical. Any divergence is a bug.
+
+## 4. External spacing
+
+**DR-4.1 — A component never sets its own outer margin.**
+The root element of a public component has no `margin`. Spacing between
+siblings is the parent's responsibility, expressed as `gap`.
+
+Rationale: a component with built-in margin cannot be composed. The consumer
+has no way to remove it without overriding your CSS.
+
+```css
+/* ✗ */ .bm-accordion__item { margin-bottom: 0.5rem; }
+/* ✓ */ .bm-accordion       { display: flex; flex-direction: column; gap: 0.5rem; }
+```
+
+**DR-4.2 — Internal margins are allowed only for typographic reset.**
+`margin: 0` on headings and paragraphs, and `:first-child { margin-top: 0 }` /
+`:last-child { margin-bottom: 0 }` on rich-text slots.
+
+**DR-4.3 — Use `gap`, not margin, for adjacent elements.**
+Including icon-to-label spacing inside a control.
+
+## 5. Typography
+
+**DR-5.1 — Font size comes from the scale.**
+`xs 12` · `sm 14` · `md 16` · `lg 18` · `xl 20` · `2xl 24` · `3xl 30` · `4xl 36`.
+Values like `0.85rem`, `0.74rem`, `0.72rem`, and `font-size: 75%` are off-scale
+and forbidden.
+
+**DR-5.2 — Line height comes from the three-step scale.**
+
+| Token     | Value | Use                                        |
+| --------- | ----- | ------------------------------------------ |
+| `tight`   | 1.2   | Headings, single-line control labels       |
+| `normal`  | 1.5   | Body text, descriptions, multi-line content |
+| `relaxed` | 1.7   | Long-form prose blocks                     |
+
+**DR-5.3 — `line-height: 1` is forbidden.**
+It clips descenders (`g`, `y`, `p`) and makes vertical centering depend on the
+font. Use `tight`.
+
+**DR-5.4 — Text rendered inside a fixed-height control uses `tight`.**
+The control's height comes from `DR-2.1`, so the line box must not drive it.
+
+**DR-5.5 — Weight is semantic, not decorative.**
+`400` body · `500` interactive labels · `600` section headings · `700` emphasis
+within an alert. No other values.
+
+## 6. Radius
+
+**DR-6.1 — Radius maps to surface size, not to component type.**
+
+| Token           | Value  | Applies to                                   |
+| --------------- | ------ | -------------------------------------------- |
+| `--radius-sm`   | 8px    | Menu items, badges, tabs, pagination, tooltip |
+| `--radius`      | 10px   | Controls: button, input, textarea, toggle, alert |
+| `--radius-lg`   | 14px   | Elevated surfaces: card, dialog, toast, accordion |
+| `--radius-full` | 9999px | Pills, avatars, switch track                 |
+
+**DR-6.2 — Nested radius is `outer - padding`.**
+A rounded child inside a rounded parent uses
+`calc(var(--radius) - <parent padding>)`, never the same value as the parent.
+
+**DR-6.3 — No raw radius literals.**
+`border-radius: 4px` and `border-radius: 50%` must be tokens
+(`--radius-sm`, `--radius-full`).
+
+## 7. Borders and elevation
+
+**DR-7.1 — Border width is `1px`.**
+The only exception is a deliberate accent edge (`Alert`'s `border-left-width`),
+which uses `0.25rem`.
+
+**DR-7.2 — Elevation is exclusive with border weight.**
+A surface uses either `--shadow-*` or `--border-strong`, not both at full
+strength. Cards use `--border` + `--shadow-sm`; dialogs use `--shadow-lg` and
+no border.
+
+**DR-7.3 — Focus is uniform.**
+Every focusable element uses `--focus-border` + `--focus-shadow` on
+`:focus-visible`, and never removes the indicator without a replacement.
+
+## 8. Motion
+
+**DR-8.1 — Transitions use `var(--transition)`.**
+Raw durations (`150ms`, `.2s`, `200ms`, `.25s`) are forbidden except for
+enter/exit animations of overlays, which use `0.15s`.
+
+**DR-8.2 — Transition specific properties, never `all`.**
+`transition: all` animates layout properties and causes jank.
+
+## 9. Composition
+
+**DR-9.1 — Same-size controls in a row align on all four edges.**
+A `Button size="md"` next to an `Input` next to a `Select` produces one
+unbroken 40px band.
+
+**DR-9.2 — Icons inside controls are 16px (`sm`/`md`) or 20px (`lg`).**
+Declared in `rem`, aligned with `align-items: center`.
+
+**DR-9.3 — Default gap between composed controls is 8px.**
+12px for grouped sections, 16px for unrelated blocks.
+
+## Audit checklist
+
+When adding or changing a component, verify:
+
+- [ ] Every length is on the 4px grid (DR-1.1)
+- [ ] Height matches the shared control scale (DR-2.1)
+- [ ] Root element has no margin (DR-4.1)
+- [ ] Font size and line height come from tokens (DR-5.1, DR-5.2)
+- [ ] Radius is a token and matches surface weight (DR-6.1, DR-6.3)
+- [ ] Focus state uses the shared focus tokens (DR-7.3)
+- [ ] Transitions use `var(--transition)` and name their properties (DR-8)

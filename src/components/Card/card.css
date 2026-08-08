@@ -1,14 +1,10 @@
 @layer bmates.components {
-    .bm-card { padding: 1.25rem; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--elevated); box-shadow: var(--shadow-sm)
+    .bm-card { display: grid; gap: 1rem; padding: 1.25rem; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--elevated); box-shadow: var(--shadow-sm)
     }
     .bm-card__body { display: grid; gap: .5rem
     }
-    .bm-card__head { margin-bottom: 1rem
-    }
-    .bm-card__footer { margin-top: 1rem
-    }
     .bm-card__title, .bm-card__description { margin: 0
     }
-    .bm-card__description { color: var(--muted); font-size: .875rem; line-height: 1.25rem
+    .bm-card__description { color: var(--muted); font-size: .875rem; line-height: 1.5
     }
 }

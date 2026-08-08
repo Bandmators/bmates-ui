@@ -1,5 +1,5 @@
 @layer bmates.components {
-    .bm-switch { display: inline-flex; line-height: 1
+    .bm-switch { position: relative; display: inline-flex; gap: 1rem; line-height: 1.2
     }
     .bm-switch--align-start { align-items: flex-start
     }
@@ -11,43 +11,25 @@
     }
     .bm-switch__input { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); margin: -1px; padding: 0; border: 0; white-space: nowrap
     }
-    .bm-switch__label { margin-left: 1rem; font-weight: 500
+    .bm-switch__label { font-weight: 500
     }
-    .bm-switch { position: relative
+    .bm-switch__box { position: relative; display: inline-block; flex: none; border-radius: var(--radius-full); background: var(--gray-200); cursor: pointer; text-indent: -9999px; transition: background-color var(--transition)
     }
-    .bm-switch__box { position: relative; display: inline-block; border-radius: 50rem; background: var(--gray-200); cursor: pointer; text-indent: -9999px; transition: background-color ease .2s
-    }
-    .bm-switch__box::after { position: absolute; content: ''; border-radius: 50rem; background: #fff; transition: .2s
+    .bm-switch__box::after { position: absolute; top: var(--bm-switch-inset); left: var(--bm-switch-inset); width: var(--bm-switch-knob); height: var(--bm-switch-knob); content: ''; border-radius: var(--radius-full); background: var(--background); transition: left var(--transition)
     }
     .bm-switch__box:focus-visible { outline: 0; border-color: var(--focus-border); box-shadow: var(--focus-shadow)
     }
     .bm-switch__box--disabled { cursor: not-allowed
     }
-    .bm-switch__box--size-sm { width: 2rem; height: 1rem
+    .bm-switch__box--size-sm { --bm-switch-inset: .125rem; --bm-switch-knob: .75rem; width: 2rem; height: 1rem
     }
-    .bm-switch__box--size-sm::after { top: .1rem; left: .1rem; width: .8rem; height: .8rem
+    .bm-switch__box--size-md { --bm-switch-inset: .125rem; --bm-switch-knob: 1.25rem; width: 3rem; height: 1.5rem
     }
-    .bm-switch__box--size-md { width: 3rem; height: 1.5rem
+    .bm-switch__box--size-lg { --bm-switch-inset: .25rem; --bm-switch-knob: 1.5rem; width: 4rem; height: 2rem
     }
-    .bm-switch__box--size-md::after { top: .15rem; left: .15rem; width: 1.2rem; height: 1.2rem
+    .bm-switch__box--size-xl { --bm-switch-inset: .25rem; --bm-switch-knob: 2.5rem; width: 6rem; height: 3rem
     }
-    .bm-switch__box--size-lg { width: 4rem; height: 2rem
-    }
-    .bm-switch__box--size-lg::after { top: .2rem; left: .2rem; width: 1.6rem; height: 1.6rem
-    }
-    .bm-switch__box--size-xl { width: 6rem; height: 3rem
-    }
-    .bm-switch__box--size-xl::after { top: .3rem; left: .3rem; width: 2.4rem; height: 2.4rem
-    }
-    .bm-switch__box--checked::after { transform: translateX(-100%)
-    }
-    .bm-switch__box--checked.bm-switch__box--size-sm::after { left: calc(100% - .1rem)
-    }
-    .bm-switch__box--checked.bm-switch__box--size-md::after { left: calc(100% - .15rem)
-    }
-    .bm-switch__box--checked.bm-switch__box--size-lg::after { left: calc(100% - .2rem)
-    }
-    .bm-switch__box--checked.bm-switch__box--size-xl::after { left: calc(100% - .4rem)
+    .bm-switch__box--checked::after { left: calc(100% - var(--bm-switch-inset) - var(--bm-switch-knob))
     }
     .bm-switch__box--checked.bm-switch__box--variant-primary { background:var(--primary)
     }

@@ -1,7 +1,7 @@
 @layer bmates.components {
     .bm-tooltip__wrapper { position:relative;width:fit-content;height:fit-content
     }
-    .bm-tooltip { position:absolute;z-index:200;display:none;padding:.4rem .6rem;border-radius:var(--radius-sm);transform:scale(.9);color:var(--background);background:var(--text-strong);box-shadow:var(--shadow);font-size:.8rem;font-weight:500;white-space:nowrap;animation:bm-tooltip .5s ease
+    .bm-tooltip { position:absolute;z-index:200;display:none;padding:.375rem .625rem;border-radius:var(--radius-sm);transform:scale(.9);color:var(--background);background:var(--text-strong);box-shadow:var(--shadow);font-size:.75rem;font-weight:500;line-height:1.2;white-space:nowrap;animation:bm-tooltip .5s ease
     }
     .bm-tooltip__wrapper:hover>.tooltip, .bm-tooltip__wrapper:active>.tooltip { display:block
     }

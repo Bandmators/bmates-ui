@@ -1,21 +1,27 @@
 @layer bmates.components {
+  /*
+   * The track is the control here, not the trigger: DR-9.1 aligns what the eye
+   * sees, which is the bordered list. Trigger height is therefore derived by
+   * subtracting the track's own chrome (2px padding + 1px border, both sides).
+   */
   .bm-tabs {
-    --bm-tabs-trigger-h: 2rem;
+    --bm-control-h: var(--control-h-md);
     --bm-tabs-trigger-px: 0.625rem;
     --bm-tabs-trigger-font-size: 0.875rem;
   }
   .bm-tabs--size-sm {
-    --bm-tabs-trigger-h: 1.625rem;
+    --bm-control-h: var(--control-h-sm);
     --bm-tabs-trigger-px: 0.5rem;
-    --bm-tabs-trigger-font-size: 0.8125rem;
+    --bm-tabs-trigger-font-size: 0.75rem;
   }
   .bm-tabs--size-lg {
-    --bm-tabs-trigger-h: 2.5rem;
+    --bm-control-h: var(--control-h-lg);
     --bm-tabs-trigger-px: 0.75rem;
     --bm-tabs-trigger-font-size: 1rem;
   }
   .bm-tabs__list {
     display: inline-flex;
+    min-height: var(--bm-control-h);
     align-items: center;
     gap: 0.125rem;
     padding: 0.125rem;
@@ -24,7 +30,7 @@
     background: var(--surface);
   }
   .bm-tabs__trigger {
-    min-height: var(--bm-tabs-trigger-h);
+    min-height: calc(var(--bm-control-h) - 0.375rem);
     padding: 0.125rem var(--bm-tabs-trigger-px);
     border: 1px solid transparent;
     border-radius: calc(var(--radius-sm) - 2px);
@@ -33,7 +39,7 @@
     font: inherit;
     font-size: var(--bm-tabs-trigger-font-size);
     font-weight: 500;
-    line-height: 1.25;
+    line-height: 1.2;
     cursor: pointer;
     white-space: nowrap;
     transition:

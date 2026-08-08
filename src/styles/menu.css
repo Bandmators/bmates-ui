@@ -1,0 +1,88 @@
+/**
+ * Shared menu-item primitive.
+ *
+ * Dropdown, Select, Search, and ContextMenu render the same row primitive.
+ * Per DR-3.3 they must be pixel-identical, so their shared geometry and
+ * typography live here rather than being copied into four stylesheets.
+ * Component files carry only what is genuinely component-specific
+ * (selection state, popover chrome).
+ */
+@layer bmates.components {
+    .bm-dropdown__list,
+    .bm-select__list,
+    .bm-search__list,
+    .bm-context-menu {
+        display: grid;
+        margin: 0;
+        padding: 0;
+        gap: .125rem;
+        list-style: none
+    }
+
+    .bm-dropdown__item,
+    .bm-select__item,
+    .bm-search__item,
+    .bm-context-menu__item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        padding: .5rem .75rem;
+        border-radius: var(--radius-sm);
+        outline: 0;
+        color: var(--text);
+        font-size: .875rem;
+        font-weight: 500;
+        line-height: 1.2;
+        cursor: pointer;
+        transition: background var(--transition), color var(--transition)
+    }
+
+    .bm-dropdown__item--disabled,
+    .bm-select__item--disabled,
+    .bm-search__item--disabled,
+    .bm-context-menu__item--disabled {
+        opacity: .5;
+        cursor: not-allowed
+    }
+
+    .bm-dropdown__label,
+    .bm-select__label,
+    .bm-search__label {
+        margin: 0;
+        padding: .375rem .75rem;
+        color: var(--faint);
+        font-size: .75rem;
+        font-weight: 600;
+        line-height: 1.2
+    }
+
+    .bm-dropdown__divider,
+    .bm-select__divider,
+    .bm-search__divider {
+        height: 1px;
+        margin: .25rem calc(var(--bm-menu-inset, .25rem) * -1);
+        background: var(--border)
+    }
+
+    .bm-dropdown__description,
+    .bm-select__description,
+    .bm-search__description {
+        margin: 0;
+        color: var(--muted);
+        font-size: .75rem;
+        font-weight: 400;
+        line-height: 1.5
+    }
+
+    .bm-dropdown__shortcut,
+    .bm-select__shortcut,
+    .bm-search__shortcut {
+        margin-left: auto;
+        padding-left: 1rem;
+        color: var(--faint);
+        font-size: .75rem;
+        letter-spacing: .08em;
+        line-height: 1.2
+    }
+}

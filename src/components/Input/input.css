@@ -1,5 +1,5 @@
 @layer bmates.components {
-    .bm-input { width: 100%; padding: .5rem .75rem; border: 1px solid var(--border-strong); border-radius: var(--radius); outline: 0; color: var(--text); background: transparent; font: inherit; font-size: .875rem; line-height: 1.25rem; transition: border-color var(--transition),box-shadow var(--transition)
+    .bm-input { width: 100%; min-height: var(--bm-control-h, var(--control-h-md)); padding: .5rem .75rem; border: 1px solid var(--border-strong); border-radius: var(--radius); outline: 0; color: var(--text); background: transparent; font: inherit; font-size: .875rem; line-height: 1.2; transition: border-color var(--transition),box-shadow var(--transition)
     }
     .bm-input::placeholder { color: var(--faint)
     }
@@ -7,7 +7,7 @@
     }
     .bm-input--disabled { opacity: .7; background: var(--surface-hover); cursor: not-allowed
     }
-    .bm-input__description { margin: 0; color: var(--muted); font-size: .875rem; line-height: 1.25rem
+    .bm-input__description { margin: 0; color: var(--muted); font-size: .875rem; line-height: 1.5
     }
     .bm-input-group { display: grid; align-items: center; gap: .5rem
     }
@@ -15,7 +15,7 @@
     }
     .bm-file-input__input { display: none
     }
-    .bm-file-input__label { display: inline-flex; align-items: center; justify-content: center; gap: .4rem; padding: .5rem 1rem; border: 1px solid transparent; border-radius: var(--radius); font-size: .875rem; font-weight: 500; line-height: 1.25rem; text-align: center; cursor: pointer; transition: background-color var(--transition),border-color var(--transition),color var(--transition)
+    .bm-file-input__label { display: inline-flex; min-height: var(--bm-control-h, var(--control-h-md)); align-items: center; justify-content: center; gap: .5rem; padding: .5rem 1rem; border: 1px solid transparent; border-radius: var(--radius); font-size: .875rem; font-weight: 500; line-height: 1.2; text-align: center; cursor: pointer; transition: background-color var(--transition),border-color var(--transition),color var(--transition)
     }
     .bm-file-input__label--disabled { opacity: .5; pointer-events: none; cursor: not-allowed
     }

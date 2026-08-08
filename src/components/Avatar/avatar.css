@@ -1,5 +1,5 @@
 @layer bmates.components {
-    .bm-avatar { border-radius: 50%
+    .bm-avatar { border-radius: var(--radius-full)
     }
     .bm-avatar--size-sm { width: 1.5rem; height: 1.5rem
     }

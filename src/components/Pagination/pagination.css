@@ -1,7 +1,7 @@
 @layer bmates.components {
     .bm-pagination { display: flex; gap: .5rem; margin: 0; padding: 0; list-style: none
     }
-    .bm-pagination__link { display: inline-flex; min-width: 2.5rem; min-height: 2.5rem; align-items: center; justify-content: center; border-radius: var(--radius-sm); color: var(--text); font-weight: 500; line-height: 2.5rem; text-decoration: none; cursor: pointer; transition: background-color var(--transition),color var(--transition)
+    .bm-pagination__link { display: inline-flex; min-width: var(--bm-control-h, var(--control-h-md)); min-height: var(--bm-control-h, var(--control-h-md)); align-items: center; justify-content: center; border-radius: var(--radius-sm); color: var(--text); font-size: .875rem; font-weight: 500; line-height: 1.2; text-decoration: none; cursor: pointer; transition: background-color var(--transition),color var(--transition)
     }
     .bm-pagination__link--selected { color: var(--background); background: var(--primary)
     }

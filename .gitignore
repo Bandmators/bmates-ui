@@ -13,6 +13,7 @@ docs-dist
 dist-ssr
 storybook-static
 styled-system
+report
 *.local
 
 # Editor directories and files

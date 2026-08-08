@@ -1,5 +1,5 @@
 @layer bmates.components {
-    .bm-checkbox { display: inline-flex; line-height: 1
+    .bm-checkbox { display: inline-flex; gap: 1rem; line-height: 1.2
     }
     .bm-checkbox--align-start { align-items: flex-start
     }
@@ -11,9 +11,9 @@
     }
     .bm-checkbox__input { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); margin: -1px; padding: 0; border: 0; white-space: nowrap
     }
-    .bm-checkbox__box { display: inline-flex; width: 1rem; height: 1rem; border: 1px solid var(--primary); border-radius: 4px; cursor: pointer; transition: all 150ms
+    .bm-checkbox__box { display: inline-flex; flex: none; width: 1rem; height: 1rem; border: 1px solid var(--primary); border-radius: var(--radius-xs); cursor: pointer; transition: background-color var(--transition), border-color var(--transition)
     }
-    .bm-checkbox__box svg { visibility: hidden; fill: none; stroke: white; stroke-width: 2px
+    .bm-checkbox__box svg { visibility: hidden; fill: none; stroke: var(--primary-fg); stroke-width: 2px
     }
     .bm-checkbox__box--checked { background: var(--primary)
     }
@@ -23,6 +23,6 @@
     }
     .bm-checkbox__box:focus-visible { outline: 0; box-shadow: var(--focus-shadow)
     }
-    .bm-checkbox__label { margin-left: 1rem; font-weight: 500
+    .bm-checkbox__label { font-weight: 500
     }
 }

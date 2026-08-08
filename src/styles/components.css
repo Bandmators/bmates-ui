@@ -1,3 +1,4 @@
+@import './menu.css';
 @import '../components/Button/button.css';
 @import '../components/Alert/alert.css';
 @import '../components/Accordion/accordion.css';

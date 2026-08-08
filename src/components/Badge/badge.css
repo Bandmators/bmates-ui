@@ -1,5 +1,5 @@
 @layer bmates.components {
-    .bm-badge { display: inline-flex; align-items: center; gap: .3rem; border: 1px solid transparent; border-radius: var(--radius-sm); font-size: 75%; font-weight: 500; line-height: 1rem
+    .bm-badge { display: inline-flex; align-items: center; gap: .25rem; border: 1px solid transparent; border-radius: var(--radius-sm); font-size: .75rem; font-weight: 500; line-height: 1.2
     }
     .bm-badge--size-sm { padding: .125rem .5rem
     }

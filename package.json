@@ -40,9 +40,12 @@
     "dev": "concurrently \"pnpm storybook\" \"pnpm build\"",
     "build": "tsc && vite build --watch",
     "buildOnce": "tsc && vite build",
+    "report:visual": "node scripts/build-visual-report.mjs",
     "docs:dev": "docgo dev",
     "docs:build": "docgo build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:css": "stylelint \"src/**/*.css\"",
+    "check:heights": "node scripts/build-visual-report.mjs && node scripts/check-control-heights.mjs",
     "format": "prettier --write .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
@@ -102,8 +105,11 @@
     "jsdom": "^23.2.0",
     "lint-staged": "^15.2.0",
     "path": "^0.12.7",
+    "postcss": "^8.5.26",
     "prettier": "^3.1.1",
     "storybook": "8.6.18",
+    "stylelint": "^17.14.1",
+    "stylelint-config-standard": "^40.0.0",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
@@ -115,6 +121,9 @@
     "*.{js,ts,tsx}": [
       "prettier --write",
       "eslint --fix"
+    ],
+    "src/**/*.css": [
+      "stylelint"
     ]
   },
   "publishConfig": {

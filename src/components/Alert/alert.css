@@ -2,8 +2,8 @@
   .bm-alert {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
-    gap: 0.625rem;
-    padding: 0.75rem 0.875rem;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
     border: 1px solid var(--bm-alert-border);
     border-left-width: 0.25rem;
     border-radius: var(--radius);
@@ -35,8 +35,8 @@
     grid-row: span 2;
     align-items: center;
     justify-content: center;
-    width: 1.125rem;
-    height: 1.125rem;
+    width: 1rem;
+    height: 1rem;
     color: var(--bm-alert-accent);
   }
   .bm-alert__icon > svg {
@@ -53,7 +53,7 @@
     color: var(--bm-alert-accent);
     font-size: 0.875rem;
     font-weight: 700;
-    line-height: 1.35;
+    line-height: 1.2;
   }
   .bm-alert__description {
     grid-column: 2;

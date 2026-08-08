@@ -1,5 +1,5 @@
 @layer bmates.components {
-    .bm-textarea { width: 100%; padding: .5rem .75rem; border: 1px solid var(--border-strong); border-radius: var(--radius); outline: 0; color: var(--text); background: transparent; font: inherit; font-size: .875rem; line-height: 1.25rem; transition: border-color var(--transition),box-shadow var(--transition)
+    .bm-textarea { width: 100%; padding: .5rem .75rem; border: 1px solid var(--border-strong); border-radius: var(--radius); outline: 0; color: var(--text); background: transparent; font: inherit; font-size: .875rem; line-height: 1.5; transition: border-color var(--transition),box-shadow var(--transition)
     }
     .bm-textarea::placeholder { color: var(--faint)
     }
@@ -7,6 +7,6 @@
     }
     .bm-textarea--disabled { opacity: .7; background: var(--surface-hover); cursor: not-allowed
     }
-    .bm-textarea { min-height: 2.25rem; resize: vertical
+    .bm-textarea { min-height: var(--bm-control-h, var(--control-h-md)); resize: vertical
     }
 }

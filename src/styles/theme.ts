@@ -175,6 +175,14 @@ export type ColorScaleTypes = typeof BMateColorScales;
  * Non-color design tokens (radius scale, easing curves, elevation shadows).
  */
 export const BMateTokens = {
+  // Shared interactive control heights (DR-2.1). Every control that can sit on
+  // the same row resolves to one of these, so a Button, Input and Select in a
+  // row form one unbroken band.
+  'control-h-sm': '2rem',
+  'control-h-md': '2.5rem',
+  'control-h-lg': '3rem',
+
+  'radius-xs': '4px',
   'radius-sm': '8px',
   radius: '10px',
   'radius-lg': '14px',
@@ -183,6 +191,8 @@ export const BMateTokens = {
   ease: 'cubic-bezier(0.4, 0, 0.2, 1)',
   'ease-out': 'cubic-bezier(0.16, 1, 0.3, 1)',
   transition: '0.14s cubic-bezier(0.4, 0, 0.2, 1)',
+  'transition-slow': '0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+  'transition-bounce': '0.25s cubic-bezier(0.75, -0.5, 0.25, 1.25)',
 
   'shadow-sm': '0 1px 2px rgba(33, 33, 33, 0.06)',
   shadow: '0 1px 2px rgba(33, 33, 33, 0.04), 0 8px 24px rgba(33, 33, 33, 0.08)',

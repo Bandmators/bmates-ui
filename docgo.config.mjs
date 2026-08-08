@@ -37,6 +37,7 @@ export default defineConfig({
         items: [
           { text: 'Get started', link: '/guide/getting-started' },
           { text: 'Design tokens', link: '/guide/tokens' },
+          { text: 'Design rules', link: '/guide/design-rules' },
           { text: 'Theming', link: '/guide/theming' },
           { text: 'Accessibility', link: '/guide/accessibility' },
         ],
@@ -89,6 +90,7 @@ export default defineConfig({
         text: 'Foundations',
         items: [
           { text: 'Design tokens', link: '/guide/tokens' },
+          { text: 'Design rules', link: '/guide/design-rules' },
           { text: 'Theming', link: '/guide/theming' },
           { text: 'Accessibility', link: '/guide/accessibility' },
         ],
