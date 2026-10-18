@@ -5,6 +5,13 @@ import { canUseDOM, useIsomorphicLayoutEffect } from '@/libs/dom';
 
 // import { PositionType } from '@/types/position';
 
+/** Max height the popup may take on the side it opens to (consumed by `.bm-portal` in portal.css). */
+const MAX_HEIGHT_VAR = '--bm-portal-max-height';
+/** Present while the popup is shorter than its content and therefore scrolls. */
+const CAPPED_ATTR = 'data-bm-capped';
+/** Gap kept between a capped popup and the viewport edge, in px. */
+const VIEWPORT_MARGIN = 8;
+
 export const usePortal = ({ portalRef }: { portalRef: React.RefObject<HTMLDivElement> }) => {
   const {
     showModal,
@@ -36,27 +43,43 @@ export const usePortal = ({ portalRef }: { portalRef: React.RefObject<HTMLDivEle
           ? toggleElement.getBoundingClientRect()
           : { x: reorgPos.x, y: reorgPos.y, bottom: reorgPos.y, height: 0, width: 0 };
 
-        const isOverflowing = rect.offsetHeight + toggleRect.bottom + space >= portalWindow.innerHeight;
+        // Measure the popup without any cap from a previous pass.
+        rect.style.removeProperty(MAX_HEIGHT_VAR);
+        rect.removeAttribute(CAPPED_ATTR);
+        const naturalHeight = rect.offsetHeight;
+
+        const spaceBelow = portalWindow.innerHeight - toggleRect.bottom - space;
+        const spaceAbove = toggleRect.y - space;
+        // Open above only if it doesn't fit below AND there is more room above.
+        const openAbove = naturalHeight > spaceBelow && spaceAbove > spaceBelow;
+
+        // Still too tall for the side we picked: cap it to the available space
+        // (minus a small gap to the viewport edge) so it scrolls instead of
+        // being clipped by the viewport.
+        const room = openAbove ? spaceAbove : spaceBelow;
+        if (naturalHeight > room) {
+          rect.style.setProperty(MAX_HEIGHT_VAR, `${Math.max(0, room - VIEWPORT_MARGIN)}px`);
+          rect.setAttribute(CAPPED_ATTR, '');
+        }
+        // Real height once the cap (if any) has been applied.
+        const height = rect.offsetHeight;
 
         const newPos = { x: reorgPos.x, y: reorgPos.y };
 
+        // offsetWidth (not clientWidth) so a vertical scrollbar is counted in the width.
         switch (align) {
           case 'center':
-            newPos.x = toggleRect.x + toggleRect.width / 2 - rect.clientWidth / 2;
+            newPos.x = toggleRect.x + toggleRect.width / 2 - rect.offsetWidth / 2;
             break;
           case 'start':
             newPos.x = toggleRect.x;
             break;
           case 'end':
-            newPos.x = toggleRect.x + toggleRect.width - rect.clientWidth;
+            newPos.x = toggleRect.x + toggleRect.width - rect.offsetWidth;
             break;
         }
 
-        if (isOverflowing) {
-          newPos.y = toggleRect.y - rect.offsetHeight - space;
-        } else {
-          newPos.y = toggleRect.y + toggleRect.height + space;
-        }
+        newPos.y = openAbove ? toggleRect.y - height - space : toggleRect.y + toggleRect.height + space;
 
         if (newPos.x <= 0) newPos.x = space;
         else if (newPos.x + rect.offsetWidth >= portalWindow.innerWidth)
