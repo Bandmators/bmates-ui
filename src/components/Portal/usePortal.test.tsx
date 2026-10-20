@@ -23,13 +23,13 @@ const setViewportHeight = (height: number) => {
   Object.defineProperty(window, 'innerHeight', { configurable: true, writable: true, value: height });
 };
 
-const rectOf = (top: number, height: number) =>
+const rectOf = (top: number, height: number, left = 0) =>
   ({
-    x: 0,
+    x: left,
     y: top,
     top,
-    left: 0,
-    right: 100,
+    left,
+    right: left + 100,
     bottom: top + height,
     width: 100,
     height,
@@ -38,17 +38,17 @@ const rectOf = (top: number, height: number) =>
 
 /**
  * jsdom has no layout engine, so fake just enough of it:
- * - the toggle button sits at `toggleTop` and is `toggleHeight` tall;
+ * - the toggle button sits at `toggleTop`/`toggleLeft`, is `toggleHeight` tall and 100px wide;
  * - the popup is POPUP_HEIGHT tall unless the hook capped it, like a browser would.
  */
-const mockLayout = (toggleTop: number, toggleHeight = 40) => {
+const mockLayout = (toggleTop: number, toggleHeight = 40, toggleLeft = 0) => {
   vi.spyOn(HTMLElement.prototype, 'offsetHeight', 'get').mockImplementation(function (this: HTMLElement) {
     if (this.id !== 'bmates-portal') return 0;
     const cap = Number.parseFloat(this.style.getPropertyValue(CAP_VAR));
     return Number.isNaN(cap) ? POPUP_HEIGHT : Math.min(POPUP_HEIGHT, cap);
   });
   vi.spyOn(Element.prototype, 'getBoundingClientRect').mockImplementation(function (this: Element) {
-    return this.tagName === 'BUTTON' ? rectOf(toggleTop, toggleHeight) : rectOf(0, 0);
+    return this.tagName === 'BUTTON' ? rectOf(toggleTop, toggleHeight, toggleLeft) : rectOf(0, 0);
   });
 };
 
@@ -65,9 +65,9 @@ const popup = () => {
   return { portal, top, height, bottom: top + height };
 };
 
-const renderSelect = () =>
+const renderSelect = (align?: 'start' | 'center' | 'end') =>
   render(
-    <Select>
+    <Select align={align}>
       <SelectToggle>Animals</SelectToggle>
       <SelectContent>
         {Array.from({ length: 20 }, (_, index) => (
@@ -168,5 +168,22 @@ describe('usePortal viewport fitting', () => {
     const { top, bottom } = popup();
     expect(top).toBeGreaterThanOrEqual(0);
     expect(bottom).toBeLessThanOrEqual(700);
+  });
+
+  it('aligns the popup right edge with the toggle when align is end, counting the scrollbar', () => {
+    // toggle spans x 300..400; the popup is 160px wide including a 15px scrollbar.
+    mockLayout(20, 40, 300);
+    vi.spyOn(HTMLElement.prototype, 'offsetWidth', 'get').mockImplementation(function (this: HTMLElement) {
+      return this.id === 'bmates-portal' ? 160 : 0;
+    });
+    vi.spyOn(Element.prototype, 'clientWidth', 'get').mockImplementation(function (this: Element) {
+      return this.id === 'bmates-portal' ? 145 : 0;
+    });
+    renderSelect('end');
+    fireEvent.click(screen.getByText('Animals'));
+
+    const left = Number.parseFloat(getPortal().style.left);
+    expect(left).toBe(240); // 300 + 100 - 160, i.e. right edges line up at 400
+    expect(left + 160).toBe(400);
   });
 });
